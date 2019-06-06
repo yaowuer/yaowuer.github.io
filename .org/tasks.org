@@ -8,6 +8,15 @@
 - 返回命令相对应的执行文件，可能是 ~.bat/.exe/.cmd~ 格式
 - 如果命令没有找到对应文件，则报错
 
+提示:
+#+BEGIN_SRC java
+  public class Main {
+      public static void main(String[] args) {
+          System.out.println(System.getenv("PATH"));
+      }
+  }
+#+END_SRC
+
 * 2019年6月4日
 
 用 sqlite 为 “我的书单” 应用，创建数据库表。
