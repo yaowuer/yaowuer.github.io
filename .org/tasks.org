@@ -1,0 +1,23 @@
+#+TITLE: 任务
+
+
+* 2019年6月5日
+
+使用 Java/JS/C# 实现一个函数，模拟命令行下敲入命令之后，系统的处理:
+- 比如名字 ~getFilenameFromCmd(currentDir, command)~
+- 返回命令相对应的执行文件，可能是 ~.bat/.exe/.cmd~ 格式
+- 如果命令没有找到对应文件，则报错
+
+* 2019年6月4日
+
+用 sqlite 为 “我的书单” 应用，创建数据库表。
+
+提示:
+- book
+- author
+- category
+- tag
+
+* 2019年1月1日
+
+以前的一个任务，待复原
