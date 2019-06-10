@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-06-10 周一 03:12 -->
+<!-- 2019-06-10 周一 06:40 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>任务</title>
@@ -61,6 +61,33 @@
 <li>借助流程图，展现自己分析的结果</li>
 <li><b>解决问题</b>，选择一门语言，将自己的分析思路实现出来</li>
 </ol>
+
+
+<p>
+可以借助 TDD 的方式，进行思路的梳理跟问题的解决:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span class="org-keyword">function</span> <span class="org-function-name">getPathforCmd</span> (<span class="org-variable-name">cwd</span>, <span class="org-variable-name">cmd</span>) {
+
+
+    <span class="org-keyword">return</span> <span class="org-string">"cmd &#25152;&#23545;&#24212;&#30340;&#37027;&#20010;&#21487;&#25191;&#34892;&#25991;&#20214;"</span>;
+}
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">TDD (Test Driven Development) &#27979;&#35797;&#39537;&#21160;&#24320;&#21457;</span>
+<span class="org-keyword">function</span> <span class="org-function-name">test1</span> () {
+    <span class="org-keyword">var</span> <span class="org-variable-name">t1</span> = getPathforCmd(<span class="org-string">"c:/"</span>, <span class="org-string">"sqlite3"</span>) == <span class="org-string">"e:/xxx/sqlite3.exe"</span>;
+    <span class="org-keyword">var</span> <span class="org-variable-name">t2</span> = getPathforCmd(<span class="org-string">"c:/"</span>, <span class="org-string">"sqlite4"</span>) == <span class="org-string">""</span>;
+    <span class="org-keyword">var</span> <span class="org-variable-name">t3</span> = getPathforCmd(<span class="org-string">"c:/"</span>, <span class="org-string">"d:/sqlite4"</span>) == <span class="org-string">""</span>;
+    <span class="org-keyword">var</span> <span class="org-variable-name">t4</span> = getPathforCmd(<span class="org-string">"c:/test"</span>, <span class="org-string">"sqlite3"</span>) == <span class="org-string">"c:/test/sqlite3.bat"</span>;
+    <span class="org-keyword">var</span> <span class="org-variable-name">t5</span> = getPathforCmd(<span class="org-string">"c:/test"</span>, <span class="org-string">"d:/sqlite3"</span>) == <span class="org-string">"d:/sqlite3.bat"</span>;
+
+    <span class="org-keyword">if</span> (t1 &amp;&amp; t2 &amp;&amp; t3 &amp;&amp; t4 &amp;&amp; t5) {
+        console.log(<span class="org-string">"&#27979;&#35797;&#36890;&#36807;"</span>);
+    }
+}
+
+</pre>
+</div>
 </div>
 </section>
 
@@ -114,7 +141,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-06-10 周一 03:12</p>
+<p class="date">Created: 2019-06-10 周一 06:40</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

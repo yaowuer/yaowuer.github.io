@@ -23,6 +23,30 @@
 2. 借助流程图，展现自己分析的结果
 3. *解决问题*，选择一门语言，将自己的分析思路实现出来
 
+
+可以借助 TDD 的方式，进行思路的梳理跟问题的解决:
+#+BEGIN_SRC js
+  function getPathforCmd (cwd, cmd) {
+
+    
+      return "cmd 所对应的那个可执行文件";
+  }
+
+  // TDD (Test Driven Development) 测试驱动开发
+  function test1 () {
+      var t1 = getPathforCmd("c:/", "sqlite3") == "e:/xxx/sqlite3.exe";
+      var t2 = getPathforCmd("c:/", "sqlite4") == "";
+      var t3 = getPathforCmd("c:/", "d:/sqlite4") == "";
+      var t4 = getPathforCmd("c:/test", "sqlite3") == "c:/test/sqlite3.bat";
+      var t5 = getPathforCmd("c:/test", "d:/sqlite3") == "d:/sqlite3.bat";
+
+      if (t1 && t2 && t3 && t4 && t5) {
+          console.log("测试通过");
+      }
+  }
+
+#+END_SRC
+
 * 2019年6月4日
 
 用 sqlite 为 “我的书单” 应用，创建数据库表。
