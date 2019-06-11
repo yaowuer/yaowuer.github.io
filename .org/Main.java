@@ -21,10 +21,10 @@ public class Main {
         }
     }
     private String getPathFile (String path) {
-        if (path.contains(".") && new File(path).exists()) { // 如果路径具备后缀名，并且存在这个文件
-            return path;
-        }
-        if (!path.contains(".")) {
+        if (path.contains(".")) {
+            File f = new File(path);
+            if (f.exists()) return f.getAbsolutePath();
+        } else {
             for (String p : Arrays.asAlist(".cmd", ".exe", ".bat")) {
                 File f = new File (path + "/" + p);
                 if (f.exists()) return f.getAbsolutePath();

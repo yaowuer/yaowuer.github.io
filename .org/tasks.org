@@ -54,7 +54,7 @@ demo:
       }
 
       public String getCmdPath (String dir, String cmd) {
-          if (dir.contains(":")) { // 绝对路径
+          if (cmd.contains(":")) { // 绝对路径
               return getPathFile(cmd);
           } else { // 相对路径
               String fname = dir + "/" + cmd;
