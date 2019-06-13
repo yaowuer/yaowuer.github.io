@@ -102,26 +102,24 @@ demo:
       }
 
       public String readCmdFile(String dir, String cmd) {
-          // 首先，要判断 cmd 是不是一个绝对路径
           if (new File(cmd).isAbsolute()) { // 处理是绝对路径的情况
-              if (cmd.contains(".")) {
+              if (cmd.contains(".")) {      // 如果路径中已经有后缀名
                   File f = new File(cmd);
                   return f.exists() ? f.getAbsolutePath() : null;
               }
-              for (String ext : Arrays.asList(".bat", ".cmd", ".exe")) {
+              for (String ext : Arrays.asList(".bat", ".cmd", ".exe")) { // 如果没有后缀名，添加上再判断
                   File f = new File(cmd + ext);
                   if (f.exists()) return f.getAbsolutePath();
               }
-              return null;
           } else {
-              String path = readCmdFile(dir, dir + "/" + cmd);
-              if (path != null) return path; // 判断当前文件夹下有没有对应文件
-              for (String p : System.getenv("path").split(";")) {
+              String path = readCmdFile(dir, dir + "/" + cmd);    // 判断当前文件夹下有没有对应文件
+              if (path != null) return path;                      // 如果当前文件夹下存在，那么就找对了
+              for (String p : System.getenv("path").split(";")) { // 否则从 PATH 里面进行匹配
                   path = readCmdFile(dir, p + "/" + cmd);
-                  if (path != null) return path;
+                  if (path != null) return path;                  // 只要找到，就返回
               }
-              return null;
           }
+          return null;                                            // 如果上面没找到，就返回 null
       }
   }
 #+END_SRC

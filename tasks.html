@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-06-13 Thu 01:52 -->
+<!-- 2019-06-13 Thu 01:56 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>任务</title>
@@ -149,26 +149,24 @@ demo:
     }
 
     <span class="org-keyword">public</span> <span class="org-type">String</span> <span class="org-function-name">readCmdFile</span>(<span class="org-type">String</span> <span class="org-variable-name">dir</span>, <span class="org-type">String</span> <span class="org-variable-name">cmd</span>) {
-        <span class="org-comment-delimiter">// </span><span class="org-comment">&#39318;&#20808;&#65292;&#35201;&#21028;&#26029; cmd &#26159;&#19981;&#26159;&#19968;&#20010;&#32477;&#23545;&#36335;&#24452;</span>
         <span class="org-keyword">if</span> (<span class="org-keyword">new</span> <span class="org-type">File</span>(cmd).isAbsolute()) { <span class="org-comment-delimiter">// </span><span class="org-comment">&#22788;&#29702;&#26159;&#32477;&#23545;&#36335;&#24452;&#30340;&#24773;&#20917;</span>
-            <span class="org-keyword">if</span> (cmd.contains(<span class="org-string">"."</span>)) {
+            <span class="org-keyword">if</span> (cmd.contains(<span class="org-string">"."</span>)) {      <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#36335;&#24452;&#20013;&#24050;&#32463;&#26377;&#21518;&#32512;&#21517;</span>
                 <span class="org-type">File</span> <span class="org-variable-name">f</span> = <span class="org-keyword">new</span> <span class="org-type">File</span>(cmd);
                 <span class="org-keyword">return</span> f.exists() ? f.getAbsolutePath() : <span class="org-constant">null</span>;
             }
-            <span class="org-keyword">for</span> (<span class="org-type">String</span> <span class="org-function-name">ext</span> : Arrays.asList(<span class="org-string">".bat"</span>, <span class="org-string">".cmd"</span>, <span class="org-string">".exe"</span>)) {
+            <span class="org-keyword">for</span> (<span class="org-type">String</span> <span class="org-function-name">ext</span> : Arrays.asList(<span class="org-string">".bat"</span>, <span class="org-string">".cmd"</span>, <span class="org-string">".exe"</span>)) { <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#27809;&#26377;&#21518;&#32512;&#21517;&#65292;&#28155;&#21152;&#19978;&#20877;&#21028;&#26029;</span>
                 <span class="org-type">File</span> <span class="org-variable-name">f</span> = <span class="org-keyword">new</span> <span class="org-type">File</span>(cmd + ext);
                 <span class="org-keyword">if</span> (f.exists()) <span class="org-keyword">return</span> f.getAbsolutePath();
             }
-            <span class="org-keyword">return</span> <span class="org-constant">null</span>;
         } <span class="org-keyword">else</span> {
-            <span class="org-type">String</span> <span class="org-variable-name">path</span> = readCmdFile(dir, dir + <span class="org-string">"/"</span> + cmd);
-            <span class="org-keyword">if</span> (path != <span class="org-constant">null</span>) <span class="org-keyword">return</span> path; <span class="org-comment-delimiter">// </span><span class="org-comment">&#21028;&#26029;&#24403;&#21069;&#25991;&#20214;&#22841;&#19979;&#26377;&#27809;&#26377;&#23545;&#24212;&#25991;&#20214;</span>
-            <span class="org-keyword">for</span> (<span class="org-type">String</span> <span class="org-function-name">p</span> : System.getenv(<span class="org-string">"path"</span>).split(<span class="org-string">";"</span>)) {
+            <span class="org-type">String</span> <span class="org-variable-name">path</span> = readCmdFile(dir, dir + <span class="org-string">"/"</span> + cmd);    <span class="org-comment-delimiter">// </span><span class="org-comment">&#21028;&#26029;&#24403;&#21069;&#25991;&#20214;&#22841;&#19979;&#26377;&#27809;&#26377;&#23545;&#24212;&#25991;&#20214;</span>
+            <span class="org-keyword">if</span> (path != <span class="org-constant">null</span>) <span class="org-keyword">return</span> path;                      <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#24403;&#21069;&#25991;&#20214;&#22841;&#19979;&#23384;&#22312;&#65292;&#37027;&#20040;&#23601;&#25214;&#23545;&#20102;</span>
+            <span class="org-keyword">for</span> (<span class="org-type">String</span> <span class="org-function-name">p</span> : System.getenv(<span class="org-string">"path"</span>).split(<span class="org-string">";"</span>)) { <span class="org-comment-delimiter">// </span><span class="org-comment">&#21542;&#21017;&#20174; PATH &#37324;&#38754;&#36827;&#34892;&#21305;&#37197;</span>
                 path = readCmdFile(dir, p + <span class="org-string">"/"</span> + cmd);
-                <span class="org-keyword">if</span> (path != <span class="org-constant">null</span>) <span class="org-keyword">return</span> path;
+                <span class="org-keyword">if</span> (path != <span class="org-constant">null</span>) <span class="org-keyword">return</span> path;                  <span class="org-comment-delimiter">// </span><span class="org-comment">&#21482;&#35201;&#25214;&#21040;&#65292;&#23601;&#36820;&#22238;</span>
             }
-            <span class="org-keyword">return</span> <span class="org-constant">null</span>;
         }
+        <span class="org-keyword">return</span> <span class="org-constant">null</span>;                                            <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#19978;&#38754;&#27809;&#25214;&#21040;&#65292;&#23601;&#36820;&#22238; null</span>
     }
 }
 </pre>
@@ -226,7 +224,7 @@ demo:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-06-13 Thu 01:52</p>
+<p class="date">Created: 2019-06-13 Thu 01:56</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
