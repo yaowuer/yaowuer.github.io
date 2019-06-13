@@ -85,6 +85,47 @@ demo:
   }
 #+END_SRC
 
+实现参考:
+#+BEGIN_SRC java
+  import java.io.File;
+  import java.util.Arrays;
+  import java.util.Scanner;
+
+  public class ReadCmdFile {
+      public static void main(String[] args) {
+          ReadCmdFile rcf = new ReadCmdFile();
+          while (true) {
+              Scanner scanner = new Scanner(System.in);
+              String cmd = scanner.nextLine();
+              System.out.println(rcf.readCmdFile("C:", cmd));
+          }
+      }
+
+      public String readCmdFile(String dir, String cmd) {
+          // 首先，要判断 cmd 是不是一个绝对路径
+          if (new File(cmd).isAbsolute()) { // 处理是绝对路径的情况
+              if (cmd.contains(".")) {
+                  File f = new File(cmd);
+                  return f.exists() ? f.getAbsolutePath() : null;
+              }
+              for (String ext : Arrays.asList(".bat", ".cmd", ".exe")) {
+                  File f = new File(cmd + ext);
+                  if (f.exists()) return f.getAbsolutePath();
+              }
+              return null;
+          } else {
+              String path = readCmdFile(dir, dir + "/" + cmd);
+              if (path != null) return path; // 判断当前文件夹下有没有对应文件
+              for (String p : System.getenv("path").split(";")) {
+                  path = readCmdFile(dir, p + "/" + cmd);
+                  if (path != null) return path;
+              }
+              return null;
+          }
+      }
+  }
+#+END_SRC
+
 * 2019年6月4日
 
 用 sqlite 为 “我的书单” 应用，创建数据库表。

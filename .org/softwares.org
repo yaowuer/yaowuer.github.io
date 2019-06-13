@@ -1,0 +1,18 @@
+#+TITLE: Software
+
+
+
+* Lisptary
+
+https://www.listary.com/
+
+方便的文件检索工具。
+
+
+* Snipaste
+
+https://zh.snipaste.com/
+
+应该是当前最好用的 *截图+贴图* 的软件，开源免费。
+
+贴图功能非常实用。
