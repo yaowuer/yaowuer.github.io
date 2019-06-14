@@ -1,4 +1,4 @@
-#+TITLE: NF-S152
+#+TITLE: 152
 
 #+HTML_HEAD: <link rel="stylesheet" href="/asset/common.css?888">
 #+HTML_HEAD: <style>
