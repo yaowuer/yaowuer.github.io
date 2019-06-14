@@ -3,7 +3,61 @@
 
 
 
+* Java 中的基本类型
+** 数字
+*** short/int/long
+*** float/double
+** 字节 
+*** Char
+*** String
+** 布尔 (Boolean)
+
+true/false/&&/||/not
+
+优先级的问题
+
+#+BEGIN_SRC java
+  a && b || c && d && e || f
+
+  1 * 2 / 3 + 8 / 2 * 3
+
+  (a && b) || (c && d && e) || f
+#+END_SRC
+
+** 数组
+
+#+BEGIN_SRC java
+  String na = "xxx";
+  String nb = "yyy";
+
+  String[] allof152 = new String[] {
+      na, nb
+  };
+#+END_SRC
+
+** 示例
+
+#+BEGIN_SRC java
+  String aaaName = "aaa";
+  int bbbbScore = 90;
+  String aaaWeixin = "110";
+  int getStudentScore (String name) {
+  }
+  int aaaScore = 90;
+  String bbbName = "aaa";
+  String bbbWeixin = "110";
+
+#+END_SRC
+
+* 集合类
+
+- ArrayList
+- Hashset
+- HashMap 
+
 * 面向对象编程 (Object-Oritened Program)
+
+
 
 #+BEGIN_QUOTE
 

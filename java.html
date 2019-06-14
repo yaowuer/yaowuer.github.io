@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-06-14 周五 01:53 -->
+<!-- 2019-06-14 周五 06:47 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java 基础</title>
@@ -20,11 +20,31 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc7528e2">1. 面向对象编程 (Object-Oritened Program)</a>
+<li><a href="#org421ad8a">1. Java 中的基本类型</a>
 <ul>
-<li><a href="#org2cced0f">1.1. 封装</a></li>
-<li><a href="#orgb6e0894">1.2. 继承</a></li>
-<li><a href="#org8edcb44">1.3. 多态</a></li>
+<li><a href="#org773312f">1.1. 数字</a>
+<ul>
+<li><a href="#org8bd8064">1.1.1. short/int/long</a></li>
+<li><a href="#org1a60fb0">1.1.2. float/double</a></li>
+</ul>
+</li>
+<li><a href="#org1cf8dc1">1.2. 字节</a>
+<ul>
+<li><a href="#orge255347">1.2.1. Char</a></li>
+<li><a href="#org74146f3">1.2.2. String</a></li>
+</ul>
+</li>
+<li><a href="#org19c9179">1.3. 布尔 (Boolean)</a></li>
+<li><a href="#org5b9e713">1.4. 数组</a></li>
+<li><a href="#orge5d0248">1.5. 示例</a></li>
+</ul>
+</li>
+<li><a href="#orgce3c81d">2. 集合类</a></li>
+<li><a href="#orgc7528e2">3. 面向对象编程 (Object-Oritened Program)</a>
+<ul>
+<li><a href="#org2cced0f">3.1. 封装</a></li>
+<li><a href="#orgb6e0894">3.2. 继承</a></li>
+<li><a href="#org8edcb44">3.3. 多态</a></li>
 </ul>
 </li>
 </ul>
@@ -34,9 +54,102 @@
 
 
 
-<section id="outline-container-orgc7528e2" class="outline-2">
-<h2 id="orgc7528e2"><span class="section-number-2">1</span> 面向对象编程 (Object-Oritened Program)</h2>
+<section id="outline-container-org421ad8a" class="outline-2">
+<h2 id="org421ad8a"><span class="section-number-2">1</span> Java 中的基本类型</h2>
 <div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org773312f" class="outline-3">
+<h3 id="org773312f"><span class="section-number-3">1.1</span> 数字</h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+<div id="outline-container-org8bd8064" class="outline-4">
+<h4 id="org8bd8064"><span class="section-number-4">1.1.1</span> short/int/long</h4>
+</div>
+<div id="outline-container-org1a60fb0" class="outline-4">
+<h4 id="org1a60fb0"><span class="section-number-4">1.1.2</span> float/double</h4>
+</div>
+</div>
+<div id="outline-container-org1cf8dc1" class="outline-3">
+<h3 id="org1cf8dc1"><span class="section-number-3">1.2</span> 字节</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-orge255347" class="outline-4">
+<h4 id="orge255347"><span class="section-number-4">1.2.1</span> Char</h4>
+</div>
+<div id="outline-container-org74146f3" class="outline-4">
+<h4 id="org74146f3"><span class="section-number-4">1.2.2</span> String</h4>
+</div>
+</div>
+<div id="outline-container-org19c9179" class="outline-3">
+<h3 id="org19c9179"><span class="section-number-3">1.3</span> 布尔 (Boolean)</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+true/false/&amp;&amp;/||/not
+</p>
+
+<p>
+优先级的问题
+</p>
+
+<div class="org-src-container">
+<pre class="src src-java">a &amp;&amp; b || c &amp;&amp; d &amp;&amp; e || f
+
+1 * 2 / 3 + 8 / 2 * 3
+
+(a &amp;&amp; b) || (c &amp;&amp; d &amp;&amp; e) || f
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5b9e713" class="outline-3">
+<h3 id="org5b9e713"><span class="section-number-3">1.4</span> 数组</h3>
+<div class="outline-text-3" id="text-1-4">
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-type">String</span> <span class="org-variable-name">na</span> = <span class="org-string">"xxx"</span>;
+<span class="org-type">String</span> <span class="org-variable-name">nb</span> = <span class="org-string">"yyy"</span>;
+
+<span class="org-type">String</span>[] <span class="org-variable-name">allof152</span> = <span class="org-keyword">new</span> <span class="org-type">String</span>[] {
+    na, nb
+};
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge5d0248" class="outline-3">
+<h3 id="orge5d0248"><span class="section-number-3">1.5</span> 示例</h3>
+<div class="outline-text-3" id="text-1-5">
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-type">String</span> <span class="org-variable-name">aaaName</span> = <span class="org-string">"aaa"</span>;
+<span class="org-type">int</span> <span class="org-variable-name">bbbbScore</span> = 90;
+<span class="org-type">String</span> <span class="org-variable-name">aaaWeixin</span> = <span class="org-string">"110"</span>;
+<span class="org-type">int</span> <span class="org-function-name">getStudentScore</span> (<span class="org-type">String</span> <span class="org-variable-name">name</span>) {
+}
+<span class="org-type">int</span> <span class="org-variable-name">aaaScore</span> = 90;
+<span class="org-type">String</span> <span class="org-variable-name">bbbName</span> = <span class="org-string">"aaa"</span>;
+<span class="org-type">String</span> <span class="org-variable-name">bbbWeixin</span> = <span class="org-string">"110"</span>;
+
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orgce3c81d" class="outline-2">
+<h2 id="orgce3c81d"><span class="section-number-2">2</span> 集合类</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>ArrayList</li>
+<li>Hashset</li>
+<li>HashMap</li>
+</ul>
+</div>
+</section>
+
+<section id="outline-container-orgc7528e2" class="outline-2">
+<h2 id="orgc7528e2"><span class="section-number-2">3</span> 面向对象编程 (Object-Oritened Program)</h2>
+<div class="outline-text-2" id="text-3">
 <blockquote>
 <p>
 
@@ -63,21 +176,21 @@
 
 
 <div id="outline-container-org2cced0f" class="outline-3">
-<h3 id="org2cced0f"><span class="section-number-3">1.1</span> 封装</h3>
+<h3 id="org2cced0f"><span class="section-number-3">3.1</span> 封装</h3>
 </div>
 
 <div id="outline-container-orgb6e0894" class="outline-3">
-<h3 id="orgb6e0894"><span class="section-number-3">1.2</span> 继承</h3>
+<h3 id="orgb6e0894"><span class="section-number-3">3.2</span> 继承</h3>
 </div>
 
 <div id="outline-container-org8edcb44" class="outline-3">
-<h3 id="org8edcb44"><span class="section-number-3">1.3</span> 多态</h3>
+<h3 id="org8edcb44"><span class="section-number-3">3.3</span> 多态</h3>
 </div>
 </section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-06-14 周五 01:53</p>
+<p class="date">Created: 2019-06-14 周五 06:47</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
