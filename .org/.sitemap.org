@@ -1,5 +1,6 @@
 #+TITLE: Sitemap for project .org-org
 
+- [[file:java-basic.org][Java 基础]]
 - [[file:index.org][NF-S152]]
 - [[file:softwares.org][Software]]
 - [[file:tasks.org][任务]]
