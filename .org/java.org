@@ -5,7 +5,7 @@
 ** byte(1)
 ** char(2)
 ** short(2)/int(4)/long(8)
-** float/double
+** float(4)/double(8)
 ** boolean
 
 true/false/&&/||/not
@@ -50,13 +50,17 @@ true/false/&&/||/not
   // 对不对？为什么错了？
   short d1 = 23;
   short d2 = d1 + 1;
+  // 这种是对的
+  short d5 = (short) (d1 + 1);
+  // 为什么报错
+  short d4 = d1 + (short)1;
   // 这个为什么不会报错？
   short d3 = 23;
   d3 += 1;
 
   // 浮点数在计算机中的表示
   // 伴随着精度丢失
-  // 怎么在 Java 中进行浮点数的精确计算？
+  // 怎么在 Java 中进行浮点数的精确计算？BigDecimal
   double e1 = 1;
   double e2 = 0.99;
   System.out.println(e1 - e2);
@@ -72,6 +76,15 @@ true/false/&&/||/not
   String[] allof152 = new String[] {
       na, nb
   };
+
+
+  int[] a1 = new int[9];
+  a1[0] = 111;
+  a1[2] = 222;
+  a1[3] = 333;
+
+  int[] a2 = new int[] { 111, 222, 333, 444, 5555 };
+  int[] a3 = { 333, 444, 555, 666 };
 #+END_SRC
 
 ** 示例
