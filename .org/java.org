@@ -1,7 +1,7 @@
 #+TITLE: Java 基础
 
 
-* 基本类型 (primitive type)
+* 基本类型 (primitive Type)
 
 [[file:img/java-types-001.png]]
 
