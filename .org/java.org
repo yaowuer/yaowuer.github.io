@@ -1,16 +1,12 @@
 #+TITLE: Java 基础
 
 
-
-
-* Java 中的基本类型
-** 数字
-*** short/int/long
-*** float/double
-** 字节 
-*** Char
-*** String
-** 布尔 (Boolean)
+* 基本类型 (primitive type)
+** byte(1)
+** char(2)
+** short(2)/int(4)/long(8)
+** float/double
+** boolean
 
 true/false/&&/||/not
 
@@ -24,6 +20,49 @@ true/false/&&/||/not
   (a && b) || (c && d && e) || f
 #+END_SRC
 
+** 其他
+
+#+BEGIN_SRC java
+  // 下面哪种写法会报错
+
+  float a1 = 32.5; // 错
+  float a2 = 32.5f;
+  float a3 = (float)32.5;
+
+  double b1 = 32.5;
+  double b2 = (double)32.5;
+  double b3 = 32.5f; // 错
+
+  byte c1 = 65;
+  char c2 = 65;
+  int c3 = 65;
+  // 1.对不对 2.如果不对，原因 3. 如果对，结果
+  System.out.println(c1 + c2 + c3); // -> 195
+  // 思考：什么是隐式转型，它的基本规则是什么？
+  System.out.println((int)c1 + (int)c2 + (int)c3); // -> 195
+  // + 是在 Java 中存在的唯一的一个重载的运算符 3 + 4 / "3" + "4"
+  System.out.println("C1: " + c1 + "  C2: " + c2 + "  C3: " + c3);
+  // 优先级的问题
+  System.out.println("C1: " + c1 + "  C2: " + c2 + c3);
+  System.out.println(c1 + c2 + "  C3: " + c3);
+  System.out.println("C1: " + c1 + "  C2: " + (c2 + c3));
+
+  // 对不对？为什么错了？
+  short d1 = 23;
+  short d2 = d1 + 1;
+  // 这个为什么不会报错？
+  short d3 = 23;
+  d3 += 1;
+
+  // 浮点数在计算机中的表示
+  // 伴随着精度丢失
+  // 怎么在 Java 中进行浮点数的精确计算？
+  double e1 = 1;
+  double e2 = 0.99;
+  System.out.println(e1 - e2);
+#+END_SRC
+
+* 引用类型
 ** 数组
 
 #+BEGIN_SRC java
