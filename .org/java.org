@@ -2,6 +2,9 @@
 
 
 * 基本类型 (primitive type)
+
+[[file:img/java-types-001.png]]
+
 ** byte(1)
 ** char(2)
 ** short(2)/int(4)/long(8)
@@ -68,6 +71,10 @@ true/false/&&/||/not
 
 * 引用类型
 ** 数组
+
+
+#+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-06-24 03:34:58
+[[file:img/arr-01.png]]
 
 #+BEGIN_SRC java
   String na = "xxx";
