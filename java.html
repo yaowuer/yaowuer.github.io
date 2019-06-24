@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-06-24 Mon 03:35 -->
+<!-- 2019-06-24 周一 06:43 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java 基础</title>
@@ -30,10 +30,12 @@
 <li><a href="#orgab0961f">1.6. 其他</a></li>
 </ul>
 </li>
-<li><a href="#orgd921de8">2. 引用类型</a>
+<li><a href="#orgf57caad">2. 引用类型 (Reference Type)</a>
 <ul>
 <li><a href="#org5b9e713">2.1. 数组</a></li>
-<li><a href="#orge5d0248">2.2. 示例</a></li>
+<li><a href="#orgaa25103">2.2. 字符串</a></li>
+<li><a href="#org1887867">2.3. 引用计数及垃圾回收</a></li>
+<li><a href="#orge5d0248">2.4. 示例</a></li>
 </ul>
 </li>
 <li><a href="#orgce3c81d">3. 集合类</a></li>
@@ -144,8 +146,8 @@ System.out.println(e1 - e2);
 </div>
 </section>
 
-<section id="outline-container-orgd921de8" class="outline-2">
-<h2 id="orgd921de8"><span class="section-number-2">2</span> 引用类型</h2>
+<section id="outline-container-orgf57caad" class="outline-2">
+<h2 id="orgf57caad"><span class="section-number-2">2</span> 引用类型 (Reference Type)</h2>
 <div class="outline-text-2" id="text-2">
 </div>
 <div id="outline-container-org5b9e713" class="outline-3">
@@ -178,9 +180,35 @@ a1[3] = 333;
 </div>
 </div>
 
+<div id="outline-container-orgaa25103" class="outline-3">
+<h3 id="orgaa25103"><span class="section-number-3">2.2</span> 字符串</h3>
+</div>
+<div id="outline-container-org1887867" class="outline-3">
+<h3 id="org1887867"><span class="section-number-3">2.3</span> 引用计数及垃圾回收</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Garbage Collector，GC，垃圾回收器。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-type">Apple</span> <span class="org-variable-name">a</span> = <span class="org-keyword">new</span> <span class="org-type">Apple</span>();
+<span class="org-type">Apple</span> <span class="org-variable-name">b</span> = a;
+
+a = <span class="org-constant">null</span>;
+b = <span class="org-constant">null</span>;
+
+<span class="org-type">Pear</span> <span class="org-variable-name">p</span> = <span class="org-keyword">new</span> <span class="org-type">Pear</span>();
+
+a.eat();
+p.eat();
+</pre>
+</div>
+</div>
+</div>
+
 <div id="outline-container-orge5d0248" class="outline-3">
-<h3 id="orge5d0248"><span class="section-number-3">2.2</span> 示例</h3>
-<div class="outline-text-3" id="text-2-2">
+<h3 id="orge5d0248"><span class="section-number-3">2.4</span> 示例</h3>
+<div class="outline-text-3" id="text-2-4">
 <div class="org-src-container">
 <pre class="src src-java"><span class="org-type">String</span> <span class="org-variable-name">aaaName</span> = <span class="org-string">"aaa"</span>;
 <span class="org-type">int</span> <span class="org-variable-name">bbbbScore</span> = 90;
@@ -190,7 +218,6 @@ a1[3] = 333;
 <span class="org-type">int</span> <span class="org-variable-name">aaaScore</span> = 90;
 <span class="org-type">String</span> <span class="org-variable-name">bbbName</span> = <span class="org-string">"aaa"</span>;
 <span class="org-type">String</span> <span class="org-variable-name">bbbWeixin</span> = <span class="org-string">"110"</span>;
-
 </pre>
 </div>
 </div>
@@ -251,7 +278,7 @@ a1[3] = 333;
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-06-24 Mon 03:35</p>
+<p class="date">Created: 2019-06-24 周一 06:43</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

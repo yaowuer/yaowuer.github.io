@@ -69,11 +69,9 @@ true/false/&&/||/not
   System.out.println(e1 - e2);
 #+END_SRC
 
-* 引用类型
+* 引用类型 (Reference Type)
 ** 数组
 
-
-#+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-06-24 03:34:58
 [[file:img/arr-01.png]]
 
 #+BEGIN_SRC java
@@ -94,6 +92,24 @@ true/false/&&/||/not
   int[] a3 = { 333, 444, 555, 666 };
 #+END_SRC
 
+** 字符串
+** 引用计数及垃圾回收
+
+Garbage Collector，GC，垃圾回收器。
+
+#+BEGIN_SRC java
+  Apple a = new Apple();
+  Apple b = a;
+
+  a = null;
+  b = null;
+
+  Pear p = new Pear();
+
+  a.eat();
+  p.eat();
+#+END_SRC
+
 ** 示例
 
 #+BEGIN_SRC java
@@ -105,7 +121,6 @@ true/false/&&/||/not
   int aaaScore = 90;
   String bbbName = "aaa";
   String bbbWeixin = "110";
-
 #+END_SRC
 
 * 集合类
