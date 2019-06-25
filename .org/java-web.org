@@ -1,0 +1,9 @@
+#+TITLE: Java Web
+
+
+* 预习
+
+- 下载 Tomcat 服务器，完成安装
+- 了解 Tomcat 的目录结构，并学会基本配置
+- 将 Tomcat 配置到 eclipse/idea 中
+- 了解 Servlet/jsp 的基本概念
