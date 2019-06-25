@@ -1,7 +1,7 @@
 #+TITLE: Javascript
 
 
-* Prototype-Base OO
+* Prototype-Based OO
 
 原型链:
 
