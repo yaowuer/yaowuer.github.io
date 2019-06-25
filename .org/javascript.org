@@ -47,3 +47,5 @@
       __proto__: badtom
   }
 #+END_SRC
+
+JS 中没有类，class 关键词只是一种语法糖（Syntax Sugar）。
