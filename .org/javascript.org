@@ -15,7 +15,7 @@
       name: "TOM",
       age: 18,
       weixin: "110",
-      intro: function () { alert("hello"); }
+      intro: function () { alert("hello, i am " + this.name); }
   };
 
   var jerry = {
