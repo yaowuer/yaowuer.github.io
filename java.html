@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-06-24 周一 06:43 -->
+<!-- 2019-06-25 Tue 01:10 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java 基础</title>
@@ -33,19 +33,27 @@
 <li><a href="#orgf57caad">2. 引用类型 (Reference Type)</a>
 <ul>
 <li><a href="#org5b9e713">2.1. 数组</a></li>
-<li><a href="#orgaa25103">2.2. 字符串</a></li>
+<li><a href="#orgaa25103">2.2. 字符串</a>
+<ul>
+<li><a href="#orgbf48e1b">2.2.1. String/StringBuffer/StringBuilder</a></li>
+</ul>
+</li>
 <li><a href="#org1887867">2.3. 引用计数及垃圾回收</a></li>
 <li><a href="#orge5d0248">2.4. 示例</a></li>
 </ul>
 </li>
-<li><a href="#orgce3c81d">3. 集合类</a></li>
-<li><a href="#orgc7528e2">4. 面向对象编程 (Object-Oritened Program)</a>
+<li><a href="#org21caf34">3. 类与对象 (Object-Oritened Program)</a>
 <ul>
-<li><a href="#org2cced0f">4.1. 封装</a></li>
-<li><a href="#orgb6e0894">4.2. 继承</a></li>
-<li><a href="#org8edcb44">4.3. 多态</a></li>
+<li><a href="#org2cced0f">3.1. 封装</a></li>
+<li><a href="#orgb6e0894">3.2. 继承</a></li>
+<li><a href="#org8edcb44">3.3. 多态</a></li>
 </ul>
 </li>
+<li><a href="#orgb015966">4. 泛型 (Generic)</a></li>
+<li><a href="#org6e321fd">5. 反射 (Reflection)</a></li>
+<li><a href="#orgce3c81d">6. 集合类</a></li>
+<li><a href="#org53786f2">7. IO流</a></li>
+<li><a href="#org4c89b14">8. 示例</a></li>
 </ul>
 </div>
 </nav>
@@ -182,7 +190,22 @@ a1[3] = 333;
 
 <div id="outline-container-orgaa25103" class="outline-3">
 <h3 id="orgaa25103"><span class="section-number-3">2.2</span> 字符串</h3>
+<div class="outline-text-3" id="text-2-2">
 </div>
+<div id="outline-container-orgbf48e1b" class="outline-4">
+<h4 id="orgbf48e1b"><span class="section-number-4">2.2.1</span> String/StringBuffer/StringBuilder</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+三个有什么不同之处？
+</p>
+
+<p>
+分别应用于什么场景？
+</p>
+</div>
+</div>
+</div>
+
 <div id="outline-container-org1887867" class="outline-3">
 <h3 id="org1887867"><span class="section-number-3">2.3</span> 引用计数及垃圾回收</h3>
 <div class="outline-text-3" id="text-2-3">
@@ -224,20 +247,9 @@ p.eat();
 </div>
 </section>
 
-<section id="outline-container-orgce3c81d" class="outline-2">
-<h2 id="orgce3c81d"><span class="section-number-2">3</span> 集合类</h2>
+<section id="outline-container-org21caf34" class="outline-2">
+<h2 id="org21caf34"><span class="section-number-2">3</span> 类与对象 (Object-Oritened Program)</h2>
 <div class="outline-text-2" id="text-3">
-<ul class="org-ul">
-<li>ArrayList</li>
-<li>Hashset</li>
-<li>HashMap</li>
-</ul>
-</div>
-</section>
-
-<section id="outline-container-orgc7528e2" class="outline-2">
-<h2 id="orgc7528e2"><span class="section-number-2">4</span> 面向对象编程 (Object-Oritened Program)</h2>
-<div class="outline-text-2" id="text-4">
 <blockquote>
 <p>
 
@@ -264,21 +276,60 @@ p.eat();
 
 
 <div id="outline-container-org2cced0f" class="outline-3">
-<h3 id="org2cced0f"><span class="section-number-3">4.1</span> 封装</h3>
+<h3 id="org2cced0f"><span class="section-number-3">3.1</span> 封装</h3>
 </div>
 
 <div id="outline-container-orgb6e0894" class="outline-3">
-<h3 id="orgb6e0894"><span class="section-number-3">4.2</span> 继承</h3>
+<h3 id="orgb6e0894"><span class="section-number-3">3.2</span> 继承</h3>
 </div>
 
 <div id="outline-container-org8edcb44" class="outline-3">
-<h3 id="org8edcb44"><span class="section-number-3">4.3</span> 多态</h3>
+<h3 id="org8edcb44"><span class="section-number-3">3.3</span> 多态</h3>
+</div>
+</section>
+<section id="outline-container-orgb015966" class="outline-2">
+<h2 id="orgb015966"><span class="section-number-2">4</span> 泛型 (Generic)</h2>
+</section>
+<section id="outline-container-org6e321fd" class="outline-2">
+<h2 id="org6e321fd"><span class="section-number-2">5</span> 反射 (Reflection)</h2>
+</section>
+<section id="outline-container-orgce3c81d" class="outline-2">
+<h2 id="orgce3c81d"><span class="section-number-2">6</span> 集合类</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>ArrayList</li>
+<li>Hashset</li>
+<li>HashMap</li>
+</ul>
+</div>
+</section>
+
+
+<section id="outline-container-org53786f2" class="outline-2">
+<h2 id="org53786f2"><span class="section-number-2">7</span> IO流</h2>
+</section>
+<section id="outline-container-org4c89b14" class="outline-2">
+<h2 id="org4c89b14"><span class="section-number-2">8</span> 示例</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+封装一下，使用 Java 对数据库的操纵。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-type">DBUtil</span>&lt;<span class="org-type">Person</span>&gt; <span class="org-variable-name">du</span> = <span class="org-keyword">new</span> <span class="org-type">DBUtil</span>&lt;&gt;();
+
+<span class="org-type">Person</span> <span class="org-variable-name">person</span> = <span class="org-keyword">new</span> <span class="org-type">Person</span>(a, b, c, d);
+du.add(person);
+
+<span class="org-type">List</span>&lt;<span class="org-type">Person</span>&gt; <span class="org-variable-name">persons</span> = du.find(<span class="org-string">"age &lt; 18"</span>);
+</pre>
+</div>
 </div>
 </section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-06-24 周一 06:43</p>
+<p class="date">Created: 2019-06-25 Tue 01:10</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

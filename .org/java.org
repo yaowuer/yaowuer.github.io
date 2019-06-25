@@ -93,6 +93,12 @@ true/false/&&/||/not
 #+END_SRC
 
 ** 字符串
+*** String/StringBuffer/StringBuilder
+
+三个有什么不同之处？
+
+分别应用于什么场景？
+
 ** 引用计数及垃圾回收
 
 Garbage Collector，GC，垃圾回收器。
@@ -123,13 +129,7 @@ Garbage Collector，GC，垃圾回收器。
   String bbbWeixin = "110";
 #+END_SRC
 
-* 集合类
-
-- ArrayList
-- Hashset
-- HashMap 
-
-* 面向对象编程 (Object-Oritened Program)
+* 类与对象 (Object-Oritened Program)
 
 
 
@@ -152,3 +152,25 @@ Garbage Collector，GC，垃圾回收器。
 ** 继承
 
 ** 多态
+* 泛型 (Generic)
+* 反射 (Reflection)
+* 集合类
+
+- ArrayList
+- Hashset
+- HashMap 
+
+
+* IO流
+* 示例
+
+封装一下，使用 Java 对数据库的操纵。
+
+#+BEGIN_SRC java
+  DBUtil<Person> du = new DBUtil<>();
+
+  Person person = new Person(a, b, c, d);
+  du.add(person);
+
+  List<Person> persons = du.find("age < 18");
+#+END_SRC
