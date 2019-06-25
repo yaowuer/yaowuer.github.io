@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-06-25 Tue 02:18 -->
+<!-- 2019-06-25 Tue 08:05 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java 基础</title>
@@ -39,7 +39,7 @@
 </ul>
 </li>
 <li><a href="#org1887867">2.3. 引用计数及垃圾回收</a></li>
-<li><a href="#org377bf4f">2.4. 示例</a></li>
+<li><a href="#orgbeb2290">2.4. 示例</a></li>
 </ul>
 </li>
 <li><a href="#org21caf34">3. 类与对象 (Object-Oritened Program)</a>
@@ -53,8 +53,16 @@
 <li><a href="#org6e321fd">5. 反射 (Reflection)</a></li>
 <li><a href="#orgc6fb537">6. 异常 (Exception)</a></li>
 <li><a href="#orgce3c81d">7. 集合类</a></li>
-<li><a href="#org53786f2">8. IO流</a></li>
-<li><a href="#orgbeb2290">9. 示例</a></li>
+<li><a href="#org8b6c062">8. IO 流</a>
+<ul>
+<li><a href="#orgaed7f0b">8.1. 输入流</a></li>
+<li><a href="#orgc35c50b">8.2. 输出流</a></li>
+<li><a href="#org494d148">8.3. 数据拷贝</a></li>
+<li><a href="#org72e7550">8.4. 压缩</a></li>
+</ul>
+</li>
+<li><a href="#orgfc0a91f">9. 多线程</a></li>
+<li><a href="#orgbe2339f">10. 示例</a></li>
 </ul>
 </div>
 </nav>
@@ -230,8 +238,8 @@ p.eat();
 </div>
 </div>
 
-<div id="outline-container-org377bf4f" class="outline-3">
-<h3 id="org377bf4f"><span class="section-number-3">2.4</span> 示例</h3>
+<div id="outline-container-orgbeb2290" class="outline-3">
+<h3 id="orgbeb2290"><span class="section-number-3">2.4</span> 示例</h3>
 <div class="outline-text-3" id="text-2-4">
 <div class="org-src-container">
 <pre class="src src-java"><span class="org-type">String</span> <span class="org-variable-name">aaaName</span> = <span class="org-string">"aaa"</span>;
@@ -310,12 +318,144 @@ p.eat();
 </section>
 
 
-<section id="outline-container-org53786f2" class="outline-2">
-<h2 id="org53786f2"><span class="section-number-2">8</span> IO流</h2>
+<section id="outline-container-org8b6c062" class="outline-2">
+<h2 id="org8b6c062"><span class="section-number-2">8</span> IO 流</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Input/Output Stream，输入、输出流。
+</p>
+
+<p>
+流，可以比作水管:
+</p>
+<ol class="org-ol">
+<li>有序</li>
+<li>开始，结束</li>
+</ol>
+
+<p>
+五个类，一个接口:
+</p>
+<ul class="org-ul">
+<li>File</li>
+<li>OutputStream/InputStream, 字节流</li>
+<li>Writer/Reader, 字符流</li>
+<li>Serializable</li>
+</ul>
+
+<p>
+IO 类的结构图:
+</p>
+
+
+
+<figure>
+<img src="img/scrot_2019-06-25_07-05-19.png" alt="scrot_2019-06-25_07-05-19.png">
+
+</figure>
+</div>
+
+<div id="outline-container-orgaed7f0b" class="outline-3">
+<h3 id="orgaed7f0b"><span class="section-number-3">8.1</span> 输入流</h3>
+<div class="outline-text-3" id="text-8-1">
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-keyword">public</span> <span class="org-type">void</span> <span class="org-function-name">inputDemo</span> () <span class="org-keyword">throws</span> <span class="org-type">IOException</span> {
+    <span class="org-type">String</span> <span class="org-variable-name">fileName</span> = <span class="org-string">"d:\\aaa.txt"</span>;
+    <span class="org-type">File</span> <span class="org-variable-name">file</span> = <span class="org-keyword">new</span> <span class="org-type">File</span>(fileName);
+
+    <span class="org-comment-delimiter">// </span><span class="org-comment">new FileOutputStream(file);</span>
+    <span class="org-type">FileInputStream</span> <span class="org-variable-name">fis</span> = <span class="org-keyword">new</span> <span class="org-type">FileInputStream</span>(fileName);
+
+    <span class="org-comment-delimiter">// </span><span class="org-comment">int c;</span>
+    <span class="org-comment-delimiter">// </span><span class="org-comment">while ((c = fis.read()) &gt; 0) {</span>
+    <span class="org-comment-delimiter">//   </span><span class="org-comment">System.out.print((char)c);</span>
+    <span class="org-comment-delimiter">// </span><span class="org-comment">}</span>
+
+    <span class="org-type">byte</span>[] <span class="org-variable-name">buf</span> = <span class="org-keyword">new</span> <span class="org-type">byte</span>[2000];
+    <span class="org-type">int</span> <span class="org-variable-name">len</span>;
+    <span class="org-keyword">while</span> ((len = fis.read(buf)) &gt; 0) {
+        System.out.println(<span class="org-string">"&#26032;&#30340;&#19968;&#26479;:"</span>);
+        System.out.println(<span class="org-keyword">new</span> <span class="org-type">String</span>(buf));
+    }
+
+    fis.close();
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc35c50b" class="outline-3">
+<h3 id="orgc35c50b"><span class="section-number-3">8.2</span> 输出流</h3>
+<div class="outline-text-3" id="text-8-2">
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-keyword">public</span> <span class="org-type">void</span> <span class="org-function-name">outputDemo</span> () <span class="org-keyword">throws</span> <span class="org-type">IOException</span> {
+    <span class="org-type">FileOutputStream</span> <span class="org-variable-name">fos</span> = <span class="org-keyword">new</span> <span class="org-type">FileOutputStream</span>(<span class="org-string">"d:\\bbb.txt"</span>);
+    <span class="org-type">OutputStreamWriter</span> <span class="org-variable-name">writer</span> = <span class="org-keyword">new</span> <span class="org-type">OutputStreamWriter</span>(fos);
+    writer.write(<span class="org-string">"hello, output stream"</span>);
+    writer.close();
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org494d148" class="outline-3">
+<h3 id="org494d148"><span class="section-number-3">8.3</span> 数据拷贝</h3>
+<div class="outline-text-3" id="text-8-3">
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-keyword">public</span> <span class="org-type">void</span> <span class="org-function-name">copyDemo</span> () <span class="org-keyword">throws</span> <span class="org-type">IOException</span> {
+    <span class="org-type">FileInputStream</span> <span class="org-variable-name">fis</span> = <span class="org-keyword">new</span> <span class="org-type">FileInputStream</span>(<span class="org-string">"d:\\bbb.txt"</span>);
+    <span class="org-type">FileOutputStream</span> <span class="org-variable-name">fos</span> = <span class="org-keyword">new</span> <span class="org-type">FileOutputStream</span>(<span class="org-string">"d:\\ccc.txt"</span>);
+
+    <span class="org-type">int</span> <span class="org-variable-name">c</span>;
+    <span class="org-keyword">while</span> ((c = fis.read()) &gt; 0) {
+        fos.write(c);
+    }
+
+    fis.close();
+    fos.close();
+}
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org72e7550" class="outline-3">
+<h3 id="org72e7550"><span class="section-number-3">8.4</span> 压缩</h3>
+<div class="outline-text-3" id="text-8-4">
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-keyword">public</span> <span class="org-type">void</span> <span class="org-function-name">zip</span> (<span class="org-type">String</span>... <span class="org-variable-name">files</span>) <span class="org-keyword">throws</span> <span class="org-type">IOException</span> {
+    <span class="org-type">ZipOutputStream</span> <span class="org-variable-name">zos</span> = <span class="org-keyword">new</span> <span class="org-type">ZipOutputStream</span>(<span class="org-keyword">new</span> <span class="org-type">FileOutputStream</span>(<span class="org-string">"d:\\eee.zip"</span>));
+
+    <span class="org-keyword">for</span> (<span class="org-type">String</span> <span class="org-variable-name">file</span> : files) {
+        <span class="org-type">ZipEntry</span> <span class="org-variable-name">zipEntry</span> = <span class="org-keyword">new</span> <span class="org-type">ZipEntry</span>(file);
+        zos.putNextEntry(zipEntry);
+
+        <span class="org-type">FileInputStream</span> <span class="org-variable-name">fis</span> = <span class="org-keyword">new</span> <span class="org-type">FileInputStream</span>(file);
+        <span class="org-type">int</span> <span class="org-variable-name">c</span>;
+        <span class="org-keyword">while</span> ((c = fis.read()) &gt; 0) {
+            zos.write(c);
+        }
+        fis.close();
+    }
+
+    zos.close();
+}
+
+</pre>
+</div>
+</div>
+</div>
 </section>
-<section id="outline-container-orgbeb2290" class="outline-2">
-<h2 id="orgbeb2290"><span class="section-number-2">9</span> 示例</h2>
-<div class="outline-text-2" id="text-9">
+
+<section id="outline-container-orgfc0a91f" class="outline-2">
+<h2 id="orgfc0a91f"><span class="section-number-2">9</span> 多线程</h2>
+</section>
+<section id="outline-container-orgbe2339f" class="outline-2">
+<h2 id="orgbe2339f"><span class="section-number-2">10</span> 示例</h2>
+<div class="outline-text-2" id="text-10">
 <p>
 封装一下，使用 Java 对数据库的操纵。
 </p>
@@ -334,7 +474,7 @@ du.add(person);
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-06-25 Tue 02:18</p>
+<p class="date">Created: 2019-06-25 Tue 08:05</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

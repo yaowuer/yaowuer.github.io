@@ -159,7 +159,104 @@ Garbage Collector，GC，垃圾回收器。
 - HashMap 
 
 
-* IO流
+* IO 流
+
+Input/Output Stream，输入、输出流。
+
+流，可以比作水管:
+1. 有序
+2. 开始，结束
+
+五个类，一个接口:
+- File
+- OutputStream/InputStream, 字节流
+- Writer/Reader, 字符流
+- Serializable
+
+IO 类的结构图:
+
+
+[[file:img/scrot_2019-06-25_07-05-19.png]]
+
+** 输入流
+
+#+BEGIN_SRC java
+  public void inputDemo () throws IOException {
+      String fileName = "d:\\aaa.txt";
+      File file = new File(fileName);
+
+      // new FileOutputStream(file);
+      FileInputStream fis = new FileInputStream(fileName);
+
+      // int c;
+      // while ((c = fis.read()) > 0) {
+      //   System.out.print((char)c);
+      // }
+
+      byte[] buf = new byte[2000];
+      int len;
+      while ((len = fis.read(buf)) > 0) {
+          System.out.println("新的一杯:");
+          System.out.println(new String(buf));
+      }
+
+      fis.close();
+  }
+#+END_SRC
+
+** 输出流
+
+#+BEGIN_SRC java
+  public void outputDemo () throws IOException {
+      FileOutputStream fos = new FileOutputStream("d:\\bbb.txt");
+      OutputStreamWriter writer = new OutputStreamWriter(fos);
+      writer.write("hello, output stream");
+      writer.close();
+  }
+#+END_SRC
+
+** 数据拷贝
+
+#+BEGIN_SRC java
+  public void copyDemo () throws IOException {
+      FileInputStream fis = new FileInputStream("d:\\bbb.txt");
+      FileOutputStream fos = new FileOutputStream("d:\\ccc.txt");
+
+      int c;
+      while ((c = fis.read()) > 0) {
+          fos.write(c);
+      }
+
+      fis.close();
+      fos.close();
+  }
+
+#+END_SRC
+
+** 压缩
+
+#+BEGIN_SRC java
+  public void zip (String... files) throws IOException {
+      ZipOutputStream zos = new ZipOutputStream(new FileOutputStream("d:\\eee.zip"));
+
+      for (String file : files) {
+          ZipEntry zipEntry = new ZipEntry(file);
+          zos.putNextEntry(zipEntry);
+
+          FileInputStream fis = new FileInputStream(file);
+          int c;
+          while ((c = fis.read()) > 0) {
+              zos.write(c);
+          }
+          fis.close();
+      }
+
+      zos.close();
+  }
+
+#+END_SRC
+
+* 多线程
 * 示例
 
 封装一下，使用 Java 对数据库的操纵。
