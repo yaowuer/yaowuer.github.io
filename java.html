@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-06-25 Tue 01:10 -->
+<!-- 2019-06-25 Tue 01:51 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java 基础</title>
@@ -39,7 +39,7 @@
 </ul>
 </li>
 <li><a href="#org1887867">2.3. 引用计数及垃圾回收</a></li>
-<li><a href="#orge5d0248">2.4. 示例</a></li>
+<li><a href="#org4c89b14">2.4. 示例</a></li>
 </ul>
 </li>
 <li><a href="#org21caf34">3. 类与对象 (Object-Oritened Program)</a>
@@ -51,9 +51,10 @@
 </li>
 <li><a href="#orgb015966">4. 泛型 (Generic)</a></li>
 <li><a href="#org6e321fd">5. 反射 (Reflection)</a></li>
-<li><a href="#orgce3c81d">6. 集合类</a></li>
-<li><a href="#org53786f2">7. IO流</a></li>
-<li><a href="#org4c89b14">8. 示例</a></li>
+<li><a href="#orgc6fb537">6. 异常 (Exception)</a></li>
+<li><a href="#orgce3c81d">7. 集合类</a></li>
+<li><a href="#org53786f2">8. IO流</a></li>
+<li><a href="#org377bf4f">9. 示例</a></li>
 </ul>
 </div>
 </nav>
@@ -229,8 +230,8 @@ p.eat();
 </div>
 </div>
 
-<div id="outline-container-orge5d0248" class="outline-3">
-<h3 id="orge5d0248"><span class="section-number-3">2.4</span> 示例</h3>
+<div id="outline-container-org4c89b14" class="outline-3">
+<h3 id="org4c89b14"><span class="section-number-3">2.4</span> 示例</h3>
 <div class="outline-text-3" id="text-2-4">
 <div class="org-src-container">
 <pre class="src src-java"><span class="org-type">String</span> <span class="org-variable-name">aaaName</span> = <span class="org-string">"aaa"</span>;
@@ -250,6 +251,56 @@ p.eat();
 <section id="outline-container-org21caf34" class="outline-2">
 <h2 id="org21caf34"><span class="section-number-2">3</span> 类与对象 (Object-Oritened Program)</h2>
 <div class="outline-text-2" id="text-3">
+<p>
+对数据的组合。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js"><span class="org-keyword">var</span> <span class="org-variable-name">a</span> = 222;
+<span class="org-keyword">var</span> <span class="org-variable-name">b</span> = <span class="org-string">"333"</span>;
+<span class="org-keyword">var</span> <span class="org-variable-name">c</span> = <span class="org-constant">true</span>;
+
+<span class="org-keyword">var</span> <span class="org-variable-name">tom</span> = {
+    addr: <span class="org-string">"&#29664;&#28023;"</span>,
+    name: <span class="org-string">"TOM"</span>,
+    age: 18,
+    weixin: <span class="org-string">"110"</span>,
+    <span class="org-function-name">intro</span>: <span class="org-keyword">function</span> () { alert(<span class="org-string">"hello"</span>); }
+};
+
+<span class="org-keyword">var</span> <span class="org-variable-name">jerry</span> = {
+    addr: <span class="org-string">"&#29664;&#28023;"</span>,
+    name: <span class="org-string">"Jerry"</span>,
+    age: 14,
+    weixin: <span class="org-string">"1ksfjk"</span>,
+    <span class="org-function-name">intro</span>: <span class="org-keyword">function</span> () { alert(<span class="org-string">"hello"</span>); }
+};
+
+<span class="org-keyword">var</span> <span class="org-variable-name">class152</span> = {
+    banzhuren: jerry,
+    tiyulaoshi: tom
+};
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">Prototype-Based Object</span>
+
+<span class="org-keyword">var</span> <span class="org-variable-name">badtom</span> = {
+    type: <span class="org-string">"bad"</span>,
+    __proto__: tom
+}
+<span class="org-keyword">var</span> <span class="org-variable-name">goodtom</span> = {
+    type: <span class="org-string">"good"</span>,
+    __proto__: tom
+}
+<span class="org-keyword">var</span> <span class="org-variable-name">sonofbadtom</span> = {
+    name: <span class="org-string">"tomson"</span>,
+    age: 1,
+    __proto__: badtom
+}
+</pre>
+</div>
+
+
+
 <blockquote>
 <p>
 
@@ -274,7 +325,6 @@ p.eat();
 </blockquote>
 </div>
 
-
 <div id="outline-container-org2cced0f" class="outline-3">
 <h3 id="org2cced0f"><span class="section-number-3">3.1</span> 封装</h3>
 </div>
@@ -293,9 +343,12 @@ p.eat();
 <section id="outline-container-org6e321fd" class="outline-2">
 <h2 id="org6e321fd"><span class="section-number-2">5</span> 反射 (Reflection)</h2>
 </section>
+<section id="outline-container-orgc6fb537" class="outline-2">
+<h2 id="orgc6fb537"><span class="section-number-2">6</span> 异常 (Exception)</h2>
+</section>
 <section id="outline-container-orgce3c81d" class="outline-2">
-<h2 id="orgce3c81d"><span class="section-number-2">6</span> 集合类</h2>
-<div class="outline-text-2" id="text-6">
+<h2 id="orgce3c81d"><span class="section-number-2">7</span> 集合类</h2>
+<div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>ArrayList</li>
 <li>Hashset</li>
@@ -306,11 +359,11 @@ p.eat();
 
 
 <section id="outline-container-org53786f2" class="outline-2">
-<h2 id="org53786f2"><span class="section-number-2">7</span> IO流</h2>
+<h2 id="org53786f2"><span class="section-number-2">8</span> IO流</h2>
 </section>
-<section id="outline-container-org4c89b14" class="outline-2">
-<h2 id="org4c89b14"><span class="section-number-2">8</span> 示例</h2>
-<div class="outline-text-2" id="text-8">
+<section id="outline-container-org377bf4f" class="outline-2">
+<h2 id="org377bf4f"><span class="section-number-2">9</span> 示例</h2>
+<div class="outline-text-2" id="text-9">
 <p>
 封装一下，使用 Java 对数据库的操纵。
 </p>
@@ -329,7 +382,7 @@ du.add(person);
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-06-25 Tue 01:10</p>
+<p class="date">Created: 2019-06-25 Tue 01:51</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

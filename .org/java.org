@@ -131,6 +131,51 @@ Garbage Collector，GC，垃圾回收器。
 
 * 类与对象 (Object-Oritened Program)
 
+对数据的组合。
+
+#+BEGIN_SRC js
+  var a = 222;
+  var b = "333";
+  var c = true;
+
+  var tom = {
+      addr: "珠海",
+      name: "TOM",
+      age: 18,
+      weixin: "110",
+      intro: function () { alert("hello"); }
+  };
+
+  var jerry = {
+      addr: "珠海",
+      name: "Jerry",
+      age: 14,
+      weixin: "1ksfjk",
+      intro: function () { alert("hello"); }
+  };
+
+  var class152 = {
+      banzhuren: jerry,
+      tiyulaoshi: tom
+  };
+
+  // Prototype-Based Object
+
+  var badtom = {
+      type: "bad",
+      __proto__: tom
+  }
+  var goodtom = {
+      type: "good",
+      __proto__: tom
+  }
+  var sonofbadtom = {
+      name: "tomson",
+      age: 1,
+      __proto__: badtom
+  }
+#+END_SRC
+
 
 
 #+BEGIN_QUOTE
@@ -146,7 +191,6 @@ Garbage Collector，GC，垃圾回收器。
 
 #+END_QUOTE
 
-
 ** 封装
 
 ** 继承
@@ -154,6 +198,7 @@ Garbage Collector，GC，垃圾回收器。
 ** 多态
 * 泛型 (Generic)
 * 反射 (Reflection)
+* 异常 (Exception)
 * 集合类
 
 - ArrayList
