@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-06-26 Wed 01:00 -->
+<!-- 2019-06-26 Wed 01:08 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java 基础</title>
@@ -39,7 +39,7 @@
 </ul>
 </li>
 <li><a href="#org1887867">2.3. 引用计数及垃圾回收</a></li>
-<li><a href="#orgbe2339f">2.4. 示例</a></li>
+<li><a href="#orgded84c8">2.4. 示例</a></li>
 </ul>
 </li>
 <li><a href="#org21caf34">3. 类与对象 (Object-Oritened Program)</a>
@@ -63,7 +63,7 @@
 </ul>
 </li>
 <li><a href="#orgfc0a91f">9. 多线程</a></li>
-<li><a href="#orgded84c8">10. 示例</a></li>
+<li><a href="#org185e2d6">10. 示例</a></li>
 </ul>
 </div>
 </nav>
@@ -239,8 +239,8 @@ p.eat();
 </div>
 </div>
 
-<div id="outline-container-orgbe2339f" class="outline-3">
-<h3 id="orgbe2339f"><span class="section-number-3">2.4</span> 示例</h3>
+<div id="outline-container-orgded84c8" class="outline-3">
+<h3 id="orgded84c8"><span class="section-number-3">2.4</span> 示例</h3>
 <div class="outline-text-3" id="text-2-4">
 <div class="org-src-container">
 <pre class="src src-java"><span class="org-type">String</span> <span class="org-variable-name">aaaName</span> = <span class="org-string">"aaa"</span>;
@@ -456,23 +456,23 @@ IO 类的结构图:
 <div class="outline-text-3" id="text-8-5">
 <div class="org-src-container">
 <pre class="src src-java"><span class="org-keyword">public</span> <span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">main</span>(<span class="org-type">String</span>[] <span class="org-variable-name">args</span>) {
-    redirectSysoutToVoice();
+    redirectStandardOutputToVoice();
 
     System.out.println(<span class="org-string">"&#24456;&#39640;&#20852;&#35265;&#21040;&#20320;"</span>);
     System.out.println(<span class="org-string">"152&#29677;&#65292;&#21152;&#27833;!&#20320;&#20204;&#24456;&#26834;&#12290;&#30456;&#20449;&#33258;&#24049;&#12290;&#12290;&#12290;"</span>);
 }
 
-<span class="org-keyword">public</span> <span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">redirectSysoutToVoice</span> () {
-    <span class="org-type">PrintStream</span> <span class="org-variable-name">ps</span> = <span class="org-keyword">new</span> <span class="org-type">PrintStream</span>(System.out){
+<span class="org-keyword">public</span> <span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">redirectStandardOutputToVoice</span>() {
+    <span class="org-type">PrintStream</span> <span class="org-variable-name">ps</span> = <span class="org-keyword">new</span> <span class="org-type">PrintStream</span>(System.out) {
         <span class="org-c-annotation">@Override</span>
         <span class="org-keyword">public</span> <span class="org-type">void</span> println(<span class="org-type">String</span> <span class="org-variable-name">x</span>) {
-            <span class="org-type">ActiveXComponent</span> <span class="org-variable-name">sap</span>=<span class="org-keyword">new</span> <span class="org-type">ActiveXComponent</span>(<span class="org-string">"Sapi.SpVoice"</span>);
+            <span class="org-type">ActiveXComponent</span> <span class="org-variable-name">sap</span> = <span class="org-keyword">new</span> <span class="org-type">ActiveXComponent</span>(<span class="org-string">"Sapi.SpVoice"</span>);
             <span class="org-comment-delimiter">// </span><span class="org-comment">&#38899;&#37327; 0-100</span>
             sap.setProperty(<span class="org-string">"Volume"</span>, <span class="org-keyword">new</span> <span class="org-type">Variant</span>(100));
             <span class="org-comment-delimiter">// </span><span class="org-comment">&#35821;&#38899;&#26391;&#35835;&#36895;&#24230; -10 &#21040; +10</span>
             sap.setProperty(<span class="org-string">"Rate"</span>, <span class="org-keyword">new</span> <span class="org-type">Variant</span>(-2));
-            <span class="org-comment-delimiter">//</span><span class="org-comment">&#33719;&#21462;&#25191;&#34892;&#23545;&#35937;</span>
-            <span class="org-type">Dispatch</span> <span class="org-variable-name">spao</span>=sap.getObject();
+            <span class="org-comment-delimiter">// </span><span class="org-comment">&#33719;&#21462;&#25191;&#34892;&#23545;&#35937;</span>
+            <span class="org-type">Dispatch</span> <span class="org-variable-name">spao</span> = sap.getObject();
             Dispatch.call(spao, <span class="org-string">"Speak"</span>, <span class="org-keyword">new</span> <span class="org-type">Variant</span>(x));
             spao.safeRelease();
             sap.safeRelease();
@@ -491,8 +491,8 @@ IO 类的结构图:
 <section id="outline-container-orgfc0a91f" class="outline-2">
 <h2 id="orgfc0a91f"><span class="section-number-2">9</span> 多线程</h2>
 </section>
-<section id="outline-container-orgded84c8" class="outline-2">
-<h2 id="orgded84c8"><span class="section-number-2">10</span> 示例</h2>
+<section id="outline-container-org185e2d6" class="outline-2">
+<h2 id="org185e2d6"><span class="section-number-2">10</span> 示例</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 封装一下，使用 Java 对数据库的操纵。
@@ -512,7 +512,7 @@ du.add(person);
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-06-26 Wed 01:00</p>
+<p class="date">Created: 2019-06-26 Wed 01:08</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

@@ -261,23 +261,23 @@ IO 类的结构图:
 
 #+BEGIN_SRC java
   public static void main(String[] args) {
-      redirectSysoutToVoice();
+      redirectStandardOutputToVoice();
 
       System.out.println("很高兴见到你");
       System.out.println("152班，加油!你们很棒。相信自己。。。");
   }
 
-  public static void redirectSysoutToVoice () {
-      PrintStream ps = new PrintStream(System.out){
+  public static void redirectStandardOutputToVoice() {
+      PrintStream ps = new PrintStream(System.out) {
           @Override
           public void println(String x) {
-              ActiveXComponent sap=new ActiveXComponent("Sapi.SpVoice");
+              ActiveXComponent sap = new ActiveXComponent("Sapi.SpVoice");
               // 音量 0-100
               sap.setProperty("Volume", new Variant(100));
               // 语音朗读速度 -10 到 +10
               sap.setProperty("Rate", new Variant(-2));
-              //获取执行对象
-              Dispatch spao=sap.getObject();
+              // 获取执行对象
+              Dispatch spao = sap.getObject();
               Dispatch.call(spao, "Speak", new Variant(x));
               spao.safeRelease();
               sap.safeRelease();
