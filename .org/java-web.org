@@ -49,10 +49,15 @@ Servlet 规范是对所有人开放的，只要你原因，你就可以按照规
 
 ** 包的目录
 
+这是常见开源项目的标准目录结构:
 
-#+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-06-26 02:57:48
 [[file:img/scrot_2019-06-26_02-57-48.png]]
 
+** idea 中进行配置
+
+自动更新的设置:
+
+[[file:img/scrot_2019-06-26_03-38-12.png]]
 
 * JSP
 * Cookie/Session
