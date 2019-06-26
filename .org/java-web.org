@@ -29,6 +29,31 @@ Web 的时代就这样来临了。
 
 大前端统一江湖的梦想就诞生了。
 * Servlet
+** Servlet 规范
+
+Servlet规范 [[https://github.com/waylau/servlet-3.1-specification][中文版]] [[https://jcp.org/en/jsr/detail?id=340][英文版]]
+
+Servlet 规范是 JCP 组织推出的一套，如何使用 Java 进行 Web 编程的规范。
+它本身只包含一份概念的 pdf，还有一个包含着基本接口的 Jar 包。
+
+Servlet 规范是对所有人开放的，只要你原因，你就可以按照规范上的规定，自行去设计相关的基于 Java 的 Web 服务器。
+
+其中，比较流行的是:
+- Apache Tomcat
+- Jetty
+- Weblogic
+- Websphare
+- JBoss
+
+他们是基于 Java 进行 Web 编程的服务器，也可以看做是 Servlet 容器。
+
+** 包的目录
+
+
+#+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-06-26 02:57:48
+[[file:img/scrot_2019-06-26_02-57-48.png]]
+
+
 * JSP
 * Cookie/Session
 * El 表达式

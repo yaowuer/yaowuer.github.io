@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-06-26 Wed 01:59 -->
+<!-- 2019-06-26 Wed 02:57 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java Web</title>
@@ -22,7 +22,12 @@
 <ul>
 <li><a href="#org9e53d24">1. 预习</a></li>
 <li><a href="#org83ac7a2">2. CS vs BS</a></li>
-<li><a href="#orgb2fb4ce">3. Servlet</a></li>
+<li><a href="#orgb2fb4ce">3. Servlet</a>
+<ul>
+<li><a href="#org6c6807b">3.1. Servlet 规范</a></li>
+<li><a href="#org0fc347c">3.2. 包的目录</a></li>
+</ul>
+</li>
 <li><a href="#orgc3a3651">4. JSP</a></li>
 <li><a href="#orgbc0997c">5. Cookie/Session</a></li>
 <li><a href="#orgaaca2c6">6. El 表达式</a></li>
@@ -82,7 +87,53 @@ Web 的时代就这样来临了。
 </section>
 <section id="outline-container-orgb2fb4ce" class="outline-2">
 <h2 id="orgb2fb4ce"><span class="section-number-2">3</span> Servlet</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org6c6807b" class="outline-3">
+<h3 id="org6c6807b"><span class="section-number-3">3.1</span> Servlet 规范</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Servlet规范 <a href="https://github.com/waylau/servlet-3.1-specification">中文版</a> <a href="https://jcp.org/en/jsr/detail?id=340">英文版</a>
+</p>
+
+<p>
+Servlet 规范是 JCP 组织推出的一套，如何使用 Java 进行 Web 编程的规范。它本身只包含一份概念的 pdf，还有一个包含着基本接口的 Jar 包。
+</p>
+
+<p>
+Servlet 规范是对所有人开放的，只要你原因，你就可以按照规范上的规定，自行去设计相关的基于 Java 的 Web 服务器。
+</p>
+
+<p>
+其中，比较流行的是:
+</p>
+<ul class="org-ul">
+<li>Apache Tomcat</li>
+<li>Jetty</li>
+<li>Weblogic</li>
+<li>Websphare</li>
+<li>JBoss</li>
+</ul>
+
+<p>
+他们是基于 Java 进行 Web 编程的服务器，也可以看做是 Servlet 容器。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0fc347c" class="outline-3">
+<h3 id="org0fc347c"><span class="section-number-3">3.2</span> 包的目录</h3>
+<div class="outline-text-3" id="text-3-2">
+
+<figure>
+<img src="img/scrot_2019-06-26_02-57-48.png" alt="scrot_2019-06-26_02-57-48.png">
+
+</figure>
+</div>
+</div>
 </section>
+
+
 <section id="outline-container-orgc3a3651" class="outline-2">
 <h2 id="orgc3a3651"><span class="section-number-2">4</span> JSP</h2>
 </section>
@@ -98,7 +149,7 @@ Web 的时代就这样来临了。
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-06-26 Wed 01:59</p>
+<p class="date">Created: 2019-06-26 Wed 02:57</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
