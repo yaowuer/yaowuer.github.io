@@ -256,6 +256,39 @@ IO 类的结构图:
 
 #+END_SRC
 
+
+** 修改默认的 System.out
+
+#+BEGIN_SRC java
+  public static void main(String[] args) {
+      redirectSysoutToVoice();
+
+      System.out.println("很高兴见到你");
+      System.out.println("152班，加油!你们很棒。相信自己。。。");
+  }
+
+  public static void redirectSysoutToVoice () {
+      PrintStream ps = new PrintStream(System.out){
+          @Override
+          public void println(String x) {
+              ActiveXComponent sap=new ActiveXComponent("Sapi.SpVoice");
+              // 音量 0-100
+              sap.setProperty("Volume", new Variant(100));
+              // 语音朗读速度 -10 到 +10
+              sap.setProperty("Rate", new Variant(-2));
+              //获取执行对象
+              Dispatch spao=sap.getObject();
+              Dispatch.call(spao, "Speak", new Variant(x));
+              spao.safeRelease();
+              sap.safeRelease();
+              super.println(x);
+          }
+      };
+      // 重新分配“标准”输出流
+      System.setOut(ps);
+  }
+#+END_SRC
+
 * 多线程
 * 示例
 
