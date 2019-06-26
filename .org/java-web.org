@@ -7,3 +7,29 @@
 - 了解 Tomcat 的目录结构，并学会基本配置
 - 将 Tomcat 配置到 eclipse/idea 中
 - 了解 Servlet/jsp 的基本概念
+
+* CS vs BS
+
+Client-Server，客户端-服务端:
+- 需要安装独立的应用程序
+- 开发语言丰富多彩，比如 WinForm/WPF/QT/JavaFx
+  + 优点，灵活、强大、可定制性强
+  + 缺点，对于开发者来说，开发起来麻烦，开发需要掌握的基本知识太多。
+    对于用户来说，必须要下载并安装单独的应用
+- 需要网络进行交互 (tcp/ip协议，socket 编程)
+
+Browser-Server，浏览器-服务器:
+- 借助浏览器进行更多底层任务的执行
+- 为了渲染页面，推出了一套规则，叫 html
+- 后来 html 虽然能渲染数据，但不够好看，所以就诞生了 css
+- 后来虽然有了 css 的加持，页面好看了，但是页面不会动，也让人觉得不够爽
+- 所以，就产生了 JavaScript，官方的称呼为 ECMAScript，简称 ES
+
+Web 的时代就这样来临了。
+
+大前端统一江湖的梦想就诞生了。
+* Servlet
+* JSP
+* Cookie/Session
+* El 表达式
+* JSTL 标签
