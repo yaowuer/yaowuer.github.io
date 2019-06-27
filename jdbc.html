@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-06-27 Thu 03:42 -->
+<!-- 2019-06-27 Thu 06:38 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jdbc 连接数据库</title>
@@ -30,20 +30,6 @@
 <section id="outline-container-orgb53aaee" class="outline-2">
 <h2 id="orgb53aaee"><span class="section-number-2">1</span> 连接字符串</h2>
 <div class="outline-text-2" id="text-1">
-<p>
-Sqlserver:
-</p>
-<pre class="example">
-xxx
-</pre>
-
-<p>
-Sqlite3:
-</p>
-<pre class="example">
-yyy
-</pre>
-
 <pre class="example">
 1)SQLite
 
@@ -145,8 +131,16 @@ Connection conn = DriverManager.getConnection( url, "sysdba", "masterkey" );
         Class.forName(<span class="org-string">"org.sqlite.JDBC"</span>);
         <span class="org-comment-delimiter">// </span><span class="org-comment">2. &#25171;&#24320;&#36830;&#25509;</span>
         conn = DriverManager.getConnection(<span class="org-string">"jdbc:sqlite:e:/data/student.sqlite3"</span>);
+
         <span class="org-comment-delimiter">// </span><span class="org-comment">3. &#25805;&#20316;</span>
-        System.out.println(conn);
+        <span class="org-type">Statement</span> <span class="org-variable-name">statement</span> = conn.createStatement();
+        <span class="org-type">ResultSet</span> <span class="org-variable-name">resultSet</span> = statement.executeQuery(<span class="org-string">"select name, weixin, score from student"</span>);
+        <span class="org-keyword">while</span> (resultSet.next()) {
+            System.out.printf(<span class="org-string">"Name: %s, Weixin: %s, Score: %f\n"</span>,
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getFloat(3));
+        }
     } <span class="org-keyword">catch</span> (<span class="org-type">ClassNotFoundException</span> <span class="org-variable-name">e</span>) {
         System.out.println(<span class="org-string">"1. &#39537;&#21160;&#21152;&#36733;&#22833;&#36133;"</span>);
     } <span class="org-keyword">catch</span> (<span class="org-type">SQLException</span> <span class="org-variable-name">e</span>) {
@@ -168,7 +162,7 @@ Connection conn = DriverManager.getConnection( url, "sysdba", "masterkey" );
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-06-27 Thu 03:42</p>
+<p class="date">Created: 2019-06-27 Thu 06:38</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

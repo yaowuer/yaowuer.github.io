@@ -3,12 +3,6 @@
 
 * 连接字符串
 
-Sqlserver:
-: xxx
-
-Sqlite3:
-: yyy
-
 #+BEGIN_EXAMPLE
 1)SQLite
 
@@ -107,8 +101,16 @@ Connection conn = DriverManager.getConnection( url, "sysdba", "masterkey" );
           Class.forName("org.sqlite.JDBC");
           // 2. 打开连接
           conn = DriverManager.getConnection("jdbc:sqlite:e:/data/student.sqlite3");
+
           // 3. 操作
-          System.out.println(conn);
+          Statement statement = conn.createStatement();
+          ResultSet resultSet = statement.executeQuery("select name, weixin, score from student");
+          while (resultSet.next()) {
+              System.out.printf("Name: %s, Weixin: %s, Score: %f\n",
+                      resultSet.getString(1),
+                      resultSet.getString(2),
+                      resultSet.getFloat(3));
+          }
       } catch (ClassNotFoundException e) {
           System.out.println("1. 驱动加载失败");
       } catch (SQLException e) {
