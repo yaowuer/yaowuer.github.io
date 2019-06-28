@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-06-27 Thu 06:38 -->
+<!-- 2019-06-28 Fri 02:53 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jdbc 连接数据库</title>
@@ -21,7 +21,8 @@
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#orgb53aaee">1. 连接字符串</a></li>
-<li><a href="#orgb862965">2. 连接 SQLite3 的示例</a></li>
+<li><a href="#orgd318610">2. 释放资源的写法</a></li>
+<li><a href="#orgb862965">3. 连接 SQLite3 的示例</a></li>
 </ul>
 </div>
 </nav>
@@ -30,99 +31,90 @@
 <section id="outline-container-orgb53aaee" class="outline-2">
 <h2 id="orgb53aaee"><span class="section-number-2">1</span> 连接字符串</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+SQLite
+</p>
 <pre class="example">
-1)SQLite
-
 Class.forName("org.sqlite.JDBC"); 
-
 Connection conn =DriverManager.getConnection("jdbc:sqlite:zieckey.db");
+</pre>
 
-//建立一个数据库名zieckey.db的连接，如果不存在就在当前目录下创建 
-
-2)MySQL (http://www.mysql.com)mm.mysql-2.0.2-bin.jar 
-
+<p>
+MySQL (<a href="http://www.mysql.com">http://www.mysql.com</a>)
+</p>
+<pre class="example">
 Class.forName( "org.gjt.mm.mysql.Driver" ); 
+Connection conn = DriverManager.getConnection( "jdbc:mysql://MyDbComputerNameOrIP:3306/myDatabaseName", sUsr, sPwd );
+</pre>
 
-Connection conn = DriverManager.getConnection( "jdbc:mysql://MyDbComputerNameOrIP:3306/myDatabaseName", sUsr, sPwd ); 
-
-3)PostgreSQL  (http://www.de.postgresql.org)pgjdbc2.jar 
-
+<p>
+PostgreSQL (<a href="http://www.de.postgresql.org">http://www.de.postgresql.org</a>)
+</p>
+<pre class="example">
 Class.forName( "org.postgresql.Driver" ); 
+Connection conn = DriverManager.getConnection( "jdbc:postgresql://MyDbComputerNameOrIP/myDatabaseName", sUsr, sPwd );
+</pre>
 
-Connection conn = DriverManager.getConnection( "jdbc:postgresql://MyDbComputerNameOrIP/myDatabaseName", sUsr, sPwd ); 
-
-4)Oracle  (http://www.oracle.com/ip/deploy/database/oracle9i/)classes12.zip 
-
+<p>
+Oracle (<a href="http://www.oracle.com/ip/deploy/database/oracle9i/">http://www.oracle.com/ip/deploy/database/oracle9i/</a>)
+</p>
+<pre class="example">
 Class.forName( "oracle.jdbc.driver.OracleDriver" ); 
+Connection conn = DriverManager.getConnection( "jdbc:oracle:thin:@MyDbComputerNameOrIP:1521:ORCL", sUsr, sPwd );
+</pre>
 
-Connection conn = DriverManager.getConnection( "jdbc:oracle:thin:@MyDbComputerNameOrIP:1521:ORCL", sUsr, sPwd ); 
-
-5)Sybase  (http://jtds.sourceforge.net)jconn2.jar 
-
-Class.forName( "com.sybase.jdbc2.jdbc.SybDriver" ); 
-
-cn = DriverManager.getConnection( "jdbc:sybase:Tds:MyDbComputerNameOrIP:2638", sUsr, sPwd );
-
-// (Default-Username/Password: "dba"/"sql") 
-
-6)Microsoft SQLServer  (http://jtds.sourceforge.net) 
-
+<p>
+Microsoft SQLServer (<a href="http://jtds.sourceforge.net">http://jtds.sourceforge.net</a>) 
+</p>
+<pre class="example">
 Class.forName( "net.sourceforge.jtds.jdbc.Driver" ); 
+cn = DriverManager.getConnection( "jdbc:jtds:sqlserver://MyDbComputerNameOrIP:1433/master", sUsr, sPwd );
+</pre>
 
-cn = DriverManager.getConnection( "jdbc:jtds:sqlserver://MyDbComputerNameOrIP:1433/master", sUsr, sPwd ); 
-
-7)Microsoft SQLServer  (http://www.microsoft.com) 
-
+<p>
+Microsoft SQLServer (<a href="http://www.microsoft.com">http://www.microsoft.com</a>) 
+</p>
+<pre class="example">
 Class.forName( "com.microsoft.jdbc.sqlserver.SQLServerDriver" ); 
-
-Connection  conn = DriverManager.getConnection( "jdbc:microsoft:sqlserver://MyDbComputerNameOrIP:1433;databaseName=master",sUsr, sPwd ); 
-
-8)ODBC 
-
-Class.forName( "sun.jdbc.odbc.JdbcOdbcDriver" ); 
-
-Connection cn = DriverManager.getConnection( "jdbc:odbc:" + sDsn, sUsr, sPwd );
-
-9)DB2
-
-Class.forName("Com.ibm.db2.jdbc.net.DB2Driver");
-
-String url="jdbc:db2://192.9.200.108:6789/SAMPLE"
-
-Connection conn = DriverManager.getConnection( url, sUsr, sPwd )
-
-10)informix
-
-Class.forName("com.informix.jdbc.IfxDriver").newInstance(); 
-
-String url = "jdbc:informix-sqli://123.45.67.89:1533/testDB:INFORMIXSERVER=myserver; 
-
-user=testuser;password=testpassword";
-
-Lib：jdbcdrv.zip&lt;br&gt;&lt;br&gt;Class.forName( "com.sybase.jdbc.SybDriver" )
-
-url="jdbc:sybase:Tds:127.0.0.1:2638/asademo";
-
-SybConnection connection= (SybConnection)DriverManager.getConnection(url,"dba","sql");
-
-11)SAP DB
-
-Class.forName ("com.sap.dbtech.jdbc.DriverSapDB")
-
-java.sql.Connection           connection = java.sql.DriverManager.getConnection ( "jdbc:sapdb://" + host + "/" + database_name,user_name, password)
-
-String url = "jdbc:interbase://localhost/e:/testbed/database/employee.gdb";
-
-Class.forName("interbase.interclient.Driver");                      //Driver d = new interbase.interclient.Driver (); /* this will also work if you do not want the line above */
-
-Connection conn = DriverManager.getConnection( url, "sysdba", "masterkey" );
+Connection conn = DriverManager.getConnection( "jdbc:microsoft:sqlserver://MyDbComputerNameOrIP:1433;databaseName=master",sUsr, sPwd );
 </pre>
 </div>
 </section>
 
-<section id="outline-container-orgb862965" class="outline-2">
-<h2 id="orgb862965"><span class="section-number-2">2</span> 连接 SQLite3 的示例</h2>
+<section id="outline-container-orgd318610" class="outline-2">
+<h2 id="orgd318610"><span class="section-number-2">2</span> 释放资源的写法</h2>
 <div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-keyword">public</span> <span class="org-keyword">class</span> <span class="org-type">DBUtil</span> {
+    <span class="org-keyword">public</span> <span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">close</span>(<span class="org-type">Connection</span> <span class="org-variable-name">conn</span>) {
+        close(conn, <span class="org-constant">null</span>, <span class="org-constant">null</span>);
+    }
+    <span class="org-keyword">public</span> <span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">close</span>(<span class="org-type">Connection</span> <span class="org-variable-name">conn</span>, <span class="org-type">Statement</span> <span class="org-variable-name">stmt</span>, <span class="org-type">ResultSet</span> <span class="org-variable-name">resultSet</span>) {
+        <span class="org-keyword">if</span> (resultSet != <span class="org-constant">null</span>) {
+            <span class="org-keyword">try</span> {
+                resultSet.close();
+            } <span class="org-keyword">catch</span> (<span class="org-type">Exception</span> <span class="org-variable-name">ignored</span>) {}
+        }
+        <span class="org-keyword">if</span> (stmt != <span class="org-constant">null</span>) {
+            <span class="org-keyword">try</span> {
+                stmt.close();
+            } <span class="org-keyword">catch</span> (<span class="org-type">Exception</span> <span class="org-variable-name">ignored</span>) {}
+        }
+        <span class="org-keyword">if</span> (conn != <span class="org-constant">null</span>) {
+            <span class="org-keyword">try</span> {
+                conn.close();
+            } <span class="org-keyword">catch</span> (<span class="org-type">Exception</span> <span class="org-variable-name">ignored</span>) {}
+        }
+    }
+}
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orgb862965" class="outline-2">
+<h2 id="orgb862965"><span class="section-number-2">3</span> 连接 SQLite3 的示例</h2>
+<div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-java"><span class="org-keyword">public</span> <span class="org-type">void</span> <span class="org-function-name">sqliteJDBCDemo</span>() {
     <span class="org-type">Connection</span> <span class="org-variable-name">conn</span> = <span class="org-constant">null</span>;
@@ -162,7 +154,7 @@ Connection conn = DriverManager.getConnection( url, "sysdba", "masterkey" );
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-06-27 Thu 06:38</p>
+<p class="date">Created: 2019-06-28 Fri 02:53</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-06-28 Fri 00:43 -->
+<!-- 2019-06-28 Fri 02:53 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java Web</title>
@@ -22,29 +22,20 @@
 <ul>
 <li><a href="#org9e53d24">1. 预习</a></li>
 <li><a href="#org83ac7a2">2. CS vs BS</a></li>
-<li><a href="#orgb2fb4ce">3. Servlet</a>
+<li><a href="#orgf17a0e9">3. 第一个项目, Step by Step</a></li>
+<li><a href="#orgb2fb4ce">4. Servlet</a>
 <ul>
-<li><a href="#org6c6807b">3.1. Servlet 规范</a></li>
-<li><a href="#org0fc347c">3.2. 包的目录</a></li>
-<li><a href="#org07964bc">3.3. idea 中进行配置</a></li>
+<li><a href="#org6c6807b">4.1. Servlet 规范</a></li>
+<li><a href="#org0fc347c">4.2. 包的目录</a></li>
 </ul>
 </li>
-<li><a href="#orgc3a3651">4. JSP</a></li>
-<li><a href="#orgbc0997c">5. Cookie/Session</a></li>
-<li><a href="#orgaaca2c6">6. El 表达式</a></li>
-<li><a href="#orgd4ecb8d">7. JSTL 标签</a></li>
-<li><a href="#org88deb7a">8. Miscellanueous</a>
+<li><a href="#orgc3a3651">5. JSP</a></li>
+<li><a href="#orgbc0997c">6. Cookie/Session</a></li>
+<li><a href="#orgaaca2c6">7. El 表达式</a></li>
+<li><a href="#orgd4ecb8d">8. JSTL 标签</a></li>
+<li><a href="#org88deb7a">9. Miscellanueous</a>
 <ul>
-<li><a href="#orgb96cfe7">8.1. 在 Eclipse 中为 Web 项目配置第三方 jar 包的方式</a></li>
-</ul>
-</li>
-<li><a href="#org9267107">9. 基本的问题</a>
-<ul>
-<li><a href="#org0243bc7">9.1. 什么是检查式异常，什么是运行时异常？</a></li>
-<li><a href="#org7606d42">9.2. 什么是空指针异常 (NPE)？</a></li>
-<li><a href="#org74398c0">9.3. 异常的跟类是什么？</a></li>
-<li><a href="#orgfc7f808">9.4. Try/Catch/Finally 的基本使用</a></li>
-<li><a href="#orgc9d75c4">9.5. Try-With-Resource 语法是什么？</a></li>
+<li><a href="#orgb96cfe7">9.1. 在 Eclipse 中为 Web 项目配置第三方 jar 包的方式</a></li>
 </ul>
 </li>
 </ul>
@@ -100,13 +91,122 @@ Web 的时代就这样来临了。
 </p>
 </div>
 </section>
-<section id="outline-container-orgb2fb4ce" class="outline-2">
-<h2 id="orgb2fb4ce"><span class="section-number-2">3</span> Servlet</h2>
+
+<section id="outline-container-orgf17a0e9" class="outline-2">
+<h2 id="orgf17a0e9"><span class="section-number-2">3</span> 第一个项目, Step by Step</h2>
 <div class="outline-text-2" id="text-3">
+<p>
+首先，打开 Idea，看到这个面板:
+</p>
+
+
+<figure>
+<img src="img/scrot_2019-06-28_00-57-16.png" alt="scrot_2019-06-28_00-57-16.png">
+
+</figure>
+
+
+<p>
+创建一个项目:
+</p>
+
+
+<figure>
+<img src="img/scrot_2019-06-28_01-01-42.png" alt="scrot_2019-06-28_01-01-42.png">
+
+</figure>
+
+<p>
+创建完的项目界面:
+</p>
+
+
+<figure>
+<img src="img/scrot_2019-06-28_01-06-57.png" alt="scrot_2019-06-28_01-06-57.png">
+
+</figure>
+
+<p>
+创建一个服务器:
+</p>
+
+
+
+<figure>
+<img src="img/scrot_2019-06-28_01-24-39.png" alt="scrot_2019-06-28_01-24-39.png">
+
+</figure>
+
+
+
+<figure>
+<img src="img/scrot_2019-06-28_01-09-41.png" alt="scrot_2019-06-28_01-09-41.png">
+
+</figure>
+
+
+<p>
+服务器创建页面:
+</p>
+
+
+<figure>
+<img src="img/scrot_2019-06-28_01-14-12.png" alt="scrot_2019-06-28_01-14-12.png">
+
+</figure>
+
+
+<p>
+部署当前项目到服务器:
+</p>
+
+
+<figure>
+<img src="img/scrot_2019-06-28_01-27-31.png" alt="scrot_2019-06-28_01-27-31.png">
+
+</figure>
+
+
+<p>
+添加需要的 jar 包:
+</p>
+
+
+<figure>
+<img src="img/add-lib-to-idea.gif" alt="add-lib-to-idea.gif">
+
+</figure>
+
+
+<p>
+要确保添加的 jar 包被添加到了最终的构件中:
+</p>
+
+
+<figure>
+<img src="img/scrot_2019-06-28_02-17-48.png" alt="scrot_2019-06-28_02-17-48.png">
+
+</figure>
+
+<p>
+另外，我们希望每次更改完代码之后，idea 会自动让更改生效（所谓的热更新）而不需要重启服务器，只需要配置：
+</p>
+
+
+<figure>
+<img src="img/scrot_2019-06-26_03-38-12.png" alt="scrot_2019-06-26_03-38-12.png">
+
+</figure>
+</div>
+</section>
+
+<section id="outline-container-orgb2fb4ce" class="outline-2">
+<h2 id="orgb2fb4ce"><span class="section-number-2">4</span> Servlet</h2>
+<div class="outline-text-2" id="text-4">
 </div>
 <div id="outline-container-org6c6807b" class="outline-3">
-<h3 id="org6c6807b"><span class="section-number-3">3.1</span> Servlet 规范</h3>
-<div class="outline-text-3" id="text-3-1">
+<h3 id="org6c6807b"><span class="section-number-3">4.1</span> Servlet 规范</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
 Servlet规范 <a href="https://github.com/waylau/servlet-3.1-specification">中文版</a> <a href="https://jcp.org/en/jsr/detail?id=340">英文版</a>
 </p>
@@ -137,8 +237,8 @@ Servlet 规范是对所有人开放的，只要你原因，你就可以按照规
 </div>
 
 <div id="outline-container-org0fc347c" class="outline-3">
-<h3 id="org0fc347c"><span class="section-number-3">3.2</span> 包的目录</h3>
-<div class="outline-text-3" id="text-3-2">
+<h3 id="org0fc347c"><span class="section-number-3">4.2</span> 包的目录</h3>
+<div class="outline-text-3" id="text-4-2">
 <p>
 这是常见开源项目的标准目录结构:
 </p>
@@ -150,42 +250,27 @@ Servlet 规范是对所有人开放的，只要你原因，你就可以按照规
 </figure>
 </div>
 </div>
-
-<div id="outline-container-org07964bc" class="outline-3">
-<h3 id="org07964bc"><span class="section-number-3">3.3</span> idea 中进行配置</h3>
-<div class="outline-text-3" id="text-3-3">
-<p>
-自动更新的设置:
-</p>
-
-
-<figure>
-<img src="img/scrot_2019-06-26_03-38-12.png" alt="scrot_2019-06-26_03-38-12.png">
-
-</figure>
-</div>
-</div>
 </section>
 
 <section id="outline-container-orgc3a3651" class="outline-2">
-<h2 id="orgc3a3651"><span class="section-number-2">4</span> JSP</h2>
+<h2 id="orgc3a3651"><span class="section-number-2">5</span> JSP</h2>
 </section>
 <section id="outline-container-orgbc0997c" class="outline-2">
-<h2 id="orgbc0997c"><span class="section-number-2">5</span> Cookie/Session</h2>
+<h2 id="orgbc0997c"><span class="section-number-2">6</span> Cookie/Session</h2>
 </section>
 <section id="outline-container-orgaaca2c6" class="outline-2">
-<h2 id="orgaaca2c6"><span class="section-number-2">6</span> El 表达式</h2>
+<h2 id="orgaaca2c6"><span class="section-number-2">7</span> El 表达式</h2>
 </section>
 <section id="outline-container-orgd4ecb8d" class="outline-2">
-<h2 id="orgd4ecb8d"><span class="section-number-2">7</span> JSTL 标签</h2>
+<h2 id="orgd4ecb8d"><span class="section-number-2">8</span> JSTL 标签</h2>
 </section>
 <section id="outline-container-org88deb7a" class="outline-2">
-<h2 id="org88deb7a"><span class="section-number-2">8</span> Miscellanueous</h2>
-<div class="outline-text-2" id="text-8">
+<h2 id="org88deb7a"><span class="section-number-2">9</span> Miscellanueous</h2>
+<div class="outline-text-2" id="text-9">
 </div>
 <div id="outline-container-orgb96cfe7" class="outline-3">
-<h3 id="orgb96cfe7"><span class="section-number-3">8.1</span> 在 Eclipse 中为 Web 项目配置第三方 jar 包的方式</h3>
-<div class="outline-text-3" id="text-8-1">
+<h3 id="orgb96cfe7"><span class="section-number-3">9.1</span> 在 Eclipse 中为 Web 项目配置第三方 jar 包的方式</h3>
+<div class="outline-text-3" id="text-9-1">
 
 <figure>
 <img src="img/scrot_2019-06-27_01-58-37.png" alt="scrot_2019-06-27_01-58-37.png">
@@ -194,32 +279,10 @@ Servlet 规范是对所有人开放的，只要你原因，你就可以按照规
 </div>
 </div>
 </section>
-
-
-<section id="outline-container-org9267107" class="outline-2">
-<h2 id="org9267107"><span class="section-number-2">9</span> 基本的问题</h2>
-<div class="outline-text-2" id="text-9">
-</div>
-<div id="outline-container-org0243bc7" class="outline-3">
-<h3 id="org0243bc7"><span class="section-number-3">9.1</span> 什么是检查式异常，什么是运行时异常？</h3>
-</div>
-<div id="outline-container-org7606d42" class="outline-3">
-<h3 id="org7606d42"><span class="section-number-3">9.2</span> 什么是空指针异常 (NPE)？</h3>
-</div>
-<div id="outline-container-org74398c0" class="outline-3">
-<h3 id="org74398c0"><span class="section-number-3">9.3</span> 异常的跟类是什么？</h3>
-</div>
-<div id="outline-container-orgfc7f808" class="outline-3">
-<h3 id="orgfc7f808"><span class="section-number-3">9.4</span> Try/Catch/Finally 的基本使用</h3>
-</div>
-<div id="outline-container-orgc9d75c4" class="outline-3">
-<h3 id="orgc9d75c4"><span class="section-number-3">9.5</span> Try-With-Resource 语法是什么？</h3>
-</div>
-</section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-06-28 Fri 00:43</p>
+<p class="date">Created: 2019-06-28 Fri 02:53</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

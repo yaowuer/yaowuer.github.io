@@ -1,0 +1,8 @@
+#+TITLE: intellij idea
+
+
+* 快捷键
+
+- ~双击 Shift~ 快速检索
+- ~Alt + Enter~ 万能快捷键
+- ~Ctrl + Alt + L~ 格式化代码

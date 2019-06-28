@@ -3,93 +3,56 @@
 
 * 连接字符串
 
-#+BEGIN_EXAMPLE
-1)SQLite
+SQLite
+: Class.forName("org.sqlite.JDBC"); 
+: Connection conn =DriverManager.getConnection("jdbc:sqlite:zieckey.db");
 
-Class.forName("org.sqlite.JDBC"); 
+MySQL (http://www.mysql.com)
+: Class.forName( "org.gjt.mm.mysql.Driver" ); 
+: Connection conn = DriverManager.getConnection( "jdbc:mysql://MyDbComputerNameOrIP:3306/myDatabaseName", sUsr, sPwd ); 
 
-Connection conn =DriverManager.getConnection("jdbc:sqlite:zieckey.db");
+PostgreSQL (http://www.de.postgresql.org)
+: Class.forName( "org.postgresql.Driver" ); 
+: Connection conn = DriverManager.getConnection( "jdbc:postgresql://MyDbComputerNameOrIP/myDatabaseName", sUsr, sPwd ); 
 
-//建立一个数据库名zieckey.db的连接，如果不存在就在当前目录下创建 
+Oracle (http://www.oracle.com/ip/deploy/database/oracle9i/)
+: Class.forName( "oracle.jdbc.driver.OracleDriver" ); 
+: Connection conn = DriverManager.getConnection( "jdbc:oracle:thin:@MyDbComputerNameOrIP:1521:ORCL", sUsr, sPwd ); 
 
-2)MySQL (http://www.mysql.com)mm.mysql-2.0.2-bin.jar 
+Microsoft SQLServer (http://jtds.sourceforge.net) 
+: Class.forName( "net.sourceforge.jtds.jdbc.Driver" ); 
+: cn = DriverManager.getConnection( "jdbc:jtds:sqlserver://MyDbComputerNameOrIP:1433/master", sUsr, sPwd ); 
 
-Class.forName( "org.gjt.mm.mysql.Driver" ); 
+Microsoft SQLServer (http://www.microsoft.com) 
+: Class.forName( "com.microsoft.jdbc.sqlserver.SQLServerDriver" ); 
+: Connection conn = DriverManager.getConnection( "jdbc:microsoft:sqlserver://MyDbComputerNameOrIP:1433;databaseName=master",sUsr, sPwd ); 
 
-Connection conn = DriverManager.getConnection( "jdbc:mysql://MyDbComputerNameOrIP:3306/myDatabaseName", sUsr, sPwd ); 
+* 释放资源的写法
 
-3)PostgreSQL  (http://www.de.postgresql.org)pgjdbc2.jar 
-
-Class.forName( "org.postgresql.Driver" ); 
-
-Connection conn = DriverManager.getConnection( "jdbc:postgresql://MyDbComputerNameOrIP/myDatabaseName", sUsr, sPwd ); 
-
-4)Oracle  (http://www.oracle.com/ip/deploy/database/oracle9i/)classes12.zip 
-
-Class.forName( "oracle.jdbc.driver.OracleDriver" ); 
-
-Connection conn = DriverManager.getConnection( "jdbc:oracle:thin:@MyDbComputerNameOrIP:1521:ORCL", sUsr, sPwd ); 
-
-5)Sybase  (http://jtds.sourceforge.net)jconn2.jar 
-
-Class.forName( "com.sybase.jdbc2.jdbc.SybDriver" ); 
-
-cn = DriverManager.getConnection( "jdbc:sybase:Tds:MyDbComputerNameOrIP:2638", sUsr, sPwd );
-
-// (Default-Username/Password: "dba"/"sql") 
-
-6)Microsoft SQLServer  (http://jtds.sourceforge.net) 
-
-Class.forName( "net.sourceforge.jtds.jdbc.Driver" ); 
-
-cn = DriverManager.getConnection( "jdbc:jtds:sqlserver://MyDbComputerNameOrIP:1433/master", sUsr, sPwd ); 
-
-7)Microsoft SQLServer  (http://www.microsoft.com) 
-
-Class.forName( "com.microsoft.jdbc.sqlserver.SQLServerDriver" ); 
-
-Connection  conn = DriverManager.getConnection( "jdbc:microsoft:sqlserver://MyDbComputerNameOrIP:1433;databaseName=master",sUsr, sPwd ); 
-
-8)ODBC 
-
-Class.forName( "sun.jdbc.odbc.JdbcOdbcDriver" ); 
-
-Connection cn = DriverManager.getConnection( "jdbc:odbc:" + sDsn, sUsr, sPwd );
-
-9)DB2
-
-Class.forName("Com.ibm.db2.jdbc.net.DB2Driver");
-
-String url="jdbc:db2://192.9.200.108:6789/SAMPLE"
-
-Connection conn = DriverManager.getConnection( url, sUsr, sPwd )
-
-10)informix
-
-Class.forName("com.informix.jdbc.IfxDriver").newInstance(); 
-
-String url = "jdbc:informix-sqli://123.45.67.89:1533/testDB:INFORMIXSERVER=myserver; 
-
-user=testuser;password=testpassword";
-
-Lib：jdbcdrv.zip<br><br>Class.forName( "com.sybase.jdbc.SybDriver" )
-
-url="jdbc:sybase:Tds:127.0.0.1:2638/asademo";
-
-SybConnection connection= (SybConnection)DriverManager.getConnection(url,"dba","sql");
-
-11)SAP DB
-
-Class.forName ("com.sap.dbtech.jdbc.DriverSapDB")
-
-java.sql.Connection           connection = java.sql.DriverManager.getConnection ( "jdbc:sapdb://" + host + "/" + database_name,user_name, password)
-
-String url = "jdbc:interbase://localhost/e:/testbed/database/employee.gdb";
-
-Class.forName("interbase.interclient.Driver");                      //Driver d = new interbase.interclient.Driver (); /* this will also work if you do not want the line above */
-
-Connection conn = DriverManager.getConnection( url, "sysdba", "masterkey" );
-#+END_EXAMPLE
+#+BEGIN_SRC java
+  public class DBUtil {
+      public static void close(Connection conn) {
+          close(conn, null, null);
+      }
+      public static void close(Connection conn, Statement stmt, ResultSet resultSet) {
+          if (resultSet != null) {
+              try {
+                  resultSet.close();
+              } catch (Exception ignored) {}
+          }
+          if (stmt != null) {
+              try {
+                  stmt.close();
+              } catch (Exception ignored) {}
+          }
+          if (conn != null) {
+              try {
+                  conn.close();
+              } catch (Exception ignored) {}
+          }
+      }
+  }
+#+END_SRC
 
 * 连接 SQLite3 的示例
 
