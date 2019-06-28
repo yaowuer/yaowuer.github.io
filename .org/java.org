@@ -154,7 +154,12 @@ Garbage Collector，GC，垃圾回收器。
 * 异常 (Exception)
 ** 什么是检查式异常，什么是运行时异常？
 ** 什么是空指针异常 (NPE)？
-** 异常的跟类是什么？
+
+
+[[file:img/scrot_2019-06-28_06-15-07.png]]
+
+
+** 异常的根类是什么？
 ** Try/Catch/Finally 的基本使用
 ** Try-With-Resource 语法是什么？
 * 集合类
