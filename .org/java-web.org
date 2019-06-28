@@ -29,60 +29,6 @@ Web 的时代就这样来临了。
 
 大前端统一江湖的梦想就诞生了。
 
-* 第一个项目, Step by Step
-
-首先，打开 Idea，看到这个面板:
-
-[[file:img/scrot_2019-06-28_00-57-16.png]]
-
-
-创建一个项目:
-
-#+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-06-28 01:01:42
-[[file:img/scrot_2019-06-28_01-01-42.png]]
-
-创建完的项目界面:
-
-#+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-06-28 01:06:57
-[[file:img/scrot_2019-06-28_01-06-57.png]]
-
-创建一个服务器:
-
-
-#+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-06-28 01:24:39
-[[file:img/scrot_2019-06-28_01-24-39.png]]
-
-
-#+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-06-28 01:09:41
-[[file:img/scrot_2019-06-28_01-09-41.png]]
-
-
-服务器创建页面:
-
-#+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-06-28 01:14:12
-[[file:img/scrot_2019-06-28_01-14-12.png]]
-
-
-部署当前项目到服务器:
-
-#+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-06-28 01:27:31
-[[file:img/scrot_2019-06-28_01-27-31.png]]
-
-
-添加需要的 jar 包:
-
-[[file:img/add-lib-to-idea.gif]]
-
-
-要确保添加的 jar 包被添加到了最终的构件中:
-
-#+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-06-28 02:17:48
-[[file:img/scrot_2019-06-28_02-17-48.png]]
-
-另外，我们希望每次更改完代码之后，idea 会自动让更改生效（所谓的热更新）而不需要重启服务器，只需要配置：
-
-[[file:img/scrot_2019-06-26_03-38-12.png]]
-
 * Servlet
 ** Servlet 规范
 
