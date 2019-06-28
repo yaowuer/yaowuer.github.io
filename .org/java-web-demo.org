@@ -2,11 +2,15 @@
 
 
 * 第一个项目, Step by Step
-** 首先，打开 Idea，看到这个面板
+** Idea 启动面板
+
+首先，打开 Idea，看到这个面板:
 
 [[file:img/scrot_2019-06-28_00-57-16.png]]
 
 ** 创建一个项目
+
+点击 Create New Project，会看到这个面板:
 
 #+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-06-28 01:01:42
 [[file:img/scrot_2019-06-28_01-01-42.png]]
