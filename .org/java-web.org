@@ -58,10 +58,4 @@ Servlet 规范是对所有人开放的，只要你原因，你就可以按照规
 * Cookie/Session
 * El 表达式
 * JSTL 标签
-* Miscellanueous
-** 在 Eclipse 中为 Web 项目配置第三方 jar 包的方式
-
-
-[[file:img/scrot_2019-06-27_01-58-37.png]]
-
 
