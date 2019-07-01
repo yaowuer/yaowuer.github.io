@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-01 Mon 02:58 -->
+<!-- 2019-07-01 Mon 03:08 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Front End</title>
@@ -54,12 +54,52 @@ DOM 是 Document Object Model（文档对象模型）的缩写。
 <li>什么是冒泡，什么是事件的代理</li>
 <li>for in 循环 和 for of 循环有什么区别</li>
 </ul>
+
+<p>
+code:
+</p>
+<div class="org-src-container">
+<pre class="src src-html">&lt;table id="mytable"&gt;
+  &lt;tr&gt;
+    &lt;td&gt;aaa&lt;/td&gt;&lt;td&gt;bbb&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;ccc&lt;/td&gt;&lt;td&gt;ddd&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;script&gt;
+ // var tagNames = document.getElementsByTagName("td");
+ //
+ // for (var i = 0; i &lt; tagNames.length; i++) {
+ //     var td = tagNames[i];
+ //     // td.onclick = function (ev) {
+ //     //     console.log(ev.target.innerHTML);
+ //     // }
+ //     td.addEventListener("click", function (ev) {
+ //         console.log("..." + ev.target.innerHTML);
+ //     }, false);
+ // }
+
+ document.<span class="org-web-mode-function-call">getElementById</span>("mytable").<span class="org-web-mode-function-name">addEventListener</span>("click", <span class="org-web-mode-keyword">function</span> (ev) {
+   <span class="org-web-mode-keyword">if</span> (ev.target &amp;&amp; ev.target.tagName == 'TD') {
+     <span class="org-web-mode-function-call">alert</span>(ev.target.innerHTML);
+   }
+ });
+
+ // for (var i in tagNames) {
+ //     tagNames[i].onclick = function () {
+ //         alert(this.innerHTML);
+ //     }
+ // }
+&lt;/script&gt;
+</pre>
+</div>
 </div>
 </section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-01 Mon 02:58</p>
+<p class="date">Created: 2019-07-01 Mon 03:08</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
