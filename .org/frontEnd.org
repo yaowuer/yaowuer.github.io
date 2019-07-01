@@ -1,0 +1,19 @@
+#+TITLE: Front End
+
+
+* w3school
+
+
+[[file:img/scrot_2019-07-01_02-33-15.png]]
+
+
+* DOM
+
+DOM 是 Document Object Model（文档对象模型）的缩写。
+
+- 什么是 DOM
+- 浏览器加载 DOM 的基本原理
+- 什么是事件，如何添加事件
+- onclick/addEventListener 有什么区别
+- 什么是冒泡，什么是事件的代理
+- for in 循环 和 for of 循环有什么区别
