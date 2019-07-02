@@ -105,13 +105,15 @@ code:
           <title>Document</title>
       </head>
       <body>
+
           <button id="bt0" onclick="alert(3333);console.log(444);">我是一个按钮，请点击我0</button>
           <button onclick="suibian()">我是一个按钮，请点击我1</button>
           <button id="bt2">我是一个按钮，请点击我2</button>
           <button id="bt3">我是一个按钮，请点击我3</button>
 
           <div>
-              <a onclick="lianjieshijian()" href="http://www.bing.com">bing.com</a>
+              <a href="http://www.bing.com" onclick="lianjieshijian()">bing.com</a>
+              <a href="http://www.baidu.com" id="a1">baidu.com</a>
           </div>
 
           <script>
@@ -123,6 +125,7 @@ code:
            }
 
            function lianjieshijian () {
+               event.preventDefault();
                alert(event.target.href);
            }
 
@@ -133,6 +136,11 @@ code:
 
            bt3.addEventListener("click", suibian);
            bt3.addEventListener("click", suibian2);
+
+           a1.addEventListener("click", function (ev) {
+               ev.preventDefault(); // 阻止默认的事件
+               alert(ev.target.href);
+           });
           </script>
       </body>
   </html>

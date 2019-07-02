@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-02 Tue 07:13 -->
+<!-- 2019-07-02 Tue 07:30 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Front End</title>
@@ -190,13 +190,15 @@ aaa(); <span class="org-comment-delimiter">// </span><span class="org-comment">&
         &lt;<span class="org-function-name">title</span>&gt;<span class="org-underline"><span class="org-bold">Document</span></span>&lt;/<span class="org-function-name">title</span>&gt;
     &lt;/<span class="org-function-name">head</span>&gt;
     &lt;<span class="org-function-name">body</span>&gt;
+
         &lt;<span class="org-function-name">button</span> <span class="org-variable-name">id</span>=<span class="org-string">"bt0"</span> <span class="org-variable-name">onclick</span>=<span class="org-string">"alert(3333);console.log(444);"</span>&gt;&#25105;&#26159;&#19968;&#20010;&#25353;&#38062;&#65292;&#35831;&#28857;&#20987;&#25105;0&lt;/<span class="org-function-name">button</span>&gt;
         &lt;<span class="org-function-name">button</span> <span class="org-variable-name">onclick</span>=<span class="org-string">"suibian()"</span>&gt;&#25105;&#26159;&#19968;&#20010;&#25353;&#38062;&#65292;&#35831;&#28857;&#20987;&#25105;1&lt;/<span class="org-function-name">button</span>&gt;
         &lt;<span class="org-function-name">button</span> <span class="org-variable-name">id</span>=<span class="org-string">"bt2"</span>&gt;&#25105;&#26159;&#19968;&#20010;&#25353;&#38062;&#65292;&#35831;&#28857;&#20987;&#25105;2&lt;/<span class="org-function-name">button</span>&gt;
         &lt;<span class="org-function-name">button</span> <span class="org-variable-name">id</span>=<span class="org-string">"bt3"</span>&gt;&#25105;&#26159;&#19968;&#20010;&#25353;&#38062;&#65292;&#35831;&#28857;&#20987;&#25105;3&lt;/<span class="org-function-name">button</span>&gt;
 
         &lt;<span class="org-function-name">div</span>&gt;
-            &lt;<span class="org-function-name">a</span> <span class="org-variable-name">onclick</span>=<span class="org-string">"lianjieshijian()"</span> <span class="org-variable-name">href</span>=<span class="org-string">"http://www.bing.com"</span>&gt;bing.com&lt;/<span class="org-function-name">a</span>&gt;
+            &lt;<span class="org-function-name">a</span> <span class="org-variable-name">href</span>=<span class="org-string">"http://www.bing.com"</span> <span class="org-variable-name">onclick</span>=<span class="org-string">"lianjieshijian()"</span>&gt;bing.com&lt;/<span class="org-function-name">a</span>&gt;
+            &lt;<span class="org-function-name">a</span> <span class="org-variable-name">href</span>=<span class="org-string">"http://www.baidu.com"</span> <span class="org-variable-name">id</span>=<span class="org-string">"a1"</span>&gt;baidu.com&lt;/<span class="org-function-name">a</span>&gt;
         &lt;/<span class="org-function-name">div</span>&gt;
 
         &lt;<span class="org-function-name">script</span>&gt;
@@ -208,6 +210,7 @@ aaa(); <span class="org-comment-delimiter">// </span><span class="org-comment">&
          }
 
          function lianjieshijian () {
+             event.preventDefault();
              alert(event.target.href);
          }
 
@@ -218,6 +221,11 @@ aaa(); <span class="org-comment-delimiter">// </span><span class="org-comment">&
 
          bt3.addEventListener(<span class="org-string">"click"</span>, suibian);
          bt3.addEventListener(<span class="org-string">"click"</span>, suibian2);
+
+         a1.addEventListener(<span class="org-string">"click"</span>, function (ev) {
+             ev.preventDefault(); // &#38459;&#27490;&#40664;&#35748;&#30340;&#20107;&#20214;
+             alert(ev.target.href);
+         });
         &lt;/<span class="org-function-name">script</span>&gt;
     &lt;/<span class="org-function-name">body</span>&gt;
 &lt;/<span class="org-function-name">html</span>&gt;
@@ -228,7 +236,7 @@ aaa(); <span class="org-comment-delimiter">// </span><span class="org-comment">&
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-02 Tue 07:13</p>
+<p class="date">Created: 2019-07-02 Tue 07:30</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
