@@ -54,3 +54,23 @@ code:
    // }
   </script>
 #+END_SRC
+
+* html
+** 远古时代
+
+混乱在一起:
+#+BEGIN_SRC html
+  <font>sdkfjksdjf</font>
+  <b>kkkkkkkkkkkkkkk</b>
+#+END_SRC
+
+** 结构与样式分离 div+css+class
+
+- span/div 区别
+- display 属性
+
+** html5 语义化标签
+
+- article/section/header/footer/aside
+- main/kksksksjdf
+
