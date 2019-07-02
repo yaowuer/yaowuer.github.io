@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-01 Mon 06:44 -->
+<!-- 2019-07-02 周二 00:30 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Front End</title>
@@ -25,6 +25,7 @@
 </ul>
 </div>
 </nav>
+
 
 
 <section id="outline-container-org2b89ee7" class="outline-2">
@@ -59,30 +60,30 @@ DOM 是 Document Object Model（文档对象模型）的缩写。
 code:
 </p>
 <div class="org-src-container">
-<pre class="src src-html">&lt;table id="mytable"&gt;
-  &lt;tr&gt;
-    &lt;td&gt;aaa&lt;/td&gt;&lt;td&gt;bbb&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td&gt;ccc&lt;/td&gt;&lt;td&gt;ddd&lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;
-&lt;script&gt;
- // var tagNames = document.getElementsByTagName("td");
+<pre class="src src-html">&lt;<span class="org-function-name">table</span> <span class="org-variable-name">id</span>=<span class="org-string">"mytable"</span>&gt;
+  &lt;<span class="org-function-name">tr</span>&gt;
+    &lt;<span class="org-function-name">td</span>&gt;aaa&lt;/<span class="org-function-name">td</span>&gt;&lt;<span class="org-function-name">td</span>&gt;bbb&lt;/<span class="org-function-name">td</span>&gt;
+  &lt;/<span class="org-function-name">tr</span>&gt;
+  &lt;<span class="org-function-name">tr</span>&gt;
+    &lt;<span class="org-function-name">td</span>&gt;ccc&lt;/<span class="org-function-name">td</span>&gt;&lt;<span class="org-function-name">td</span>&gt;ddd&lt;/<span class="org-function-name">td</span>&gt;
+  &lt;/<span class="org-function-name">tr</span>&gt;
+&lt;/<span class="org-function-name">table</span>&gt;
+&lt;<span class="org-function-name">script</span>&gt;
+ // var tagNames = document.getElementsByTagName(<span class="org-string">"td"</span>);
  //
  // for (var i = 0; i &lt; tagNames.length; i++) {
  //     var td = tagNames[i];
  //     // td.onclick = function (ev) {
  //     //     console.log(ev.target.innerHTML);
  //     // }
- //     td.addEventListener("click", function (ev) {
- //         console.log("..." + ev.target.innerHTML);
+ //     td.addEventListener(<span class="org-string">"click"</span>, function (ev) {
+ //         console.log(<span class="org-string">"..."</span> + ev.target.innerHTML);
  //     }, false);
  // }
 
- document.<span class="org-web-mode-function-call">getElementById</span>("mytable").<span class="org-web-mode-function-name">addEventListener</span>("click", <span class="org-web-mode-keyword">function</span> (ev) {
-   <span class="org-web-mode-keyword">if</span> (ev.target &amp;&amp; ev.target.tagName == 'TD') {
-     <span class="org-web-mode-function-call">alert</span>(ev.target.innerHTML);
+ document.getElementById(<span class="org-string">"mytable"</span>).addEventListener(<span class="org-string">"click"</span>, function (ev) {
+   if (ev.target &amp;&amp; ev.target.tagName == 'TD') {
+     alert(ev.target.innerHTML);
    }
  });
 
@@ -91,7 +92,7 @@ code:
  //         alert(this.innerHTML);
  //     }
  // }
-&lt;/script&gt;
+&lt;/<span class="org-function-name">script</span>&gt;
 </pre>
 </div>
 </div>
@@ -99,7 +100,7 @@ code:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-01 Mon 06:44</p>
+<p class="date">Created: 2019-07-02 周二 00:30</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
