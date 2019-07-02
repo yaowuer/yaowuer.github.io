@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-02 周二 00:30 -->
+<!-- 2019-07-02 Tue 02:28 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>任务</title>
@@ -44,27 +44,108 @@
 其次，使用 JS 操纵 DOM 节点:
 </p>
 <ul class="org-ul">
-<li>添加背景色，隔行变色</li>
+<li>添加背景色，根据分数，使用样式重点突出低分、高分</li>
 <li>点击删除后，可以删除当前行的数据</li>
 </ul>
 
 <p>
-如果上述完成了，可以尝试增加 “添加” 表格行的功能。
+额外任务:
 </p>
+<ul class="org-ul">
+<li>点击标题栏，进行排序</li>
+</ul>
 
 <p>
 注，以上都是使用 JS 操纵 html 页面的 dom，跟 jsp 没关系。
 </p>
 
 
-
 <figure>
-<img src="img/scrot_2019-07-01_06-43-04.png" alt="scrot_2019-07-01_06-43-04.png">
+<img src="img/scrot_2019-07-02_02-27-17.png" alt="scrot_2019-07-02_02-27-17.png">
 
 </figure>
+
+
+
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span class="org-function-name">html</span>&gt;
+&lt;<span class="org-function-name">head</span>&gt;
+    &lt;<span class="org-function-name">title</span>&gt;<span class="org-underline"><span class="org-bold">&#25105;&#26159;&#19968;&#20010;&#31034;&#20363;</span></span>&lt;/<span class="org-function-name">title</span>&gt;
+    &lt;<span class="org-function-name">style</span>&gt;
+        table, tr, th, td {
+            border: 1px solid red;
+            padding: 1em;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-bottom: 3px solid green;
+        }
+    &lt;/<span class="org-function-name">style</span>&gt;
+&lt;/<span class="org-function-name">head</span>&gt;
+&lt;<span class="org-function-name">body</span>&gt;
+&lt;<span class="org-function-name">table</span> <span class="org-variable-name">id</span>=<span class="org-string">"mytable"</span>&gt;
+    &lt;<span class="org-function-name">thead</span>&gt;
+    &lt;<span class="org-function-name">tr</span>&gt;
+        &lt;<span class="org-function-name">th</span>&gt;&#22995;&#21517;&lt;/<span class="org-function-name">th</span>&gt;
+        &lt;<span class="org-function-name">th</span>&gt;&#20998;&#25968;&lt;/<span class="org-function-name">th</span>&gt;
+        &lt;<span class="org-function-name">th</span>&gt;&#25805;&#20316;&lt;/<span class="org-function-name">th</span>&gt;
+    &lt;/<span class="org-function-name">tr</span>&gt;
+    &lt;/<span class="org-function-name">thead</span>&gt;
+    &lt;<span class="org-function-name">tbody</span>&gt;
+    &lt;<span class="org-function-name">tr</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;zhangsan
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;95.0
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;&#21024;&#38500;&lt;/<span class="org-function-name">td</span>&gt;
+    &lt;/<span class="org-function-name">tr</span>&gt;
+    &lt;<span class="org-function-name">tr</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;lisi
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;63.0
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;&#21024;&#38500;&lt;/<span class="org-function-name">td</span>&gt;
+    &lt;/<span class="org-function-name">tr</span>&gt;
+    &lt;<span class="org-function-name">tr</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;wangwu
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;55.0
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;&#21024;&#38500;&lt;/<span class="org-function-name">td</span>&gt;
+    &lt;/<span class="org-function-name">tr</span>&gt;
+    &lt;<span class="org-function-name">tr</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;zhaoliu
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;88.0
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;&#21024;&#38500;&lt;/<span class="org-function-name">td</span>&gt;
+    &lt;/<span class="org-function-name">tr</span>&gt;
+    &lt;<span class="org-function-name">tr</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;xxxx
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;92.0
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;&#21024;&#38500;&lt;/<span class="org-function-name">td</span>&gt;
+    &lt;/<span class="org-function-name">tr</span>&gt;
+    &lt;<span class="org-function-name">tr</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;yyyy
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;79.0
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;&#21024;&#38500;&lt;/<span class="org-function-name">td</span>&gt;
+    &lt;/<span class="org-function-name">tr</span>&gt;
+    &lt;/<span class="org-function-name">tbody</span>&gt;
+&lt;/<span class="org-function-name">table</span>&gt;
+&lt;<span class="org-function-name">script</span>&gt;
+
+&lt;/<span class="org-function-name">script</span>&gt;
+&lt;/<span class="org-function-name">body</span>&gt;
+&lt;/<span class="org-function-name">html</span>&gt;
+</pre>
+</div>
 </div>
 </section>
-
 
 <section id="outline-container-org4ee6417" class="outline-2">
 <h2 id="org4ee6417"><span class="section-number-2">2</span> 2019年6月28日</h2>
@@ -331,7 +412,7 @@ plan:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-02 周二 00:30</p>
+<p class="date">Created: 2019-07-02 Tue 02:28</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

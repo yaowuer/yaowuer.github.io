@@ -7,16 +7,94 @@
 首先，了解 dom 以及事件机制。
 
 其次，使用 JS 操纵 DOM 节点:
-- 添加背景色，隔行变色
+- 添加背景色，根据分数，使用样式重点突出低分、高分
 - 点击删除后，可以删除当前行的数据
 
-如果上述完成了，可以尝试增加 “添加” 表格行的功能。
+额外任务:
+- 点击标题栏，进行排序
 
 注，以上都是使用 JS 操纵 html 页面的 dom，跟 jsp 没关系。
 
+[[file:img/scrot_2019-07-02_02-27-17.png]]
 
-[[file:img/scrot_2019-07-01_06-43-04.png]]
 
+
+#+BEGIN_SRC html
+  <html>
+  <head>
+      <title>我是一个示例</title>
+      <style>
+          table, tr, th, td {
+              border: 1px solid red;
+              padding: 1em;
+          }
+
+          table {
+              border-collapse: collapse;
+              border-bottom: 3px solid green;
+          }
+      </style>
+  </head>
+  <body>
+  <table id="mytable">
+      <thead>
+      <tr>
+          <th>姓名</th>
+          <th>分数</th>
+          <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+          <td>zhangsan
+          </td>
+          <td>95.0
+          </td>
+          <td>删除</td>
+      </tr>
+      <tr>
+          <td>lisi
+          </td>
+          <td>63.0
+          </td>
+          <td>删除</td>
+      </tr>
+      <tr>
+          <td>wangwu
+          </td>
+          <td>55.0
+          </td>
+          <td>删除</td>
+      </tr>
+      <tr>
+          <td>zhaoliu
+          </td>
+          <td>88.0
+          </td>
+          <td>删除</td>
+      </tr>
+      <tr>
+          <td>xxxx
+          </td>
+          <td>92.0
+          </td>
+          <td>删除</td>
+      </tr>
+      <tr>
+          <td>yyyy
+          </td>
+          <td>79.0
+          </td>
+          <td>删除</td>
+      </tr>
+      </tbody>
+  </table>
+  <script>
+
+  </script>
+  </body>
+  </html>
+#+END_SRC
 
 * 2019年6月28日
 
