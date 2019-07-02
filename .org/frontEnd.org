@@ -74,3 +74,66 @@ code:
 - article/section/header/footer/aside
 - main/kksksksjdf
 
+
+* Event
+
+事件本质就是一个函数:
+- 它不是立刻执行的，延时执行的
+- 需要用户的某些动作，*触发它执行*
+- 这个函数的主要目的是跟用户进行 *交互*
+- 这个函数的第一个参数，默认就是点击的那个动作，抽象出来的对象，即 event
+
+为一个节点添加事件主要两种方式:
+1. 使用 onclick 属性
+2. 使用 addEventListener 方法
+
+普通函数:
+#+BEGIN_SRC js
+  function aaa () {
+    alert("aaa");
+  }
+
+  aaa(); // 调用的时候，会立刻执行！
+#+END_SRC
+
+事件函数:
+#+BEGIN_SRC html
+  <!doctype html>
+  <html lang="en">
+      <head>
+          <meta charset="UTF-8"/>
+          <title>Document</title>
+      </head>
+      <body>
+          <button id="bt0" onclick="alert(3333);console.log(444);">我是一个按钮，请点击我0</button>
+          <button onclick="suibian()">我是一个按钮，请点击我1</button>
+          <button id="bt2">我是一个按钮，请点击我2</button>
+          <button id="bt3">我是一个按钮，请点击我3</button>
+
+          <div>
+              <a onclick="lianjieshijian()" href="http://www.bing.com">bing.com</a>
+          </div>
+
+          <script>
+           function suibian () {
+               alert(new Date());
+           }
+           function suibian2 () {
+               alert("222");
+           }
+
+           function lianjieshijian () {
+               alert(event.target.href);
+           }
+
+           bt0.onclick = suibian;
+
+           bt2.onclick = suibian2;
+           bt2.onclick = suibian;
+
+           bt3.addEventListener("click", suibian);
+           bt3.addEventListener("click", suibian2);
+          </script>
+      </body>
+  </html>
+#+END_SRC

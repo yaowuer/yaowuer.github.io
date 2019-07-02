@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-02 Tue 01:51 -->
+<!-- 2019-07-02 Tue 07:13 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Front End</title>
@@ -29,6 +29,7 @@
 <li><a href="#orgd2aba20">3.3. html5 语义化标签</a></li>
 </ul>
 </li>
+<li><a href="#org62977ae">4. Event</a></li>
 </ul>
 </div>
 </nav>
@@ -143,10 +144,91 @@ code:
 </div>
 </div>
 </section>
+
+
+<section id="outline-container-org62977ae" class="outline-2">
+<h2 id="org62977ae"><span class="section-number-2">4</span> Event</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+事件本质就是一个函数:
+</p>
+<ul class="org-ul">
+<li>它不是立刻执行的，延时执行的</li>
+<li>需要用户的某些动作，<b>触发它执行</b></li>
+<li>这个函数的主要目的是跟用户进行<b>交互</b></li>
+<li>这个函数的第一个参数，默认就是点击的那个动作，抽象出来的对象，即 event</li>
+</ul>
+
+<p>
+为一个节点添加事件主要两种方式:
+</p>
+<ol class="org-ol">
+<li>使用 onclick 属性</li>
+<li>使用 addEventListener 方法</li>
+</ol>
+
+<p>
+普通函数:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span class="org-keyword">function</span> <span class="org-function-name">aaa</span> () {
+  alert(<span class="org-string">"aaa"</span>);
+}
+
+aaa(); <span class="org-comment-delimiter">// </span><span class="org-comment">&#35843;&#29992;&#30340;&#26102;&#20505;&#65292;&#20250;&#31435;&#21051;&#25191;&#34892;&#65281;</span>
+</pre>
+</div>
+
+<p>
+事件函数:
+</p>
+<div class="org-src-container">
+<pre class="src src-html"><span class="org-string">&lt;!doctype html&gt;</span>
+&lt;<span class="org-function-name">html</span> <span class="org-variable-name">lang</span>=<span class="org-string">"en"</span>&gt;
+    &lt;<span class="org-function-name">head</span>&gt;
+        &lt;<span class="org-function-name">meta</span> <span class="org-variable-name">charset</span>=<span class="org-string">"UTF-8"</span>/&gt;
+        &lt;<span class="org-function-name">title</span>&gt;<span class="org-underline"><span class="org-bold">Document</span></span>&lt;/<span class="org-function-name">title</span>&gt;
+    &lt;/<span class="org-function-name">head</span>&gt;
+    &lt;<span class="org-function-name">body</span>&gt;
+        &lt;<span class="org-function-name">button</span> <span class="org-variable-name">id</span>=<span class="org-string">"bt0"</span> <span class="org-variable-name">onclick</span>=<span class="org-string">"alert(3333);console.log(444);"</span>&gt;&#25105;&#26159;&#19968;&#20010;&#25353;&#38062;&#65292;&#35831;&#28857;&#20987;&#25105;0&lt;/<span class="org-function-name">button</span>&gt;
+        &lt;<span class="org-function-name">button</span> <span class="org-variable-name">onclick</span>=<span class="org-string">"suibian()"</span>&gt;&#25105;&#26159;&#19968;&#20010;&#25353;&#38062;&#65292;&#35831;&#28857;&#20987;&#25105;1&lt;/<span class="org-function-name">button</span>&gt;
+        &lt;<span class="org-function-name">button</span> <span class="org-variable-name">id</span>=<span class="org-string">"bt2"</span>&gt;&#25105;&#26159;&#19968;&#20010;&#25353;&#38062;&#65292;&#35831;&#28857;&#20987;&#25105;2&lt;/<span class="org-function-name">button</span>&gt;
+        &lt;<span class="org-function-name">button</span> <span class="org-variable-name">id</span>=<span class="org-string">"bt3"</span>&gt;&#25105;&#26159;&#19968;&#20010;&#25353;&#38062;&#65292;&#35831;&#28857;&#20987;&#25105;3&lt;/<span class="org-function-name">button</span>&gt;
+
+        &lt;<span class="org-function-name">div</span>&gt;
+            &lt;<span class="org-function-name">a</span> <span class="org-variable-name">onclick</span>=<span class="org-string">"lianjieshijian()"</span> <span class="org-variable-name">href</span>=<span class="org-string">"http://www.bing.com"</span>&gt;bing.com&lt;/<span class="org-function-name">a</span>&gt;
+        &lt;/<span class="org-function-name">div</span>&gt;
+
+        &lt;<span class="org-function-name">script</span>&gt;
+         function suibian () {
+             alert(new Date());
+         }
+         function suibian2 () {
+             alert(<span class="org-string">"222"</span>);
+         }
+
+         function lianjieshijian () {
+             alert(event.target.href);
+         }
+
+         bt0.onclick = suibian;
+
+         bt2.onclick = suibian2;
+         bt2.onclick = suibian;
+
+         bt3.addEventListener(<span class="org-string">"click"</span>, suibian);
+         bt3.addEventListener(<span class="org-string">"click"</span>, suibian2);
+        &lt;/<span class="org-function-name">script</span>&gt;
+    &lt;/<span class="org-function-name">body</span>&gt;
+&lt;/<span class="org-function-name">html</span>&gt;
+</pre>
+</div>
+</div>
+</section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-02 Tue 01:51</p>
+<p class="date">Created: 2019-07-02 Tue 07:13</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
