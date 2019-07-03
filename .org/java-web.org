@@ -54,8 +54,47 @@ Servlet 规范是对所有人开放的，只要你原因，你就可以按照规
 
 [[file:img/scrot_2019-06-26_02-57-48.png]]
 
-** web.xml
+** first-servlet and web.xml
 
+WorldServlet.java:
+#+BEGIN_SRC java
+  package com.nf152.web01.web;
+
+  import javax.servlet.ServletException;
+  import javax.servlet.http.HttpServlet;
+  import javax.servlet.http.HttpServletRequest;
+  import javax.servlet.http.HttpServletResponse;
+  import java.io.*;
+
+  public class WorldServlet extends HttpServlet {
+      @Override
+      protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+          resp.setCharacterEncoding("UTF-8");
+          resp.setContentType("text/html;charset=utf8");
+
+          PrintWriter writer = resp.getWriter();
+          writer.println("<html>");
+          writer.println("<h1>");
+          writer.println("hello, world!");
+          writer.println("</h1>");
+
+          BufferedReader reader = new BufferedReader(new FileReader("e:/aaa.txt"));
+
+          writer.println("<pre>");
+          writer.println(reader.readLine());
+          writer.println(reader.readLine());
+          writer.println(reader.readLine());
+          writer.println("</pre>");
+
+          reader.close();
+
+          writer.println("<script>alert(666);</script>");
+          writer.println("</html>");
+      }
+  }
+#+END_SRC
+
+web.xml:
 #+BEGIN_SRC xml
   <?xml version="1.0" encoding="UTF-8"?>
   <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"

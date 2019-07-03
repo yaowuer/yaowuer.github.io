@@ -26,7 +26,7 @@
 <ul>
 <li><a href="#org6c6807b">3.1. Servlet 规范</a></li>
 <li><a href="#org0fc347c">3.2. 包的目录</a></li>
-<li><a href="#orgf68b558">3.3. web.xml</a></li>
+<li><a href="#org2cef011">3.3. first-servlet and web.xml</a></li>
 </ul>
 </li>
 <li><a href="#orgc3a3651">4. JSP</a></li>
@@ -138,9 +138,53 @@ Servlet 规范是对所有人开放的，只要你原因，你就可以按照规
 </div>
 </div>
 
-<div id="outline-container-orgf68b558" class="outline-3">
-<h3 id="orgf68b558"><span class="section-number-3">3.3</span> web.xml</h3>
+<div id="outline-container-org2cef011" class="outline-3">
+<h3 id="org2cef011"><span class="section-number-3">3.3</span> first-servlet and web.xml</h3>
 <div class="outline-text-3" id="text-3-3">
+<p>
+WorldServlet.java:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-keyword">package</span> com.nf152.web01.<span class="org-constant">web</span>;
+
+<span class="org-keyword">import</span> <span class="org-constant">javax</span>.<span class="org-constant">servlet</span>.<span class="org-type">ServletException</span>;
+<span class="org-keyword">import</span> <span class="org-constant">javax</span>.<span class="org-constant">servlet</span>.<span class="org-constant">http</span>.<span class="org-type">HttpServlet</span>;
+<span class="org-keyword">import</span> <span class="org-constant">javax</span>.<span class="org-constant">servlet</span>.<span class="org-constant">http</span>.<span class="org-type">HttpServletRequest</span>;
+<span class="org-keyword">import</span> <span class="org-constant">javax</span>.<span class="org-constant">servlet</span>.<span class="org-constant">http</span>.<span class="org-type">HttpServletResponse</span>;
+<span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">io</span>.*;
+
+<span class="org-keyword">public</span> <span class="org-keyword">class</span> <span class="org-type">WorldServlet</span> <span class="org-keyword">extends</span> <span class="org-type">HttpServlet</span> {
+    <span class="org-c-annotation">@Override</span>
+    <span class="org-keyword">protected</span> <span class="org-type">void</span> <span class="org-function-name">service</span>(<span class="org-type">HttpServletRequest</span> <span class="org-variable-name">req</span>, <span class="org-type">HttpServletResponse</span> <span class="org-variable-name">resp</span>) <span class="org-keyword">throws</span> <span class="org-type">ServletException</span>, <span class="org-type">IOException</span> {
+        resp.setCharacterEncoding(<span class="org-string">"UTF-8"</span>);
+        resp.setContentType(<span class="org-string">"text/html;charset=utf8"</span>);
+
+        <span class="org-type">PrintWriter</span> <span class="org-variable-name">writer</span> = resp.getWriter();
+        writer.println(<span class="org-string">"&lt;html&gt;"</span>);
+        writer.println(<span class="org-string">"&lt;h1&gt;"</span>);
+        writer.println(<span class="org-string">"hello, world!"</span>);
+        writer.println(<span class="org-string">"&lt;/h1&gt;"</span>);
+
+        <span class="org-type">BufferedReader</span> <span class="org-variable-name">reader</span> = <span class="org-keyword">new</span> <span class="org-type">BufferedReader</span>(<span class="org-keyword">new</span> <span class="org-type">FileReader</span>(<span class="org-string">"e:/aaa.txt"</span>));
+
+        writer.println(<span class="org-string">"&lt;pre&gt;"</span>);
+        writer.println(reader.readLine());
+        writer.println(reader.readLine());
+        writer.println(reader.readLine());
+        writer.println(<span class="org-string">"&lt;/pre&gt;"</span>);
+
+        reader.close();
+
+        writer.println(<span class="org-string">"&lt;script&gt;alert(666);&lt;/script&gt;"</span>);
+        writer.println(<span class="org-string">"&lt;/html&gt;"</span>);
+    }
+}
+</pre>
+</div>
+
+<p>
+web.xml:
+</p>
 <div class="org-src-container">
 <pre class="src src-xml"><span class="org-string">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 &lt;<span class="org-function-name">web-app</span> <span class="org-variable-name">xmlns</span>=<span class="org-string">"http://xmlns.jcp.org/xml/ns/javaee"</span>
