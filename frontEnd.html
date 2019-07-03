@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-02 Tue 07:45 -->
+<!-- 2019-07-03 Wed 02:51 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Front End</title>
@@ -241,12 +241,106 @@ aaa(); <span class="org-comment-delimiter">// </span><span class="org-comment">&
 <img src="img/scrot_2019-07-02_07-45-38.png" alt="scrot_2019-07-02_07-45-38.png">
 
 </figure>
+
+
+<p>
+事件传播:
+</p>
+<div class="org-src-container">
+<pre class="src src-html"><span class="org-string">&lt;!doctype html&gt;</span>
+&lt;<span class="org-function-name">html</span> <span class="org-variable-name">lang</span>=<span class="org-string">"en"</span>&gt;
+    &lt;<span class="org-function-name">head</span>&gt;
+        &lt;<span class="org-function-name">meta</span> <span class="org-variable-name">charset</span>=<span class="org-string">"UTF-8"</span>/&gt;
+        &lt;<span class="org-function-name">title</span>&gt;<span class="org-underline"><span class="org-bold">Document</span></span>&lt;/<span class="org-function-name">title</span>&gt;
+        &lt;<span class="org-function-name">style</span>&gt;
+         * {
+             padding: 15px;
+             margin: 0;
+         }
+         div {
+             background: lightgreen;
+         }
+         article {
+             background: yellow;
+         }
+         section {
+             background: skyblue;
+         }
+         p {
+             background: orange;
+         }
+        &lt;/<span class="org-function-name">style</span>&gt;
+    &lt;/<span class="org-function-name">head</span>&gt;
+    &lt;<span class="org-function-name">body</span>&gt;
+        &lt;<span class="org-function-name">div</span>&gt;
+            &lt;<span class="org-function-name">article</span>&gt;
+                &lt;<span class="org-function-name">section</span>&gt;
+                    &lt;<span class="org-function-name">p</span>&gt;
+                        &#25105;&#26159;&#37324;&#38754;&#30340;&#20869;&#23481;
+                    &lt;/<span class="org-function-name">p</span>&gt;
+                &lt;/<span class="org-function-name">section</span>&gt;
+            &lt;/<span class="org-function-name">article</span>&gt;
+        &lt;/<span class="org-function-name">div</span>&gt;
+
+        &lt;<span class="org-function-name">script</span>&gt;
+
+         var body = document.querySelector(<span class="org-string">"body"</span>);
+         var div = document.querySelector(<span class="org-string">"div"</span>);
+         var article = document.querySelector(<span class="org-string">"article"</span>);
+         var section = document.querySelector(<span class="org-string">"section"</span>);
+         var p = document.querySelector(<span class="org-string">"p"</span>);
+
+         document.addEventListener(<span class="org-string">"click"</span>, function (e) {
+             console.log(<span class="org-string">"document"</span>);
+         }, false);
+         body.addEventListener(<span class="org-string">"click"</span>, function (e) {
+             console.log(<span class="org-string">"body"</span>);
+         }, false);
+         div.addEventListener(<span class="org-string">"click"</span>, function (e) {
+             console.log(<span class="org-string">"div"</span>);
+         }, false);
+         article.addEventListener(<span class="org-string">"click"</span>, function (e) {
+             console.log(<span class="org-string">"article"</span>);
+         }, false);
+         section.addEventListener(<span class="org-string">"click"</span>, function (e) {
+             console.log(<span class="org-string">"section"</span>);
+         }, false);
+         p.addEventListener(<span class="org-string">"click"</span>, function (e) {
+             e.stopPropagation();
+             console.log(<span class="org-string">"p"</span>);
+         }, false);
+
+         /* body.addEventListener(<span class="org-string">"click"</span>, function (e) {
+          *     alert(<span class="org-string">"&#20320;&#28857;&#21040;&#30340;&#26159; "</span> + e.target.nodeName + <span class="org-string">"  &#20294;&#26159;&#22788;&#29702;&#36825;&#20010;&#20107;&#24773;&#30340;&#20107;&#20214;&#22312; "</span> + e.currentTarget.nodeName);
+          * });
+          * body.addEventListener(<span class="org-string">"click"</span>, function (e) {
+          *     alert(e.currentTarget.outerHTML);
+          * });
+          * div.addEventListener(<span class="org-string">"click"</span>, function (e) {
+          *     alert(e.currentTarget.outerHTML);
+          * });
+          * article.addEventListener(<span class="org-string">"click"</span>, function (e) {
+          *     alert(e.currentTarget.outerHTML);
+          * });
+          * section.addEventListener(<span class="org-string">"click"</span>, function (e) {
+          *     alert(e.currentTarget.outerHTML);
+          * });
+          * p.addEventListener(<span class="org-string">"click"</span>, function (e) {
+          *     alert(e.currentTarget.outerHTML);
+          * }); */
+
+        &lt;/<span class="org-function-name">script</span>&gt;
+    &lt;/<span class="org-function-name">body</span>&gt;
+&lt;/<span class="org-function-name">html</span>&gt;
+
+</pre>
+</div>
 </div>
 </section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-02 Tue 07:45</p>
+<p class="date">Created: 2019-07-03 Wed 02:51</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

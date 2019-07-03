@@ -150,3 +150,93 @@ code:
 
 [[file:img/scrot_2019-07-02_07-45-38.png]]
 
+
+事件传播:
+#+BEGIN_SRC html
+  <!doctype html>
+  <html lang="en">
+      <head>
+          <meta charset="UTF-8"/>
+          <title>Document</title>
+          <style>
+           ,* {
+               padding: 15px;
+               margin: 0;
+           }
+           div {
+               background: lightgreen;
+           }
+           article {
+               background: yellow;
+           }
+           section {
+               background: skyblue;
+           }
+           p {
+               background: orange;
+           }
+          </style>
+      </head>
+      <body>
+          <div>
+              <article>
+                  <section>
+                      <p>
+                          我是里面的内容
+                      </p>
+                  </section>
+              </article>
+          </div>
+
+          <script>
+
+           var body = document.querySelector("body");
+           var div = document.querySelector("div");
+           var article = document.querySelector("article");
+           var section = document.querySelector("section");
+           var p = document.querySelector("p");
+
+           document.addEventListener("click", function (e) {
+               console.log("document");
+           }, false);
+           body.addEventListener("click", function (e) {
+               console.log("body");
+           }, false);
+           div.addEventListener("click", function (e) {
+               console.log("div");
+           }, false);
+           article.addEventListener("click", function (e) {
+               console.log("article");
+           }, false);
+           section.addEventListener("click", function (e) {
+               console.log("section");
+           }, false);
+           p.addEventListener("click", function (e) {
+               e.stopPropagation();
+               console.log("p");
+           }, false);
+
+           /* body.addEventListener("click", function (e) {
+            ,*     alert("你点到的是 " + e.target.nodeName + "  但是处理这个事情的事件在 " + e.currentTarget.nodeName);
+            ,* });
+            ,* body.addEventListener("click", function (e) {
+            ,*     alert(e.currentTarget.outerHTML);
+            ,* });
+            ,* div.addEventListener("click", function (e) {
+            ,*     alert(e.currentTarget.outerHTML);
+            ,* });
+            ,* article.addEventListener("click", function (e) {
+            ,*     alert(e.currentTarget.outerHTML);
+            ,* });
+            ,* section.addEventListener("click", function (e) {
+            ,*     alert(e.currentTarget.outerHTML);
+            ,* });
+            ,* p.addEventListener("click", function (e) {
+            ,*     alert(e.currentTarget.outerHTML);
+            ,* }); */
+
+          </script>
+      </body>
+  </html>
+
+#+END_SRC
