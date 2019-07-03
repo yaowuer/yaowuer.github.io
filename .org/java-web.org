@@ -115,6 +115,7 @@ web.xml:
 
       <!-- 为我们注册的 servlet 指定访问的 url-->
       <!-- 一个 servlet 可以映射多个访问的 url -->
+      <!-- 这里的 servlet-name 一定要跟上面定义的对应上！ -->
       <servlet-mapping>
           <servlet-name>helloServlet</servlet-name>
           <url-pattern>/xxx</url-pattern>
