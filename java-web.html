@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-06-28 Fri 03:26 -->
+<!-- 2019-07-03 Wed 06:45 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java Web</title>
@@ -26,6 +26,7 @@
 <ul>
 <li><a href="#org6c6807b">3.1. Servlet 规范</a></li>
 <li><a href="#org0fc347c">3.2. 包的目录</a></li>
+<li><a href="#orgf68b558">3.3. web.xml</a></li>
 </ul>
 </li>
 <li><a href="#orgc3a3651">4. JSP</a></li>
@@ -136,6 +137,48 @@ Servlet 规范是对所有人开放的，只要你原因，你就可以按照规
 </figure>
 </div>
 </div>
+
+<div id="outline-container-orgf68b558" class="outline-3">
+<h3 id="orgf68b558"><span class="section-number-3">3.3</span> web.xml</h3>
+<div class="outline-text-3" id="text-3-3">
+<div class="org-src-container">
+<pre class="src src-xml"><span class="org-string">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+&lt;<span class="org-function-name">web-app</span> <span class="org-variable-name">xmlns</span>=<span class="org-string">"http://xmlns.jcp.org/xml/ns/javaee"</span>
+         <span class="org-sgml-namespace">xmlns</span>:<span class="org-variable-name">xsi</span>=<span class="org-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
+         <span class="org-sgml-namespace">xsi</span>:<span class="org-variable-name">schemaLocation</span>=<span class="org-string">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"</span>
+         <span class="org-variable-name">version</span>=<span class="org-string">"4.0"</span>&gt;
+
+    <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">&#27880;&#20876;&#12289;&#22768;&#26126;&#25105;&#20204;&#30340; servlet </span><span class="org-comment-delimiter">--&gt;</span>
+    <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">servlet-name &#26159;&#20026; Servlet &#31867;&#36215;&#30340;&#19968;&#20010;&#21035;&#21517;&#65292;&#21487;&#20197;&#38543;&#20415;&#36215;&#65292;&#20294;&#26368;&#22909;&#20855;&#26377;&#19968;&#23450;&#24847;&#20041;&#65292;&#21363; aaa/bbb &#31561;&#19981;&#26159;&#24456;&#22909;&#30340;&#21517;&#23383; </span><span class="org-comment-delimiter">--&gt;</span>
+    &lt;<span class="org-function-name">servlet</span>&gt;
+        &lt;<span class="org-function-name">servlet-name</span>&gt;helloServlet&lt;/<span class="org-function-name">servlet-name</span>&gt;
+        &lt;<span class="org-function-name">servlet-class</span>&gt;com.nf152.web01.web.HelloServlet&lt;/<span class="org-function-name">servlet-class</span>&gt;
+    &lt;/<span class="org-function-name">servlet</span>&gt;
+    &lt;<span class="org-function-name">servlet</span>&gt;
+        &lt;<span class="org-function-name">servlet-name</span>&gt;worldServlet&lt;/<span class="org-function-name">servlet-name</span>&gt;
+        &lt;<span class="org-function-name">servlet-class</span>&gt;com.nf152.web01.web.WorldServlet&lt;/<span class="org-function-name">servlet-class</span>&gt;
+    &lt;/<span class="org-function-name">servlet</span>&gt;
+
+    <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">&#20026;&#25105;&#20204;&#27880;&#20876;&#30340; servlet &#25351;&#23450;&#35775;&#38382;&#30340; url</span><span class="org-comment-delimiter">--&gt;</span>
+    <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">&#19968;&#20010; servlet &#21487;&#20197;&#26144;&#23556;&#22810;&#20010;&#35775;&#38382;&#30340; url </span><span class="org-comment-delimiter">--&gt;</span>
+    &lt;<span class="org-function-name">servlet-mapping</span>&gt;
+        &lt;<span class="org-function-name">servlet-name</span>&gt;helloServlet&lt;/<span class="org-function-name">servlet-name</span>&gt;
+        &lt;<span class="org-function-name">url-pattern</span>&gt;/xxx&lt;/<span class="org-function-name">url-pattern</span>&gt;
+    &lt;/<span class="org-function-name">servlet-mapping</span>&gt;
+    &lt;<span class="org-function-name">servlet-mapping</span>&gt;
+        &lt;<span class="org-function-name">servlet-name</span>&gt;helloServlet&lt;/<span class="org-function-name">servlet-name</span>&gt;
+        &lt;<span class="org-function-name">url-pattern</span>&gt;/yyy&lt;/<span class="org-function-name">url-pattern</span>&gt;
+    &lt;/<span class="org-function-name">servlet-mapping</span>&gt;
+    <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">&#21487;&#20197;&#32473;&#26144;&#23556;&#30340; url &#28155;&#21152;&#26576;&#20123;&#8220;&#21518;&#32512;&#8221;&#65292;&#20174;&#32780;&#36215;&#21040;&#19968;&#23450;&#30340;&#36855;&#24785;&#20316;&#29992; </span><span class="org-comment-delimiter">--&gt;</span>
+    &lt;<span class="org-function-name">servlet-mapping</span>&gt;
+        &lt;<span class="org-function-name">servlet-name</span>&gt;worldServlet&lt;/<span class="org-function-name">servlet-name</span>&gt;
+        &lt;<span class="org-function-name">url-pattern</span>&gt;/zzz.html&lt;/<span class="org-function-name">url-pattern</span>&gt;
+    &lt;/<span class="org-function-name">servlet-mapping</span>&gt;
+&lt;/<span class="org-function-name">web-app</span>&gt;
+</pre>
+</div>
+</div>
+</div>
 </section>
 
 <section id="outline-container-orgc3a3651" class="outline-2">
@@ -153,7 +196,7 @@ Servlet 规范是对所有人开放的，只要你原因，你就可以按照规
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-06-28 Fri 03:26</p>
+<p class="date">Created: 2019-07-03 Wed 06:45</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
