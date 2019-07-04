@@ -69,8 +69,28 @@ web.xml:
 #+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-07-04 01:01:50
 [[file:img/scrot_2019-07-04_01-01-50.png]]
 
+** Servlet 的请求流程
+
+请求的地址是:
+- http://localhost:8888/w1/zzz.html
+
+Tomcat 拿到地址后，除去 schema://host:port/contextPath:
+- /zzz.html
+
+接下来，到 web.xml 中，去匹配这个 url，得到相应的要处理的 Servlet 类:
+#+BEGIN_SRC xml
+  <servlet-mapping>
+    <servlet-name>worldServlet</servlet-name>
+    <url-pattern>/zzz.html</url-pattern>
+  </servlet-mapping>
+#+END_SRC
+
+调用 servlet 里的 service 方法，得到返回的字符串，响应给客户端。
+
+最后，客户端，将获取到的响应字符串，渲染到浏览器里面。
 * JSP
 * Cookie/Session
 * El 表达式
 * JSTL 标签
+
 

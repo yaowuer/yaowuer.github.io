@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-04 Thu 01:02 -->
+<!-- 2019-07-04 Thu 03:20 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java Web</title>
@@ -27,6 +27,7 @@
 <li><a href="#org6c6807b">3.1. Servlet 规范</a></li>
 <li><a href="#org0fc347c">3.2. 包的目录</a></li>
 <li><a href="#org2cef011">3.3. first-servlet and web.xml</a></li>
+<li><a href="#orgca9123a">3.4. Servlet 的请求流程</a></li>
 </ul>
 </li>
 <li><a href="#orgc3a3651">4. JSP</a></li>
@@ -165,8 +166,45 @@ web.xml:
 </figure>
 </div>
 </div>
-</section>
 
+<div id="outline-container-orgca9123a" class="outline-3">
+<h3 id="orgca9123a"><span class="section-number-3">3.4</span> Servlet 的请求流程</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+请求的地址是:
+</p>
+<ul class="org-ul">
+<li><a href="http://localhost:8888/w1/zzz.html">http://localhost:8888/w1/zzz.html</a></li>
+</ul>
+
+<p>
+Tomcat 拿到地址后，除去 schema://host:port/contextPath:
+</p>
+<ul class="org-ul">
+<li>/zzz.html</li>
+</ul>
+
+<p>
+接下来，到 web.xml 中，去匹配这个 url，得到相应的要处理的 Servlet 类:
+</p>
+<div class="org-src-container">
+<pre class="src src-xml">&lt;<span class="org-function-name">servlet-mapping</span>&gt;
+  &lt;<span class="org-function-name">servlet-name</span>&gt;worldServlet&lt;/<span class="org-function-name">servlet-name</span>&gt;
+  &lt;<span class="org-function-name">url-pattern</span>&gt;/zzz.html&lt;/<span class="org-function-name">url-pattern</span>&gt;
+&lt;/<span class="org-function-name">servlet-mapping</span>&gt;
+</pre>
+</div>
+
+<p>
+调用 servlet 里的 service 方法，得到返回的字符串，响应给客户端。
+</p>
+
+<p>
+最后，客户端，将获取到的响应字符串，渲染到浏览器里面。
+</p>
+</div>
+</div>
+</section>
 <section id="outline-container-orgc3a3651" class="outline-2">
 <h2 id="orgc3a3651"><span class="section-number-2">4</span> JSP</h2>
 </section>
@@ -182,7 +220,7 @@ web.xml:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-04 Thu 01:02</p>
+<p class="date">Created: 2019-07-04 Thu 03:20</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
