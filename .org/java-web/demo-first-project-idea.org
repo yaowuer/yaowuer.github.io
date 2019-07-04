@@ -1,4 +1,4 @@
-#+TITLE: Demo JavaWeb in Idea 1
+#+TITLE: Java Web - demo2
 
 
 * 第一个项目, Step by Step
