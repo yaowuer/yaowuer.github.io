@@ -62,9 +62,7 @@ WorldServlet.java:
 #+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-07-04 01:01:12
 [[file:img/scrot_2019-07-04_01-01-12.png]]
 
-
 web.xml:
-
 
 #+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-07-04 01:01:50
 [[file:img/scrot_2019-07-04_01-01-50.png]]
@@ -88,6 +86,9 @@ Tomcat 拿到地址后，除去 schema://host:port/contextPath:
 调用 servlet 里的 service 方法，得到返回的字符串，响应给客户端。
 
 最后，客户端，将获取到的响应字符串，渲染到浏览器里面。
+
+TODO: 自己搜索、整理一下，url-pattern 的匹配机制。
+
 * JSP
 * Cookie/Session
 * El 表达式
