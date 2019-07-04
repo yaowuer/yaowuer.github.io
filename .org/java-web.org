@@ -83,6 +83,7 @@ Tomcat 拿到地址后，除去 schema://host:port/contextPath:
   </servlet-mapping>
 #+END_SRC
 
+
 调用 servlet 里的 service 方法，得到返回的字符串，响应给客户端。
 
 最后，客户端，将获取到的响应字符串，渲染到浏览器里面。
