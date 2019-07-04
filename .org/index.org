@@ -1,6 +1,6 @@
 #+TITLE: 152
 
-#+HTML_HEAD: <link rel="stylesheet" href="/asset/common.css?888">
+#+HTML_HEAD: <link rel="stylesheet" href="/asset/common.css">
 #+HTML_HEAD: <style>
 #+HTML_HEAD: #org-div-home-and-up { display:none; }
 #+HTML_HEAD: @media (max-width: 768px) {
