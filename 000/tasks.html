@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2019-07-04 周四 08:01 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>任务（无他，唯手熟尔）</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="yaowuer">
+<link rel='stylesheet' href='/asset/common.css' />
+<script src='https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+<script src='/asset/common.js'></script>
+</head>
+<body>
+<div id="content">
+<header>
+<h1 class="title">任务（无他，唯手熟尔）</h1>
+</header><nav id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org923c073">1. 2019年7月1日</a></li>
+<li><a href="#org855965f">2. 2019年6月28日</a></li>
+<li><a href="#org3e49963">3. 2019年6月26日</a></li>
+<li><a href="#org7f97eb5">4. 2019年6月25日</a></li>
+<li><a href="#org12d377e">5. 2019年6月5日</a></li>
+<li><a href="#org9f2f3f0">6. 2019年6月4日</a></li>
+<li><a href="#orgac37ee6">7. 2019年1月1日（清明节作业）</a></li>
+</ul>
+</div>
+</nav>
+
+
+
+<section id="outline-container-org923c073" class="outline-2">
+<h2 id="org923c073"><span class="section-number-2">1</span> 2019年7月1日</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+首先，了解 dom 以及事件机制。
+</p>
+
+<p>
+其次，使用 JS 操纵 DOM 节点:
+</p>
+<ul class="org-ul">
+<li>添加背景色，根据分数，使用样式重点突出低分、高分</li>
+<li>点击删除后，可以删除当前行的数据</li>
+</ul>
+
+<p>
+额外任务:
+</p>
+<ul class="org-ul">
+<li>点击标题栏，进行排序</li>
+</ul>
+
+<p>
+注，以上都是使用 JS 操纵 html 页面的 dom，跟 jsp 没关系。
+</p>
+
+
+<figure>
+<img src="img/scrot_2019-07-02_02-27-17.png" alt="scrot_2019-07-02_02-27-17.png">
+
+</figure>
+
+
+
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span class="org-function-name">html</span>&gt;
+&lt;<span class="org-function-name">head</span>&gt;
+    &lt;<span class="org-function-name">title</span>&gt;<span class="org-underline"><span class="org-bold">&#25105;&#26159;&#19968;&#20010;&#31034;&#20363;</span></span>&lt;/<span class="org-function-name">title</span>&gt;
+    &lt;<span class="org-function-name">style</span>&gt;
+        table, tr, th, td {
+            border: 1px solid red;
+            padding: 1em;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-bottom: 3px solid green;
+        }
+    &lt;/<span class="org-function-name">style</span>&gt;
+&lt;/<span class="org-function-name">head</span>&gt;
+&lt;<span class="org-function-name">body</span>&gt;
+&lt;<span class="org-function-name">table</span> <span class="org-variable-name">id</span>=<span class="org-string">"mytable"</span>&gt;
+    &lt;<span class="org-function-name">thead</span>&gt;
+    &lt;<span class="org-function-name">tr</span>&gt;
+        &lt;<span class="org-function-name">th</span>&gt;&#22995;&#21517;&lt;/<span class="org-function-name">th</span>&gt;
+        &lt;<span class="org-function-name">th</span>&gt;&#20998;&#25968;&lt;/<span class="org-function-name">th</span>&gt;
+        &lt;<span class="org-function-name">th</span>&gt;&#25805;&#20316;&lt;/<span class="org-function-name">th</span>&gt;
+    &lt;/<span class="org-function-name">tr</span>&gt;
+    &lt;/<span class="org-function-name">thead</span>&gt;
+    &lt;<span class="org-function-name">tbody</span>&gt;
+    &lt;<span class="org-function-name">tr</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;zhangsan
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;95.0
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;&#21024;&#38500;&lt;/<span class="org-function-name">td</span>&gt;
+    &lt;/<span class="org-function-name">tr</span>&gt;
+    &lt;<span class="org-function-name">tr</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;lisi
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;63.0
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;&#21024;&#38500;&lt;/<span class="org-function-name">td</span>&gt;
+    &lt;/<span class="org-function-name">tr</span>&gt;
+    &lt;<span class="org-function-name">tr</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;wangwu
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;55.0
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;&#21024;&#38500;&lt;/<span class="org-function-name">td</span>&gt;
+    &lt;/<span class="org-function-name">tr</span>&gt;
+    &lt;<span class="org-function-name">tr</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;zhaoliu
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;88.0
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;&#21024;&#38500;&lt;/<span class="org-function-name">td</span>&gt;
+    &lt;/<span class="org-function-name">tr</span>&gt;
+    &lt;<span class="org-function-name">tr</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;xxxx
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;92.0
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;&#21024;&#38500;&lt;/<span class="org-function-name">td</span>&gt;
+    &lt;/<span class="org-function-name">tr</span>&gt;
+    &lt;<span class="org-function-name">tr</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;yyyy
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;79.0
+        &lt;/<span class="org-function-name">td</span>&gt;
+        &lt;<span class="org-function-name">td</span>&gt;&#21024;&#38500;&lt;/<span class="org-function-name">td</span>&gt;
+    &lt;/<span class="org-function-name">tr</span>&gt;
+    &lt;/<span class="org-function-name">tbody</span>&gt;
+&lt;/<span class="org-function-name">table</span>&gt;
+&lt;<span class="org-function-name">script</span>&gt;
+
+&lt;/<span class="org-function-name">script</span>&gt;
+&lt;/<span class="org-function-name">body</span>&gt;
+&lt;/<span class="org-function-name">html</span>&gt;
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org855965f" class="outline-2">
+<h2 id="org855965f"><span class="section-number-2">2</span> 2019年6月28日</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+将前面的“从数据库读取数据，并使用 JSP 进行页面渲染”，使用纯 Servlet 的方式实现一次，并了解相关概念:
+</p>
+<ul class="org-ul">
+<li>什么是 Servlet?</li>
+<li>什么是 Servlet 接口？</li>
+<li>什么是 Request 对象？</li>
+<li>什么是 Response?</li>
+<li>如何接收客户端发送的 Parameter?</li>
+</ul>
+
+<p>
+有余力的同学在此基础上，添加“增加学生”的功能，要求能将数据通过页面插入到数据库中。
+</p>
+</div>
+</section>
+
+<section id="outline-container-org3e49963" class="outline-2">
+<h2 id="org3e49963"><span class="section-number-2">3</span> 2019年6月26日</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+使用纯 JSP 页面，实现从数据库中读取数据，并渲染到页面的过程。
+</p>
+
+<p>
+提示:
+</p>
+<ul class="org-ul">
+<li>使用之前 SqlServer 中已有的数据 （学生管理中的学生表？）</li>
+<li>要在 tomcat 运行后，能看到最终的效果</li>
+<li>页面<b>尽量美观</b>！！！</li>
+</ul>
+</div>
+</section>
+
+<section id="outline-container-org7f97eb5" class="outline-2">
+<h2 id="org7f97eb5"><span class="section-number-2">4</span> 2019年6月25日</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+替换 Java 中标准输出 (System.out) 为进行语音播报。
+</p>
+
+<p>
+提示:
+</p>
+<ul class="org-ul">
+<li>System.setOut</li>
+<li>语音播报实现，善于使用搜索引擎</li>
+</ul>
+</div>
+</section>
+
+<section id="outline-container-org12d377e" class="outline-2">
+<h2 id="org12d377e"><span class="section-number-2">5</span> 2019年6月5日</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+使用 Java/JS/C# 实现一个函数，模拟命令行下敲入命令之后，系统的处理:
+</p>
+<ul class="org-ul">
+<li>比如名字 <code>getFilenameFromCmd(currentDir, command)</code></li>
+<li>返回命令相对应的执行文件，可能是 <code>.bat/.exe/.cmd</code> 格式</li>
+<li>如果命令没有找到对应文件，则报错</li>
+</ul>
+
+<p>
+提示:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-keyword">public</span> <span class="org-keyword">class</span> <span class="org-type">Main</span> {
+    <span class="org-keyword">public</span> <span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">main</span>(<span class="org-type">String</span>[] <span class="org-variable-name">args</span>) {
+        System.out.println(System.getenv(<span class="org-string">"PATH"</span>));
+    }
+}
+</pre>
+</div>
+
+<p>
+步骤:
+</p>
+<ol class="org-ol">
+<li><b>分析问题</b>，题目要求要做什么事</li>
+<li>借助流程图，展现自己分析的结果</li>
+<li><b>解决问题</b>，选择一门语言，将自己的分析思路实现出来</li>
+</ol>
+
+
+<p>
+可以借助 TDD 的方式，进行思路的梳理跟问题的解决:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span class="org-keyword">function</span> <span class="org-function-name">getPathforCmd</span> (<span class="org-variable-name">cwd</span>, <span class="org-variable-name">cmd</span>) {
+
+
+    <span class="org-keyword">return</span> <span class="org-string">"cmd &#25152;&#23545;&#24212;&#30340;&#37027;&#20010;&#21487;&#25191;&#34892;&#25991;&#20214;"</span>;
+}
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">TDD (Test Driven Development) &#27979;&#35797;&#39537;&#21160;&#24320;&#21457;</span>
+<span class="org-keyword">function</span> <span class="org-function-name">test1</span> () {
+    <span class="org-keyword">var</span> <span class="org-variable-name">t1</span> = getPathforCmd(<span class="org-string">"c:/"</span>, <span class="org-string">"sqlite3"</span>) == <span class="org-string">"e:/xxx/sqlite3.exe"</span>;
+    <span class="org-keyword">var</span> <span class="org-variable-name">t2</span> = getPathforCmd(<span class="org-string">"c:/"</span>, <span class="org-string">"sqlite4"</span>) == <span class="org-string">""</span>;
+    <span class="org-keyword">var</span> <span class="org-variable-name">t3</span> = getPathforCmd(<span class="org-string">"c:/"</span>, <span class="org-string">"d:/sqlite4"</span>) == <span class="org-string">""</span>;
+    <span class="org-keyword">var</span> <span class="org-variable-name">t4</span> = getPathforCmd(<span class="org-string">"c:/test"</span>, <span class="org-string">"sqlite3"</span>) == <span class="org-string">"c:/test/sqlite3.bat"</span>;
+    <span class="org-keyword">var</span> <span class="org-variable-name">t5</span> = getPathforCmd(<span class="org-string">"c:/test"</span>, <span class="org-string">"d:/sqlite3"</span>) == <span class="org-string">"d:/sqlite3.bat"</span>;
+
+    <span class="org-keyword">if</span> (t1 &amp;&amp; t2 &amp;&amp; t3 &amp;&amp; t4 &amp;&amp; t5) {
+        console.log(<span class="org-string">"&#27979;&#35797;&#36890;&#36807;"</span>);
+    }
+}
+</pre>
+</div>
+
+<p>
+demo:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-keyword">public</span> <span class="org-keyword">class</span> <span class="org-type">Main</span> {
+    <span class="org-keyword">public</span> <span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">main</span> (<span class="org-type">String</span>... <span class="org-variable-name">args</span>) {
+
+    }
+
+    <span class="org-keyword">public</span> <span class="org-type">String</span> <span class="org-function-name">getCmdPath</span> (<span class="org-type">String</span> <span class="org-variable-name">dir</span>, <span class="org-type">String</span> <span class="org-variable-name">cmd</span>) {
+        <span class="org-keyword">if</span> (cmd.contains(<span class="org-string">":"</span>)) { <span class="org-comment-delimiter">// </span><span class="org-comment">&#32477;&#23545;&#36335;&#24452;</span>
+            <span class="org-keyword">return</span> getPathFile(cmd);
+        } <span class="org-keyword">else</span> { <span class="org-comment-delimiter">// </span><span class="org-comment">&#30456;&#23545;&#36335;&#24452;</span>
+            <span class="org-type">String</span> <span class="org-variable-name">fname</span> = dir + <span class="org-string">"/"</span> + cmd;
+            <span class="org-type">File</span> <span class="org-variable-name">f</span> = getPathFile(fname);
+            <span class="org-keyword">if</span> (f != <span class="org-constant">null</span>) { <span class="org-comment-delimiter">// </span><span class="org-comment">&#26159;&#21542;&#22312;&#24403;&#21069;&#25991;&#20214;&#22841;&#19979;&#23384;&#22312;&#23545;&#24212;&#30340;&#25991;&#20214;</span>
+                <span class="org-keyword">return</span> f.getAbsolutePath();
+            } <span class="org-keyword">else</span> { <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#24403;&#21069;&#30446;&#24405;&#19979;&#27809;&#26377;&#65292;&#37027;&#20040;&#36845;&#20195;&#29615;&#22659;&#21464;&#37327;&#26597;&#25214;</span>
+                <span class="org-keyword">for</span> (<span class="org-type">String</span> <span class="org-function-name">p</span> : System.getenv(<span class="org-string">"path"</span>).split(<span class="org-string">";"</span>)) {
+                    <span class="org-type">File</span> <span class="org-variable-name">f</span> = getPathFile(p + <span class="org-string">"/"</span> + cmd);
+                    <span class="org-keyword">if</span> (f.exists()) <span class="org-keyword">return</span> f.getAbsolutePath();
+                }
+                <span class="org-keyword">return</span> <span class="org-constant">null</span>;
+            }
+        }
+    }
+    <span class="org-keyword">private</span> <span class="org-type">String</span> <span class="org-function-name">getPathFile</span> (<span class="org-type">String</span> <span class="org-variable-name">path</span>) {
+        <span class="org-keyword">if</span> (path.contains(<span class="org-string">"."</span>) &amp;&amp; <span class="org-keyword">new</span> <span class="org-type">File</span>(path).exists()) { <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#36335;&#24452;&#20855;&#22791;&#21518;&#32512;&#21517;&#65292;&#24182;&#19988;&#23384;&#22312;&#36825;&#20010;&#25991;&#20214;</span>
+            <span class="org-keyword">return</span> path;
+        }
+        <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>path.contains(<span class="org-string">"."</span>)) {
+            <span class="org-keyword">for</span> (<span class="org-type">String</span> <span class="org-function-name">p</span> : Arrays.asAlist(<span class="org-string">".cmd"</span>, <span class="org-string">".exe"</span>, <span class="org-string">".bat"</span>)) {
+                <span class="org-type">File</span> <span class="org-variable-name">f</span> = <span class="org-keyword">new</span> <span class="org-type">File</span> (path + <span class="org-string">"/"</span> + p);
+                <span class="org-keyword">if</span> (f.exists()) <span class="org-keyword">return</span> f.getAbsolutePath();
+            }
+        }
+        <span class="org-keyword">return</span> <span class="org-constant">null</span>;
+    }
+}
+</pre>
+</div>
+
+<p>
+实现参考:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">io</span>.<span class="org-type">File</span>;
+<span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">util</span>.<span class="org-type">Arrays</span>;
+<span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">util</span>.<span class="org-type">Scanner</span>;
+
+<span class="org-keyword">public</span> <span class="org-keyword">class</span> <span class="org-type">ReadCmdFile</span> {
+    <span class="org-keyword">public</span> <span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">main</span>(<span class="org-type">String</span>[] <span class="org-variable-name">args</span>) {
+        <span class="org-type">ReadCmdFile</span> <span class="org-variable-name">rcf</span> = <span class="org-keyword">new</span> <span class="org-type">ReadCmdFile</span>();
+        <span class="org-keyword">while</span> (<span class="org-constant">true</span>) {
+            <span class="org-type">Scanner</span> <span class="org-variable-name">scanner</span> = <span class="org-keyword">new</span> <span class="org-type">Scanner</span>(System.in);
+            <span class="org-type">String</span> <span class="org-variable-name">cmd</span> = scanner.nextLine();
+            System.out.println(rcf.readCmdFile(<span class="org-string">"C:"</span>, cmd));
+        }
+    }
+
+    <span class="org-keyword">public</span> <span class="org-type">String</span> <span class="org-function-name">readCmdFile</span>(<span class="org-type">String</span> <span class="org-variable-name">dir</span>, <span class="org-type">String</span> <span class="org-variable-name">cmd</span>) {
+        <span class="org-keyword">if</span> (<span class="org-keyword">new</span> <span class="org-type">File</span>(cmd).isAbsolute()) { <span class="org-comment-delimiter">// </span><span class="org-comment">&#22788;&#29702;&#26159;&#32477;&#23545;&#36335;&#24452;&#30340;&#24773;&#20917;</span>
+            <span class="org-keyword">if</span> (cmd.contains(<span class="org-string">"."</span>)) {      <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#36335;&#24452;&#20013;&#24050;&#32463;&#26377;&#21518;&#32512;&#21517;</span>
+                <span class="org-type">File</span> <span class="org-variable-name">f</span> = <span class="org-keyword">new</span> <span class="org-type">File</span>(cmd);
+                <span class="org-keyword">return</span> f.exists() ? f.getAbsolutePath() : <span class="org-constant">null</span>;
+            }
+            <span class="org-keyword">for</span> (<span class="org-type">String</span> <span class="org-function-name">ext</span> : Arrays.asList(<span class="org-string">".bat"</span>, <span class="org-string">".cmd"</span>, <span class="org-string">".exe"</span>)) { <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#27809;&#26377;&#21518;&#32512;&#21517;&#65292;&#28155;&#21152;&#19978;&#20877;&#21028;&#26029;</span>
+                <span class="org-type">File</span> <span class="org-variable-name">f</span> = <span class="org-keyword">new</span> <span class="org-type">File</span>(cmd + ext);
+                <span class="org-keyword">if</span> (f.exists()) <span class="org-keyword">return</span> f.getAbsolutePath();
+            }
+        } <span class="org-keyword">else</span> {
+            <span class="org-type">String</span> <span class="org-variable-name">path</span> = readCmdFile(dir, dir + <span class="org-string">"/"</span> + cmd);    <span class="org-comment-delimiter">// </span><span class="org-comment">&#21028;&#26029;&#24403;&#21069;&#25991;&#20214;&#22841;&#19979;&#26377;&#27809;&#26377;&#23545;&#24212;&#25991;&#20214;</span>
+            <span class="org-keyword">if</span> (path != <span class="org-constant">null</span>) <span class="org-keyword">return</span> path;                      <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#24403;&#21069;&#25991;&#20214;&#22841;&#19979;&#23384;&#22312;&#65292;&#37027;&#20040;&#23601;&#25214;&#23545;&#20102;</span>
+            <span class="org-keyword">for</span> (<span class="org-type">String</span> <span class="org-function-name">p</span> : System.getenv(<span class="org-string">"path"</span>).split(<span class="org-string">";"</span>)) { <span class="org-comment-delimiter">// </span><span class="org-comment">&#21542;&#21017;&#20174; PATH &#37324;&#38754;&#36827;&#34892;&#21305;&#37197;</span>
+                path = readCmdFile(dir, p + <span class="org-string">"/"</span> + cmd);
+                <span class="org-keyword">if</span> (path != <span class="org-constant">null</span>) <span class="org-keyword">return</span> path;                  <span class="org-comment-delimiter">// </span><span class="org-comment">&#21482;&#35201;&#25214;&#21040;&#65292;&#23601;&#36820;&#22238;</span>
+            }
+        }
+        <span class="org-keyword">return</span> <span class="org-constant">null</span>;                                            <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#19978;&#38754;&#27809;&#25214;&#21040;&#65292;&#23601;&#36820;&#22238; null</span>
+    }
+}
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org9f2f3f0" class="outline-2">
+<h2 id="org9f2f3f0"><span class="section-number-2">6</span> 2019年6月4日</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+用 sqlite 为 “我的书单” 应用，创建数据库表。
+</p>
+
+<p>
+提示:
+</p>
+<ul class="org-ul">
+<li>book</li>
+<li>author</li>
+<li>category</li>
+<li>tag</li>
+</ul>
+</div>
+</section>
+
+<section id="outline-container-orgac37ee6" class="outline-2">
+<h2 id="orgac37ee6"><span class="section-number-2">7</span> 2019年1月1日（清明节作业）</h2>
+<div class="outline-text-2" id="text-7">
+<dl class="org-dl">
+<dt>初步任务</dt><dd>读取某个文件夹下所有的文件，然后将其重命名：
+
+<ul class="org-ul">
+<li>aaa.jpg  → aaa_20190102.jpg // 如果是照片，读取 EXIF 中的创建日期。考查文件的操作，考查字符串操作</li>
+<li>已经是上述格式的话跳过修改    // 考查正则匹配知识</li>
+</ul></dd>
+
+<dt>进阶任务</dt><dd>改完名字之后，将所有文件打包成一个压缩文件（rar/zip） // 考查IO流及压缩的基本知识</dd>
+
+<dt>额外任务</dt><dd>将这个压缩文件通过 JAVA 发送邮件的方式，发给 yaowuer@qq.com  //考查邮件发送的基本知识</dd>
+</dl>
+
+
+<p>
+提示:
+</p>
+<ol class="org-ol">
+<li>如何读取一个文件夹下的所有文件</li>
+<li>如何将其重命名</li>
+<li>如何将一个文件打包成压缩文件</li>
+<li>如何发送这个压缩文件</li>
+</ol>
+
+
+<p>
+plan:
+</p>
+<ol class="org-ol">
+<li>19 6</li>
+<li>19 8</li>
+<li>20 9</li>
+<li>18 5</li>
+<li>19 8</li>
+<li>16 5</li>
+<li>18 6</li>
+<li>18 8</li>
+</ol>
+</div>
+</section>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: yaowuer</p>
+<p class="date">Created: 2019-07-04 周四 08:01</p>
+<p class="validation">Go ahead, never stop.</p>
+</div>
+</body>
+</html>

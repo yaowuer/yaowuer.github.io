@@ -1,6 +1,8 @@
 #+TITLE: Sitemap for project .org-org
 
 - [[file:index.org][152]]
+- 000
+  - [[file:000/tasks.org][任务（无他，唯手熟尔）]]
 - front-end
   - [[file:front-end/html.org][HTML]]
   - [[file:front-end/javascript.org][JavaScript]]
@@ -14,6 +16,5 @@
   - [[file:java-web/java-web.org][Java Web]]
 - miscellaneous
   - [[file:miscellaneous/tools-idea.org][intellij idea]]
-  - [[file:miscellaneous/task.org][任务（无他，唯手熟尔）]]
   - [[file:miscellaneous/group.org][分组]]
   - [[file:miscellaneous/software.org][软件]]
