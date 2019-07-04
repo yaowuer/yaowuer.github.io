@@ -1,5 +1,4 @@
-#+TITLE: Java Web - 示例
-
+#+TITLE: Demo JavaWeb in Idea 1
 
 
 * 第一个项目, Step by Step
@@ -59,20 +58,3 @@
 [[file:img/scrot_2019-06-26_03-38-12.png]]
 
 
-* 在 Eclipse 中为 Web 项目配置 jar 包
-
-[[file:img/scrot_2019-06-27_01-58-37.png]]
-
-
-* Servlet 示例
-
-#+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-07-04 07:31:12
-[[file:img/scrot_2019-07-04_07-31-12.png]]
-
-
-#+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-07-04 07:31:37
-[[file:img/scrot_2019-07-04_07-31-37.png]]
-
-
-#+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-07-04 07:32:00
-[[file:img/scrot_2019-07-04_07-32-00.png]]
