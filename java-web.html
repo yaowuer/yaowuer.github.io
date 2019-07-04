@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-04 Thu 00:33 -->
+<!-- 2019-07-04 Thu 00:41 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java Web</title>
@@ -156,16 +156,23 @@ WorldServlet.java:
 <span class="org-keyword">public</span> <span class="org-keyword">class</span> <span class="org-type">WorldServlet</span> <span class="org-keyword">extends</span> <span class="org-type">HttpServlet</span> {
     <span class="org-c-annotation">@Override</span>
     <span class="org-keyword">protected</span> <span class="org-type">void</span> <span class="org-function-name">service</span>(<span class="org-type">HttpServletRequest</span> <span class="org-variable-name">req</span>, <span class="org-type">HttpServletResponse</span> <span class="org-variable-name">resp</span>) <span class="org-keyword">throws</span> <span class="org-type">ServletException</span>, <span class="org-type">IOException</span> {
+        <span class="org-comment-delimiter">// </span><span class="org-comment">&#35753; Servlet &#23558;&#25152;&#26377;&#23383;&#31526;&#20018;&#35299;&#26512;&#20026; UTF-8 &#21709;&#24212;&#32473;&#23458;&#25143;&#31471;</span>
         resp.setCharacterEncoding(<span class="org-string">"UTF-8"</span>);
+        <span class="org-comment-delimiter">// </span><span class="org-comment">&#21521;&#23458;&#25143;&#31471;&#26263;&#31034;&#65292;&#38656;&#35201;&#23558;&#36820;&#22238;&#30340;&#20869;&#23481;&#35299;&#26512;&#20026; html&#65292;&#24182;&#19988;&#21578;&#35785;&#23458;&#25143;&#31471;&#38656;&#35201;&#20351;&#29992; utf8 &#32534;&#30721;&#35299;&#26512;</span>
         resp.setContentType(<span class="org-string">"text/html;charset=utf8"</span>);
 
+        <span class="org-comment-delimiter">// </span><span class="org-comment">&#25171;&#24320;&#19968;&#20010;&#21709;&#24212;&#30340;&#8220;&#27969;&#8221;&#65292;&#21363;&#26550;&#35774;&#19968;&#20010;&#31649;&#36947;&#65292;&#23558;&#20869;&#23481;&#36755;&#36865;&#32473;&#23458;&#25143;&#31471;&#30340;&#27983;&#35272;&#22120;</span>
         <span class="org-type">PrintWriter</span> <span class="org-variable-name">writer</span> = resp.getWriter();
+
+        <span class="org-comment-delimiter">// </span><span class="org-comment">&#20869;&#23481;&#36755;&#36865;&#24320;&#22987;</span>
         writer.println(<span class="org-string">"&lt;html&gt;"</span>);
         writer.println(<span class="org-string">"&lt;h1&gt;"</span>);
         writer.println(<span class="org-string">"hello, world!"</span>);
         writer.println(<span class="org-string">"&lt;/h1&gt;"</span>);
-        writer.println(<span class="org-string">"&lt;pre&gt;"</span>);
+        writer.println(<span class="org-string">"&lt;pre style='background: aliceblue; padding: 1em;'&gt;"</span>);
 
+        <span class="org-comment-delimiter">// </span><span class="org-comment">&#25171;&#24320;&#19968;&#20010;&#25991;&#20214;&#27969;&#65292;&#20174;&#25991;&#20214;&#20013;&#35835;&#21462;&#20869;&#23481;</span>
+        <span class="org-comment-delimiter">// </span><span class="org-comment">&#28982;&#21518;&#65292;&#23558;&#25991;&#20214;&#20013;&#30340;&#20869;&#23481;&#65292;&#20889;&#20837;&#21040;&#21709;&#24212;&#30340;&#27969;&#20013;&#65292;&#21363;&#26174;&#31034;&#22312;&#39029;&#38754;&#19978;</span>
         <span class="org-type">BufferedReader</span> <span class="org-variable-name">reader</span> = <span class="org-keyword">new</span> <span class="org-type">BufferedReader</span>(<span class="org-keyword">new</span> <span class="org-type">FileReader</span>(<span class="org-string">"e:/aaa.txt"</span>));
         <span class="org-type">String</span> <span class="org-variable-name">line</span> = <span class="org-constant">null</span>;
         <span class="org-keyword">while</span> ((line = reader.readLine()) != <span class="org-constant">null</span>) {
@@ -173,6 +180,7 @@ WorldServlet.java:
         }
         reader.close();
 
+        <span class="org-comment-delimiter">// </span><span class="org-comment">&#32487;&#32493;&#36755;&#36865;&#20854;&#20182;&#20869;&#23481;</span>
         writer.println(<span class="org-string">"&lt;/pre&gt;"</span>);
         writer.println(<span class="org-string">"&lt;script&gt;alert(666);&lt;/script&gt;"</span>);
         writer.println(<span class="org-string">"&lt;/html&gt;"</span>);
@@ -240,7 +248,7 @@ web.xml:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-04 Thu 00:33</p>
+<p class="date">Created: 2019-07-04 Thu 00:41</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
