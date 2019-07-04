@@ -57,87 +57,17 @@ Servlet 规范是对所有人开放的，只要你原因，你就可以按照规
 ** first-servlet and web.xml
 
 WorldServlet.java:
-#+BEGIN_SRC java
-  package com.nf152.web01.web;
 
-  import javax.servlet.ServletException;
-  import javax.servlet.http.HttpServlet;
-  import javax.servlet.http.HttpServletRequest;
-  import javax.servlet.http.HttpServletResponse;
-  import java.io.*;
 
-  public class WorldServlet extends HttpServlet {
-      @Override
-      protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-          // 让 Servlet 将所有字符串解析为 UTF-8 响应给客户端
-          resp.setCharacterEncoding("UTF-8");
-          // 向客户端暗示，需要将返回的内容解析为 html，并且告诉客户端需要使用 utf8 编码解析
-          resp.setContentType("text/html;charset=utf8");
+#+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-07-04 01:01:12
+[[file:img/scrot_2019-07-04_01-01-12.png]]
 
-          // 打开一个响应的“流”，即架设一个管道，将内容输送给客户端的浏览器
-          PrintWriter writer = resp.getWriter();
-
-          // 内容输送开始
-          writer.println("<html>");
-          writer.println("<h1>");
-          writer.println("hello, world!");
-          writer.println("</h1>");
-          writer.println("<pre style='background: aliceblue; padding: 1em;'>");
-
-          // 打开一个文件流，从文件中读取内容
-          // 然后，将文件中的内容，写入到响应的流中，即显示在页面上
-          BufferedReader reader = new BufferedReader(new FileReader("e:/aaa.txt"));
-          String line = null;
-          while ((line = reader.readLine()) != null) {
-              writer.println(line);
-          }
-          reader.close();
-
-          // 继续输送其他内容
-          writer.println("</pre>");
-          writer.println("<script>console.log(666);</script>");
-          writer.println("</html>");
-      }
-  }
-#+END_SRC
 
 web.xml:
-#+BEGIN_SRC xml
-  <?xml version="1.0" encoding="UTF-8"?>
-  <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
-           version="4.0">
 
-      <!-- 注册、声明我们的 servlet -->
-      <!-- servlet-name 是为 Servlet 类起的一个别名，可以随便起，但最好具有一定意义，即 aaa/bbb 等不是很好的名字 -->
-      <servlet>
-          <servlet-name>helloServlet</servlet-name>
-          <servlet-class>com.nf152.web01.web.HelloServlet</servlet-class>
-      </servlet>
-      <servlet>
-          <servlet-name>worldServlet</servlet-name>
-          <servlet-class>com.nf152.web01.web.WorldServlet</servlet-class>
-      </servlet>
 
-      <!-- 为我们注册的 servlet 指定访问的 url-->
-      <!-- 一个 servlet 可以映射多个访问的 url -->
-      <!-- 这里的 servlet-name 一定要跟上面定义的对应上！ -->
-      <servlet-mapping>
-          <servlet-name>helloServlet</servlet-name>
-          <url-pattern>/xxx</url-pattern>
-      </servlet-mapping>
-      <servlet-mapping>
-          <servlet-name>helloServlet</servlet-name>
-          <url-pattern>/yyy</url-pattern>
-      </servlet-mapping>
-      <!-- 可以给映射的 url 添加某些“后缀”，从而起到一定的迷惑作用 -->
-      <servlet-mapping>
-          <servlet-name>worldServlet</servlet-name>
-          <url-pattern>/zzz.html</url-pattern>
-      </servlet-mapping>
-  </web-app>
-#+END_SRC
+#+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-07-04 01:01:50
+[[file:img/scrot_2019-07-04_01-01-50.png]]
 
 * JSP
 * Cookie/Session
