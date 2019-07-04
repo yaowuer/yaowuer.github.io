@@ -95,7 +95,7 @@ WorldServlet.java:
 
           // 继续输送其他内容
           writer.println("</pre>");
-          writer.println("<script>alert(666);</script>");
+          writer.println("<script>console.log(666);</script>");
           writer.println("</html>");
       }
   }
