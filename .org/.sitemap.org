@@ -10,10 +10,10 @@
   - [[file:java-basic/java.org][Java 基础]]
   - [[file:java-basic/jdbc.org][Jdbc 连接数据库]]
 - java-web
-  - [[file:java-web/demo-eclispe-config-jar.org][Demo Config lib-path in Eclipse]]
-  - [[file:java-web/demo-first-project-idea.org][Demo JavaWeb in Idea 1]]
-  - [[file:java-web/demo-servlet-1.org][Demo Servelet 1]]
   - [[file:java-web/java-web.org][Java Web]]
+  - [[file:java-web/demo-eclispe-config-jar.org][Java Web - demo1]]
+  - [[file:java-web/demo-first-project-idea.org][Java Web - demo2]]
+  - [[file:java-web/demo-servlet-1.org][Java Web - demo3]]
 - miscellaneous
   - [[file:miscellaneous/tools-idea.org][intellij idea]]
   - [[file:miscellaneous/group.org][分组]]

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-04 周四 07:59 -->
+<!-- 2019-07-04 周四 08:01 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java Web</title>
@@ -20,27 +20,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf6e2e0f">1. 预习</a></li>
-<li><a href="#org2a5b21b">2. CS vs BS</a></li>
-<li><a href="#org7ca5a15">3. Servlet</a>
+<li><a href="#orgb8e28fe">1. 预习</a></li>
+<li><a href="#orgaa362a8">2. CS vs BS</a></li>
+<li><a href="#org8075467">3. Servlet</a>
 <ul>
-<li><a href="#orgeabf65c">3.1. Servlet 规范</a></li>
-<li><a href="#org67a42dc">3.2. 包的目录</a></li>
-<li><a href="#org7bb7d01">3.3. first-servlet and web.xml</a></li>
-<li><a href="#orgaa77a0e">3.4. Servlet 的请求流程</a></li>
+<li><a href="#orgc21096c">3.1. Servlet 规范</a></li>
+<li><a href="#org37eb86b">3.2. 包的目录</a></li>
+<li><a href="#orgfdaef61">3.3. first-servlet and web.xml</a></li>
+<li><a href="#org3123a3d">3.4. Servlet 的请求流程</a></li>
 </ul>
 </li>
-<li><a href="#org366afd9">4. JSP</a></li>
-<li><a href="#org8a09546">5. Cookie/Session</a></li>
-<li><a href="#org18c88b2">6. El 表达式</a></li>
-<li><a href="#orga24b9e3">7. JSTL 标签</a></li>
+<li><a href="#org843863a">4. JSP</a></li>
+<li><a href="#orgbab26bd">5. Cookie/Session</a></li>
+<li><a href="#orgaec5705">6. El 表达式</a></li>
+<li><a href="#orga58f4c5">7. JSTL 标签</a></li>
 </ul>
 </div>
 </nav>
 
 
-<section id="outline-container-orgf6e2e0f" class="outline-2">
-<h2 id="orgf6e2e0f"><span class="section-number-2">1</span> 预习</h2>
+<section id="outline-container-orgb8e28fe" class="outline-2">
+<h2 id="orgb8e28fe"><span class="section-number-2">1</span> 预习</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>下载 Tomcat 服务器，完成安装</li>
@@ -51,8 +51,8 @@
 </div>
 </section>
 
-<section id="outline-container-org2a5b21b" class="outline-2">
-<h2 id="org2a5b21b"><span class="section-number-2">2</span> CS vs BS</h2>
+<section id="outline-container-orgaa362a8" class="outline-2">
+<h2 id="orgaa362a8"><span class="section-number-2">2</span> CS vs BS</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Client-Server，客户端-服务端:
@@ -88,12 +88,12 @@ Web 的时代就这样来临了。
 </div>
 </section>
 
-<section id="outline-container-org7ca5a15" class="outline-2">
-<h2 id="org7ca5a15"><span class="section-number-2">3</span> Servlet</h2>
+<section id="outline-container-org8075467" class="outline-2">
+<h2 id="org8075467"><span class="section-number-2">3</span> Servlet</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgeabf65c" class="outline-3">
-<h3 id="orgeabf65c"><span class="section-number-3">3.1</span> Servlet 规范</h3>
+<div id="outline-container-orgc21096c" class="outline-3">
+<h3 id="orgc21096c"><span class="section-number-3">3.1</span> Servlet 规范</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Servlet规范 <a href="https://github.com/waylau/servlet-3.1-specification">中文版</a> <a href="https://jcp.org/en/jsr/detail?id=340">英文版</a>
@@ -124,8 +124,8 @@ Servlet 规范是对所有人开放的，只要你原因，你就可以按照规
 </div>
 </div>
 
-<div id="outline-container-org67a42dc" class="outline-3">
-<h3 id="org67a42dc"><span class="section-number-3">3.2</span> 包的目录</h3>
+<div id="outline-container-org37eb86b" class="outline-3">
+<h3 id="org37eb86b"><span class="section-number-3">3.2</span> 包的目录</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 这是常见开源项目的标准目录结构:
@@ -139,8 +139,8 @@ Servlet 规范是对所有人开放的，只要你原因，你就可以按照规
 </div>
 </div>
 
-<div id="outline-container-org7bb7d01" class="outline-3">
-<h3 id="org7bb7d01"><span class="section-number-3">3.3</span> first-servlet and web.xml</h3>
+<div id="outline-container-orgfdaef61" class="outline-3">
+<h3 id="orgfdaef61"><span class="section-number-3">3.3</span> first-servlet and web.xml</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 WorldServlet.java:
@@ -165,8 +165,8 @@ web.xml:
 </div>
 </div>
 
-<div id="outline-container-orgaa77a0e" class="outline-3">
-<h3 id="orgaa77a0e"><span class="section-number-3">3.4</span> Servlet 的请求流程</h3>
+<div id="outline-container-org3123a3d" class="outline-3">
+<h3 id="org3123a3d"><span class="section-number-3">3.4</span> Servlet 的请求流程</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 请求的地址是:
@@ -209,22 +209,22 @@ TODO: 自己搜索、整理一下，url-pattern 的匹配机制。
 </div>
 </section>
 
-<section id="outline-container-org366afd9" class="outline-2">
-<h2 id="org366afd9"><span class="section-number-2">4</span> JSP</h2>
+<section id="outline-container-org843863a" class="outline-2">
+<h2 id="org843863a"><span class="section-number-2">4</span> JSP</h2>
 </section>
-<section id="outline-container-org8a09546" class="outline-2">
-<h2 id="org8a09546"><span class="section-number-2">5</span> Cookie/Session</h2>
+<section id="outline-container-orgbab26bd" class="outline-2">
+<h2 id="orgbab26bd"><span class="section-number-2">5</span> Cookie/Session</h2>
 </section>
-<section id="outline-container-org18c88b2" class="outline-2">
-<h2 id="org18c88b2"><span class="section-number-2">6</span> El 表达式</h2>
+<section id="outline-container-orgaec5705" class="outline-2">
+<h2 id="orgaec5705"><span class="section-number-2">6</span> El 表达式</h2>
 </section>
-<section id="outline-container-orga24b9e3" class="outline-2">
-<h2 id="orga24b9e3"><span class="section-number-2">7</span> JSTL 标签</h2>
+<section id="outline-container-orga58f4c5" class="outline-2">
+<h2 id="orga58f4c5"><span class="section-number-2">7</span> JSTL 标签</h2>
 </section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-04 周四 07:59</p>
+<p class="date">Created: 2019-07-04 周四 08:01</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
