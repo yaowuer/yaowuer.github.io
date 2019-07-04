@@ -77,19 +77,16 @@ WorldServlet.java:
           writer.println("<h1>");
           writer.println("hello, world!");
           writer.println("</h1>");
+          writer.println("<pre>");
 
           BufferedReader reader = new BufferedReader(new FileReader("e:/aaa.txt"));
-
-          writer.println("<pre>");
-          writer.println("<pre>");
           String line = null;
           while ((line = reader.readLine()) != null) {
               writer.println(line);
           }
-          writer.println("</pre>");
-
           reader.close();
 
+          writer.println("</pre>");
           writer.println("<script>alert(666);</script>");
           writer.println("</html>");
       }
