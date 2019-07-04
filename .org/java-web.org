@@ -81,9 +81,11 @@ WorldServlet.java:
           BufferedReader reader = new BufferedReader(new FileReader("e:/aaa.txt"));
 
           writer.println("<pre>");
-          writer.println(reader.readLine());
-          writer.println(reader.readLine());
-          writer.println(reader.readLine());
+          writer.println("<pre>");
+          String line = null;
+          while ((line = reader.readLine()) != null) {
+              writer.println(line);
+          }
           writer.println("</pre>");
 
           reader.close();

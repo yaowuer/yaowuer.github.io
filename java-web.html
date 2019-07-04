@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-03 Wed 06:47 -->
+<!-- 2019-07-04 Thu 00:32 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java Web</title>
@@ -168,9 +168,11 @@ WorldServlet.java:
         <span class="org-type">BufferedReader</span> <span class="org-variable-name">reader</span> = <span class="org-keyword">new</span> <span class="org-type">BufferedReader</span>(<span class="org-keyword">new</span> <span class="org-type">FileReader</span>(<span class="org-string">"e:/aaa.txt"</span>));
 
         writer.println(<span class="org-string">"&lt;pre&gt;"</span>);
-        writer.println(reader.readLine());
-        writer.println(reader.readLine());
-        writer.println(reader.readLine());
+        writer.println(<span class="org-string">"&lt;pre&gt;"</span>);
+        <span class="org-type">String</span> <span class="org-variable-name">line</span> = <span class="org-constant">null</span>;
+        <span class="org-keyword">while</span> ((line = reader.readLine()) != <span class="org-constant">null</span>) {
+            writer.println(line);
+        }
         writer.println(<span class="org-string">"&lt;/pre&gt;"</span>);
 
         reader.close();
@@ -241,7 +243,7 @@ web.xml:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-03 Wed 06:47</p>
+<p class="date">Created: 2019-07-04 Thu 00:32</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
