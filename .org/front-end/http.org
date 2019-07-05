@@ -1,9 +1,42 @@
 #+TITLE: HTTP 协议
 
 
-* 信息
+* HTTP
 
-* 请求头 (head)
+- 基于 "请求" -> "响应" 机制的
+- 无状态的（服务器内心OS: 我不知道你是谁，你跟上一个请求是不是同一个，我真的不知道，我也不屑于知道。有什么好处？）
+- 明文传输的，基于文本的，不安全
+- 基于 TCP/IP 协议，OSI，网卡
+
+事情的本质就是:
+1. 客户端，要发送某些 *数据* 到服务器 (request/parameter)
+2. 服务器，要发送某些 *数据* 到客户端 (response/html)
+
+客户端请求，需要输入 url:
+
+
+[[file:img/scrot_2019-07-05_03-23-47.png]]
+最主要的是，定义数据的传输格式（http 的报文）:
+
+#+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-07-05 03:30:11
+[[file:img/scrot_2019-07-05_03-30-11.png]]
+
+#+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-07-05 03:33:12
+[[file:img/scrot_2019-07-05_03-33-12.png]]
+
+* 请求头 (header)
+
+带有一定的语义:
+- GET，获取数据
+- POST，更新数据
+- PUT，新增数据
+- DELETE，删除数据
+
+比如，有一个 url: http://localhost:8888/w1/book
+: GET    /w1/book  # 获取这本书的内容
+: POST   /w1/book  # 用来更新某本书的内容
+: DELETE /w1/book  # 删除某本书
+: PUT    /w1/book  # 新增一本书
 
 * 请求方法 (methods)
 
