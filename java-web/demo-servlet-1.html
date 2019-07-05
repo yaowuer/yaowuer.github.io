@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-04 周四 08:01 -->
+<!-- 2019-07-05 Fri 07:05 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java Web - demo3</title>
@@ -20,16 +20,38 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6db0aa5">1. Servlet 示例</a></li>
+<li><a href="#org582d1ed">1. 数据库表</a></li>
+<li><a href="#org7a55b01">2. 学生列表</a></li>
+<li><a href="#orga86b7a0">3. 学生删除</a></li>
 </ul>
 </div>
 </nav>
 
 
 
-<section id="outline-container-org6db0aa5" class="outline-2">
-<h2 id="org6db0aa5"><span class="section-number-2">1</span> Servlet 示例</h2>
+<section id="outline-container-org582d1ed" class="outline-2">
+<h2 id="org582d1ed"><span class="section-number-2">1</span> 数据库表</h2>
 <div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<pre class="src src-sql"><span class="org-keyword">create</span> <span class="org-keyword">table</span> <span class="org-function-name">student</span>
+(
+    id     <span class="org-type">integer</span> <span class="org-keyword">primary</span> <span class="org-keyword">key</span> AUTOINCREMENT,
+    <span class="org-keyword">name</span>   <span class="org-type">varchar</span>(50),
+    weixin <span class="org-type">varchar</span>(50),
+    score  <span class="org-type">float</span> <span class="org-keyword">default</span> 55
+);
+
+<span class="org-keyword">insert</span> <span class="org-keyword">into</span> student (<span class="org-keyword">name</span>, weixin, score) <span class="org-keyword">values</span>
+  (<span class="org-string">'Cat'</span>, <span class="org-string">'23232323'</span>, 61),
+  (<span class="org-string">'Dog'</span>, <span class="org-string">'kskdfjskd'</span>, 59);
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org7a55b01" class="outline-2">
+<h2 id="org7a55b01"><span class="section-number-2">2</span> 学生列表</h2>
+<div class="outline-text-2" id="text-2">
 
 <figure>
 <img src="img/scrot_2019-07-04_07-31-12.png" alt="scrot_2019-07-04_07-31-12.png">
@@ -50,10 +72,36 @@
 </figure>
 </div>
 </section>
+
+<section id="outline-container-orga86b7a0" class="outline-2">
+<h2 id="orga86b7a0"><span class="section-number-2">3</span> 学生删除</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+客户端，需要在<b>删除</b>上增加超链接:
+</p>
+
+
+<figure>
+<img src="img/scrot_2019-07-05_07-04-00.png" alt="scrot_2019-07-05_07-04-00.png">
+
+</figure>
+
+
+<p>
+服务器，处理点击后的请求:
+</p>
+
+
+<figure>
+<img src="img/scrot_2019-07-05_07-02-52.png" alt="scrot_2019-07-05_07-02-52.png">
+
+</figure>
+</div>
+</section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-04 周四 08:01</p>
+<p class="date">Created: 2019-07-05 Fri 07:05</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

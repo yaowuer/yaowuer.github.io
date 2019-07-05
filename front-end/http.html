@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-05 Fri 06:02 -->
+<!-- 2019-07-05 Fri 07:05 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>HTTP 协议</title>
@@ -22,7 +22,12 @@
 <ul>
 <li><a href="#orgbddc631">1. HTTP</a></li>
 <li><a href="#org6c8d920">2. 请求头 (header)</a></li>
-<li><a href="#orgcc95079">3. 请求方法 (methods)</a></li>
+<li><a href="#orgcc95079">3. 请求方法 (methods)</a>
+<ul>
+<li><a href="#org6363de7">3.1. GET</a></li>
+<li><a href="#org3ad6e75">3.2. POST</a></li>
+</ul>
+</li>
 <li><a href="#orge800180">4. 状态返回码 (status code)</a></li>
 <li><a href="#org81687dc">5. 其他</a>
 <ul>
@@ -78,7 +83,11 @@
 
 <section id="outline-container-org6c8d920" class="outline-2">
 <h2 id="org6c8d920"><span class="section-number-2">2</span> 请求头 (header)</h2>
-<div class="outline-text-2" id="text-2">
+</section>
+
+<section id="outline-container-orgcc95079" class="outline-2">
+<h2 id="orgcc95079"><span class="section-number-2">3</span> 请求方法 (methods)</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 带有一定的语义:
 </p>
@@ -99,10 +108,43 @@ DELETE /w1/book  # 删除某本书
 PUT    /w1/book  # 新增一本书
 </pre>
 </div>
-</section>
 
-<section id="outline-container-orgcc95079" class="outline-2">
-<h2 id="orgcc95079"><span class="section-number-2">3</span> 请求方法 (methods)</h2>
+<div id="outline-container-org6363de7" class="outline-3">
+<h3 id="org6363de7"><span class="section-number-3">3.1</span> GET</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+下面几种，进行的就是 GET 请求:
+</p>
+<ol class="org-ol">
+<li>在浏览器的地址栏中，输入 url 后，敲入回车</li>
+<li>网页中的超链接 <code>&lt;a href="/kkkk.html"&gt;我是一个链接&lt;/a&gt;</code></li>
+<li>借助 <code>&lt;form&gt;</code> 表单，如果 method 为空或者为 get，那么默认就是进行一个 GET 请求</li>
+</ol>
+
+<p>
+携带的数据，叫参数(parameter)。
+</p>
+
+<p>
+在 GET 请求中，因为携带的数据比较少，所以，它推荐的方式是:
+</p>
+<pre class="example">
+http://localhost:8888/w1/hhh?name=tom&amp;age=18&amp;city=zhuhai
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org3ad6e75" class="outline-3">
+<h3 id="org3ad6e75"><span class="section-number-3">3.2</span> POST</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+下面几种，进行的就是 POST 请求:
+</p>
+<ol class="org-ol">
+<li>借助 <code>&lt;form method="post" action="/w1/bbb"&gt;</code></li>
+</ol>
+</div>
+</div>
 </section>
 
 <section id="outline-container-orge800180" class="outline-2">
@@ -120,7 +162,7 @@ PUT    /w1/book  # 新增一本书
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-05 Fri 06:02</p>
+<p class="date">Created: 2019-07-05 Fri 07:05</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

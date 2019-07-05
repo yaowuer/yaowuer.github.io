@@ -2,7 +2,23 @@
 
 
 
-* Servlet 示例
+* 数据库表
+
+#+BEGIN_SRC sql
+  create table student
+  (
+      id     integer primary key AUTOINCREMENT,
+      name   varchar(50),
+      weixin varchar(50),
+      score  float default 55
+  );
+
+  insert into student (name, weixin, score) values
+    ('Cat', '23232323', 61),
+    ('Dog', 'kskdfjskd', 59);
+#+END_SRC
+
+* 学生列表
 
 #+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-07-04 07:31:12
 [[file:img/scrot_2019-07-04_07-31-12.png]]
@@ -13,3 +29,14 @@
 
 #+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-07-04 07:32:00
 [[file:img/scrot_2019-07-04_07-32-00.png]]
+
+* 学生删除
+
+客户端，需要在 *删除* 上增加超链接:
+
+[[file:img/scrot_2019-07-05_07-04-00.png]]
+
+
+服务器，处理点击后的请求:
+
+[[file:img/scrot_2019-07-05_07-02-52.png]]

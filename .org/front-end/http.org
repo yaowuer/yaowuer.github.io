@@ -26,6 +26,9 @@
 
 * 请求头 (header)
 
+* 请求方法 (methods)
+
+
 带有一定的语义:
 - GET，获取数据
 - POST，更新数据
@@ -38,7 +41,22 @@
 : DELETE /w1/book  # 删除某本书
 : PUT    /w1/book  # 新增一本书
 
-* 请求方法 (methods)
+** GET
+
+下面几种，进行的就是 GET 请求:
+1. 在浏览器的地址栏中，输入 url 后，敲入回车
+2. 网页中的超链接 ~<a href="/kkkk.html">我是一个链接</a>~
+3. 借助 ~<form>~ 表单，如果 method 为空或者为 get，那么默认就是进行一个 GET 请求
+
+携带的数据，叫参数(parameter)。
+
+在 GET 请求中，因为携带的数据比较少，所以，它推荐的方式是:
+: http://localhost:8888/w1/hhh?name=tom&age=18&city=zhuhai
+
+** POST
+
+下面几种，进行的就是 POST 请求:
+1. 借助 ~<form method="post" action="/w1/bbb">~
 
 * 状态返回码 (status code)
 
