@@ -48,13 +48,13 @@ Servlet 规范是对所有人开放的，只要你原因，你就可以按照规
 
 他们是基于 Java 进行 Web 编程的服务器，也可以看做是 Servlet 容器。
 
-** Tomcat <Servlet Container>
+** Tomcat 容器
 
 这是 Tomcat 的目录结构，也是常见开源项目的标准目录结构:
 
 [[file:img/scrot_2019-06-26_02-57-48.png]]
 
-** first-servlet and web.xml
+** hello-world
 
 WorldServlet.java:
 
@@ -144,6 +144,6 @@ jar 包:
 
 * forward/include/redirect
 * Cookie/Session
-* JSTL 标签
+
 
 
