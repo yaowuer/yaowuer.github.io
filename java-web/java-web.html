@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-08 Mon 07:56 -->
+<!-- 2019-07-08 Mon 07:59 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java Web</title>
@@ -22,20 +22,20 @@
 <ul>
 <li><a href="#orgb8e28fe">1. 预习</a></li>
 <li><a href="#orgaa362a8">2. CS vs BS</a></li>
-<li><a href="#orgdf1d803">3. Servlet</a>
+<li><a href="#orgbcb5894">3. Servlet</a>
 <ul>
 <li><a href="#org6680e4a">3.1. 规范</a></li>
 <li><a href="#orga806116">3.2. Tomcat 容器</a></li>
 <li><a href="#org6e2754a">3.3. hello-world</a></li>
-<li><a href="#org5eed324">3.4. Servlet</a>
+<li><a href="#orgdf1d803">3.4. Servlet</a>
 <ul>
 <li><a href="#org801f83e">3.4.1. 请求流程</a></li>
-<li><a href="#org733ab16">3.4.2. 生命周期</a></li>
-<li><a href="#org3860a2f">3.4.3. 配置方式</a></li>
+<li><a href="#org3860a2f">3.4.2. 配置方式</a></li>
 </ul>
 </li>
 <li><a href="#orgde5d119">3.5. Filter &lt;过滤器&gt;</a></li>
 <li><a href="#orgb0ec3fc">3.6. Listener &lt;监听器&gt;</a></li>
+<li><a href="#org733ab16">3.7. 生命周期</a></li>
 </ul>
 </li>
 <li><a href="#org843863a">4. JSP</a>
@@ -49,6 +49,9 @@
 </li>
 <li><a href="#org3548f4b">5. forward/include/redirect</a></li>
 <li><a href="#orgbab26bd">6. Cookie/Session</a></li>
+<li><a href="#orgb820092">7. 文件的上次和下载</a></li>
+<li><a href="#orgaf79d1c">8. 用户的注册和登录</a></li>
+<li><a href="#org3c9f3e9">9. 完整的增删改查实现</a></li>
 </ul>
 </div>
 </nav>
@@ -103,8 +106,8 @@ Web 的时代就这样来临了。
 </div>
 </section>
 
-<section id="outline-container-orgdf1d803" class="outline-2">
-<h2 id="orgdf1d803"><span class="section-number-2">3</span> Servlet</h2>
+<section id="outline-container-orgbcb5894" class="outline-2">
+<h2 id="orgbcb5894"><span class="section-number-2">3</span> Servlet</h2>
 <div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-org6680e4a" class="outline-3">
@@ -179,8 +182,8 @@ web.xml:
 </div>
 </div>
 
-<div id="outline-container-org5eed324" class="outline-3">
-<h3 id="org5eed324"><span class="section-number-3">3.4</span> Servlet</h3>
+<div id="outline-container-orgdf1d803" class="outline-3">
+<h3 id="orgdf1d803"><span class="section-number-3">3.4</span> Servlet</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
 <div id="outline-container-org801f83e" class="outline-4">
@@ -225,13 +228,9 @@ TODO: 自己搜索、整理一下，url-pattern 的匹配机制。
 </div>
 </div>
 
-<div id="outline-container-org733ab16" class="outline-4">
-<h4 id="org733ab16"><span class="section-number-4">3.4.2</span> 生命周期</h4>
-</div>
-
 <div id="outline-container-org3860a2f" class="outline-4">
-<h4 id="org3860a2f"><span class="section-number-4">3.4.3</span> 配置方式</h4>
-<div class="outline-text-4" id="text-3-4-3">
+<h4 id="org3860a2f"><span class="section-number-4">3.4.2</span> 配置方式</h4>
+<div class="outline-text-4" id="text-3-4-2">
 <p>
 xml 方式。
 </p>
@@ -248,6 +247,9 @@ xml 方式。
 </div>
 <div id="outline-container-orgb0ec3fc" class="outline-3">
 <h3 id="orgb0ec3fc"><span class="section-number-3">3.6</span> Listener &lt;监听器&gt;</h3>
+</div>
+<div id="outline-container-org733ab16" class="outline-3">
+<h3 id="org733ab16"><span class="section-number-3">3.7</span> 生命周期</h3>
 </div>
 </section>
 <section id="outline-container-org843863a" class="outline-2">
@@ -335,10 +337,19 @@ javax.servlet:jstl:1.2
 <section id="outline-container-orgbab26bd" class="outline-2">
 <h2 id="orgbab26bd"><span class="section-number-2">6</span> Cookie/Session</h2>
 </section>
+<section id="outline-container-orgb820092" class="outline-2">
+<h2 id="orgb820092"><span class="section-number-2">7</span> 文件的上次和下载</h2>
+</section>
+<section id="outline-container-orgaf79d1c" class="outline-2">
+<h2 id="orgaf79d1c"><span class="section-number-2">8</span> 用户的注册和登录</h2>
+</section>
+<section id="outline-container-org3c9f3e9" class="outline-2">
+<h2 id="org3c9f3e9"><span class="section-number-2">9</span> 完整的增删改查实现</h2>
+</section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-08 Mon 07:56</p>
+<p class="date">Created: 2019-07-08 Mon 07:59</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
