@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-05 Fri 07:05 -->
+<!-- 2019-07-08 Mon 02:39 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>HTTP 协议</title>
@@ -21,7 +21,7 @@
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#orgbddc631">1. HTTP</a></li>
-<li><a href="#org6c8d920">2. 请求头 (header)</a></li>
+<li><a href="#org85b6881">2. HTTP头部 (header)</a></li>
 <li><a href="#orgcc95079">3. 请求方法 (methods)</a>
 <ul>
 <li><a href="#org6363de7">3.1. GET</a></li>
@@ -81,8 +81,56 @@
 </div>
 </section>
 
-<section id="outline-container-org6c8d920" class="outline-2">
-<h2 id="org6c8d920"><span class="section-number-2">2</span> 请求头 (header)</h2>
+<section id="outline-container-org85b6881" class="outline-2">
+<h2 id="org85b6881"><span class="section-number-2">2</span> HTTP头部 (header)</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+请求头部:
+</p>
+<ul class="org-ul">
+<li>User-Agent，使用的是什么浏览器</li>
+<li>Host，主机名字</li>
+<li>Accept</li>
+<li>Cache-Control</li>
+<li><del>Cookie</del></li>
+</ul>
+
+<p>
+响应头部:
+</p>
+<ul class="org-ul">
+<li>Content-Type</li>
+<li>Date</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-comment-delimiter">// </span><span class="org-comment">&#38480;&#21046;&#35775;&#38382;&#30340; IP &#22320;&#22336;</span>
+<span class="org-type">String</span> <span class="org-variable-name">host</span> = req.getHeader(<span class="org-string">"Host"</span>);
+<span class="org-keyword">if</span> (host != <span class="org-constant">null</span> &amp;&amp; host.equals(<span class="org-string">"127.0.0.1:8888"</span>)) {
+    out.println(<span class="org-string">"&#20320;&#19981;&#33021;&#30452;&#25509;&#20351;&#29992; IP &#22320;&#22336;&#21435;&#35775;&#38382;&#12290;"</span>);
+    <span class="org-keyword">return</span>;
+}
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#38480;&#21046;&#35775;&#38382;&#30340;&#27983;&#35272;&#22120;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">- &#21512;&#29702;&#30340;&#21464;&#37327;&#21517;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">- &#20351;&#29992;&#21512;&#29702;&#30340; API</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">- &#31354;&#25351;&#38024;&#24322;&#24120;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">- &#23398;&#20250;&#36923;&#36753;&#30340;&#25277;&#31163;&#12289;&#23553;&#35013;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">- &#20889;&#23436;&#20195;&#30721;&#65292;&#33267;&#23569;&#35201;&#39564;&#35777;&#19968;&#19979;&#27491;&#30830;&#24615;&#65292;&#21363;&#31616;&#21333;&#30340;&#27979;&#35797;</span>
+<span class="org-keyword">if</span> (isIEBrowser(req.getHeader(<span class="org-string">"User-Agent"</span>))) {
+    out.println(<span class="org-string">"&#19981;&#33021;&#20351;&#29992;IE&#27983;&#35272;&#22120;!"</span>);
+    <span class="org-keyword">return</span>;
+}
+
+<span class="org-keyword">private</span> <span class="org-type">boolean</span> <span class="org-function-name">isIEBrowser</span> (<span class="org-type">String</span> <span class="org-variable-name">userAgent</span>) {
+    <span class="org-keyword">if</span> (userAgent != <span class="org-constant">null</span>) {
+        <span class="org-keyword">return</span> userAgent.contains(<span class="org-string">"MSIE"</span>) || userAgent.contains(<span class="org-string">"Trident"</span>);
+    }
+    <span class="org-keyword">return</span> <span class="org-constant">false</span>;
+}
+</pre>
+</div>
+</div>
 </section>
 
 <section id="outline-container-orgcc95079" class="outline-2">
@@ -149,6 +197,17 @@ http://localhost:8888/w1/hhh?name=tom&amp;age=18&amp;city=zhuhai
 
 <section id="outline-container-orge800180" class="outline-2">
 <h2 id="orge800180"><span class="section-number-2">4</span> 状态返回码 (status code)</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+常用返回码:
+</p>
+<ul class="org-ul">
+<li>200</li>
+<li>301</li>
+<li>404, Not Found, 没有找到</li>
+<li>500, Internal Server Error，内部的服务器错误</li>
+</ul>
+</div>
 </section>
 
 <section id="outline-container-org81687dc" class="outline-2">
@@ -162,7 +221,7 @@ http://localhost:8888/w1/hhh?name=tom&amp;age=18&amp;city=zhuhai
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-05 Fri 07:05</p>
+<p class="date">Created: 2019-07-08 Mon 02:39</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

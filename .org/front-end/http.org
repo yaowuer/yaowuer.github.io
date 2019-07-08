@@ -24,7 +24,45 @@
 #+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-07-05 03:33:12
 [[file:img/scrot_2019-07-05_03-33-12.png]]
 
-* 请求头 (header)
+* HTTP头部 (header)
+
+请求头部:
+- User-Agent，使用的是什么浏览器
+- Host，主机名字
+- Accept
+- Cache-Control
+- +Cookie+
+
+响应头部:
+- Content-Type
+- Date
+
+#+BEGIN_SRC java
+  // 限制访问的 IP 地址
+  String host = req.getHeader("Host");
+  if (host != null && host.equals("127.0.0.1:8888")) {
+      out.println("你不能直接使用 IP 地址去访问。");
+      return;
+  }
+
+  // 限制访问的浏览器
+  // - 合理的变量名
+  // - 使用合理的 API
+  // - 空指针异常
+  // - 学会逻辑的抽离、封装
+  // - 写完代码，至少要验证一下正确性，即简单的测试
+  if (isIEBrowser(req.getHeader("User-Agent"))) {
+      out.println("不能使用IE浏览器!");
+      return;
+  }
+
+  private boolean isIEBrowser (String userAgent) {
+      if (userAgent != null) {
+          return userAgent.contains("MSIE") || userAgent.contains("Trident");
+      }
+      return false;
+  }
+#+END_SRC
 
 * 请求方法 (methods)
 
@@ -59,6 +97,12 @@
 1. 借助 ~<form method="post" action="/w1/bbb">~
 
 * 状态返回码 (status code)
+
+常用返回码:
+- 200
+- 301
+- 404, Not Found, 没有找到
+- 500, Internal Server Error，内部的服务器错误
 
 * 其他
 ** Cookie
