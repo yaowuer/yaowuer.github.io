@@ -1,6 +1,7 @@
 #+TITLE: HTTP 协议
 
 
+
 * HTTP
 
 - 基于 "请求" -> "响应" 机制的
@@ -28,13 +29,13 @@
 
 请求头部:
 - User-Agent，使用的是什么浏览器
-- Host，主机名字
-- Accept
-- Cache-Control
-- +Cookie+
+- Host，使用哪个主机名进行的访问
+- Accept，我需要的是什么类型的数据，接受
+- Cache-Control，缓存的控制策略
+- *Cookie*
 
 响应头部:
-- Content-Type
+- Content-Type，我返回的是什么类型的数据
 - Date
 
 #+BEGIN_SRC java
@@ -47,53 +48,53 @@
 
   // 限制访问的浏览器
   // - 合理的变量名
-  // - 使用合理的 API
+  // - 使用合理的 api
   // - 空指针异常
   // - 学会逻辑的抽离、封装
   // - 写完代码，至少要验证一下正确性，即简单的测试
-  if (isIEBrowser(req.getHeader("User-Agent"))) {
-      out.println("不能使用IE浏览器!");
+  if (isiebrowser(req.getheader("user-agent"))) {
+      out.println("不能使用ie浏览器!");
       return;
   }
 
-  private boolean isIEBrowser (String userAgent) {
-      if (userAgent != null) {
-          return userAgent.contains("MSIE") || userAgent.contains("Trident");
+  private boolean isiebrowser (string useragent) {
+      if (useragent != null) {
+          return useragent.contains("msie") || useragent.contains("trident");
       }
       return false;
   }
-#+END_SRC
+#+end_src
 
 * 请求方法 (methods)
 
 
 带有一定的语义:
-- GET，获取数据
-- POST，更新数据
-- PUT，新增数据
-- DELETE，删除数据
+- get，获取数据
+- post，更新数据
+- put，新增数据
+- delete，删除数据
 
 比如，有一个 url: http://localhost:8888/w1/book
-: GET    /w1/book  # 获取这本书的内容
-: POST   /w1/book  # 用来更新某本书的内容
-: DELETE /w1/book  # 删除某本书
-: PUT    /w1/book  # 新增一本书
+: get    /w1/book  # 获取这本书的内容
+: post   /w1/book  # 用来更新某本书的内容
+: delete /w1/book  # 删除某本书
+: put    /w1/book  # 新增一本书
 
-** GET
+** get
 
-下面几种，进行的就是 GET 请求:
+下面几种，进行的就是 get 请求:
 1. 在浏览器的地址栏中，输入 url 后，敲入回车
 2. 网页中的超链接 ~<a href="/kkkk.html">我是一个链接</a>~
-3. 借助 ~<form>~ 表单，如果 method 为空或者为 get，那么默认就是进行一个 GET 请求
+3. 借助 ~<form>~ 表单，如果 method 为空或者为 get，那么默认就是进行一个 get 请求
 
 携带的数据，叫参数(parameter)。
 
-在 GET 请求中，因为携带的数据比较少，所以，它推荐的方式是:
+在 get 请求中，因为携带的数据比较少，所以，它推荐的方式是:
 : http://localhost:8888/w1/hhh?name=tom&age=18&city=zhuhai
 
-** POST
+** post
 
-下面几种，进行的就是 POST 请求:
+下面几种，进行的就是 post 请求:
 1. 借助 ~<form method="post" action="/w1/bbb">~
 
 * 状态返回码 (status code)
@@ -104,5 +105,4 @@
 - 404, Not Found, 没有找到
 - 500, Internal Server Error，内部的服务器错误
 
-* 其他
-** Cookie
+
