@@ -143,7 +143,7 @@ jar 包:
 
 * forward/include/redirect
 * Cookie/Session
-* 文件的上次和下载
+* 文件的上传和下载
 * 用户的注册和登录
 * 完整的增删改查实现
 
