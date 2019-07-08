@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-04 周四 08:01 -->
+<!-- 2019-07-08 Mon 07:55 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java Web</title>
@@ -22,17 +22,33 @@
 <ul>
 <li><a href="#orgb8e28fe">1. 预习</a></li>
 <li><a href="#orgaa362a8">2. CS vs BS</a></li>
-<li><a href="#org8075467">3. Servlet</a>
+<li><a href="#org5eed324">3. Servlet</a>
 <ul>
-<li><a href="#orgc21096c">3.1. Servlet 规范</a></li>
-<li><a href="#org37eb86b">3.2. 包的目录</a></li>
+<li><a href="#org6680e4a">3.1. 规范</a></li>
+<li><a href="#org7683ed9">3.2. Tomcat &lt;Servlet Container&gt;</a></li>
 <li><a href="#orgfdaef61">3.3. first-servlet and web.xml</a></li>
-<li><a href="#org3123a3d">3.4. Servlet 的请求流程</a></li>
+<li><a href="#org8075467">3.4. Servlet</a>
+<ul>
+<li><a href="#org801f83e">3.4.1. 请求流程</a></li>
+<li><a href="#org733ab16">3.4.2. 生命周期</a></li>
+<li><a href="#org3860a2f">3.4.3. 配置方式</a></li>
 </ul>
 </li>
-<li><a href="#org843863a">4. JSP</a></li>
-<li><a href="#orgbab26bd">5. Cookie/Session</a></li>
-<li><a href="#orgaec5705">6. El 表达式</a></li>
+<li><a href="#orgde5d119">3.5. Filter &lt;过滤器&gt;</a></li>
+<li><a href="#orgb0ec3fc">3.6. Listener &lt;监听器&gt;</a></li>
+</ul>
+</li>
+<li><a href="#org843863a">4. JSP</a>
+<ul>
+<li><a href="#org87a6c48">4.1. 内置对象</a></li>
+<li><a href="#org1a7046f">4.2. JSP 指令</a></li>
+<li><a href="#org6f53342">4.3. JSP 动作元素</a></li>
+<li><a href="#org075e934">4.4. EL 表达式 (Expression Language)</a></li>
+<li><a href="#org02fc594">4.5. JSTL 标准标签库</a></li>
+</ul>
+</li>
+<li><a href="#org3548f4b">5. forward/include/redirect</a></li>
+<li><a href="#orgbab26bd">6. Cookie/Session</a></li>
 <li><a href="#orga58f4c5">7. JSTL 标签</a></li>
 </ul>
 </div>
@@ -88,15 +104,15 @@ Web 的时代就这样来临了。
 </div>
 </section>
 
-<section id="outline-container-org8075467" class="outline-2">
-<h2 id="org8075467"><span class="section-number-2">3</span> Servlet</h2>
+<section id="outline-container-org5eed324" class="outline-2">
+<h2 id="org5eed324"><span class="section-number-2">3</span> Servlet</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgc21096c" class="outline-3">
-<h3 id="orgc21096c"><span class="section-number-3">3.1</span> Servlet 规范</h3>
+<div id="outline-container-org6680e4a" class="outline-3">
+<h3 id="org6680e4a"><span class="section-number-3">3.1</span> 规范</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
-Servlet规范 <a href="https://github.com/waylau/servlet-3.1-specification">中文版</a> <a href="https://jcp.org/en/jsr/detail?id=340">英文版</a>
+Servlet3.1 规范 <a href="https://github.com/waylau/servlet-3.1-specification">中文版</a> <a href="https://jcp.org/en/jsr/detail?id=340">英文版</a>
 </p>
 
 <p>
@@ -124,11 +140,11 @@ Servlet 规范是对所有人开放的，只要你原因，你就可以按照规
 </div>
 </div>
 
-<div id="outline-container-org37eb86b" class="outline-3">
-<h3 id="org37eb86b"><span class="section-number-3">3.2</span> 包的目录</h3>
+<div id="outline-container-org7683ed9" class="outline-3">
+<h3 id="org7683ed9"><span class="section-number-3">3.2</span> Tomcat &lt;Servlet Container&gt;</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
-这是常见开源项目的标准目录结构:
+这是 Tomcat 的目录结构，也是常见开源项目的标准目录结构:
 </p>
 
 
@@ -145,7 +161,6 @@ Servlet 规范是对所有人开放的，只要你原因，你就可以按照规
 <p>
 WorldServlet.java:
 </p>
-
 
 
 <figure>
@@ -165,9 +180,13 @@ web.xml:
 </div>
 </div>
 
-<div id="outline-container-org3123a3d" class="outline-3">
-<h3 id="org3123a3d"><span class="section-number-3">3.4</span> Servlet 的请求流程</h3>
+<div id="outline-container-org8075467" class="outline-3">
+<h3 id="org8075467"><span class="section-number-3">3.4</span> Servlet</h3>
 <div class="outline-text-3" id="text-3-4">
+</div>
+<div id="outline-container-org801f83e" class="outline-4">
+<h4 id="org801f83e"><span class="section-number-4">3.4.1</span> 请求流程</h4>
+<div class="outline-text-4" id="text-3-4-1">
 <p>
 请求的地址是:
 </p>
@@ -176,10 +195,10 @@ web.xml:
 </ul>
 
 <p>
-Tomcat 拿到地址后，除去 schema://host:port/contextPath:
+Tomcat 拿到地址后，除去 schema://host:port/contextPath，得到:
 </p>
 <ul class="org-ul">
-<li>/zzz.html</li>
+<li><code>/zzz.html</code></li>
 </ul>
 
 <p>
@@ -192,7 +211,6 @@ Tomcat 拿到地址后，除去 schema://host:port/contextPath:
 &lt;/<span class="org-function-name">servlet-mapping</span>&gt;
 </pre>
 </div>
-
 
 <p>
 调用 servlet 里的 service 方法，得到返回的字符串，响应给客户端。
@@ -207,16 +225,116 @@ TODO: 自己搜索、整理一下，url-pattern 的匹配机制。
 </p>
 </div>
 </div>
-</section>
 
+<div id="outline-container-org733ab16" class="outline-4">
+<h4 id="org733ab16"><span class="section-number-4">3.4.2</span> 生命周期</h4>
+</div>
+
+<div id="outline-container-org3860a2f" class="outline-4">
+<h4 id="org3860a2f"><span class="section-number-4">3.4.3</span> 配置方式</h4>
+<div class="outline-text-4" id="text-3-4-3">
+<p>
+xml 方式。
+</p>
+
+<p>
+注解方式。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgde5d119" class="outline-3">
+<h3 id="orgde5d119"><span class="section-number-3">3.5</span> Filter &lt;过滤器&gt;</h3>
+</div>
+<div id="outline-container-orgb0ec3fc" class="outline-3">
+<h3 id="orgb0ec3fc"><span class="section-number-3">3.6</span> Listener &lt;监听器&gt;</h3>
+</div>
+</section>
 <section id="outline-container-org843863a" class="outline-2">
 <h2 id="org843863a"><span class="section-number-2">4</span> JSP</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org87a6c48" class="outline-3">
+<h3 id="org87a6c48"><span class="section-number-3">4.1</span> 内置对象</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+<code>request/response/application/config/session/out/pageContext</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1a7046f" class="outline-3">
+<h3 id="org1a7046f"><span class="section-number-3">4.2</span> JSP 指令</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li><code>&lt;%@ include file="xxx.jsp" %&gt;</code></li>
+<li><code>&lt;%@ taglib prefix="c" uri="xxx.tld" %&gt;</code></li>
+<li><code>&lt;%@ page import/errorPage/language/pageEncoding/contentType/... %&gt;</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6f53342" class="outline-3">
+<h3 id="org6f53342"><span class="section-number-3">4.3</span> JSP 动作元素</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+<code>&lt;jsp:include/forward/useBean/setProperty/getProperty...&gt;</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org075e934" class="outline-3">
+<h3 id="org075e934"><span class="section-number-3">4.4</span> EL 表达式 (Expression Language)</h3>
+<div class="outline-text-3" id="text-4-4">
+<pre class="example">
+&lt;jsp:setProperty name="box" property="ppp" value="1000"/&gt;
+
+${expr}
+${fn:length("xxxxxx")}
+
+${param["username"]}
+${header["user-agent"]}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org02fc594" class="outline-3">
+<h3 id="org02fc594"><span class="section-number-3">4.5</span> JSTL 标准标签库</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+jar 包:
+</p>
+<pre class="example">
+javax.servlet:jstl:1.2
+</pre>
+
+<p>
+功能:
+</p>
+<ul class="org-ul">
+<li>核心标签</li>
+<li>格式化标签</li>
+<li>SQL/XML 标签</li>
+<li>JSTL 函数</li>
+</ul>
+
+<p>
+使用例子:
+</p>
+<div class="org-src-container">
+<pre class="src src-html"><span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">&#20808;&#33258;&#34892;&#23398;&#20064; </span><span class="org-comment-delimiter">--&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org3548f4b" class="outline-2">
+<h2 id="org3548f4b"><span class="section-number-2">5</span> forward/include/redirect</h2>
 </section>
 <section id="outline-container-orgbab26bd" class="outline-2">
-<h2 id="orgbab26bd"><span class="section-number-2">5</span> Cookie/Session</h2>
-</section>
-<section id="outline-container-orgaec5705" class="outline-2">
-<h2 id="orgaec5705"><span class="section-number-2">6</span> El 表达式</h2>
+<h2 id="orgbab26bd"><span class="section-number-2">6</span> Cookie/Session</h2>
 </section>
 <section id="outline-container-orga58f4c5" class="outline-2">
 <h2 id="orga58f4c5"><span class="section-number-2">7</span> JSTL 标签</h2>
@@ -224,7 +342,7 @@ TODO: 自己搜索、整理一下，url-pattern 的匹配机制。
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-04 周四 08:01</p>
+<p class="date">Created: 2019-07-08 Mon 07:55</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

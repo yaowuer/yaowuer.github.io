@@ -30,9 +30,9 @@ Web 的时代就这样来临了。
 大前端统一江湖的梦想就诞生了。
 
 * Servlet
-** Servlet 规范
+** 规范
 
-Servlet规范 [[https://github.com/waylau/servlet-3.1-specification][中文版]] [[https://jcp.org/en/jsr/detail?id=340][英文版]]
+Servlet3.1 规范 [[https://github.com/waylau/servlet-3.1-specification][中文版]] [[https://jcp.org/en/jsr/detail?id=340][英文版]]
 
 Servlet 规范是 JCP 组织推出的一套，如何使用 Java 进行 Web 编程的规范。
 它本身只包含一份概念的 pdf，还有一个包含着基本接口的 Jar 包。
@@ -48,16 +48,15 @@ Servlet 规范是对所有人开放的，只要你原因，你就可以按照规
 
 他们是基于 Java 进行 Web 编程的服务器，也可以看做是 Servlet 容器。
 
-** 包的目录
+** Tomcat <Servlet Container>
 
-这是常见开源项目的标准目录结构:
+这是 Tomcat 的目录结构，也是常见开源项目的标准目录结构:
 
 [[file:img/scrot_2019-06-26_02-57-48.png]]
 
 ** first-servlet and web.xml
 
 WorldServlet.java:
-
 
 #+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-07-04 01:01:12
 [[file:img/scrot_2019-07-04_01-01-12.png]]
@@ -67,13 +66,14 @@ web.xml:
 #+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-07-04 01:01:50
 [[file:img/scrot_2019-07-04_01-01-50.png]]
 
-** Servlet 的请求流程
+** Servlet
+*** 请求流程
 
 请求的地址是:
 - http://localhost:8888/w1/zzz.html
 
-Tomcat 拿到地址后，除去 schema://host:port/contextPath:
-- /zzz.html
+Tomcat 拿到地址后，除去 schema://host:port/contextPath，得到:
+- ~/zzz.html~
 
 接下来，到 web.xml 中，去匹配这个 url，得到相应的要处理的 Servlet 类:
 #+BEGIN_SRC xml
@@ -83,16 +83,67 @@ Tomcat 拿到地址后，除去 schema://host:port/contextPath:
   </servlet-mapping>
 #+END_SRC
 
-
 调用 servlet 里的 service 方法，得到返回的字符串，响应给客户端。
 
 最后，客户端，将获取到的响应字符串，渲染到浏览器里面。
 
 TODO: 自己搜索、整理一下，url-pattern 的匹配机制。
 
+*** 生命周期
+
+*** 配置方式
+
+xml 方式。
+
+注解方式。
+
+** Filter <过滤器>
+** Listener <监听器>
 * JSP
+** 内置对象
+
+~request/response/application/config/session/out/pageContext~
+
+** JSP 指令
+
+- ~<%@ include file="xxx.jsp" %>~
+- ~<%@ taglib prefix="c" uri="xxx.tld" %>~
+- ~<%@ page import/errorPage/language/pageEncoding/contentType/... %>~
+
+** JSP 动作元素
+
+~<jsp:include/forward/useBean/setProperty/getProperty...>~
+
+** EL 表达式 (Expression Language)
+
+#+BEGIN_EXAMPLE
+  <jsp:setProperty name="box" property="ppp" value="1000"/>
+
+  ${expr}
+  ${fn:length("xxxxxx")}
+
+  ${param["username"]}
+  ${header["user-agent"]}
+#+END_EXAMPLE
+
+** JSTL 标准标签库
+
+jar 包:
+: javax.servlet:jstl:1.2
+
+功能:
+- 核心标签
+- 格式化标签
+- SQL/XML 标签
+- JSTL 函数
+
+使用例子:
+#+BEGIN_SRC html
+  <!-- 先自行学习 -->
+#+END_SRC
+
+* forward/include/redirect
 * Cookie/Session
-* El 表达式
 * JSTL 标签
 
 
