@@ -15,6 +15,7 @@
   - [[file:java-web/demo-eclispe-config-jar.org][Java Web - demo1]]
   - [[file:java-web/demo-first-project-idea.org][Java Web - demo2]]
   - [[file:java-web/demo-servlet-1.org][Java Web - demo3]]
+  - [[file:java-web/demo-servlet-jsp-sep.org][Java Web - demo4]]
 - miscellaneous
   - [[file:miscellaneous/tools-idea.org][intellij idea]]
   - [[file:miscellaneous/group.org][分组]]
