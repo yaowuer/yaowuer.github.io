@@ -143,6 +143,27 @@ jar 包:
 
 * forward/include/redirect
 * Cookie/Session
+
+* 其他
+** forward/redirect，转发 vs 重定向
+
+转发的语法:
+#+BEGIN_SRC java
+  request.getRequestDispatcher("/xxx").forward(request, response);
+#+END_SRC
+
+重定向的语法:
+#+BEGIN_SRC java
+  response.sendRedirect("/s/xxx");
+#+END_SRC
+
+- 转发(forward)是服务器端的内部行为，是指当前的 servlet 将接下来的任务交给了(即转发给了)另外一个 servlet/jsp 去继续处理
+- 客户端是不会察觉到转发的行为的，因为它的进行仅存在于服务端
+- 重定向(redirect)是服务器借助 HTTP 请求中的 302 返回码，将接下来要处理任务的 url 通知客户端，并让客户端请求新的 url 从而完成剩下的任务
+- 一个请求中，如果有重定向，那么客户端实质上是发送了多个请求。如果追踪 http 的通讯，会发现 30x 的返回
+- 转发，会存在刷新重复的问题；重定向不会，因为它只是重新进行最后一个请求，这个请求一般不会带一些 *写* 相关的逻辑
+
+
 * 文件的上传和下载
 * 用户的注册和登录
 * 完整的增删改查实现

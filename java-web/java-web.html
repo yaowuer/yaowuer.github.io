@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-08 Mon 08:06 -->
+<!-- 2019-07-10 周三 06:24 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java Web</title>
@@ -22,12 +22,12 @@
 <ul>
 <li><a href="#orgb8e28fe">1. 预习</a></li>
 <li><a href="#orgaa362a8">2. CS vs BS</a></li>
-<li><a href="#orgc6b48c2">3. Servlet</a>
+<li><a href="#org98d8d9f">3. Servlet</a>
 <ul>
 <li><a href="#org6680e4a">3.1. 规范</a></li>
 <li><a href="#orga806116">3.2. Tomcat 容器</a></li>
 <li><a href="#org6e2754a">3.3. hello-world</a></li>
-<li><a href="#orgbcb5894">3.4. Servlet</a>
+<li><a href="#orgc6b48c2">3.4. Servlet</a>
 <ul>
 <li><a href="#org801f83e">3.4.1. 请求流程</a></li>
 <li><a href="#org3860a2f">3.4.2. 配置方式</a></li>
@@ -49,9 +49,14 @@
 </li>
 <li><a href="#org3548f4b">5. forward/include/redirect</a></li>
 <li><a href="#orgbab26bd">6. Cookie/Session</a></li>
-<li><a href="#orgf163059">7. 文件的上传和下载</a></li>
-<li><a href="#orgaf79d1c">8. 用户的注册和登录</a></li>
-<li><a href="#org3c9f3e9">9. 完整的增删改查实现</a></li>
+<li><a href="#org7786d29">7. 其他</a>
+<ul>
+<li><a href="#orgbddf1b9">7.1. forward/redirect，转发 vs 重定向</a></li>
+</ul>
+</li>
+<li><a href="#orgf163059">8. 文件的上传和下载</a></li>
+<li><a href="#orgaf79d1c">9. 用户的注册和登录</a></li>
+<li><a href="#org3c9f3e9">10. 完整的增删改查实现</a></li>
 </ul>
 </div>
 </nav>
@@ -106,8 +111,8 @@ Web 的时代就这样来临了。
 </div>
 </section>
 
-<section id="outline-container-orgc6b48c2" class="outline-2">
-<h2 id="orgc6b48c2"><span class="section-number-2">3</span> Servlet</h2>
+<section id="outline-container-org98d8d9f" class="outline-2">
+<h2 id="org98d8d9f"><span class="section-number-2">3</span> Servlet</h2>
 <div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-org6680e4a" class="outline-3">
@@ -182,8 +187,8 @@ web.xml:
 </div>
 </div>
 
-<div id="outline-container-orgbcb5894" class="outline-3">
-<h3 id="orgbcb5894"><span class="section-number-3">3.4</span> Servlet</h3>
+<div id="outline-container-orgc6b48c2" class="outline-3">
+<h3 id="orgc6b48c2"><span class="section-number-3">3.4</span> Servlet</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
 <div id="outline-container-org801f83e" class="outline-4">
@@ -337,19 +342,55 @@ javax.servlet:jstl:1.2
 <section id="outline-container-orgbab26bd" class="outline-2">
 <h2 id="orgbab26bd"><span class="section-number-2">6</span> Cookie/Session</h2>
 </section>
+
+<section id="outline-container-org7786d29" class="outline-2">
+<h2 id="org7786d29"><span class="section-number-2">7</span> 其他</h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-orgbddf1b9" class="outline-3">
+<h3 id="orgbddf1b9"><span class="section-number-3">7.1</span> forward/redirect，转发 vs 重定向</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+转发的语法:
+</p>
+<div class="org-src-container">
+<pre class="src src-java">request.getRequestDispatcher(<span class="org-string">"/xxx"</span>).forward(request, response);
+</pre>
+</div>
+
+<p>
+重定向的语法:
+</p>
+<div class="org-src-container">
+<pre class="src src-java">response.sendRedirect(<span class="org-string">"/s/xxx"</span>);
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>转发(forward)是服务器端的内部行为，是指当前的 servlet 将接下来的任务交给了(即转发给了)另外一个 servlet/jsp 去继续处理</li>
+<li>客户端是不会察觉到转发的行为的，因为它的进行仅存在于服务端</li>
+<li>重定向(redirect)是服务器借助 HTTP 请求中的 302 返回码，将接下来要处理任务的 url 通知客户端，并让客户端请求新的 url 从而完成剩下的任务</li>
+<li>一个请求中，如果有重定向，那么客户端实质上是发送了多个请求。如果追踪 http 的通讯，会发现 30x 的返回</li>
+<li>转发，会存在刷新重复的问题；重定向不会，因为它只是重新进行最后一个请求，这个请求一般不会带一些<b>写</b>相关的逻辑</li>
+</ul>
+</div>
+</div>
+</section>
+
+
 <section id="outline-container-orgf163059" class="outline-2">
-<h2 id="orgf163059"><span class="section-number-2">7</span> 文件的上传和下载</h2>
+<h2 id="orgf163059"><span class="section-number-2">8</span> 文件的上传和下载</h2>
 </section>
 <section id="outline-container-orgaf79d1c" class="outline-2">
-<h2 id="orgaf79d1c"><span class="section-number-2">8</span> 用户的注册和登录</h2>
+<h2 id="orgaf79d1c"><span class="section-number-2">9</span> 用户的注册和登录</h2>
 </section>
 <section id="outline-container-org3c9f3e9" class="outline-2">
-<h2 id="org3c9f3e9"><span class="section-number-2">9</span> 完整的增删改查实现</h2>
+<h2 id="org3c9f3e9"><span class="section-number-2">10</span> 完整的增删改查实现</h2>
 </section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-08 Mon 08:06</p>
+<p class="date">Created: 2019-07-10 周三 06:24</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
