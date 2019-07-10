@@ -89,6 +89,35 @@ Tomcat 拿到地址后，除去 schema://host:port/contextPath，得到:
 
 TODO: 自己搜索、整理一下，url-pattern 的匹配机制。
 
+*** Servlet/HttpServlet
+
+如果要使用 Java 提供一个 Web 服务，只需要:
+- 写一个类，这个类实现 ~Servlet~ 接口即可。在 Servlet 接口的 service 方法内，处理请求，并返回结果到客户端
+- 上述实现的类就是一个 Servlet，然后只需要将其编译并部署到 Servlet 容器里即可。部署的意思是放到 Servlet 容器的指定位置，并配置合适的访问的 url
+- 常见的 Servlet 容器是 Tomcat，它不仅具备解析 Servlet 类的功能，还能提供基本的 Web 服务器功能
+
+由上可见，如果提供服务，只需要实现接口。可实际上，我们大多数 Web 服务都是基于 Http 请求的。
+HTTP 协议有自己的一些独特规则，比如 http method 等，所以为了能更方便处理基于 HTTP 协议的服务，标准中又提供了一个针对性的 HttpServlet 类。
+一般来说，我们创建 Servlet，只需要继承这个类即可。
+
+#+BEGIN_SRC java
+  public class MyServlet extends HttpServlet {...}
+#+END_SRC
+
+之后，就 *不需要理会 service 方法* 了，而是将相应的逻辑写到对应 http method 的 doGet/doPost/doDelete 等方法中即可。
+
+#+BEGIN_SRC java
+  public class MyServlet extends HttpServlet {
+      @Override
+      doGet(req, resp) {
+      }
+
+      @Override
+      doPost(req, resp) {
+      }
+  }
+#+END_SRC
+
 *** 配置方式
 
 xml 方式。
@@ -141,7 +170,6 @@ jar 包:
   <!-- 先自行学习 -->
 #+END_SRC
 
-* forward/include/redirect
 * Cookie/Session
 
 * 其他

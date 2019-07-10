@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-10 周三 06:24 -->
+<!-- 2019-07-10 周三 06:34 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java Web</title>
@@ -22,15 +22,16 @@
 <ul>
 <li><a href="#orgb8e28fe">1. 预习</a></li>
 <li><a href="#orgaa362a8">2. CS vs BS</a></li>
-<li><a href="#org98d8d9f">3. Servlet</a>
+<li><a href="#org6d0eb6b">3. Servlet</a>
 <ul>
 <li><a href="#org6680e4a">3.1. 规范</a></li>
 <li><a href="#orga806116">3.2. Tomcat 容器</a></li>
 <li><a href="#org6e2754a">3.3. hello-world</a></li>
-<li><a href="#orgc6b48c2">3.4. Servlet</a>
+<li><a href="#org98d8d9f">3.4. Servlet</a>
 <ul>
 <li><a href="#org801f83e">3.4.1. 请求流程</a></li>
-<li><a href="#org3860a2f">3.4.2. 配置方式</a></li>
+<li><a href="#orgc5aae04">3.4.2. Servlet/HttpServlet</a></li>
+<li><a href="#org3860a2f">3.4.3. 配置方式</a></li>
 </ul>
 </li>
 <li><a href="#orgde5d119">3.5. Filter &lt;过滤器&gt;</a></li>
@@ -47,16 +48,15 @@
 <li><a href="#org02fc594">4.5. JSTL 标准标签库</a></li>
 </ul>
 </li>
-<li><a href="#org3548f4b">5. forward/include/redirect</a></li>
-<li><a href="#orgbab26bd">6. Cookie/Session</a></li>
-<li><a href="#org7786d29">7. 其他</a>
+<li><a href="#orgbab26bd">5. Cookie/Session</a></li>
+<li><a href="#org7786d29">6. 其他</a>
 <ul>
-<li><a href="#orgbddf1b9">7.1. forward/redirect，转发 vs 重定向</a></li>
+<li><a href="#orgbddf1b9">6.1. forward/redirect，转发 vs 重定向</a></li>
 </ul>
 </li>
-<li><a href="#orgf163059">8. 文件的上传和下载</a></li>
-<li><a href="#orgaf79d1c">9. 用户的注册和登录</a></li>
-<li><a href="#org3c9f3e9">10. 完整的增删改查实现</a></li>
+<li><a href="#orgf163059">7. 文件的上传和下载</a></li>
+<li><a href="#orgaf79d1c">8. 用户的注册和登录</a></li>
+<li><a href="#org3c9f3e9">9. 完整的增删改查实现</a></li>
 </ul>
 </div>
 </nav>
@@ -111,8 +111,8 @@ Web 的时代就这样来临了。
 </div>
 </section>
 
-<section id="outline-container-org98d8d9f" class="outline-2">
-<h2 id="org98d8d9f"><span class="section-number-2">3</span> Servlet</h2>
+<section id="outline-container-org6d0eb6b" class="outline-2">
+<h2 id="org6d0eb6b"><span class="section-number-2">3</span> Servlet</h2>
 <div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-org6680e4a" class="outline-3">
@@ -187,8 +187,8 @@ web.xml:
 </div>
 </div>
 
-<div id="outline-container-orgc6b48c2" class="outline-3">
-<h3 id="orgc6b48c2"><span class="section-number-3">3.4</span> Servlet</h3>
+<div id="outline-container-org98d8d9f" class="outline-3">
+<h3 id="org98d8d9f"><span class="section-number-3">3.4</span> Servlet</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
 <div id="outline-container-org801f83e" class="outline-4">
@@ -233,9 +233,50 @@ TODO: 自己搜索、整理一下，url-pattern 的匹配机制。
 </div>
 </div>
 
-<div id="outline-container-org3860a2f" class="outline-4">
-<h4 id="org3860a2f"><span class="section-number-4">3.4.2</span> 配置方式</h4>
+<div id="outline-container-orgc5aae04" class="outline-4">
+<h4 id="orgc5aae04"><span class="section-number-4">3.4.2</span> Servlet/HttpServlet</h4>
 <div class="outline-text-4" id="text-3-4-2">
+<p>
+如果要使用 Java 提供一个 Web 服务，只需要:
+</p>
+<ul class="org-ul">
+<li>写一个类，这个类实现 <code>Servlet</code> 接口即可。在 Servlet 接口的 service 方法内，处理请求，并返回结果到客户端</li>
+<li>上述实现的类就是一个 Servlet，然后只需要将其编译并部署到 Servlet 容器里即可。部署的意思是放到 Servlet 容器的指定位置，并配置合适的访问的 url</li>
+<li>常见的 Servlet 容器是 Tomcat，它不仅具备解析 Servlet 类的功能，还能提供基本的 Web 服务器功能</li>
+</ul>
+
+<p>
+由上可见，如果提供服务，只需要实现接口。可实际上，我们大多数 Web 服务都是基于 Http 请求的。
+HTTP 协议有自己的一些独特规则，比如 http method 等，所以为了能更方便处理基于 HTTP 协议的服务，标准中又提供了一个针对性的 HttpServlet 类。一般来说，我们创建 Servlet，只需要继承这个类即可。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-keyword">public</span> <span class="org-keyword">class</span> <span class="org-type">MyServlet</span> <span class="org-keyword">extends</span> <span class="org-type">HttpServlet</span> {...}
+</pre>
+</div>
+
+<p>
+之后，就<b>不需要理会 service 方法</b>了，而是将相应的逻辑写到对应 http method 的 doGet/doPost/doDelete 等方法中即可。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-keyword">public</span> <span class="org-keyword">class</span> <span class="org-type">MyServlet</span> <span class="org-keyword">extends</span> <span class="org-type">HttpServlet</span> {
+    <span class="org-function-name">@Override</span>
+    doGet(<span class="org-type">req</span>, <span class="org-type">resp</span>) {
+    }
+
+    <span class="org-function-name">@Override</span>
+    doPost(<span class="org-type">req</span>, <span class="org-type">resp</span>) {
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3860a2f" class="outline-4">
+<h4 id="org3860a2f"><span class="section-number-4">3.4.3</span> 配置方式</h4>
+<div class="outline-text-4" id="text-3-4-3">
 <p>
 xml 方式。
 </p>
@@ -336,20 +377,17 @@ javax.servlet:jstl:1.2
 </div>
 </section>
 
-<section id="outline-container-org3548f4b" class="outline-2">
-<h2 id="org3548f4b"><span class="section-number-2">5</span> forward/include/redirect</h2>
-</section>
 <section id="outline-container-orgbab26bd" class="outline-2">
-<h2 id="orgbab26bd"><span class="section-number-2">6</span> Cookie/Session</h2>
+<h2 id="orgbab26bd"><span class="section-number-2">5</span> Cookie/Session</h2>
 </section>
 
 <section id="outline-container-org7786d29" class="outline-2">
-<h2 id="org7786d29"><span class="section-number-2">7</span> 其他</h2>
-<div class="outline-text-2" id="text-7">
+<h2 id="org7786d29"><span class="section-number-2">6</span> 其他</h2>
+<div class="outline-text-2" id="text-6">
 </div>
 <div id="outline-container-orgbddf1b9" class="outline-3">
-<h3 id="orgbddf1b9"><span class="section-number-3">7.1</span> forward/redirect，转发 vs 重定向</h3>
-<div class="outline-text-3" id="text-7-1">
+<h3 id="orgbddf1b9"><span class="section-number-3">6.1</span> forward/redirect，转发 vs 重定向</h3>
+<div class="outline-text-3" id="text-6-1">
 <p>
 转发的语法:
 </p>
@@ -379,18 +417,18 @@ javax.servlet:jstl:1.2
 
 
 <section id="outline-container-orgf163059" class="outline-2">
-<h2 id="orgf163059"><span class="section-number-2">8</span> 文件的上传和下载</h2>
+<h2 id="orgf163059"><span class="section-number-2">7</span> 文件的上传和下载</h2>
 </section>
 <section id="outline-container-orgaf79d1c" class="outline-2">
-<h2 id="orgaf79d1c"><span class="section-number-2">9</span> 用户的注册和登录</h2>
+<h2 id="orgaf79d1c"><span class="section-number-2">8</span> 用户的注册和登录</h2>
 </section>
 <section id="outline-container-org3c9f3e9" class="outline-2">
-<h2 id="org3c9f3e9"><span class="section-number-2">10</span> 完整的增删改查实现</h2>
+<h2 id="org3c9f3e9"><span class="section-number-2">9</span> 完整的增删改查实现</h2>
 </section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-10 周三 06:24</p>
+<p class="date">Created: 2019-07-10 周三 06:34</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
