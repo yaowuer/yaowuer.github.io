@@ -118,16 +118,44 @@ HTTP 协议有自己的一些独特规则，比如 http method 等，所以为�
   }
 #+END_SRC
 
+即:
+: 请求 -> 对应 Servlet -> 对应 doGet/doPost 方法 -> 响应
+
 *** 配置方式
 
 xml 方式。
 
 注解方式。
 
+*** forward/redirect，转发 vs 重定向
+
+转发的语法:
+#+BEGIN_SRC java
+  request.getRequestDispatcher("/xxx").forward(request, response);
+#+END_SRC
+
+重定向的语法:
+#+BEGIN_SRC java
+  response.sendRedirect("/s/xxx");
+#+END_SRC
+
+- *转发* (forward)是服务器端的内部行为，是指当前的 servlet 将接下来的任务交给了(即转发给了)另外一个 servlet/jsp 去继续处理
+- 客户端是不会察觉到转发的行为的，因为它的进行仅存在于服务端
+- *重定向* (redirect)是服务器借助 HTTP 请求中的 302 返回码，将接下来要处理任务的 url 通知客户端，并让客户端请求新的 url 从而完成剩下的任务
+- 一个请求中，如果有重定向，那么客户端实质上是发送了多个请求。如果追踪 http 的通讯，会发现 30x 的返回
+- 转发，会存在刷新重复的问题；重定向不会，因为它只是重新进行最后一个请求，这个请求一般不会带一些 *写* 相关的逻辑
+
 ** Filter <过滤器>
 ** Listener <监听器>
 ** 生命周期
 * JSP
+** 认识 JSP
+
+为什么要有 JSP:
+1. 如果进行 Web 通信，一般要返回的内容都是符合 html 格式的文本字符串
+2. Servlet 功能非常强大，但是要将结果渲染成 html 字符串，务必要进行麻烦的字符串拼接等，开发效率低
+3. 我们需要一种 *模板*，能更好将数据渲染成客户端需要的样子，即产生 html 字符串
+
 ** 内置对象
 
 ~request/response/application/config/session/out/pageContext~
@@ -171,27 +199,6 @@ jar 包:
 #+END_SRC
 
 * Cookie/Session
-
-* 其他
-** forward/redirect，转发 vs 重定向
-
-转发的语法:
-#+BEGIN_SRC java
-  request.getRequestDispatcher("/xxx").forward(request, response);
-#+END_SRC
-
-重定向的语法:
-#+BEGIN_SRC java
-  response.sendRedirect("/s/xxx");
-#+END_SRC
-
-- 转发(forward)是服务器端的内部行为，是指当前的 servlet 将接下来的任务交给了(即转发给了)另外一个 servlet/jsp 去继续处理
-- 客户端是不会察觉到转发的行为的，因为它的进行仅存在于服务端
-- 重定向(redirect)是服务器借助 HTTP 请求中的 302 返回码，将接下来要处理任务的 url 通知客户端，并让客户端请求新的 url 从而完成剩下的任务
-- 一个请求中，如果有重定向，那么客户端实质上是发送了多个请求。如果追踪 http 的通讯，会发现 30x 的返回
-- 转发，会存在刷新重复的问题；重定向不会，因为它只是重新进行最后一个请求，这个请求一般不会带一些 *写* 相关的逻辑
-
-
 * 文件的上传和下载
 * 用户的注册和登录
 * 完整的增删改查实现

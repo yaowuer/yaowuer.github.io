@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-10 周三 06:34 -->
+<!-- 2019-07-10 Wed 06:41 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java Web</title>
@@ -22,16 +22,17 @@
 <ul>
 <li><a href="#orgb8e28fe">1. 预习</a></li>
 <li><a href="#orgaa362a8">2. CS vs BS</a></li>
-<li><a href="#org6d0eb6b">3. Servlet</a>
+<li><a href="#org24d6144">3. Servlet</a>
 <ul>
 <li><a href="#org6680e4a">3.1. 规范</a></li>
 <li><a href="#orga806116">3.2. Tomcat 容器</a></li>
 <li><a href="#org6e2754a">3.3. hello-world</a></li>
-<li><a href="#org98d8d9f">3.4. Servlet</a>
+<li><a href="#org6d0eb6b">3.4. Servlet</a>
 <ul>
 <li><a href="#org801f83e">3.4.1. 请求流程</a></li>
 <li><a href="#orgc5aae04">3.4.2. Servlet/HttpServlet</a></li>
 <li><a href="#org3860a2f">3.4.3. 配置方式</a></li>
+<li><a href="#orgbddf1b9">3.4.4. forward/redirect，转发 vs 重定向</a></li>
 </ul>
 </li>
 <li><a href="#orgde5d119">3.5. Filter &lt;过滤器&gt;</a></li>
@@ -41,22 +42,18 @@
 </li>
 <li><a href="#org843863a">4. JSP</a>
 <ul>
-<li><a href="#org87a6c48">4.1. 内置对象</a></li>
-<li><a href="#org1a7046f">4.2. JSP 指令</a></li>
-<li><a href="#org6f53342">4.3. JSP 动作元素</a></li>
-<li><a href="#org075e934">4.4. EL 表达式 (Expression Language)</a></li>
-<li><a href="#org02fc594">4.5. JSTL 标准标签库</a></li>
+<li><a href="#org58e2c82">4.1. 认识 JSP</a></li>
+<li><a href="#org87a6c48">4.2. 内置对象</a></li>
+<li><a href="#org1a7046f">4.3. JSP 指令</a></li>
+<li><a href="#org6f53342">4.4. JSP 动作元素</a></li>
+<li><a href="#org075e934">4.5. EL 表达式 (Expression Language)</a></li>
+<li><a href="#org02fc594">4.6. JSTL 标准标签库</a></li>
 </ul>
 </li>
 <li><a href="#orgbab26bd">5. Cookie/Session</a></li>
-<li><a href="#org7786d29">6. 其他</a>
-<ul>
-<li><a href="#orgbddf1b9">6.1. forward/redirect，转发 vs 重定向</a></li>
-</ul>
-</li>
-<li><a href="#orgf163059">7. 文件的上传和下载</a></li>
-<li><a href="#orgaf79d1c">8. 用户的注册和登录</a></li>
-<li><a href="#org3c9f3e9">9. 完整的增删改查实现</a></li>
+<li><a href="#orgf163059">6. 文件的上传和下载</a></li>
+<li><a href="#orgaf79d1c">7. 用户的注册和登录</a></li>
+<li><a href="#org3c9f3e9">8. 完整的增删改查实现</a></li>
 </ul>
 </div>
 </nav>
@@ -111,8 +108,8 @@ Web 的时代就这样来临了。
 </div>
 </section>
 
-<section id="outline-container-org6d0eb6b" class="outline-2">
-<h2 id="org6d0eb6b"><span class="section-number-2">3</span> Servlet</h2>
+<section id="outline-container-org24d6144" class="outline-2">
+<h2 id="org24d6144"><span class="section-number-2">3</span> Servlet</h2>
 <div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-org6680e4a" class="outline-3">
@@ -187,8 +184,8 @@ web.xml:
 </div>
 </div>
 
-<div id="outline-container-org98d8d9f" class="outline-3">
-<h3 id="org98d8d9f"><span class="section-number-3">3.4</span> Servlet</h3>
+<div id="outline-container-org6d0eb6b" class="outline-3">
+<h3 id="org6d0eb6b"><span class="section-number-3">3.4</span> Servlet</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
 <div id="outline-container-org801f83e" class="outline-4">
@@ -271,6 +268,13 @@ HTTP 协议有自己的一些独特规则，比如 http method 等，所以为�
 }
 </pre>
 </div>
+
+<p>
+即:
+</p>
+<pre class="example">
+请求 -&gt; 对应 Servlet -&gt; 对应 doGet/doPost 方法 -&gt; 响应
+</pre>
 </div>
 </div>
 
@@ -284,6 +288,35 @@ xml 方式。
 <p>
 注解方式。
 </p>
+</div>
+</div>
+
+<div id="outline-container-orgbddf1b9" class="outline-4">
+<h4 id="orgbddf1b9"><span class="section-number-4">3.4.4</span> forward/redirect，转发 vs 重定向</h4>
+<div class="outline-text-4" id="text-3-4-4">
+<p>
+转发的语法:
+</p>
+<div class="org-src-container">
+<pre class="src src-java">request.getRequestDispatcher(<span class="org-string">"/xxx"</span>).forward(request, response);
+</pre>
+</div>
+
+<p>
+重定向的语法:
+</p>
+<div class="org-src-container">
+<pre class="src src-java">response.sendRedirect(<span class="org-string">"/s/xxx"</span>);
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><b>转发</b> (forward)是服务器端的内部行为，是指当前的 servlet 将接下来的任务交给了(即转发给了)另外一个 servlet/jsp 去继续处理</li>
+<li>客户端是不会察觉到转发的行为的，因为它的进行仅存在于服务端</li>
+<li><b>重定向</b> (redirect)是服务器借助 HTTP 请求中的 302 返回码，将接下来要处理任务的 url 通知客户端，并让客户端请求新的 url 从而完成剩下的任务</li>
+<li>一个请求中，如果有重定向，那么客户端实质上是发送了多个请求。如果追踪 http 的通讯，会发现 30x 的返回</li>
+<li>转发，会存在刷新重复的问题；重定向不会，因为它只是重新进行最后一个请求，这个请求一般不会带一些<b>写</b>相关的逻辑</li>
+</ul>
 </div>
 </div>
 </div>
@@ -302,9 +335,23 @@ xml 方式。
 <h2 id="org843863a"><span class="section-number-2">4</span> JSP</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org87a6c48" class="outline-3">
-<h3 id="org87a6c48"><span class="section-number-3">4.1</span> 内置对象</h3>
+<div id="outline-container-org58e2c82" class="outline-3">
+<h3 id="org58e2c82"><span class="section-number-3">4.1</span> 认识 JSP</h3>
 <div class="outline-text-3" id="text-4-1">
+<p>
+为什么要有 JSP:
+</p>
+<ol class="org-ol">
+<li>如果进行 Web 通信，一般要返回的内容都是符合 html 格式的文本字符串</li>
+<li>Servlet 功能非常强大，但是要将结果渲染成 html 字符串，务必要进行麻烦的字符串拼接等，开发效率低</li>
+<li>我们需要一种<b>模板</b>，能更好将数据渲染成客户端需要的样子，即产生 html 字符串</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org87a6c48" class="outline-3">
+<h3 id="org87a6c48"><span class="section-number-3">4.2</span> 内置对象</h3>
+<div class="outline-text-3" id="text-4-2">
 <p>
 <code>request/response/application/config/session/out/pageContext</code>
 </p>
@@ -312,8 +359,8 @@ xml 方式。
 </div>
 
 <div id="outline-container-org1a7046f" class="outline-3">
-<h3 id="org1a7046f"><span class="section-number-3">4.2</span> JSP 指令</h3>
-<div class="outline-text-3" id="text-4-2">
+<h3 id="org1a7046f"><span class="section-number-3">4.3</span> JSP 指令</h3>
+<div class="outline-text-3" id="text-4-3">
 <ul class="org-ul">
 <li><code>&lt;%@ include file="xxx.jsp" %&gt;</code></li>
 <li><code>&lt;%@ taglib prefix="c" uri="xxx.tld" %&gt;</code></li>
@@ -323,8 +370,8 @@ xml 方式。
 </div>
 
 <div id="outline-container-org6f53342" class="outline-3">
-<h3 id="org6f53342"><span class="section-number-3">4.3</span> JSP 动作元素</h3>
-<div class="outline-text-3" id="text-4-3">
+<h3 id="org6f53342"><span class="section-number-3">4.4</span> JSP 动作元素</h3>
+<div class="outline-text-3" id="text-4-4">
 <p>
 <code>&lt;jsp:include/forward/useBean/setProperty/getProperty...&gt;</code>
 </p>
@@ -332,8 +379,8 @@ xml 方式。
 </div>
 
 <div id="outline-container-org075e934" class="outline-3">
-<h3 id="org075e934"><span class="section-number-3">4.4</span> EL 表达式 (Expression Language)</h3>
-<div class="outline-text-3" id="text-4-4">
+<h3 id="org075e934"><span class="section-number-3">4.5</span> EL 表达式 (Expression Language)</h3>
+<div class="outline-text-3" id="text-4-5">
 <pre class="example">
 &lt;jsp:setProperty name="box" property="ppp" value="1000"/&gt;
 
@@ -347,8 +394,8 @@ ${header["user-agent"]}
 </div>
 
 <div id="outline-container-org02fc594" class="outline-3">
-<h3 id="org02fc594"><span class="section-number-3">4.5</span> JSTL 标准标签库</h3>
-<div class="outline-text-3" id="text-4-5">
+<h3 id="org02fc594"><span class="section-number-3">4.6</span> JSTL 标准标签库</h3>
+<div class="outline-text-3" id="text-4-6">
 <p>
 jar 包:
 </p>
@@ -380,55 +427,19 @@ javax.servlet:jstl:1.2
 <section id="outline-container-orgbab26bd" class="outline-2">
 <h2 id="orgbab26bd"><span class="section-number-2">5</span> Cookie/Session</h2>
 </section>
-
-<section id="outline-container-org7786d29" class="outline-2">
-<h2 id="org7786d29"><span class="section-number-2">6</span> 其他</h2>
-<div class="outline-text-2" id="text-6">
-</div>
-<div id="outline-container-orgbddf1b9" class="outline-3">
-<h3 id="orgbddf1b9"><span class="section-number-3">6.1</span> forward/redirect，转发 vs 重定向</h3>
-<div class="outline-text-3" id="text-6-1">
-<p>
-转发的语法:
-</p>
-<div class="org-src-container">
-<pre class="src src-java">request.getRequestDispatcher(<span class="org-string">"/xxx"</span>).forward(request, response);
-</pre>
-</div>
-
-<p>
-重定向的语法:
-</p>
-<div class="org-src-container">
-<pre class="src src-java">response.sendRedirect(<span class="org-string">"/s/xxx"</span>);
-</pre>
-</div>
-
-<ul class="org-ul">
-<li>转发(forward)是服务器端的内部行为，是指当前的 servlet 将接下来的任务交给了(即转发给了)另外一个 servlet/jsp 去继续处理</li>
-<li>客户端是不会察觉到转发的行为的，因为它的进行仅存在于服务端</li>
-<li>重定向(redirect)是服务器借助 HTTP 请求中的 302 返回码，将接下来要处理任务的 url 通知客户端，并让客户端请求新的 url 从而完成剩下的任务</li>
-<li>一个请求中，如果有重定向，那么客户端实质上是发送了多个请求。如果追踪 http 的通讯，会发现 30x 的返回</li>
-<li>转发，会存在刷新重复的问题；重定向不会，因为它只是重新进行最后一个请求，这个请求一般不会带一些<b>写</b>相关的逻辑</li>
-</ul>
-</div>
-</div>
-</section>
-
-
 <section id="outline-container-orgf163059" class="outline-2">
-<h2 id="orgf163059"><span class="section-number-2">7</span> 文件的上传和下载</h2>
+<h2 id="orgf163059"><span class="section-number-2">6</span> 文件的上传和下载</h2>
 </section>
 <section id="outline-container-orgaf79d1c" class="outline-2">
-<h2 id="orgaf79d1c"><span class="section-number-2">8</span> 用户的注册和登录</h2>
+<h2 id="orgaf79d1c"><span class="section-number-2">7</span> 用户的注册和登录</h2>
 </section>
 <section id="outline-container-org3c9f3e9" class="outline-2">
-<h2 id="org3c9f3e9"><span class="section-number-2">9</span> 完整的增删改查实现</h2>
+<h2 id="org3c9f3e9"><span class="section-number-2">8</span> 完整的增删改查实现</h2>
 </section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-10 周三 06:34</p>
+<p class="date">Created: 2019-07-10 Wed 06:41</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
