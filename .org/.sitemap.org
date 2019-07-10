@@ -17,6 +17,7 @@
   - [[file:java-web/demo-servlet-1.org][Java Web - demo3]]
   - [[file:java-web/demo-servlet-jsp-sep.org][Java Web - demo4]]
 - miscellaneous
+  - [[file:miscellaneous/github.org][Github]]
   - [[file:miscellaneous/tools-idea.org][intellij idea]]
   - [[file:miscellaneous/group.org][分组]]
   - [[file:miscellaneous/software.org][软件]]
