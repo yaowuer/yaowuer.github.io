@@ -3,6 +3,12 @@
 
 * 快捷键
 
+通用:
 - ~双击 Shift~ 快速检索
 - ~Alt + Enter~ 万能快捷键
-- ~Ctrl + Alt + L~ 格式化代码
+- ~Ctrl + Alt + L~ 格式化代码!
+- ~Alt + Insert~ 生成 getter/setter/构造器函数
+
+调试相关:
+- ~F8~ 单步调试
+- ~F9~ 一直运行到结束
