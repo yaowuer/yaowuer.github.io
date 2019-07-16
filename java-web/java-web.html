@@ -22,12 +22,12 @@
 <ul>
 <li><a href="#orgb8e28fe">1. 预习</a></li>
 <li><a href="#orgaa362a8">2. CS vs BS</a></li>
-<li><a href="#org94dfe78">3. Servlet</a>
+<li><a href="#org2cc08ea">3. Servlet</a>
 <ul>
 <li><a href="#org6680e4a">3.1. 规范</a></li>
 <li><a href="#orga806116">3.2. Tomcat 容器</a></li>
 <li><a href="#org6e2754a">3.3. hello-world</a></li>
-<li><a href="#org47bd49f">3.4. Servlet</a>
+<li><a href="#org94dfe78">3.4. Servlet</a>
 <ul>
 <li><a href="#org801f83e">3.4.1. 请求流程</a></li>
 <li><a href="#orgc5aae04">3.4.2. Servlet/HttpServlet</a></li>
@@ -108,8 +108,8 @@ Web 的时代就这样来临了。
 </div>
 </section>
 
-<section id="outline-container-org94dfe78" class="outline-2">
-<h2 id="org94dfe78"><span class="section-number-2">3</span> Servlet</h2>
+<section id="outline-container-org2cc08ea" class="outline-2">
+<h2 id="org2cc08ea"><span class="section-number-2">3</span> Servlet</h2>
 <div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-org6680e4a" class="outline-3">
@@ -184,8 +184,8 @@ web.xml:
 </div>
 </div>
 
-<div id="outline-container-org47bd49f" class="outline-3">
-<h3 id="org47bd49f"><span class="section-number-3">3.4</span> Servlet</h3>
+<div id="outline-container-org94dfe78" class="outline-3">
+<h3 id="org94dfe78"><span class="section-number-3">3.4</span> Servlet</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
 <div id="outline-container-org801f83e" class="outline-4">
@@ -482,73 +482,73 @@ javax.servlet:jstl:1.2
 &lt;%@ taglib <span class="org-variable-name">prefix</span>=<span class="org-string">"fmt"</span> <span class="org-variable-name">uri</span>=<span class="org-string">"http://java.sun.com/jsp/jstl/fmt"</span> %&gt;
 
 &lt;<span class="org-function-name">div</span>&gt;
-    &lt;<span class="org-function-name">table</span> <span class="org-variable-name">class</span>=<span class="org-string">"tb"</span>&gt;
-        &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">set</span> <span class="org-variable-name">var</span>=<span class="org-string">"ccc"</span> <span class="org-variable-name">scope</span>=<span class="org-string">"page"</span> <span class="org-variable-name">property</span>=<span class="org-string">"ccc"</span> <span class="org-variable-name">value</span>=<span class="org-string">"0"</span>/&gt;
-        &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">forEach</span> <span class="org-variable-name">items</span>=<span class="org-string">"${books}"</span> <span class="org-variable-name">var</span>=<span class="org-string">"x"</span> <span class="org-variable-name">varStatus</span>=<span class="org-string">"s"</span> <span class="org-variable-name">begin</span>=<span class="org-string">"0"</span> <span class="org-variable-name">end</span>=<span class="org-string">"4"</span> <span class="org-variable-name">step</span>=<span class="org-string">"1"</span>&gt;
-            &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">if</span> <span class="org-variable-name">test</span>=<span class="org-string">"${x.amount &gt; 20}"</span>&gt;
-                &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">set</span> <span class="org-variable-name">value</span>=<span class="org-string">"${ccc + 1}"</span> <span class="org-variable-name">var</span>=<span class="org-string">"ccc"</span>/&gt;
-                &lt;<span class="org-function-name">tr</span> <span class="org-variable-name">style</span>=<span class="org-string">"background: ${s.count % 2 == 0 ? "</span>pink<span class="org-string">" : "</span>yellow<span class="org-string">"}"</span>&gt;
-                    &lt;<span class="org-function-name">td</span>&gt;${s.index + 1} / ${s.count} / ${ccc}&lt;/<span class="org-function-name">td</span>&gt;
-                    &lt;<span class="org-function-name">td</span>&gt;${x.id}&lt;/<span class="org-function-name">td</span>&gt;
-                    &lt;<span class="org-function-name">td</span>&gt;${x.name}&lt;/<span class="org-function-name">td</span>&gt;
-                    &lt;<span class="org-function-name">td</span> <span class="org-variable-name">style</span>=<span class="org-string">"color: ${x.price &gt; 100 ? "</span>green<span class="org-string">" : "</span>purple<span class="org-string">"}"</span>&gt;${x.price}&lt;/<span class="org-function-name">td</span>&gt;
-                    &lt;<span class="org-function-name">td</span>&gt;${x.amount}&lt;/<span class="org-function-name">td</span>&gt;
-                &lt;/<span class="org-function-name">tr</span>&gt;
-            &lt;/<span class="org-sgml-namespace">c</span>:<span class="org-function-name">if</span>&gt;
-        &lt;/<span class="org-sgml-namespace">c</span>:<span class="org-function-name">forEach</span>&gt;
-    &lt;/<span class="org-function-name">table</span>&gt;
-&lt;/<span class="org-function-name">div</span>&gt;
-
-&lt;<span class="org-function-name">div</span>&gt;
-    &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">out</span> <span class="org-variable-name">value</span>=<span class="org-string">"${name}"</span> <span class="org-variable-name">default</span>=<span class="org-string">"3333"</span>/&gt;
-    ${empty name ? <span class="org-string">"3333"</span> : name}
-&lt;/<span class="org-function-name">div</span>&gt;
-
-&lt;<span class="org-function-name">div</span>&gt;
-    &lt;%--    &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">redirect</span> <span class="org-variable-name">url</span>=<span class="org-string">"http://www.bing.com"</span> /&gt;--%&gt;
-    &lt;%--    request.setAttribute(<span class="org-string">"xxx"</span>, 333) --%&gt;
-    &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">set</span> <span class="org-variable-name">var</span>=<span class="org-string">"xxx"</span> <span class="org-variable-name">scope</span>=<span class="org-string">"session"</span> <span class="org-variable-name">property</span>=<span class="org-string">"xxx"</span> <span class="org-variable-name">value</span>=<span class="org-string">"333"</span>/&gt;
-&lt;/<span class="org-function-name">div</span>&gt;
-
-&lt;<span class="org-function-name">div</span>&gt;
-    &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">forTokens</span> <span class="org-variable-name">items</span>=<span class="org-string">"aaa,bbb,ccc,ddd,eee"</span> <span class="org-variable-name">delims</span>=<span class="org-string">","</span> <span class="org-variable-name">var</span>=<span class="org-string">"t"</span> <span class="org-variable-name">varStatus</span>=<span class="org-string">"s"</span>&gt;
-        &lt;<span class="org-function-name">li</span>&gt;${s.count}. ${t}&lt;/<span class="org-function-name">li</span>&gt;
-    &lt;/<span class="org-sgml-namespace">c</span>:<span class="org-function-name">forTokens</span>&gt;
-&lt;/<span class="org-function-name">div</span>&gt;
-
-&lt;<span class="org-function-name">div</span>&gt;
-    &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">forEach</span> <span class="org-variable-name">var</span>=<span class="org-string">"b"</span> <span class="org-variable-name">items</span>=<span class="org-string">"${books}"</span>&gt;
-        &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">choose</span>&gt;
-            &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">when</span> <span class="org-variable-name">test</span>=<span class="org-string">"${b.price &gt; 100}"</span>&gt;
-                &lt;<span class="org-function-name">li</span>&gt;${b.name} &#30340;&#20215;&#26684;&#22823;&#20110; 100&lt;/<span class="org-function-name">li</span>&gt;
-            &lt;/<span class="org-sgml-namespace">c</span>:<span class="org-function-name">when</span>&gt;
-            &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">when</span> <span class="org-variable-name">test</span>=<span class="org-string">"${b.price &lt;= 100 &amp;&amp; b.price &gt; 50}"</span>&gt;
-                &lt;<span class="org-function-name">li</span>&gt;${b.name} &#24182;&#19981;&#36149;&lt;/<span class="org-function-name">li</span>&gt;
-            &lt;/<span class="org-sgml-namespace">c</span>:<span class="org-function-name">when</span>&gt;
-            &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">otherwise</span>&gt;
-                &lt;<span class="org-function-name">li</span>&gt;&#12298;${b.name}&#12299;&#22826;&#20415;&#23452;&#20102;&#65292;&#20415;&#23452;&#27809;&#22909;&#36135;&lt;/<span class="org-function-name">li</span>&gt;
-            &lt;/<span class="org-sgml-namespace">c</span>:<span class="org-function-name">otherwise</span>&gt;
-        &lt;/<span class="org-sgml-namespace">c</span>:<span class="org-function-name">choose</span>&gt;
+  &lt;<span class="org-function-name">table</span> <span class="org-variable-name">class</span>=<span class="org-string">"tb"</span>&gt;
+    &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">set</span> <span class="org-variable-name">var</span>=<span class="org-string">"ccc"</span> <span class="org-variable-name">scope</span>=<span class="org-string">"page"</span> <span class="org-variable-name">property</span>=<span class="org-string">"ccc"</span> <span class="org-variable-name">value</span>=<span class="org-string">"0"</span>/&gt;
+    &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">forEach</span> <span class="org-variable-name">items</span>=<span class="org-string">"${books}"</span> <span class="org-variable-name">var</span>=<span class="org-string">"x"</span> <span class="org-variable-name">varStatus</span>=<span class="org-string">"s"</span> <span class="org-variable-name">begin</span>=<span class="org-string">"0"</span> <span class="org-variable-name">end</span>=<span class="org-string">"4"</span> <span class="org-variable-name">step</span>=<span class="org-string">"1"</span>&gt;
+      &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">if</span> <span class="org-variable-name">test</span>=<span class="org-string">"${x.amount &gt; 20}"</span>&gt;
+        &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">set</span> <span class="org-variable-name">value</span>=<span class="org-string">"${ccc + 1}"</span> <span class="org-variable-name">var</span>=<span class="org-string">"ccc"</span>/&gt;
+        &lt;<span class="org-function-name">tr</span> <span class="org-variable-name">style</span>=<span class="org-string">"background: ${s.count % 2 == 0 ? "</span>pink<span class="org-string">" : "</span>yellow<span class="org-string">"}"</span>&gt;
+          &lt;<span class="org-function-name">td</span>&gt;${s.index + 1} / ${s.count} / ${ccc}&lt;/<span class="org-function-name">td</span>&gt;
+          &lt;<span class="org-function-name">td</span>&gt;${x.id}&lt;/<span class="org-function-name">td</span>&gt;
+          &lt;<span class="org-function-name">td</span>&gt;${x.name}&lt;/<span class="org-function-name">td</span>&gt;
+          &lt;<span class="org-function-name">td</span> <span class="org-variable-name">style</span>=<span class="org-string">"color: ${x.price &gt; 100 ? "</span>green<span class="org-string">" : "</span>purple<span class="org-string">"}"</span>&gt;${x.price}&lt;/<span class="org-function-name">td</span>&gt;
+          &lt;<span class="org-function-name">td</span>&gt;${x.amount}&lt;/<span class="org-function-name">td</span>&gt;
+        &lt;/<span class="org-function-name">tr</span>&gt;
+      &lt;/<span class="org-sgml-namespace">c</span>:<span class="org-function-name">if</span>&gt;
     &lt;/<span class="org-sgml-namespace">c</span>:<span class="org-function-name">forEach</span>&gt;
+  &lt;/<span class="org-function-name">table</span>&gt;
 &lt;/<span class="org-function-name">div</span>&gt;
 
 &lt;<span class="org-function-name">div</span>&gt;
-    &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">url</span> <span class="org-variable-name">var</span>=<span class="org-string">"womendelink"</span> <span class="org-variable-name">value</span>=<span class="org-string">"/student/lst"</span>&gt;
-        &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">param</span> <span class="org-variable-name">name</span>=<span class="org-string">"id"</span> <span class="org-variable-name">value</span>=<span class="org-string">"3"</span>/&gt;
-        &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">param</span> <span class="org-variable-name">name</span>=<span class="org-string">"xx"</span> <span class="org-variable-name">value</span>=<span class="org-string">"hello world"</span>/&gt;
-        &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">param</span> <span class="org-variable-name">name</span>=<span class="org-string">"yy"</span> <span class="org-variable-name">value</span>=<span class="org-string">"&#19978;&#23707;&#21654;&#21857;"</span>/&gt;
-    &lt;/<span class="org-sgml-namespace">c</span>:<span class="org-function-name">url</span>&gt;
-
-    &lt;%--    &lt;<span class="org-function-name">a</span> <span class="org-variable-name">href</span>=<span class="org-string">"${pageContext.request.contextPath}/student/lst/?id=3&amp;name=skdfjksdjf&amp;xxx=skdfjdks%20skdfjksdf"</span>&gt;&#36229;&#38142;&#25509;&lt;/<span class="org-function-name">a</span>&gt;--%&gt;
-    &lt;<span class="org-function-name">a</span> <span class="org-variable-name">href</span>=<span class="org-string">"${womendelink}"</span>&gt;&#20351;&#29992; url &#23450;&#20041;&#30340;&#21464;&#37327;&lt;/<span class="org-function-name">a</span>&gt;
+  &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">out</span> <span class="org-variable-name">value</span>=<span class="org-string">"${name}"</span> <span class="org-variable-name">default</span>=<span class="org-string">"3333"</span>/&gt;
+  ${empty name ? <span class="org-string">"3333"</span> : name}
 &lt;/<span class="org-function-name">div</span>&gt;
 
 &lt;<span class="org-function-name">div</span>&gt;
-    &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">import</span> <span class="org-variable-name">var</span>=<span class="org-string">"wodeyemian"</span> <span class="org-variable-name">url</span>=<span class="org-string">"footer.jsp"</span>/&gt;
+  &lt;%--    &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">redirect</span> <span class="org-variable-name">url</span>=<span class="org-string">"http://www.bing.com"</span> /&gt;--%&gt;
+  &lt;%--    request.setAttribute(<span class="org-string">"xxx"</span>, 333) --%&gt;
+  &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">set</span> <span class="org-variable-name">var</span>=<span class="org-string">"xxx"</span> <span class="org-variable-name">scope</span>=<span class="org-string">"session"</span> <span class="org-variable-name">property</span>=<span class="org-string">"xxx"</span> <span class="org-variable-name">value</span>=<span class="org-string">"333"</span>/&gt;
 &lt;/<span class="org-function-name">div</span>&gt;
 
 &lt;<span class="org-function-name">div</span>&gt;
-    ${wodeyemian}
+  &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">forTokens</span> <span class="org-variable-name">items</span>=<span class="org-string">"aaa,bbb,ccc,ddd,eee"</span> <span class="org-variable-name">delims</span>=<span class="org-string">","</span> <span class="org-variable-name">var</span>=<span class="org-string">"t"</span> <span class="org-variable-name">varStatus</span>=<span class="org-string">"s"</span>&gt;
+    &lt;<span class="org-function-name">li</span>&gt;${s.count}. ${t}&lt;/<span class="org-function-name">li</span>&gt;
+  &lt;/<span class="org-sgml-namespace">c</span>:<span class="org-function-name">forTokens</span>&gt;
+&lt;/<span class="org-function-name">div</span>&gt;
+
+&lt;<span class="org-function-name">div</span>&gt;
+  &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">forEach</span> <span class="org-variable-name">var</span>=<span class="org-string">"b"</span> <span class="org-variable-name">items</span>=<span class="org-string">"${books}"</span>&gt;
+    &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">choose</span>&gt;
+      &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">when</span> <span class="org-variable-name">test</span>=<span class="org-string">"${b.price &gt; 100}"</span>&gt;
+        &lt;<span class="org-function-name">li</span>&gt;${b.name} &#30340;&#20215;&#26684;&#22823;&#20110; 100&lt;/<span class="org-function-name">li</span>&gt;
+      &lt;/<span class="org-sgml-namespace">c</span>:<span class="org-function-name">when</span>&gt;
+      &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">when</span> <span class="org-variable-name">test</span>=<span class="org-string">"${b.price &lt;= 100 &amp;&amp; b.price &gt; 50}"</span>&gt;
+        &lt;<span class="org-function-name">li</span>&gt;${b.name} &#24182;&#19981;&#36149;&lt;/<span class="org-function-name">li</span>&gt;
+      &lt;/<span class="org-sgml-namespace">c</span>:<span class="org-function-name">when</span>&gt;
+      &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">otherwise</span>&gt;
+        &lt;<span class="org-function-name">li</span>&gt;&#12298;${b.name}&#12299;&#22826;&#20415;&#23452;&#20102;&#65292;&#20415;&#23452;&#27809;&#22909;&#36135;&lt;/<span class="org-function-name">li</span>&gt;
+      &lt;/<span class="org-sgml-namespace">c</span>:<span class="org-function-name">otherwise</span>&gt;
+    &lt;/<span class="org-sgml-namespace">c</span>:<span class="org-function-name">choose</span>&gt;
+  &lt;/<span class="org-sgml-namespace">c</span>:<span class="org-function-name">forEach</span>&gt;
+&lt;/<span class="org-function-name">div</span>&gt;
+
+&lt;<span class="org-function-name">div</span>&gt;
+  &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">url</span> <span class="org-variable-name">var</span>=<span class="org-string">"womendelink"</span> <span class="org-variable-name">value</span>=<span class="org-string">"/student/lst"</span>&gt;
+    &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">param</span> <span class="org-variable-name">name</span>=<span class="org-string">"id"</span> <span class="org-variable-name">value</span>=<span class="org-string">"3"</span>/&gt;
+    &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">param</span> <span class="org-variable-name">name</span>=<span class="org-string">"xx"</span> <span class="org-variable-name">value</span>=<span class="org-string">"hello world"</span>/&gt;
+    &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">param</span> <span class="org-variable-name">name</span>=<span class="org-string">"yy"</span> <span class="org-variable-name">value</span>=<span class="org-string">"&#19978;&#23707;&#21654;&#21857;"</span>/&gt;
+  &lt;/<span class="org-sgml-namespace">c</span>:<span class="org-function-name">url</span>&gt;
+
+  &lt;%--    &lt;<span class="org-function-name">a</span> <span class="org-variable-name">href</span>=<span class="org-string">"${pageContext.request.contextPath}/student/lst/?id=3&amp;name=skdfjksdjf&amp;xxx=skdfjdks%20skdfjksdf"</span>&gt;&#36229;&#38142;&#25509;&lt;/<span class="org-function-name">a</span>&gt;--%&gt;
+  &lt;<span class="org-function-name">a</span> <span class="org-variable-name">href</span>=<span class="org-string">"${womendelink}"</span>&gt;&#20351;&#29992; url &#23450;&#20041;&#30340;&#21464;&#37327;&lt;/<span class="org-function-name">a</span>&gt;
+&lt;/<span class="org-function-name">div</span>&gt;
+
+&lt;<span class="org-function-name">div</span>&gt;
+  &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">import</span> <span class="org-variable-name">var</span>=<span class="org-string">"wodeyemian"</span> <span class="org-variable-name">url</span>=<span class="org-string">"footer.jsp"</span>/&gt;
+&lt;/<span class="org-function-name">div</span>&gt;
+
+&lt;<span class="org-function-name">div</span>&gt;
+  ${wodeyemian}
 &lt;/<span class="org-function-name">div</span>&gt;
 
 &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">if</span> <span class="org-variable-name">test</span>=<span class="org-string">"${fn:contains(name, 'd,')}"</span>&gt;xxx&lt;/<span class="org-sgml-namespace">c</span>:<span class="org-function-name">if</span>&gt;
@@ -556,11 +556,11 @@ javax.servlet:jstl:1.2
 &lt;%--&#24120;&#29992;&#30340;&#26684;&#24335;&#21270;&#26631;&#31614;--%&gt;
 
 &lt;<span class="org-function-name">div</span>&gt;
-    &lt;<span class="org-sgml-namespace">fmt</span>:<span class="org-function-name">formatDate</span> <span class="org-variable-name">value</span>=<span class="org-string">"${ddd}"</span> <span class="org-variable-name">pattern</span>=<span class="org-string">"yyyy-MM-dd HH:mm:ss"</span>/&gt;
+  &lt;<span class="org-sgml-namespace">fmt</span>:<span class="org-function-name">formatDate</span> <span class="org-variable-name">value</span>=<span class="org-string">"${ddd}"</span> <span class="org-variable-name">pattern</span>=<span class="org-string">"yyyy-MM-dd HH:mm:ss"</span>/&gt;
 &lt;/<span class="org-function-name">div</span>&gt;
 
 &lt;<span class="org-function-name">div</span>&gt;
-    &lt;<span class="org-sgml-namespace">fmt</span>:<span class="org-function-name">formatNumber</span> <span class="org-variable-name">value</span>=<span class="org-string">"2323232323"</span> <span class="org-variable-name">pattern</span>=<span class="org-string">"####,####"</span>/&gt;
+  &lt;<span class="org-sgml-namespace">fmt</span>:<span class="org-function-name">formatNumber</span> <span class="org-variable-name">value</span>=<span class="org-string">"2323232323"</span> <span class="org-variable-name">pattern</span>=<span class="org-string">"####,####"</span>/&gt;
 &lt;/<span class="org-function-name">div</span>&gt;
 
 </pre>
