@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-10 Wed 06:41 -->
+<!-- 2019-07-16 周二 02:41 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java Web</title>
@@ -22,12 +22,12 @@
 <ul>
 <li><a href="#orgb8e28fe">1. 预习</a></li>
 <li><a href="#orgaa362a8">2. CS vs BS</a></li>
-<li><a href="#org24d6144">3. Servlet</a>
+<li><a href="#org26db96f">3. Servlet</a>
 <ul>
 <li><a href="#org6680e4a">3.1. 规范</a></li>
 <li><a href="#orga806116">3.2. Tomcat 容器</a></li>
 <li><a href="#org6e2754a">3.3. hello-world</a></li>
-<li><a href="#org6d0eb6b">3.4. Servlet</a>
+<li><a href="#org24d6144">3.4. Servlet</a>
 <ul>
 <li><a href="#org801f83e">3.4.1. 请求流程</a></li>
 <li><a href="#orgc5aae04">3.4.2. Servlet/HttpServlet</a></li>
@@ -108,8 +108,8 @@ Web 的时代就这样来临了。
 </div>
 </section>
 
-<section id="outline-container-org24d6144" class="outline-2">
-<h2 id="org24d6144"><span class="section-number-2">3</span> Servlet</h2>
+<section id="outline-container-org26db96f" class="outline-2">
+<h2 id="org26db96f"><span class="section-number-2">3</span> Servlet</h2>
 <div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-org6680e4a" class="outline-3">
@@ -184,8 +184,8 @@ web.xml:
 </div>
 </div>
 
-<div id="outline-container-org6d0eb6b" class="outline-3">
-<h3 id="org6d0eb6b"><span class="section-number-3">3.4</span> Servlet</h3>
+<div id="outline-container-org24d6144" class="outline-3">
+<h3 id="org24d6144"><span class="section-number-3">3.4</span> Servlet</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
 <div id="outline-container-org801f83e" class="outline-4">
@@ -381,15 +381,55 @@ xml 方式。
 <div id="outline-container-org075e934" class="outline-3">
 <h3 id="org075e934"><span class="section-number-3">4.5</span> EL 表达式 (Expression Language)</h3>
 <div class="outline-text-3" id="text-4-5">
-<pre class="example">
-&lt;jsp:setProperty name="box" property="ppp" value="1000"/&gt;
+<p>
+JSP 的主要任务是: 拿到现成的数据，然后渲染。
+</p>
 
-${expr}
-${fn:length("xxxxxx")}
+<p>
+使用 <code>&lt;% xxxx %&gt;</code> 去取的话，有些啰嗦，所以需要简化。
+</p>
 
-${param["username"]}
-${header["user-agent"]}
+<p>
+JSP 2.0 之后，就开始支持在 JSP 页面中<b>嵌入</b>类似 <code>${xxx}</code> 代码，这被称作 EL 表达式。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html"><span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">&#20174;&#19981;&#21516;&#33539;&#22260;&#20869;&#21462;&#20540; </span><span class="org-comment-delimiter">--&gt;</span>
+${pageScope.xxx} | ${pageScope[<span class="org-string">"xxx"</span>]
+${requestScope.xxx} <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">request.getAttribute("xxx") </span><span class="org-comment-delimiter">--&gt;</span>
+${sessionScope.yyy} <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">session.getAttribute("yyy") </span><span class="org-comment-delimiter">--&gt;</span>
+${applicationScope.zzz} <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">application.getAttribute("zzz") </span><span class="org-comment-delimiter">--&gt;</span>
+
+<span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">&#19979;&#38754;&#20363;&#23376;&#65292;&#20004;&#20010;&#28857;&#26159;&#19981;&#19968;&#26679;&#30340;: </span><span class="org-comment-delimiter">--&gt;</span>
+<span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">&gt; &#31532;&#19968;&#20010;&#34920;&#31034; getAttribute:  Book book = (Book) request.getAttrubite("book"); </span><span class="org-comment-delimiter">--&gt;</span>
+<span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">&gt; &#31532;&#20108;&#20010;&#34920;&#31034;&#35843;&#29992; get &#26041;&#27861;:   book.getName() </span><span class="org-comment-delimiter">--&gt;</span>
+${requestScope.book.name}
+${requestScope.book.getName()} <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">&#36319;&#19978;&#38754;&#30340;&#31561;&#21516; </span><span class="org-comment-delimiter">--&gt;</span>
+
+<span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">&#21487;&#20197;&#32487;&#32493;&#31616;&#21270;&#65292;&#23558; xxxScope &#21435;&#25481; </span><span class="org-comment-delimiter">--&gt;</span>
+<span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">&#20250;&#25353;&#29031; pageScope -&gt; requestScope -&gt; sessionScope -&gt; applicationScope &#30340;&#39034;&#24207;&#21435;&#23547;&#25214; attribute &#25968;&#25454;  </span><span class="org-comment-delimiter">--&gt;</span>
+${age} ${name}
+${book.name}
+
+<span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">&#20854;&#20182;&#30340;&#38544;&#34255;&#23545;&#35937; </span><span class="org-comment-delimiter">--&gt;</span>
+${param.data}              <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">request.getParameter("data") </span><span class="org-comment-delimiter">--&gt;</span>
+${header[<span class="org-string">"user-agent"</span>]     <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">request.getHeader("user-agent") </span><span class="org-comment-delimiter">--&gt;</span>
+${cookie.JSESSIONID.value} <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">for (Cookie cookie : req.getCookies()) { </span><span class="org-comment-delimiter">--&gt;</span>
+                           <span class="org-comment-delimiter">&lt;!--     </span><span class="org-comment">if (cookie.getName().equals("JSESSIONID")) { </span><span class="org-comment-delimiter">--&gt;</span>
+                           <span class="org-comment-delimiter">&lt;!--         </span><span class="org-comment">return cookie.getValue(); </span><span class="org-comment-delimiter">--&gt;</span>
+                           <span class="org-comment-delimiter">&lt;!--     </span><span class="org-comment">} </span><span class="org-comment-delimiter">--&gt;</span>
+                           <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">} </span><span class="org-comment-delimiter">--&gt;</span>
+
+<span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">&#33719;&#21462; request &#23545;&#35937;&#65292;&#24182;&#35843;&#29992; request &#30340;&#20854;&#20182;&#26041;&#27861;: </span><span class="org-comment-delimiter">--&gt;</span>
+${pageContext.request.contextPath}
+${pageContext.request.getContextPath()}
+
+<span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">EL &#34920;&#36798;&#24335;&#21487;&#20197;&#20801;&#35768;&#31616;&#21333;&#30340;&#35745;&#31639; </span><span class="org-comment-delimiter">--&gt;</span>
+${(age + 1) * 2}
+${empty age}                       <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">&#21028;&#26029;&#26159;&#21542;&#20026;&#31354; </span><span class="org-comment-delimiter">--&gt;</span>
+${age &gt; 18 ? <span class="org-string">"&#20320;&#30340;&#24180;&#40836;&#22826;&#22823;!"</span> : age} <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">if/else &#34920;&#36798;&#24335; </span><span class="org-comment-delimiter">--&gt;</span>
 </pre>
+</div>
 </div>
 </div>
 
@@ -439,7 +479,7 @@ javax.servlet:jstl:1.2
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-10 Wed 06:41</p>
+<p class="date">Created: 2019-07-16 周二 02:41</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

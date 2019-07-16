@@ -172,15 +172,48 @@ xml 方式。
 
 ** EL 表达式 (Expression Language)
 
-#+BEGIN_EXAMPLE
-  <jsp:setProperty name="box" property="ppp" value="1000"/>
+JSP 的主要任务是: 拿到现成的数据，然后渲染。
 
-  ${expr}
-  ${fn:length("xxxxxx")}
+使用 ~<% xxxx %>~ 去取的话，有些啰嗦，所以需要简化。
 
-  ${param["username"]}
-  ${header["user-agent"]}
-#+END_EXAMPLE
+JSP 2.0 之后，就开始支持在 JSP 页面中 *嵌入* 类似 ~${xxx}~ 代码，这被称作 EL 表达式。
+
+#+BEGIN_SRC html
+  <!-- 从不同范围内取值 -->
+  ${pageScope.xxx} | ${pageScope["xxx"]
+  ${requestScope.xxx} <!-- request.getAttribute("xxx") -->
+  ${sessionScope.yyy} <!-- session.getAttribute("yyy") -->
+  ${applicationScope.zzz} <!-- application.getAttribute("zzz") -->
+
+  <!-- 下面例子，两个点是不一样的: -->
+  <!-- > 第一个表示 getAttribute:  Book book = (Book) request.getAttrubite("book"); -->
+  <!-- > 第二个表示调用 get 方法:   book.getName() -->
+  ${requestScope.book.name}
+  ${requestScope.book.getName()} <!-- 跟上面的等同 -->
+
+  <!-- 可以继续简化，将 xxxScope 去掉 -->
+  <!-- 会按照 pageScope -> requestScope -> sessionScope -> applicationScope 的顺序去寻找 attribute 数据  -->
+  ${age} ${name}
+  ${book.name}
+
+  <!-- 其他的隐藏对象 -->
+  ${param.data}              <!-- request.getParameter("data") -->
+  ${header["user-agent"]     <!-- request.getHeader("user-agent") -->
+  ${cookie.JSESSIONID.value} <!-- for (Cookie cookie : req.getCookies()) { -->
+                             <!--     if (cookie.getName().equals("JSESSIONID")) { -->
+                             <!--         return cookie.getValue(); -->
+                             <!--     } -->
+                             <!-- } -->
+
+  <!-- 获取 request 对象，并调用 request 的其他方法: -->
+  ${pageContext.request.contextPath}
+  ${pageContext.request.getContextPath()}
+
+  <!-- EL 表达式可以允许简单的计算 -->
+  ${(age + 1) * 2}
+  ${empty age}                       <!-- 判断是否为空 -->
+  ${age > 18 ? "你的年龄太大!" : age} <!-- if/else 表达式 -->
+#+END_SRC
 
 ** JSTL 标准标签库
 
