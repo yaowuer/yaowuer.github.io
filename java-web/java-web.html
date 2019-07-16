@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-16 周二 02:41 -->
+<!-- 2019-07-16 周二 03:35 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java Web</title>
@@ -22,12 +22,12 @@
 <ul>
 <li><a href="#orgb8e28fe">1. 预习</a></li>
 <li><a href="#orgaa362a8">2. CS vs BS</a></li>
-<li><a href="#org26db96f">3. Servlet</a>
+<li><a href="#org3a22b6d">3. Servlet</a>
 <ul>
 <li><a href="#org6680e4a">3.1. 规范</a></li>
 <li><a href="#orga806116">3.2. Tomcat 容器</a></li>
 <li><a href="#org6e2754a">3.3. hello-world</a></li>
-<li><a href="#org24d6144">3.4. Servlet</a>
+<li><a href="#org26db96f">3.4. Servlet</a>
 <ul>
 <li><a href="#org801f83e">3.4.1. 请求流程</a></li>
 <li><a href="#orgc5aae04">3.4.2. Servlet/HttpServlet</a></li>
@@ -108,8 +108,8 @@ Web 的时代就这样来临了。
 </div>
 </section>
 
-<section id="outline-container-org26db96f" class="outline-2">
-<h2 id="org26db96f"><span class="section-number-2">3</span> Servlet</h2>
+<section id="outline-container-org3a22b6d" class="outline-2">
+<h2 id="org3a22b6d"><span class="section-number-2">3</span> Servlet</h2>
 <div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-org6680e4a" class="outline-3">
@@ -184,8 +184,8 @@ web.xml:
 </div>
 </div>
 
-<div id="outline-container-org24d6144" class="outline-3">
-<h3 id="org24d6144"><span class="section-number-3">3.4</span> Servlet</h3>
+<div id="outline-container-org26db96f" class="outline-3">
+<h3 id="org26db96f"><span class="section-number-3">3.4</span> Servlet</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
 <div id="outline-container-org801f83e" class="outline-4">
@@ -457,7 +457,17 @@ javax.servlet:jstl:1.2
 使用例子:
 </p>
 <div class="org-src-container">
-<pre class="src src-html"><span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">&#20808;&#33258;&#34892;&#23398;&#20064; </span><span class="org-comment-delimiter">--&gt;</span>
+<pre class="src src-html">&lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">forEach</span> <span class="org-variable-name">items</span>=<span class="org-string">"${books}"</span> <span class="org-variable-name">var</span>=<span class="org-string">"x"</span> <span class="org-variable-name">varStatus</span>=<span class="org-string">"s"</span> <span class="org-variable-name">begin</span>=<span class="org-string">"0"</span> <span class="org-variable-name">end</span>=<span class="org-string">"4"</span> <span class="org-variable-name">step</span>=<span class="org-string">"1"</span>&gt;
+    &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">if</span> <span class="org-variable-name">test</span>=<span class="org-string">"${x.amount &gt; 20}"</span>&gt;
+        &lt;<span class="org-function-name">tr</span> <span class="org-variable-name">style</span>=<span class="org-string">"background: ${s.count % 2 == 0 ? "</span>pink<span class="org-string">" : "</span>yellow<span class="org-string">"}"</span>&gt;
+            &lt;<span class="org-function-name">td</span>&gt;${s.index + 1} / ${s.count}&lt;/<span class="org-function-name">td</span>&gt;
+            &lt;<span class="org-function-name">td</span>&gt;${x.id}&lt;/<span class="org-function-name">td</span>&gt;
+            &lt;<span class="org-function-name">td</span>&gt;${x.name}&lt;/<span class="org-function-name">td</span>&gt;
+            &lt;<span class="org-function-name">td</span> <span class="org-variable-name">style</span>=<span class="org-string">"color: ${x.price &gt; 100 ? "</span>green<span class="org-string">" : "</span>purple<span class="org-string">"}"</span>&gt;${x.price}&lt;/<span class="org-function-name">td</span>&gt;
+            &lt;<span class="org-function-name">td</span>&gt;${x.amount}&lt;/<span class="org-function-name">td</span>&gt;
+        &lt;/<span class="org-function-name">tr</span>&gt;
+    &lt;/<span class="org-sgml-namespace">c</span>:<span class="org-function-name">if</span>&gt;
+&lt;/<span class="org-sgml-namespace">c</span>:<span class="org-function-name">forEach</span>&gt;
 </pre>
 </div>
 </div>
@@ -479,7 +489,7 @@ javax.servlet:jstl:1.2
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-16 周二 02:41</p>
+<p class="date">Created: 2019-07-16 周二 03:35</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
