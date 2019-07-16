@@ -228,6 +228,8 @@ jar 包:
 
 使用例子:
 #+BEGIN_SRC html
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
   <c:forEach items="${books}" var="x" varStatus="s" begin="0" end="4" step="1">
       <c:if test="${x.amount > 20}">
           <tr style="background: ${s.count % 2 == 0 ? "pink" : "yellow"}">
