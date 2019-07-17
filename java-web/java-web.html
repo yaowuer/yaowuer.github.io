@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-16 周二 06:57 -->
+<!-- 2019-07-17 Wed 01:56 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java Web</title>
@@ -22,12 +22,12 @@
 <ul>
 <li><a href="#orgb8e28fe">1. 预习</a></li>
 <li><a href="#orgaa362a8">2. CS vs BS</a></li>
-<li><a href="#org2cc08ea">3. Servlet</a>
+<li><a href="#org14a45dd">3. Servlet</a>
 <ul>
 <li><a href="#org6680e4a">3.1. 规范</a></li>
 <li><a href="#orga806116">3.2. Tomcat 容器</a></li>
 <li><a href="#org6e2754a">3.3. hello-world</a></li>
-<li><a href="#org94dfe78">3.4. Servlet</a>
+<li><a href="#org2cc08ea">3.4. Servlet</a>
 <ul>
 <li><a href="#org801f83e">3.4.1. 请求流程</a></li>
 <li><a href="#orgc5aae04">3.4.2. Servlet/HttpServlet</a></li>
@@ -50,7 +50,12 @@
 <li><a href="#org02fc594">4.6. JSTL 标准标签库</a></li>
 </ul>
 </li>
-<li><a href="#orgbab26bd">5. Cookie/Session</a></li>
+<li><a href="#orgbab26bd">5. Cookie/Session</a>
+<ul>
+<li><a href="#org7eca1a2">5.1. Cookie</a></li>
+<li><a href="#org4540278">5.2. Session</a></li>
+</ul>
+</li>
 <li><a href="#orgf163059">6. 文件的上传和下载</a></li>
 <li><a href="#orgaf79d1c">7. 用户的注册和登录</a></li>
 <li><a href="#org3c9f3e9">8. 完整的增删改查实现</a></li>
@@ -108,8 +113,8 @@ Web 的时代就这样来临了。
 </div>
 </section>
 
-<section id="outline-container-org2cc08ea" class="outline-2">
-<h2 id="org2cc08ea"><span class="section-number-2">3</span> Servlet</h2>
+<section id="outline-container-org14a45dd" class="outline-2">
+<h2 id="org14a45dd"><span class="section-number-2">3</span> Servlet</h2>
 <div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-org6680e4a" class="outline-3">
@@ -184,8 +189,8 @@ web.xml:
 </div>
 </div>
 
-<div id="outline-container-org94dfe78" class="outline-3">
-<h3 id="org94dfe78"><span class="section-number-3">3.4</span> Servlet</h3>
+<div id="outline-container-org2cc08ea" class="outline-3">
+<h3 id="org2cc08ea"><span class="section-number-3">3.4</span> Servlet</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
 <div id="outline-container-org801f83e" class="outline-4">
@@ -571,7 +576,141 @@ javax.servlet:jstl:1.2
 
 <section id="outline-container-orgbab26bd" class="outline-2">
 <h2 id="orgbab26bd"><span class="section-number-2">5</span> Cookie/Session</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Web 请求是基于 HTTP 协议的。
+</p>
+
+<p>
+HTTP 协议最大的一个特点，就是<b>无状态</b>的。
+</p>
+<ul class="org-ul">
+<li>一个请求是谁发送的，服务端压根不会理会</li>
+<li>如果同一个人发送多个请求给服务器，服务器是不会认出来的</li>
+</ul>
+
+<p>
+但是，在实际的业务中，我们却需要服务器能够识别出不同人的请求。
+</p>
+
+<p>
+比如说，购物，那么一个人登录、浏览网站之后，所有的操作都应该聚合起来。你分很多次请求，加入购物车，最后买单。
+</p>
+
+<p>
+我们我们就需要一定的手段，能够让整个 web 请求跟踪用户的操作，这就是所谓的<b>会话</b>。
+</p>
+
+<p>
+实际的过程中，基于 HTTP 的会话跟踪手段有很多，其中最重要的是:
+</p>
+<ol class="org-ol">
+<li>Cookie</li>
+<li>URL 重写</li>
+</ol>
+</div>
+
+<div id="outline-container-org7eca1a2" class="outline-3">
+<h3 id="org7eca1a2"><span class="section-number-3">5.1</span> Cookie</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Cookie，小饼干的意思。基本是被所有浏览器支持的。
+</p>
+
+<p>
+Cookie，本身是浏览器保存在<b>本地</b>的一段数据，这段数据有这些字段:
+</p>
+<ul class="org-ul">
+<li>Name/Value</li>
+<li>Domain/Expires, 过期时间，如果不设置的话，就是浏览器没关闭的时间。如果这个值设为负数，那么立刻无效</li>
+</ul>
+
+<p>
+Cookie 保存的数据:
+</p>
+<ul class="org-ul">
+<li>保存在客户端</li>
+<li>明文保存的文本，不安全 (HttpOnly)</li>
+<li>大约 4k 左右</li>
+</ul>
+
+<p>
+Cookie 是可以直接使用 JS 进行操控的:
+</p>
+<div class="org-src-container">
+<pre class="src src-js">console.log(document.cookie);  <span class="org-comment-delimiter">// </span><span class="org-comment">&#21482;&#20250;&#26174;&#31034;&#25152;&#26377;&#38750; HttpOnly &#30340; cookie</span>
+document.cookie = <span class="org-string">"aaa=111"</span>;   <span class="org-comment-delimiter">// </span><span class="org-comment">&#35774;&#32622; cookie</span>
+document.cookie = <span class="org-string">"bbb=222;max-age=3600"</span>;  <span class="org-comment-delimiter">// </span><span class="org-comment">&#35774;&#32622; cookie&#65292;&#25351;&#23450;&#26377;&#25928;&#26399;&#20026; 1 &#23567;&#26102;</span>
+</pre>
+</div>
+
+<p>
+可以使用 Servlet，在响应结果的时候，让浏览器刷新自己的 cookie。它本质就是在 http 的请求头部添加 <code>Set-Cookie</code> 字段:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-type">Cookie</span> <span class="org-variable-name">cookie1</span> = <span class="org-keyword">new</span> <span class="org-type">Cookie</span>(<span class="org-string">"xxx"</span>, <span class="org-string">"111"</span>);
+cookie1.setHttpOnly(<span class="org-constant">true</span>);
+resp.addCookie(cookie1);
+
+<span class="org-type">Cookie</span> <span class="org-variable-name">cookie2</span> = <span class="org-keyword">new</span> <span class="org-type">Cookie</span>(<span class="org-string">"yyy"</span>, <span class="org-string">"222"</span>);
+cookie2.setHttpOnly(<span class="org-constant">false</span>);
+cookie2.setMaxAge(33333333);
+resp.addCookie(cookie2);
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4540278" class="outline-3">
+<h3 id="org4540278"><span class="section-number-3">5.2</span> Session</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+Session 本质上是用户保存在<b>服务端</b>的数据:
+</p>
+<ul class="org-ul">
+<li>基本是没有大小限制的</li>
+<li>没有类型的限制</li>
+<li>Session 的机制<b>一般</b>来说，是基于 Cookie 的</li>
+</ul>
+
+<p>
+除了基于 Cookie，还可以基于 URL-Rewrite 方式。
+</p>
+
+<p>
+Session 的基本操作如下:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-comment-delimiter">// </span><span class="org-comment">&#33719;&#21462;&#29992;&#25143;&#30340; session &#23545;&#35937;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#26159;&#31532;&#19968;&#27425;&#25191;&#34892;&#36825;&#20010;&#65292;&#20250;&#26681;&#25454;&#26159;&#21542;&#26377; JSESSIONID &#33258;&#21160;&#21019;&#24314;&#65292;&#21542;&#21017;&#36820;&#22238;</span>
+<span class="org-type">Session</span> <span class="org-variable-name">session</span> = req.getSession();
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#21028;&#26029; session &#26159;&#19981;&#26159;&#26032;&#21019;&#24314;&#30340;</span>
+session.isNew();
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#25968;&#25454;&#30340;&#23384;&#21462;</span>
+session.setAttribute(<span class="org-string">"aaa"</span>, <span class="org-string">"111"</span>);
+session.getAttribute(<span class="org-string">"aaa"</span>);
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#25968;&#25454;&#30340;&#31227;&#38500;</span>
+session.removeAttribute(<span class="org-string">"aaa"</span>);
+session.invalidate(); <span class="org-comment-delimiter">// </span><span class="org-comment">&#31227;&#38500;&#25152;&#26377;</span>
+</pre>
+</div>
+
+<p>
+设置 Session 的有效期，可以使用 <code>session.setMaxInactiveInterval(333)</code> 方法，也可以在 web.xml 中配置。注意 setMaxInactiveInterval 的单位是<b>秒</b>，但 session-timeout 的单位是<b>分钟</b>:
+</p>
+<div class="org-src-container">
+<pre class="src src-xml">&lt;<span class="org-function-name">session-config</span>&gt;
+  &lt;<span class="org-function-name">session-timeout</span>&gt;10&lt;/<span class="org-function-name">session-timeout</span>&gt;
+&lt;/<span class="org-function-name">session-config</span>&gt;
+</pre>
+</div>
+</div>
+</div>
 </section>
+
 <section id="outline-container-orgf163059" class="outline-2">
 <h2 id="orgf163059"><span class="section-number-2">6</span> 文件的上传和下载</h2>
 </section>
@@ -584,7 +723,7 @@ javax.servlet:jstl:1.2
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-16 周二 06:57</p>
+<p class="date">Created: 2019-07-17 Wed 01:56</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

@@ -334,6 +334,91 @@ jar 包:
 #+END_SRC
 
 * Cookie/Session
+
+Web 请求是基于 HTTP 协议的。
+
+HTTP 协议最大的一个特点，就是 *无状态* 的。
+- 一个请求是谁发送的，服务端压根不会理会
+- 如果同一个人发送多个请求给服务器，服务器是不会认出来的
+
+但是，在实际的业务中，我们却需要服务器能够识别出不同人的请求。
+
+比如说，购物，那么一个人登录、浏览网站之后，所有的操作都应该聚合起来。
+你分很多次请求，加入购物车，最后买单。
+
+我们我们就需要一定的手段，能够让整个 web 请求跟踪用户的操作，这就是所谓的 *会话*。
+
+实际的过程中，基于 HTTP 的会话跟踪手段有很多，其中最重要的是:
+1. Cookie
+2. URL 重写
+
+** Cookie
+
+Cookie，小饼干的意思。基本是被所有浏览器支持的。
+
+Cookie，本身是浏览器保存在 *本地* 的一段数据，这段数据有这些字段:
+- Name/Value
+- Domain/Expires, 过期时间，如果不设置的话，就是浏览器没关闭的时间。如果这个值设为负数，那么立刻无效
+
+Cookie 保存的数据:
+- 保存在客户端
+- 明文保存的文本，不安全 (HttpOnly)
+- 大约 4k 左右
+
+Cookie 是可以直接使用 JS 进行操控的:
+#+BEGIN_SRC js
+  console.log(document.cookie);  // 只会显示所有非 HttpOnly 的 cookie
+  document.cookie = "aaa=111";   // 设置 cookie
+  document.cookie = "bbb=222;max-age=3600";  // 设置 cookie，指定有效期为 1 小时
+#+END_SRC
+
+可以使用 Servlet，在响应结果的时候，让浏览器刷新自己的 cookie。它本质就是在 http 的请求头部添加 ~Set-Cookie~ 字段:
+#+BEGIN_SRC java
+  Cookie cookie1 = new Cookie("xxx", "111");
+  cookie1.setHttpOnly(true);
+  resp.addCookie(cookie1);
+
+  Cookie cookie2 = new Cookie("yyy", "222");
+  cookie2.setHttpOnly(false);
+  cookie2.setMaxAge(33333333);
+  resp.addCookie(cookie2);
+#+END_SRC
+
+** Session
+
+Session 本质上是用户保存在 *服务端* 的数据:
+- 基本是没有大小限制的
+- 没有类型的限制
+- Session 的机制 *一般* 来说，是基于 Cookie 的
+
+除了基于 Cookie，还可以基于 URL-Rewrite 方式。
+
+Session 的基本操作如下:
+#+BEGIN_SRC java
+  // 获取用户的 session 对象
+  // 如果是第一次执行这个，会根据是否有 JSESSIONID 自动创建，否则返回
+  Session session = req.getSession();
+
+  // 判断 session 是不是新创建的
+  session.isNew();
+
+  // 数据的存取
+  session.setAttribute("aaa", "111");
+  session.getAttribute("aaa");
+
+  // 数据的移除
+  session.removeAttribute("aaa");
+  session.invalidate(); // 移除所有
+#+END_SRC
+
+设置 Session 的有效期，可以使用 ~session.setMaxInactiveInterval(333)~ 方法，也可以在 web.xml 中配置。
+注意 setMaxInactiveInterval 的单位是 *秒*，但 session-timeout 的单位是 *分钟*:
+#+BEGIN_SRC xml
+  <session-config>
+    <session-timeout>10</session-timeout>
+  </session-config>
+#+END_SRC
+
 * 文件的上传和下载
 * 用户的注册和登录
 * 完整的增删改查实现
