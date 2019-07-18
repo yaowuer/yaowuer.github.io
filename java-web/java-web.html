@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-17 Wed 01:56 -->
+<!-- 2019-07-18 Thu 01:44 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java Web</title>
@@ -22,12 +22,12 @@
 <ul>
 <li><a href="#orgb8e28fe">1. 预习</a></li>
 <li><a href="#orgaa362a8">2. CS vs BS</a></li>
-<li><a href="#org14a45dd">3. Servlet</a>
+<li><a href="#org5165965">3. Servlet</a>
 <ul>
 <li><a href="#org6680e4a">3.1. 规范</a></li>
 <li><a href="#orga806116">3.2. Tomcat 容器</a></li>
 <li><a href="#org6e2754a">3.3. hello-world</a></li>
-<li><a href="#org2cc08ea">3.4. Servlet</a>
+<li><a href="#org14a45dd">3.4. Servlet</a>
 <ul>
 <li><a href="#org801f83e">3.4.1. 请求流程</a></li>
 <li><a href="#orgc5aae04">3.4.2. Servlet/HttpServlet</a></li>
@@ -48,6 +48,7 @@
 <li><a href="#org6f53342">4.4. JSP 动作元素</a></li>
 <li><a href="#org075e934">4.5. EL 表达式 (Expression Language)</a></li>
 <li><a href="#org02fc594">4.6. JSTL 标准标签库</a></li>
+<li><a href="#org4003803">4.7. 将其他页面包含到本页面</a></li>
 </ul>
 </li>
 <li><a href="#orgbab26bd">5. Cookie/Session</a>
@@ -113,8 +114,8 @@ Web 的时代就这样来临了。
 </div>
 </section>
 
-<section id="outline-container-org14a45dd" class="outline-2">
-<h2 id="org14a45dd"><span class="section-number-2">3</span> Servlet</h2>
+<section id="outline-container-org5165965" class="outline-2">
+<h2 id="org5165965"><span class="section-number-2">3</span> Servlet</h2>
 <div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-org6680e4a" class="outline-3">
@@ -189,8 +190,8 @@ web.xml:
 </div>
 </div>
 
-<div id="outline-container-org2cc08ea" class="outline-3">
-<h3 id="org2cc08ea"><span class="section-number-3">3.4</span> Servlet</h3>
+<div id="outline-container-org14a45dd" class="outline-3">
+<h3 id="org14a45dd"><span class="section-number-3">3.4</span> Servlet</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
 <div id="outline-container-org801f83e" class="outline-4">
@@ -572,6 +573,27 @@ javax.servlet:jstl:1.2
 </div>
 </div>
 </div>
+
+<div id="outline-container-org4003803" class="outline-3">
+<h3 id="org4003803"><span class="section-number-3">4.7</span> 将其他页面包含到本页面</h3>
+<div class="outline-text-3" id="text-4-7">
+<p>
+三种方式:
+</p>
+<ul class="org-ul">
+<li>&lt;%@include&gt;   JSP 指令，直接了当将 xxx.jsp 拷贝到当前位置，然后再出将新的 jsp 进行编译处理</li>
+<li>&lt;jsp:include&gt; JSP 动作，先去渲染当前 jsp，再去渲染 xxx.jsp，然后将 xxx.jsp 的结果放到当前位置</li>
+<li>&lt;c:import&gt;</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-html">&lt;%-- &lt;<span class="org-sgml-namespace">jsp</span>:<span class="org-function-name">include</span> <span class="org-variable-name">page</span>=<span class="org-string">"listCart.jsp"</span> /&gt;--%&gt;
+&lt;%-- &lt;%@include <span class="org-variable-name">file</span>=<span class="org-string">"listCart.jsp"</span>%&gt;--%&gt;
+&lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">import</span> <span class="org-variable-name">url</span>=<span class="org-string">"listCart.jsp"</span> /&gt;
+</pre>
+</div>
+</div>
+</div>
 </section>
 
 <section id="outline-container-orgbab26bd" class="outline-2">
@@ -723,7 +745,7 @@ session.invalidate(); <span class="org-comment-delimiter">// </span><span class=
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-17 Wed 01:56</p>
+<p class="date">Created: 2019-07-18 Thu 01:44</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

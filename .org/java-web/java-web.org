@@ -333,6 +333,19 @@ jar 包:
 
 #+END_SRC
 
+** 将其他页面包含到本页面
+
+三种方式:
+- <%@include>   JSP 指令，直接了当将 xxx.jsp 拷贝到当前位置，然后再出将新的 jsp 进行编译处理
+- <jsp:include> JSP 动作，先去渲染当前 jsp，再去渲染 xxx.jsp，然后将 xxx.jsp 的结果放到当前位置
+- <c:import>
+
+#+BEGIN_SRC html
+  <%-- <jsp:include page="listCart.jsp" />--%>
+  <%-- <%@include file="listCart.jsp"%>--%>
+  <c:import url="listCart.jsp" />
+#+END_SRC
+
 * Cookie/Session
 
 Web 请求是基于 HTTP 协议的。
