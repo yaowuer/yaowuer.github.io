@@ -1,6 +1,18 @@
 #+TITLE: 任务（无他，唯手熟尔）
 
 
+
+* 2019年7月22日
+
+
+将这个完善:
+
+
+#+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-07-22 08:22:59
+[[file:img/scrot_2019-07-22_08-22-59.png]]
+
+
+
 * 2019年7月18日
 
 - 梳理购物车的总体流程
