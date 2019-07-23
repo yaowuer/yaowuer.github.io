@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-22 Mon 08:23 -->
+<!-- 2019-07-23 周二 07:01 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>任务（无他，唯手熟尔）</title>
@@ -20,31 +20,60 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3bbca51">1. 2019年7月22日</a></li>
-<li><a href="#org20e91f1">2. 2019年7月18日</a></li>
-<li><a href="#orgf4113cc">3. 2019年7月17日</a></li>
-<li><a href="#org79794ae">4. 2019年7月16日</a></li>
-<li><a href="#org4fd25ad">5. 2019年7月15日</a></li>
-<li><a href="#org9feac05">6. 2019年7月12日</a></li>
-<li><a href="#org342f14b">7. 2019年7月9日</a></li>
-<li><a href="#org8884c8a">8. 2019年7月5日</a></li>
-<li><a href="#org2efb9b6">9. 2019年7月4日</a></li>
-<li><a href="#orgc8c5ae1">10. 2019年7月1日</a></li>
-<li><a href="#orgbe5f97c">11. 2019年6月28日</a></li>
-<li><a href="#org0fa0ed3">12. 2019年6月26日</a></li>
-<li><a href="#org2be3da3">13. 2019年6月25日</a></li>
-<li><a href="#orge6ca334">14. 2019年6月5日</a></li>
-<li><a href="#org67c1a01">15. 2019年6月4日</a></li>
-<li><a href="#orgde3998d">16. 2019年1月1日（清明节作业）</a></li>
+<li><a href="#orga1c386b">1. 2019年7月23日</a></li>
+<li><a href="#org3bbca51">2. 2019年7月22日</a></li>
+<li><a href="#org20e91f1">3. 2019年7月18日</a></li>
+<li><a href="#orgf4113cc">4. 2019年7月17日</a></li>
+<li><a href="#org79794ae">5. 2019年7月16日</a></li>
+<li><a href="#org4fd25ad">6. 2019年7月15日</a></li>
+<li><a href="#org9feac05">7. 2019年7月12日</a></li>
+<li><a href="#org342f14b">8. 2019年7月9日</a></li>
+<li><a href="#org8884c8a">9. 2019年7月5日</a></li>
+<li><a href="#org2efb9b6">10. 2019年7月4日</a></li>
+<li><a href="#orgc8c5ae1">11. 2019年7月1日</a></li>
+<li><a href="#orgbe5f97c">12. 2019年6月28日</a></li>
+<li><a href="#org0fa0ed3">13. 2019年6月26日</a></li>
+<li><a href="#org2be3da3">14. 2019年6月25日</a></li>
+<li><a href="#orge6ca334">15. 2019年6月5日</a></li>
+<li><a href="#org67c1a01">16. 2019年6月4日</a></li>
+<li><a href="#orgde3998d">17. 2019年1月1日（清明节作业）</a></li>
 </ul>
 </div>
 </nav>
 
 
 
-<section id="outline-container-org3bbca51" class="outline-2">
-<h2 id="org3bbca51"><span class="section-number-2">1</span> 2019年7月22日</h2>
+<section id="outline-container-orga1c386b" class="outline-2">
+<h2 id="orga1c386b"><span class="section-number-2">1</span> 2019年7月23日</h2>
 <div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>如何处理流程中的各种错误？
+<ul class="org-ul">
+<li>参数错误</li>
+<li>数据库错误</li>
+<li>其他错误</li>
+</ul></li>
+
+<li>[过滤器] 怎么样记录每一个请求，即:
+<ul class="org-ul">
+<li>每次有请求到来的时候，如果发现用户已经是登录状态</li>
+<li>那么将 请求的时间、请求的浏览器基本信息、请求的 url 等都记录在数据库</li>
+<li>需要一张数据库表来保存这些 “请求历史”</li>
+</ul></li>
+
+<li>[监听器] 每次 session 创建的时候:
+<ul class="org-ul">
+<li>将<b>当前时间</b>保存到 session 里，key 为 createTime，即为最开始访问的时间</li>
+<li>在用户登录逻辑中，从 session 里获取<b>开始访问时间</b>，将其更新数据库</li>
+<li>也就是，在 account 表增加一个字段: last_visit_time ，用来记录上次访问的时间</li>
+</ul></li>
+</ul>
+</div>
+</section>
+
+<section id="outline-container-org3bbca51" class="outline-2">
+<h2 id="org3bbca51"><span class="section-number-2">2</span> 2019年7月22日</h2>
+<div class="outline-text-2" id="text-2">
 <p>
 将这个完善:
 </p>
@@ -61,8 +90,8 @@
 
 
 <section id="outline-container-org20e91f1" class="outline-2">
-<h2 id="org20e91f1"><span class="section-number-2">2</span> 2019年7月18日</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="org20e91f1"><span class="section-number-2">3</span> 2019年7月18日</h2>
+<div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>梳理购物车的总体流程
 <ol class="org-ol">
@@ -84,8 +113,8 @@
 </section>
 
 <section id="outline-container-orgf4113cc" class="outline-2">
-<h2 id="orgf4113cc"><span class="section-number-2">3</span> 2019年7月17日</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="orgf4113cc"><span class="section-number-2">4</span> 2019年7月17日</h2>
+<div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>复习、熟悉 cookie/session 概念，了解机制</li>
 <li>熟悉购物车网站的基本逻辑，熟练操作相关代码</li>
@@ -94,8 +123,8 @@
 </section>
 
 <section id="outline-container-org79794ae" class="outline-2">
-<h2 id="org79794ae"><span class="section-number-2">4</span> 2019年7月16日</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="org79794ae"><span class="section-number-2">5</span> 2019年7月16日</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 务必做到:
 </p>
@@ -116,8 +145,8 @@
 
 
 <section id="outline-container-org4fd25ad" class="outline-2">
-<h2 id="org4fd25ad"><span class="section-number-2">5</span> 2019年7月15日</h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="org4fd25ad"><span class="section-number-2">6</span> 2019年7月15日</h2>
+<div class="outline-text-2" id="text-6">
 <p>
 务必做到:
 </p>
@@ -136,8 +165,8 @@
 </section>
 
 <section id="outline-container-org9feac05" class="outline-2">
-<h2 id="org9feac05"><span class="section-number-2">6</span> 2019年7月12日</h2>
-<div class="outline-text-2" id="text-6">
+<h2 id="org9feac05"><span class="section-number-2">7</span> 2019年7月12日</h2>
+<div class="outline-text-2" id="text-7">
 <p>
 尝试将我们学到的东西，与现实中的具体业务进行联系。
 </p>
@@ -169,8 +198,8 @@
 </section>
 
 <section id="outline-container-org342f14b" class="outline-2">
-<h2 id="org342f14b"><span class="section-number-2">7</span> 2019年7月9日</h2>
-<div class="outline-text-2" id="text-7">
+<h2 id="org342f14b"><span class="section-number-2">8</span> 2019年7月9日</h2>
+<div class="outline-text-2" id="text-8">
 <p>
 为 student 搭建一个 <b>CRUD</b> 服务。基本的项目结构如下:
 </p>
@@ -196,8 +225,8 @@
 
 
 <section id="outline-container-org8884c8a" class="outline-2">
-<h2 id="org8884c8a"><span class="section-number-2">8</span> 2019年7月5日</h2>
-<div class="outline-text-2" id="text-8">
+<h2 id="org8884c8a"><span class="section-number-2">9</span> 2019年7月5日</h2>
+<div class="outline-text-2" id="text-9">
 <p>
 HTTP 协议:
 </p>
@@ -221,8 +250,8 @@ Servlet:
 </section>
 
 <section id="outline-container-org2efb9b6" class="outline-2">
-<h2 id="org2efb9b6"><span class="section-number-2">9</span> 2019年7月4日</h2>
-<div class="outline-text-2" id="text-9">
+<h2 id="org2efb9b6"><span class="section-number-2">10</span> 2019年7月4日</h2>
+<div class="outline-text-2" id="text-10">
 
 <figure>
 <img src="img/scrot_2019-07-04_08-29-22.png" alt="scrot_2019-07-04_08-29-22.png">
@@ -244,8 +273,8 @@ Servlet:
 </section>
 
 <section id="outline-container-orgc8c5ae1" class="outline-2">
-<h2 id="orgc8c5ae1"><span class="section-number-2">10</span> 2019年7月1日</h2>
-<div class="outline-text-2" id="text-10">
+<h2 id="orgc8c5ae1"><span class="section-number-2">11</span> 2019年7月1日</h2>
+<div class="outline-text-2" id="text-11">
 <p>
 首先，了解 dom 以及事件机制。
 </p>
@@ -358,8 +387,8 @@ Servlet:
 </section>
 
 <section id="outline-container-orgbe5f97c" class="outline-2">
-<h2 id="orgbe5f97c"><span class="section-number-2">11</span> 2019年6月28日</h2>
-<div class="outline-text-2" id="text-11">
+<h2 id="orgbe5f97c"><span class="section-number-2">12</span> 2019年6月28日</h2>
+<div class="outline-text-2" id="text-12">
 <p>
 将前面的“从数据库读取数据，并使用 JSP 进行页面渲染”，使用纯 Servlet 的方式实现一次，并了解相关概念:
 </p>
@@ -378,8 +407,8 @@ Servlet:
 </section>
 
 <section id="outline-container-org0fa0ed3" class="outline-2">
-<h2 id="org0fa0ed3"><span class="section-number-2">12</span> 2019年6月26日</h2>
-<div class="outline-text-2" id="text-12">
+<h2 id="org0fa0ed3"><span class="section-number-2">13</span> 2019年6月26日</h2>
+<div class="outline-text-2" id="text-13">
 <p>
 使用纯 JSP 页面，实现从数据库中读取数据，并渲染到页面的过程。
 </p>
@@ -396,8 +425,8 @@ Servlet:
 </section>
 
 <section id="outline-container-org2be3da3" class="outline-2">
-<h2 id="org2be3da3"><span class="section-number-2">13</span> 2019年6月25日</h2>
-<div class="outline-text-2" id="text-13">
+<h2 id="org2be3da3"><span class="section-number-2">14</span> 2019年6月25日</h2>
+<div class="outline-text-2" id="text-14">
 <p>
 替换 Java 中标准输出 (System.out) 为进行语音播报。
 </p>
@@ -413,8 +442,8 @@ Servlet:
 </section>
 
 <section id="outline-container-orge6ca334" class="outline-2">
-<h2 id="orge6ca334"><span class="section-number-2">14</span> 2019年6月5日</h2>
-<div class="outline-text-2" id="text-14">
+<h2 id="orge6ca334"><span class="section-number-2">15</span> 2019年6月5日</h2>
+<div class="outline-text-2" id="text-15">
 <p>
 使用 Java/JS/C# 实现一个函数，模拟命令行下敲入命令之后，系统的处理:
 </p>
@@ -558,8 +587,8 @@ demo:
 </section>
 
 <section id="outline-container-org67c1a01" class="outline-2">
-<h2 id="org67c1a01"><span class="section-number-2">15</span> 2019年6月4日</h2>
-<div class="outline-text-2" id="text-15">
+<h2 id="org67c1a01"><span class="section-number-2">16</span> 2019年6月4日</h2>
+<div class="outline-text-2" id="text-16">
 <p>
 用 sqlite 为 “我的书单” 应用，创建数据库表。
 </p>
@@ -577,8 +606,8 @@ demo:
 </section>
 
 <section id="outline-container-orgde3998d" class="outline-2">
-<h2 id="orgde3998d"><span class="section-number-2">16</span> 2019年1月1日（清明节作业）</h2>
-<div class="outline-text-2" id="text-16">
+<h2 id="orgde3998d"><span class="section-number-2">17</span> 2019年1月1日（清明节作业）</h2>
+<div class="outline-text-2" id="text-17">
 <dl class="org-dl">
 <dt>初步任务</dt><dd>读取某个文件夹下所有的文件，然后将其重命名：
 
@@ -622,7 +651,7 @@ plan:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-22 Mon 08:23</p>
+<p class="date">Created: 2019-07-23 周二 07:01</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
