@@ -494,7 +494,60 @@ Session 的基本操作如下:
 #+END_SRC
 
 * 文件的上传和下载
+
+从 Servlet 3 开始，标准中增加了对 Multipart 即文件上传的支持。
+从此之后，文件的上传变得简单。
+
+在 Servlet 3 之前，如果要实现文件上传，需要自己自行获取输入流，然后判断，处理，
+比较麻烦。通常，大家都会使用 Apache 封装的 common-upload.jar 库来简化上传。
+
+上传很简单，第一步:
+#+BEGIN_SRC html
+  <!-- 必须是 post 方法 -->
+  <!-- 必须设置 enctype 为 multipart/form-data -->
+  <!-- 使用 type=file 来实现从系统选择文件的操作 -->
+  <form class="frm" action="add" method="post" enctype="multipart/form-data">
+    <input name="cover" type="file">
+    <input type="submit">
+  </form>
+#+END_SRC
+
+第二步，在 Servlet 上，添加 ~@MultipartConfig~ 注解，使 Servlet 能够识别并处理上传的文件。
+#+BEGIN_SRC java
+  @WebServlet("/upload")
+  @MultipartConfig
+  public class AddServlet extends HttpServlet {}
+#+END_SRC
+
+第三步，接收文件、保存文件，并将路径等信息保存到数据库指定字段:
+#+BEGIN_SRC java
+  // 获取上传的文件，它被封装成了 Part 对象
+  Part cover = req.getPart("cover");
+
+  // 确定要保存的路径和文件名
+  // 需要注意避免文件名重复
+  String filePath = "/upload/" + CommonUtil.fmtTime2(new Date()) + "_" + cover.getSubmittedFileName();
+
+  // 将路径转换为绝对路径
+  // 使用 servletContext.getRealpath 方法来获取项目的路径
+  String destPath = req.getServletContext().getRealPath("/") + filePath;
+
+  // [可选] 确保要保存文件的文件夹存在
+  new File(destPath).getParentFile().mkdir();
+
+  // 然后，就可以将文件保存起来了
+  cover.write(destPath); // 写绝对路径
+
+  // 最后，我们可能要根据业务情况，将路径保存到数据库的对应位置
+  DBUtil.execute("insert xxx (url) values (?)", filePath);
+#+END_SRC
+
 * 用户的注册和登录
+
+完成
+
 * 完整的增删改查实现
+
+完成
 
 

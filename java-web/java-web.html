@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-26 Fri 01:37 -->
+<!-- 2019-07-26 Fri 03:34 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java Web</title>
@@ -22,12 +22,12 @@
 <ul>
 <li><a href="#orgb8e28fe">1. 预习</a></li>
 <li><a href="#orgaa362a8">2. CS vs BS</a></li>
-<li><a href="#org1222a59">3. Servlet</a>
+<li><a href="#org649ab2f">3. Servlet</a>
 <ul>
 <li><a href="#org6680e4a">3.1. 规范</a></li>
 <li><a href="#orga806116">3.2. Tomcat 容器</a></li>
 <li><a href="#org6e2754a">3.3. hello-world</a></li>
-<li><a href="#org8b770e5">3.4. Servlet</a>
+<li><a href="#org1222a59">3.4. Servlet</a>
 <ul>
 <li><a href="#org801f83e">3.4.1. 请求流程</a></li>
 <li><a href="#orgc5aae04">3.4.2. Servlet/HttpServlet</a></li>
@@ -115,8 +115,8 @@ Web 的时代就这样来临了。
 </div>
 </section>
 
-<section id="outline-container-org1222a59" class="outline-2">
-<h2 id="org1222a59"><span class="section-number-2">3</span> Servlet</h2>
+<section id="outline-container-org649ab2f" class="outline-2">
+<h2 id="org649ab2f"><span class="section-number-2">3</span> Servlet</h2>
 <div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-org6680e4a" class="outline-3">
@@ -191,8 +191,8 @@ web.xml:
 </div>
 </div>
 
-<div id="outline-container-org8b770e5" class="outline-3">
-<h3 id="org8b770e5"><span class="section-number-3">3.4</span> Servlet</h3>
+<div id="outline-container-org1222a59" class="outline-3">
+<h3 id="org1222a59"><span class="section-number-3">3.4</span> Servlet</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
 <div id="outline-container-org801f83e" class="outline-4">
@@ -852,17 +852,88 @@ session.invalidate(); <span class="org-comment-delimiter">// </span><span class=
 
 <section id="outline-container-orgf163059" class="outline-2">
 <h2 id="orgf163059"><span class="section-number-2">6</span> 文件的上传和下载</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+从 Servlet 3 开始，标准中增加了对 Multipart 即文件上传的支持。从此之后，文件的上传变得简单。
+</p>
+
+<p>
+在 Servlet 3 之前，如果要实现文件上传，需要自己自行获取输入流，然后判断，处理，比较麻烦。通常，大家都会使用 Apache 封装的 common-upload.jar 库来简化上传。
+</p>
+
+<p>
+上传很简单，第一步:
+</p>
+<div class="org-src-container">
+<pre class="src src-html"><span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">&#24517;&#39035;&#26159; post &#26041;&#27861; </span><span class="org-comment-delimiter">--&gt;</span>
+<span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">&#24517;&#39035;&#35774;&#32622; enctype &#20026; multipart/form-data </span><span class="org-comment-delimiter">--&gt;</span>
+<span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">&#20351;&#29992; type=file &#26469;&#23454;&#29616;&#20174;&#31995;&#32479;&#36873;&#25321;&#25991;&#20214;&#30340;&#25805;&#20316; </span><span class="org-comment-delimiter">--&gt;</span>
+&lt;<span class="org-function-name">form</span> <span class="org-variable-name">class</span>=<span class="org-string">"frm"</span> <span class="org-variable-name">action</span>=<span class="org-string">"add"</span> <span class="org-variable-name">method</span>=<span class="org-string">"post"</span> <span class="org-variable-name">enctype</span>=<span class="org-string">"multipart/form-data"</span>&gt;
+  &lt;<span class="org-function-name">input</span> <span class="org-variable-name">name</span>=<span class="org-string">"cover"</span> <span class="org-variable-name">type</span>=<span class="org-string">"file"</span>&gt;
+  &lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"submit"</span>&gt;
+&lt;/<span class="org-function-name">form</span>&gt;
+</pre>
+</div>
+
+<p>
+第二步，在 Servlet 上，添加 <code>@MultipartConfig</code> 注解，使 Servlet 能够识别并处理上传的文件。
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-c-annotation">@WebServlet</span>(<span class="org-string">"/upload"</span>)
+<span class="org-c-annotation">@MultipartConfig</span>
+<span class="org-keyword">public</span> <span class="org-keyword">class</span> <span class="org-type">AddServlet</span> <span class="org-keyword">extends</span> <span class="org-type">HttpServlet</span> {}
+</pre>
+</div>
+
+<p>
+第三步，接收文件、保存文件，并将路径等信息保存到数据库指定字段:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-comment-delimiter">// </span><span class="org-comment">&#33719;&#21462;&#19978;&#20256;&#30340;&#25991;&#20214;&#65292;&#23427;&#34987;&#23553;&#35013;&#25104;&#20102; Part &#23545;&#35937;</span>
+<span class="org-type">Part</span> <span class="org-variable-name">cover</span> = req.getPart(<span class="org-string">"cover"</span>);
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#30830;&#23450;&#35201;&#20445;&#23384;&#30340;&#36335;&#24452;&#21644;&#25991;&#20214;&#21517;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#38656;&#35201;&#27880;&#24847;&#36991;&#20813;&#25991;&#20214;&#21517;&#37325;&#22797;</span>
+<span class="org-type">String</span> <span class="org-variable-name">filePath</span> = <span class="org-string">"/upload/"</span> + CommonUtil.fmtTime2(<span class="org-keyword">new</span> <span class="org-type">Date</span>()) + <span class="org-string">"_"</span> + cover.getSubmittedFileName();
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#23558;&#36335;&#24452;&#36716;&#25442;&#20026;&#32477;&#23545;&#36335;&#24452;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#20351;&#29992; servletContext.getRealpath &#26041;&#27861;&#26469;&#33719;&#21462;&#39033;&#30446;&#30340;&#36335;&#24452;</span>
+<span class="org-type">String</span> <span class="org-variable-name">destPath</span> = req.getServletContext().getRealPath(<span class="org-string">"/"</span>) + filePath;
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">[&#21487;&#36873;] &#30830;&#20445;&#35201;&#20445;&#23384;&#25991;&#20214;&#30340;&#25991;&#20214;&#22841;&#23384;&#22312;</span>
+<span class="org-keyword">new</span> <span class="org-type">File</span>(destPath).getParentFile().mkdir();
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#28982;&#21518;&#65292;&#23601;&#21487;&#20197;&#23558;&#25991;&#20214;&#20445;&#23384;&#36215;&#26469;&#20102;</span>
+cover.write(destPath); <span class="org-comment-delimiter">// </span><span class="org-comment">&#20889;&#32477;&#23545;&#36335;&#24452;</span>
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#26368;&#21518;&#65292;&#25105;&#20204;&#21487;&#33021;&#35201;&#26681;&#25454;&#19994;&#21153;&#24773;&#20917;&#65292;&#23558;&#36335;&#24452;&#20445;&#23384;&#21040;&#25968;&#25454;&#24211;&#30340;&#23545;&#24212;&#20301;&#32622;</span>
+DBUtil.execute(<span class="org-string">"insert xxx (url) values (?)"</span>, filePath);
+</pre>
+</div>
+</div>
 </section>
+
 <section id="outline-container-orgaf79d1c" class="outline-2">
 <h2 id="orgaf79d1c"><span class="section-number-2">7</span> 用户的注册和登录</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+完成
+</p>
+</div>
 </section>
+
 <section id="outline-container-org3c9f3e9" class="outline-2">
 <h2 id="org3c9f3e9"><span class="section-number-2">8</span> 完整的增删改查实现</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+完成
+</p>
+</div>
 </section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-26 Fri 01:37</p>
+<p class="date">Created: 2019-07-26 Fri 03:34</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
