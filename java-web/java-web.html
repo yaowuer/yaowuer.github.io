@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-18 Thu 08:05 -->
+<!-- 2019-07-26 Fri 01:13 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java Web</title>
@@ -22,12 +22,12 @@
 <ul>
 <li><a href="#orgb8e28fe">1. 预习</a></li>
 <li><a href="#orgaa362a8">2. CS vs BS</a></li>
-<li><a href="#org353e511">3. Servlet</a>
+<li><a href="#org20ec879">3. Servlet</a>
 <ul>
 <li><a href="#org6680e4a">3.1. 规范</a></li>
 <li><a href="#orga806116">3.2. Tomcat 容器</a></li>
 <li><a href="#org6e2754a">3.3. hello-world</a></li>
-<li><a href="#org5165965">3.4. Servlet</a>
+<li><a href="#org353e511">3.4. Servlet</a>
 <ul>
 <li><a href="#org801f83e">3.4.1. 请求流程</a></li>
 <li><a href="#orgc5aae04">3.4.2. Servlet/HttpServlet</a></li>
@@ -36,8 +36,8 @@
 </ul>
 </li>
 <li><a href="#orgde5d119">3.5. Filter &lt;过滤器&gt;</a></li>
-<li><a href="#orgb0ec3fc">3.6. Listener &lt;监听器&gt;</a></li>
-<li><a href="#org733ab16">3.7. 生命周期</a></li>
+<li><a href="#org0ee7a94">3.6. EventListener &lt;监听器&gt;</a></li>
+<li><a href="#org21f545a">3.7. 生命周期 (Lifecycle)</a></li>
 </ul>
 </li>
 <li><a href="#org843863a">4. JSP</a>
@@ -114,8 +114,8 @@ Web 的时代就这样来临了。
 </div>
 </section>
 
-<section id="outline-container-org353e511" class="outline-2">
-<h2 id="org353e511"><span class="section-number-2">3</span> Servlet</h2>
+<section id="outline-container-org20ec879" class="outline-2">
+<h2 id="org20ec879"><span class="section-number-2">3</span> Servlet</h2>
 <div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-org6680e4a" class="outline-3">
@@ -190,8 +190,8 @@ web.xml:
 </div>
 </div>
 
-<div id="outline-container-org5165965" class="outline-3">
-<h3 id="org5165965"><span class="section-number-3">3.4</span> Servlet</h3>
+<div id="outline-container-org353e511" class="outline-3">
+<h3 id="org353e511"><span class="section-number-3">3.4</span> Servlet</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
 <div id="outline-container-org801f83e" class="outline-4">
@@ -329,14 +329,94 @@ xml 方式。
 
 <div id="outline-container-orgde5d119" class="outline-3">
 <h3 id="orgde5d119"><span class="section-number-3">3.5</span> Filter &lt;过滤器&gt;</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+将多个可以重用的逻辑，抽离出来，以达到<b>复用</b>目的。
+</p>
+
+<p>
+可以配置使对个请求，在到达、离开对应 Servlet 的 doXxx 方法时，都会经过这个逻辑。
+</p>
+
+<p>
+应用场景:
+</p>
+<ul class="org-ul">
+<li>编码设置</li>
+<li>登录控制、权限控制</li>
+<li>日志记录</li>
+</ul>
+
+<p>
+使用步骤:
+</p>
+<ol class="org-ol">
+<li>定义过滤器</li>
+<li>配置使用
+<ul class="org-ul">
+<li>web.xml 方式</li>
+<li>注解 @WebFilter("/*")</li>
+</ul></li>
+</ol>
+
+<p>
+注意:
+</p>
+<ul class="org-ul">
+<li>可以配置多个过滤器</li>
+<li>多个过滤器形成<b>链式</b>结构，依次调用 doChain</li>
+<li>调用的顺序，跟配置的顺序有关</li>
+</ul>
 </div>
-<div id="outline-container-orgb0ec3fc" class="outline-3">
-<h3 id="orgb0ec3fc"><span class="section-number-3">3.6</span> Listener &lt;监听器&gt;</h3>
 </div>
-<div id="outline-container-org733ab16" class="outline-3">
-<h3 id="org733ab16"><span class="section-number-3">3.7</span> 生命周期</h3>
+
+<div id="outline-container-org0ee7a94" class="outline-3">
+<h3 id="org0ee7a94"><span class="section-number-3">3.6</span> EventListener &lt;监听器&gt;</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+在某些事件发生的时候，执行的逻辑:
+</p>
+<ul class="org-ul">
+<li>应用启动的时候 ContextListener</li>
+<li>request 对象创建、销毁的时候</li>
+<li>session 对象创建、销毁的时候</li>
+<li>session 激活、失效的时候</li>
+<li>session 设置、删除、更新值的时候</li>
+</ul>
+
+<p>
+使用步骤:
+</p>
+<ol class="org-ol">
+<li>创建，实现 EventListener 接口</li>
+<li>在 web.xml 中注册，也可以使用 @WebListener 注解进行注册</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org21f545a" class="outline-3">
+<h3 id="org21f545a"><span class="section-number-3">3.7</span> 生命周期 (Lifecycle)</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+Servlet:
+</p>
+<ol class="org-ol">
+<li>延迟加载（按需加载）</li>
+<li>单例模式（效率高，线程不安全）</li>
+</ol>
+
+<p>
+基本函数:
+</p>
+<ul class="org-ul">
+<li>init，是在 Servlet 初始化实例的时候执行的</li>
+<li>service</li>
+<li>destroy，实在服务器关闭的时候执行的，一般用来做一些清理工作</li>
+</ul>
+</div>
 </div>
 </section>
+
 <section id="outline-container-org843863a" class="outline-2">
 <h2 id="org843863a"><span class="section-number-2">4</span> JSP</h2>
 <div class="outline-text-2" id="text-4">
@@ -745,7 +825,7 @@ session.invalidate(); <span class="org-comment-delimiter">// </span><span class=
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-18 Thu 08:05</p>
+<p class="date">Created: 2019-07-26 Fri 01:13</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
