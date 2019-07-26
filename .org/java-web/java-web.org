@@ -192,6 +192,8 @@ Servlet:
 - service
 - destroy，实在服务器关闭的时候执行的，一般用来做一些清理工作
 
+Listener/Filter 亦复如是。
+
 * JSP
 ** 认识 JSP
 
