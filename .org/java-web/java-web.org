@@ -205,6 +205,10 @@ Listener/Filter 亦复如是。
 - 所有依赖的 jar 包，都会被编译到 ~/WEB-INF/lib/*.jar~ 下
 - ~/WEB-INF/web.xml~ 是核心配置文件。在 servlet3 之后，已非必须。
 
+另外:
+- 如果要部署到服务器上，可以直接将这个目录 copy 到 ~$TOMCAT_HOME/webapp/~ 下面
+- 另外，可以将其压缩为 ~WAR~ 格式后，扔到 ~$TOMCAT_HOME/webapp/~ 下。WAR 是 java web 的专有压缩格式。
+
 * JSP
 ** 认识 JSP
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-26 Fri 01:34 -->
+<!-- 2019-07-26 Fri 01:37 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Java Web</title>
@@ -22,12 +22,12 @@
 <ul>
 <li><a href="#orgb8e28fe">1. 预习</a></li>
 <li><a href="#orgaa362a8">2. CS vs BS</a></li>
-<li><a href="#org8b770e5">3. Servlet</a>
+<li><a href="#org1222a59">3. Servlet</a>
 <ul>
 <li><a href="#org6680e4a">3.1. 规范</a></li>
 <li><a href="#orga806116">3.2. Tomcat 容器</a></li>
 <li><a href="#org6e2754a">3.3. hello-world</a></li>
-<li><a href="#org607e283">3.4. Servlet</a>
+<li><a href="#org8b770e5">3.4. Servlet</a>
 <ul>
 <li><a href="#org801f83e">3.4.1. 请求流程</a></li>
 <li><a href="#orgc5aae04">3.4.2. Servlet/HttpServlet</a></li>
@@ -115,8 +115,8 @@ Web 的时代就这样来临了。
 </div>
 </section>
 
-<section id="outline-container-org8b770e5" class="outline-2">
-<h2 id="org8b770e5"><span class="section-number-2">3</span> Servlet</h2>
+<section id="outline-container-org1222a59" class="outline-2">
+<h2 id="org1222a59"><span class="section-number-2">3</span> Servlet</h2>
 <div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-org6680e4a" class="outline-3">
@@ -191,8 +191,8 @@ web.xml:
 </div>
 </div>
 
-<div id="outline-container-org607e283" class="outline-3">
-<h3 id="org607e283"><span class="section-number-3">3.4</span> Servlet</h3>
+<div id="outline-container-org8b770e5" class="outline-3">
+<h3 id="org8b770e5"><span class="section-number-3">3.4</span> Servlet</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
 <div id="outline-container-org801f83e" class="outline-4">
@@ -441,6 +441,14 @@ Listener/Filter 亦复如是。
 <li>所有的 <code>src/*.java</code> 会被编译到 <code>/WEB-INF/classes/*.class</code> 下</li>
 <li>所有依赖的 jar 包，都会被编译到 <code>/WEB-INF/lib/*.jar</code> 下</li>
 <li><code>/WEB-INF/web.xml</code> 是核心配置文件。在 servlet3 之后，已非必须。</li>
+</ul>
+
+<p>
+另外:
+</p>
+<ul class="org-ul">
+<li>如果要部署到服务器上，可以直接将这个目录 copy 到 <code>$TOMCAT_HOME/webapp/</code> 下面</li>
+<li>另外，可以将其压缩为 <code>WAR</code> 格式后，扔到 <code>$TOMCAT_HOME/webapp/</code> 下。WAR 是 java web 的专有压缩格式。</li>
 </ul>
 </div>
 </div>
@@ -854,7 +862,7 @@ session.invalidate(); <span class="org-comment-delimiter">// </span><span class=
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-26 Fri 01:34</p>
+<p class="date">Created: 2019-07-26 Fri 01:37</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
