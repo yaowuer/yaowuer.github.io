@@ -194,6 +194,17 @@ Servlet:
 
 Listener/Filter 亦复如是。
 
+** 标准 WAR 结构
+
+一个 Java Web 项目编译之后的目录结构是这样的:
+
+[[file:img/scrot_2019-07-26_01-31-35.png]]
+
+其中:
+- 所有的 ~src/*.java~ 会被编译到 ~/WEB-INF/classes/*.class~ 下
+- 所有依赖的 jar 包，都会被编译到 ~/WEB-INF/lib/*.jar~ 下
+- ~/WEB-INF/web.xml~ 是核心配置文件。在 servlet3 之后，已非必须。
+
 * JSP
 ** 认识 JSP
 
