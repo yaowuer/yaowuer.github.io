@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2019-07-29 Mon 01:41 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jQuery</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="yaowuer">
+<link rel='stylesheet' href='/asset/common.css' />
+<script src='https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+<script src='/asset/common.js'></script>
+</head>
+<body>
+<div id="content">
+<header>
+<h1 class="title">jQuery</h1>
+</header><nav id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org1c3bb8a">1. 简介</a></li>
+<li><a href="#org5a27757">2. 选择器 (Selector)</a>
+<ul>
+<li><a href="#org9593c19">2.1. 基本选择</a></li>
+<li><a href="#org2eaa8ba">2.2. 过滤-伪类</a></li>
+<li><a href="#orgac5512c">2.3. 过滤-方法</a></li>
+<li><a href="#orgeebeecf">2.4. Form 表单相关</a></li>
+<li><a href="#orga016c54">2.5. 按图索骥</a></li>
+</ul>
+</li>
+<li><a href="#org6fb9092">3. DOM 操作</a>
+<ul>
+<li><a href="#org588d697">3.1. text/html/val</a></li>
+<li><a href="#orgf2dfa66">3.2. attr/prop/width/height/position</a></li>
+<li><a href="#orgef0be7a">3.3. append/prepend/before/after/appendTo/prependTo</a></li>
+<li><a href="#orgc28ec48">3.4. clone/remove/empty/detach</a></li>
+<li><a href="#org04aa278">3.5. css/addClass/removeClass/toggleClass</a></li>
+</ul>
+</li>
+<li><a href="#org4bdc088">4. 事件 (Events)</a></li>
+<li><a href="#org2407114">5. 动画效果 (Effects)</a></li>
+<li><a href="#org1c43550">6. 异步提交 (Ajax)</a>
+<ul>
+<li><a href="#orgfb5c808">6.1. Form 表单获取数据</a></li>
+<li><a href="#org61656a8">6.2. 表单验证</a></li>
+</ul>
+</li>
+<li><a href="#orgd922a82">7. 其他函数</a></li>
+<li><a href="#org6cbc9b3">8. 扩展与插件 (Extend/Plugins)</a></li>
+</ul>
+</div>
+</nav>
+<p>
+<a href="https://jquery.com/">https://jquery.com/</a>
+</p>
+
+<section id="outline-container-org1c3bb8a" class="outline-2">
+<h2 id="org1c3bb8a"><span class="section-number-2">1</span> 简介</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+背景:
+</p>
+<ul class="org-ul">
+<li>DOM 自身 API 太复杂太反人类</li>
+<li>写浏览器兼容的代码太麻烦</li>
+</ul>
+
+<p>
+特点:
+</p>
+<ul class="org-ul">
+<li>是对原生方法的封装</li>
+<li>语法简洁</li>
+<li>链式操作，好用到爆炸</li>
+</ul>
+
+<p>
+基本操作逻辑
+</p>
+<ol class="org-ol">
+<li>选取元素 ($)</li>
+<li>执行操作 (action)</li>
+</ol>
+
+<p>
+比如:
+</p>
+<div class="org-src-container">
+<pre class="src src-js">$(<span class="org-string">"div"</span>).css(<span class="org-string">"color"</span>, <span class="org-string">"red"</span>);
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org5a27757" class="outline-2">
+<h2 id="org5a27757"><span class="section-number-2">2</span> 选择器 (Selector)</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org9593c19" class="outline-3">
+<h3 id="org9593c19"><span class="section-number-3">2.1</span> 基本选择</h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+<pre class="src src-js"><span class="org-comment-delimiter">// </span><span class="org-comment">by Id</span>
+$(<span class="org-string">"#cart"</span>);
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">by Class</span>
+$(<span class="org-string">".red"</span>);
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">by Element</span>
+$(<span class="org-string">"div"</span>);
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">by Attribute</span>
+$(<span class="org-string">"input[name='password']"</span>);
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#32452;&#21512;</span>
+$(<span class="org-string">"#contents ul.people li"</span>);
+$(<span class="org-string">"#contents &gt; div"</span>);
+$(<span class="org-string">"#contents + div"</span>);
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#22810;&#20010;</span>
+$(<span class="org-string">"div.myClass, ul.people"</span>);
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2eaa8ba" class="outline-3">
+<h3 id="org2eaa8ba"><span class="section-number-3">2.2</span> 过滤-伪类</h3>
+<div class="outline-text-3" id="text-2-2">
+<div class="org-src-container">
+<pre class="src src-js">$(<span class="org-string">"input:first"</span>);
+$(<span class="org-string">"tr:odd"</span>);
+$(<span class="org-string">"div:gt(2)"</span>);
+$(<span class="org-string">"div:visible"</span>);
+$(<span class="org-string">"div:animated"</span>);
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgac5512c" class="outline-3">
+<h3 id="orgac5512c"><span class="section-number-3">2.3</span> 过滤-方法</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+<pre class="src src-js">$(<span class="org-string">".x"</span>).has(<span class="org-string">"p"</span>);
+$(<span class="org-string">".x"</span>).not(<span class="org-string">".bar"</span>);
+$(<span class="org-string">".x"</span>).filter(<span class="org-string">".current"</span>);
+$(<span class="org-string">".x"</span>).first();
+$(<span class="org-string">".x"</span>).last();
+$(<span class="org-string">".x"</span>).eq(5);
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgeebeecf" class="outline-3">
+<h3 id="orgeebeecf"><span class="section-number-3">2.4</span> Form 表单相关</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+jQuery 提供了一些快速选取的语法，让你能更轻松对 form 表单进行选取:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$(<span class="org-string">"form :checked"</span>);
+$(<span class="org-string">":input"</span>);
+$(<span class="org-string">":checked"</span>);
+$(<span class="org-string">":selected"</span>);
+$(<span class="org-string">":disabled"</span>);
+</pre>
+</div>
+
+<p>
+其他:
+</p>
+<ul class="org-ul">
+<li><code>:password</code></li>
+<li><code>:reset</code></li>
+<li><code>:radio</code></li>
+<li><code>:text</code></li>
+<li><code>:submit</code></li>
+<li><code>:checkbox</code></li>
+<li><code>:button</code></li>
+<li><code>:image</code></li>
+<li><code>:file</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga016c54" class="outline-3">
+<h3 id="orga016c54"><span class="section-number-3">2.5</span> 按图索骥</h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li>父辈: parent/parents/parentsUntil/closest</li>
+<li>子辈: children/find</li>
+<li>兄弟: next/nextAll/prev/prevAll/siblings</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org6fb9092" class="outline-2">
+<h2 id="org6fb9092"><span class="section-number-2">3</span> DOM 操作</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org588d697" class="outline-3">
+<h3 id="org588d697"><span class="section-number-3">3.1</span> text/html/val</h3>
+</div>
+
+<div id="outline-container-orgf2dfa66" class="outline-3">
+<h3 id="orgf2dfa66"><span class="section-number-3">3.2</span> attr/prop/width/height/position</h3>
+</div>
+
+<div id="outline-container-orgef0be7a" class="outline-3">
+<h3 id="orgef0be7a"><span class="section-number-3">3.3</span> append/prepend/before/after/appendTo/prependTo</h3>
+</div>
+
+<div id="outline-container-orgc28ec48" class="outline-3">
+<h3 id="orgc28ec48"><span class="section-number-3">3.4</span> clone/remove/empty/detach</h3>
+</div>
+
+<div id="outline-container-org04aa278" class="outline-3">
+<h3 id="org04aa278"><span class="section-number-3">3.5</span> css/addClass/removeClass/toggleClass</h3>
+</div>
+</section>
+
+<section id="outline-container-org4bdc088" class="outline-2">
+<h2 id="org4bdc088"><span class="section-number-2">4</span> 事件 (Events)</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+API:
+</p>
+<ul class="org-ul">
+<li><code>$.on('click, function () {})</code></li>
+<li><code>$.click(function () {})</code></li>
+<li><code>$.off</code></li>
+</ul>
+
+<p>
+常用事件:
+</p>
+<ul class="org-ul">
+<li>鼠标: click/dbclick/mouseover/mouseleave/hover</li>
+<li>键盘: keydown/keyup/keypress</li>
+<li>表单: focus/blur/change/select</li>
+<li>DOM: ready/load/unload</li>
+</ul>
+</div>
+</section>
+
+<section id="outline-container-org2407114" class="outline-2">
+<h2 id="org2407114"><span class="section-number-2">5</span> 动画效果 (Effects)</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>hide/show/toggle</li>
+<li>fadeOut/fadeIn/fadeToggle</li>
+<li>slideUp/slideDown/slideToggle</li>
+<li>delay</li>
+<li>animate</li>
+</ul>
+</div>
+</section>
+
+<section id="outline-container-org1c43550" class="outline-2">
+<h2 id="org1c43550"><span class="section-number-2">6</span> 异步提交 (Ajax)</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>$.ajax</li>
+<li>$.get/$.post</li>
+<li>$.load</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-js"><span class="org-comment-delimiter">// </span><span class="org-comment">Using the core $.ajax() method</span>
+$.ajax({
+
+    <span class="org-comment-delimiter">// </span><span class="org-comment">The URL for the request</span>
+    url: <span class="org-string">"post.php"</span>,
+
+    <span class="org-comment-delimiter">// </span><span class="org-comment">The data to send (will be converted to a query string)</span>
+    data: {
+        id: 123
+    },
+
+    <span class="org-comment-delimiter">// </span><span class="org-comment">Whether this is a POST or GET request</span>
+    type: <span class="org-string">"GET"</span>,
+
+    <span class="org-comment-delimiter">// </span><span class="org-comment">The type of data we expect back</span>
+    dataType : <span class="org-string">"json"</span>,
+})
+<span class="org-comment-delimiter">// </span><span class="org-comment">Code to run if the request succeeds (is done);</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">The response is passed to the function</span>
+    .done(<span class="org-keyword">function</span>( <span class="org-variable-name">json</span> ) {
+        $( <span class="org-string">"&lt;h1&gt;"</span> ).text( json.title ).appendTo( <span class="org-string">"body"</span> );
+        $( <span class="org-string">"&lt;div class=\"content\"&gt;"</span>).html( json.html ).appendTo( <span class="org-string">"body"</span> );
+    })
+<span class="org-comment-delimiter">// </span><span class="org-comment">Code to run if the request fails; the raw request and</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">status codes are passed to the function</span>
+    .fail(<span class="org-keyword">function</span>( <span class="org-variable-name">xhr</span>, <span class="org-variable-name">status</span>, <span class="org-variable-name">errorThrown</span> ) {
+        alert( <span class="org-string">"Sorry, there was a problem!"</span> );
+        console.log( <span class="org-string">"Error: "</span> + errorThrown );
+        console.log( <span class="org-string">"Status: "</span> + status );
+        console.dir( xhr );
+    })
+<span class="org-comment-delimiter">// </span><span class="org-comment">Code to run regardless of success or failure;</span>
+    .always(<span class="org-keyword">function</span>( <span class="org-variable-name">xhr</span>, <span class="org-variable-name">status</span> ) {
+        alert( <span class="org-string">"The request is complete!"</span> );
+    });
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgfb5c808" class="outline-3">
+<h3 id="orgfb5c808"><span class="section-number-3">6.1</span> Form 表单获取数据</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+serialize/serializeArray/params:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$( <span class="org-string">"#myForm"</span> ).serialize();
+<span class="org-comment-delimiter">// </span><span class="org-comment">field_1=something&amp;field2=somethingElse</span>
+
+$( <span class="org-string">"#myForm"</span> ).serializeArray();
+<span class="org-comment-delimiter">// </span><span class="org-comment">[</span>
+<span class="org-comment-delimiter">//   </span><span class="org-comment">{</span>
+<span class="org-comment-delimiter">//     </span><span class="org-comment">name : "field_1",</span>
+<span class="org-comment-delimiter">//     </span><span class="org-comment">value : "something"</span>
+<span class="org-comment-delimiter">//   </span><span class="org-comment">},</span>
+<span class="org-comment-delimiter">//   </span><span class="org-comment">{</span>
+<span class="org-comment-delimiter">//     </span><span class="org-comment">name : "field_2",</span>
+<span class="org-comment-delimiter">//     </span><span class="org-comment">value : "somethingElse"</span>
+<span class="org-comment-delimiter">//   </span><span class="org-comment">}</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">]</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org61656a8" class="outline-3">
+<h3 id="org61656a8"><span class="section-number-3">6.2</span> 表单验证</h3>
+<div class="outline-text-3" id="text-6-2">
+<div class="org-src-container">
+<pre class="src src-js">$( <span class="org-string">"#form"</span> ).submit(<span class="org-keyword">function</span>( <span class="org-variable-name">event</span> ) {
+    <span class="org-keyword">var</span> <span class="org-variable-name">inputtedPhoneNumber</span> = $( <span class="org-string">"#phone"</span> ).val();
+
+    <span class="org-comment-delimiter">// </span><span class="org-comment">Match only numbers</span>
+    <span class="org-keyword">var</span> <span class="org-variable-name">phoneNumberRegex</span> = <span class="org-string">/^\d*$/</span>;
+
+    <span class="org-comment-delimiter">// </span><span class="org-comment">If the phone number doesn't match the regex</span>
+    <span class="org-keyword">if</span> ( !phoneNumberRegex.test( inputtedPhoneNumber ) ) {
+
+        <span class="org-comment-delimiter">// </span><span class="org-comment">Usually show some kind of error message here</span>
+
+        <span class="org-comment-delimiter">// </span><span class="org-comment">Prevent the form from submitting</span>
+        event.preventDefault();
+    } <span class="org-keyword">else</span> {
+        <span class="org-comment-delimiter">// </span><span class="org-comment">Run $.ajax() here</span>
+    }
+});
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orgd922a82" class="outline-2">
+<h2 id="orgd922a82"><span class="section-number-2">7</span> 其他函数</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li><code>$.trim/each/map/inArray/extend/isXxx</code></li>
+</ul>
+</div>
+</section>
+
+<section id="outline-container-org6cbc9b3" class="outline-2">
+<h2 id="org6cbc9b3"><span class="section-number-2">8</span> 扩展与插件 (Extend/Plugins)</h2>
+<div class="outline-text-2" id="text-8">
+<ul class="org-ul">
+<li><a href="https://plugins.jquery.com/">https://plugins.jquery.com/</a></li>
+<li><a href="https://learn.jquery.com/plugins/basic-plugin-creation/">https://learn.jquery.com/plugins/basic-plugin-creation/</a></li>
+</ul>
+
+
+<div class="org-src-container">
+<pre class="src src-js">(<span class="org-keyword">function</span> ( <span class="org-variable-name">$</span> ) {
+    <span class="org-keyword">var</span> <span class="org-variable-name">shade</span> = <span class="org-string">"#556b2f"</span>;
+
+    $.fn.greenify = <span class="org-keyword">function</span>() {
+        <span class="org-constant">this</span>.css( <span class="org-string">"color"</span>, shade );
+        <span class="org-keyword">return</span> <span class="org-constant">this</span>;
+    };
+}( jQuery ));
+</pre>
+</div>
+</div>
+</section>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: yaowuer</p>
+<p class="date">Created: 2019-07-29 Mon 01:41</p>
+<p class="validation">Go ahead, never stop.</p>
+</div>
+</body>
+</html>

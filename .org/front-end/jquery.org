@@ -1,0 +1,240 @@
+#+TITLE: jQuery
+
+
+
+https://jquery.com/
+
+* 简介
+
+背景:
+- DOM 自身 API 太复杂太反人类
+- 写浏览器兼容的代码太麻烦
+
+特点:
+- 是对原生方法的封装
+- 语法简洁
+- 链式操作，好用到爆炸
+
+基本操作逻辑
+1. 选取元素 ($)
+2. 执行操作 (action)
+
+比如:
+#+BEGIN_SRC js
+  $("div").css("color", "red");
+#+END_SRC
+
+* 选择器 (Selector)
+** 基本选择
+
+#+BEGIN_SRC js
+  // by Id
+  $("#cart");
+
+  // by Class
+  $(".red");
+
+  // by Element
+  $("div");
+
+  // by Attribute
+  $("input[name='password']");
+
+  // 组合
+  $("#contents ul.people li");
+  $("#contents > div");
+  $("#contents + div");
+
+  // 多个
+  $("div.myClass, ul.people");
+#+END_SRC
+
+** 过滤-伪类
+
+#+BEGIN_SRC js
+  $("input:first");
+  $("tr:odd");
+  $("div:gt(2)");
+  $("div:visible");
+  $("div:animated");
+#+END_SRC
+
+** 过滤-方法
+
+#+BEGIN_SRC js
+  $(".x").has("p");
+  $(".x").not(".bar");
+  $(".x").filter(".current");
+  $(".x").first();
+  $(".x").last();
+  $(".x").eq(5);
+#+END_SRC
+
+** Form 表单相关
+
+jQuery 提供了一些快速选取的语法，让你能更轻松对 form 表单进行选取:
+
+#+BEGIN_SRC js
+  $("form :checked");
+  $(":input");
+  $(":checked");
+  $(":selected");
+  $(":disabled");
+#+END_SRC
+
+其他:
+- ~:password~
+- ~:reset~
+- ~:radio~
+- ~:text~
+- ~:submit~
+- ~:checkbox~
+- ~:button~
+- ~:image~
+- ~:file~
+
+** 按图索骥
+
+- 父辈: parent/parents/parentsUntil/closest
+- 子辈: children/find
+- 兄弟: next/nextAll/prev/prevAll/siblings
+
+* DOM 操作
+** text/html/val
+
+** attr/prop/width/height/position
+
+** append/prepend/before/after/appendTo/prependTo
+
+** clone/remove/empty/detach
+
+** css/addClass/removeClass/toggleClass
+
+* 事件 (Events)
+
+API:
+- ~$.on('click, function () {})~
+- ~$.click(function () {})~
+- ~$.off~
+
+常用事件:
+- 鼠标: click/dbclick/mouseover/mouseleave/hover
+- 键盘: keydown/keyup/keypress
+- 表单: focus/blur/change/select
+- DOM: ready/load/unload
+
+* 动画效果 (Effects)
+
+- hide/show/toggle
+- fadeOut/fadeIn/fadeToggle
+- slideUp/slideDown/slideToggle
+- delay
+- animate
+
+* 异步提交 (Ajax)
+
+- $.ajax
+- $.get/$.post
+- $.load
+
+#+BEGIN_SRC js
+  // Using the core $.ajax() method
+  $.ajax({
+
+      // The URL for the request
+      url: "post.php",
+
+      // The data to send (will be converted to a query string)
+      data: {
+          id: 123
+      },
+    
+      // Whether this is a POST or GET request
+      type: "GET",
+    
+      // The type of data we expect back
+      dataType : "json",
+  })
+  // Code to run if the request succeeds (is done);
+  // The response is passed to the function
+      .done(function( json ) {
+          $( "<h1>" ).text( json.title ).appendTo( "body" );
+          $( "<div class=\"content\">").html( json.html ).appendTo( "body" );
+      })
+  // Code to run if the request fails; the raw request and
+  // status codes are passed to the function
+      .fail(function( xhr, status, errorThrown ) {
+          alert( "Sorry, there was a problem!" );
+          console.log( "Error: " + errorThrown );
+          console.log( "Status: " + status );
+          console.dir( xhr );
+      })
+  // Code to run regardless of success or failure;
+      .always(function( xhr, status ) {
+          alert( "The request is complete!" );
+      });
+#+END_SRC
+
+** Form 表单获取数据
+
+serialize/serializeArray/params:
+
+#+BEGIN_SRC js
+  $( "#myForm" ).serialize();
+  // field_1=something&field2=somethingElse
+
+  $( "#myForm" ).serializeArray();
+  // [
+  //   {
+  //     name : "field_1",
+  //     value : "something"
+  //   },
+  //   {
+  //     name : "field_2",
+  //     value : "somethingElse"
+  //   }
+  // ]
+#+END_SRC
+
+** 表单验证
+
+#+BEGIN_SRC js
+  $( "#form" ).submit(function( event ) {
+      var inputtedPhoneNumber = $( "#phone" ).val();
+
+      // Match only numbers
+      var phoneNumberRegex = /^\d*$/;
+
+      // If the phone number doesn't match the regex
+      if ( !phoneNumberRegex.test( inputtedPhoneNumber ) ) {
+
+          // Usually show some kind of error message here
+
+          // Prevent the form from submitting
+          event.preventDefault();
+      } else {
+          // Run $.ajax() here
+      }
+  });
+#+END_SRC
+
+* 其他函数
+
+- ~$.trim/each/map/inArray/extend/isXxx~
+
+* 扩展与插件 (Extend/Plugins)
+
+- https://plugins.jquery.com/
+- https://learn.jquery.com/plugins/basic-plugin-creation/
+
+
+#+BEGIN_SRC js
+  (function ( $ ) {
+      var shade = "#556b2f";
+
+      $.fn.greenify = function() {
+          this.css( "color", shade );
+          return this;
+      };
+  }( jQuery ));
+#+END_SRC
