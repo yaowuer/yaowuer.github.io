@@ -38,9 +38,11 @@ https://jquery.com/
   $("div");
 
   // by Attribute
-  $("input[name='password']");
+  $("input[id]");       // 所有有 id 属性的 input
+  $("input[name='n']"); // 所有 name 属性的值为 n 的 input
 
   // 组合
+  $("div#cart"); // 所有 id 为 cart 的 div
   $("#contents ul.people li");
   $("#contents > div");
   $("#contents + div");
@@ -100,15 +102,14 @@ jQuery 提供了一些快速选取的语法，让你能更轻松对 form 表单�
 - 兄弟: next/nextAll/prev/prevAll/siblings
 
 * DOM 操作
-** text/html/val
-
-** attr/prop/width/height/position
+** text/html/val/attr/prop
 
 ** append/prepend/before/after/appendTo/prependTo
 
 ** clone/remove/empty/detach
 
-** css/addClass/removeClass/toggleClass
+** css/addClass/removeClass/toggleClass/hasClass
+** width/height/position
 
 * 事件 (Events)
 
@@ -116,17 +117,18 @@ API:
 - ~$.on('click, function () {})~
 - ~$.click(function () {})~
 - ~$.off~
+- ~one/bind/unbind~
 
 常用事件:
 - 鼠标: click/dbclick/mouseover/mouseleave/hover
 - 键盘: keydown/keyup/keypress
-- 表单: focus/blur/change/select
-- DOM: ready/load/unload
+- 表单: focus/blur/change/select/submit
+- DOM: ready/load/unload/resize/scroll
 
 * 动画效果 (Effects)
 
 - hide/show/toggle
-- fadeOut/fadeIn/fadeToggle
+- fadeOut/fadeIn/fadeToggle/fadeTo
 - slideUp/slideDown/slideToggle
 - delay
 - animate
@@ -220,6 +222,7 @@ serialize/serializeArray/params:
 
 * 其他函数
 
+- ~data/get/index~
 - ~$.trim/each/map/inArray/extend/isXxx~
 
 * 扩展与插件 (Extend/Plugins)
@@ -227,6 +230,10 @@ serialize/serializeArray/params:
 - https://plugins.jquery.com/
 - https://learn.jquery.com/plugins/basic-plugin-creation/
 
+API:
+- jQuery.fn
+- jQuery.extend
+- jQuery.fn.extend
 
 #+BEGIN_SRC js
   (function ( $ ) {

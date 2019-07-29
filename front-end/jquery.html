@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-29 Mon 01:41 -->
+<!-- 2019-07-29 Mon 01:57 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery</title>
@@ -32,11 +32,11 @@
 </li>
 <li><a href="#org6fb9092">3. DOM 操作</a>
 <ul>
-<li><a href="#org588d697">3.1. text/html/val</a></li>
-<li><a href="#orgf2dfa66">3.2. attr/prop/width/height/position</a></li>
-<li><a href="#orgef0be7a">3.3. append/prepend/before/after/appendTo/prependTo</a></li>
-<li><a href="#orgc28ec48">3.4. clone/remove/empty/detach</a></li>
-<li><a href="#org04aa278">3.5. css/addClass/removeClass/toggleClass</a></li>
+<li><a href="#org04c5f9e">3.1. text/html/val/attr/prop</a></li>
+<li><a href="#orgef0be7a">3.2. append/prepend/before/after/appendTo/prependTo</a></li>
+<li><a href="#orgc28ec48">3.3. clone/remove/empty/detach</a></li>
+<li><a href="#org09a20b1">3.4. css/addClass/removeClass/toggleClass/hasClass</a></li>
+<li><a href="#org8319938">3.5. width/height/position</a></li>
 </ul>
 </li>
 <li><a href="#org4bdc088">4. 事件 (Events)</a></li>
@@ -112,9 +112,11 @@ $(<span class="org-string">".red"</span>);
 $(<span class="org-string">"div"</span>);
 
 <span class="org-comment-delimiter">// </span><span class="org-comment">by Attribute</span>
-$(<span class="org-string">"input[name='password']"</span>);
+$(<span class="org-string">"input[id]"</span>);       <span class="org-comment-delimiter">// </span><span class="org-comment">&#25152;&#26377;&#26377; id &#23646;&#24615;&#30340; input</span>
+$(<span class="org-string">"input[name='n']"</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">&#25152;&#26377; name &#23646;&#24615;&#30340;&#20540;&#20026; n &#30340; input</span>
 
 <span class="org-comment-delimiter">// </span><span class="org-comment">&#32452;&#21512;</span>
+$(<span class="org-string">"div#cart"</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">&#25152;&#26377; id &#20026; cart &#30340; div</span>
 $(<span class="org-string">"#contents ul.people li"</span>);
 $(<span class="org-string">"#contents &gt; div"</span>);
 $(<span class="org-string">"#contents + div"</span>);
@@ -204,24 +206,23 @@ $(<span class="org-string">":disabled"</span>);
 <h2 id="org6fb9092"><span class="section-number-2">3</span> DOM 操作</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org588d697" class="outline-3">
-<h3 id="org588d697"><span class="section-number-3">3.1</span> text/html/val</h3>
-</div>
-
-<div id="outline-container-orgf2dfa66" class="outline-3">
-<h3 id="orgf2dfa66"><span class="section-number-3">3.2</span> attr/prop/width/height/position</h3>
+<div id="outline-container-org04c5f9e" class="outline-3">
+<h3 id="org04c5f9e"><span class="section-number-3">3.1</span> text/html/val/attr/prop</h3>
 </div>
 
 <div id="outline-container-orgef0be7a" class="outline-3">
-<h3 id="orgef0be7a"><span class="section-number-3">3.3</span> append/prepend/before/after/appendTo/prependTo</h3>
+<h3 id="orgef0be7a"><span class="section-number-3">3.2</span> append/prepend/before/after/appendTo/prependTo</h3>
 </div>
 
 <div id="outline-container-orgc28ec48" class="outline-3">
-<h3 id="orgc28ec48"><span class="section-number-3">3.4</span> clone/remove/empty/detach</h3>
+<h3 id="orgc28ec48"><span class="section-number-3">3.3</span> clone/remove/empty/detach</h3>
 </div>
 
-<div id="outline-container-org04aa278" class="outline-3">
-<h3 id="org04aa278"><span class="section-number-3">3.5</span> css/addClass/removeClass/toggleClass</h3>
+<div id="outline-container-org09a20b1" class="outline-3">
+<h3 id="org09a20b1"><span class="section-number-3">3.4</span> css/addClass/removeClass/toggleClass/hasClass</h3>
+</div>
+<div id="outline-container-org8319938" class="outline-3">
+<h3 id="org8319938"><span class="section-number-3">3.5</span> width/height/position</h3>
 </div>
 </section>
 
@@ -235,6 +236,7 @@ API:
 <li><code>$.on('click, function () {})</code></li>
 <li><code>$.click(function () {})</code></li>
 <li><code>$.off</code></li>
+<li><code>one/bind/unbind</code></li>
 </ul>
 
 <p>
@@ -243,8 +245,8 @@ API:
 <ul class="org-ul">
 <li>鼠标: click/dbclick/mouseover/mouseleave/hover</li>
 <li>键盘: keydown/keyup/keypress</li>
-<li>表单: focus/blur/change/select</li>
-<li>DOM: ready/load/unload</li>
+<li>表单: focus/blur/change/select/submit</li>
+<li>DOM: ready/load/unload/resize/scroll</li>
 </ul>
 </div>
 </section>
@@ -254,7 +256,7 @@ API:
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>hide/show/toggle</li>
-<li>fadeOut/fadeIn/fadeToggle</li>
+<li>fadeOut/fadeIn/fadeToggle/fadeTo</li>
 <li>slideUp/slideDown/slideToggle</li>
 <li>delay</li>
 <li>animate</li>
@@ -369,6 +371,7 @@ $( <span class="org-string">"#myForm"</span> ).serializeArray();
 <h2 id="orgd922a82"><span class="section-number-2">7</span> 其他函数</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
+<li><code>data/get/index</code></li>
 <li><code>$.trim/each/map/inArray/extend/isXxx</code></li>
 </ul>
 </div>
@@ -382,6 +385,14 @@ $( <span class="org-string">"#myForm"</span> ).serializeArray();
 <li><a href="https://learn.jquery.com/plugins/basic-plugin-creation/">https://learn.jquery.com/plugins/basic-plugin-creation/</a></li>
 </ul>
 
+<p>
+API:
+</p>
+<ul class="org-ul">
+<li>jQuery.fn</li>
+<li>jQuery.extend</li>
+<li>jQuery.fn.extend</li>
+</ul>
 
 <div class="org-src-container">
 <pre class="src src-js">(<span class="org-keyword">function</span> ( <span class="org-variable-name">$</span> ) {
@@ -399,7 +410,7 @@ $( <span class="org-string">"#myForm"</span> ).serializeArray();
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-29 Mon 01:41</p>
+<p class="date">Created: 2019-07-29 Mon 01:57</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
