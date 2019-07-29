@@ -1,0 +1,95 @@
+#+TITLE: AJAX 
+
+
+
+Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）
+
+* Quick Start
+
+#+BEGIN_SRC js
+  // 1. 创建一个 ajax 对象
+  var xhr = new XMLHttpRequest();
+
+  // 2. 初始化
+  xhr.open("GET", "/ajax/video", true);
+
+  // 3. 发送请求
+  xhr.send();
+
+  // 注册回调函数（事件）
+  xhr.onload = function (e) {
+      alert(e);
+  };
+#+END_SRC
+
+* DEMO
+
+#+BEGIN_SRC html
+  <html>
+  <head>
+      <title>视频播放</title>
+      <style>
+          #comments {
+              max-height: 100px;
+              overflow-y: auto;
+          }
+      </style>
+  </head>
+  <body>
+
+  <div style="display: flex; flex-flow: row nowrap">
+      <section style="margin: 1em;">
+          <video width="200" controls="controls" src="${pageContext.request.contextPath}/assets/aaa.mp4"></video>
+      </section>
+
+      <section>
+          <h3>评论内容</h3>
+          <ul id="comments">
+          </ul>
+
+          <div>
+              <textarea name="content"></textarea>
+              <button onclick="doSubmitComment()">提交评论</button>
+          </div>
+      </section>
+  </div>
+
+  <script>
+
+      function loadComments() {
+          var xhr = new XMLHttpRequest();
+          xhr.open("GET", "${pageContext.request.contextPath}/ajax/comment");
+          xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+          xhr.send(null);
+
+          xhr.onload = function (ev) {
+              var comments = document.querySelector("#comments");
+              comments.innerHTML = this.responseText;
+              comments.scrollTo(0, comments.scrollHeight);
+          };
+      }
+
+      function doSubmitComment() {
+          var content = document.querySelector("textarea");
+          var comments = document.querySelector("#comments");
+
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "${pageContext.request.contextPath}/ajax/comment");
+
+          xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+          xhr.send("content=" + content.value);
+
+          xhr.onload = function (ev) {
+              content.value = "";
+              loadComments();
+          };
+      }
+
+      window.onload = function (ev) {
+          loadComments();
+      };
+  </script>
+
+  </body>
+  </html>
+#+END_SRC
