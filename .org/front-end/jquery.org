@@ -25,6 +25,10 @@ https://jquery.com/
 #+END_SRC
 
 * 选择器 (Selector)
+
+[[file:img/scrot_2019-07-30_03-24-29.png]]
+
+
 ** 基本选择
 
 #+BEGIN_SRC js
