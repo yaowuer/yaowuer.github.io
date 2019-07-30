@@ -183,7 +183,7 @@ API:
   $("ul").off(); // 删除元素上所有事件
 
   // 相当于 window.onload 但执行时机更靠前 dom 节点加载完之后立刻执行的逻辑
-  $.ready(function () { })
+  $.ready(function () { });
   $(function () { });
 #+END_SRC
 
