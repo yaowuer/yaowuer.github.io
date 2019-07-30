@@ -158,36 +158,33 @@ API:
 - ~one~ 增加一次事件
 - ~bind/unbind~
 
-基本示例:
-#+BEGIN_SRC js
-  $("li").click(function (e) {
-    alert($(this).text());  // 函数的参数，表示 event 事件。使用 $(this) 获取当前元素(target)
-  });
-
-  $("ul").on("click", ".xxx", function (e) {
-      alert($(this).text() + "!");
-  });
-
-  $("input").on("keypress", function (e) {
-      if (e.keyCode === 13) {
-          alert("您输入的是: " + $(this).val());
-      }
-  });
-#+END_SRC
-
 常用事件:
 - 鼠标: click/dblclick/mouseenter/mouseover/mouseleave/hover
 - 键盘: keydown/keyup/keypress
 - 表单: focus/blur/change/select/submit
 - DOM: ready/load/unload/resize/scroll
 
+基本示例:
 #+BEGIN_SRC js
-  $.ready(function () { // 相当于 window.onload 但执行时机更靠前 dom 节点加载完之后立刻执行的逻辑
+  $("li").click(function (e) {
+    alert($(this).text());  // 函数的参数，表示 event 事件。使用 $(this) 获取当前元素(target)
   });
 
-  $(function () {
-    
+  $("ul").on("click", ".xxx", function (e) { // 事件委托机制
+      alert($(this).text() + "!");
   });
+
+  $("input").on("keypress", function (e) { // 键盘事件
+      if (e.keyCode === 13) {
+          alert("您输入的是: " + $(this).val());
+      }
+  });
+
+  $("ul").off(); // 删除元素上所有事件
+
+  // 相当于 window.onload 但执行时机更靠前 dom 节点加载完之后立刻执行的逻辑
+  $.ready(function () { })
+  $(function () { });
 #+END_SRC
 
 * 动画效果 (Effects)

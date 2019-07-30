@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-30 Tue 07:39 -->
+<!-- 2019-07-30 Tue 07:40 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery</title>
@@ -304,26 +304,6 @@ API:
 </ul>
 
 <p>
-基本示例:
-</p>
-<div class="org-src-container">
-<pre class="src src-js">$(<span class="org-string">"li"</span>).click(<span class="org-keyword">function</span> (<span class="org-variable-name">e</span>) {
-  alert($(<span class="org-constant">this</span>).text());  <span class="org-comment-delimiter">// </span><span class="org-comment">&#20989;&#25968;&#30340;&#21442;&#25968;&#65292;&#34920;&#31034; event &#20107;&#20214;&#12290;&#20351;&#29992; $(this) &#33719;&#21462;&#24403;&#21069;&#20803;&#32032;(target)</span>
-});
-
-$(<span class="org-string">"ul"</span>).on(<span class="org-string">"click"</span>, <span class="org-string">".xxx"</span>, <span class="org-keyword">function</span> (<span class="org-variable-name">e</span>) {
-    alert($(<span class="org-constant">this</span>).text() + <span class="org-string">"!"</span>);
-});
-
-$(<span class="org-string">"input"</span>).on(<span class="org-string">"keypress"</span>, <span class="org-keyword">function</span> (<span class="org-variable-name">e</span>) {
-    <span class="org-keyword">if</span> (e.keyCode === 13) {
-        alert(<span class="org-string">"&#24744;&#36755;&#20837;&#30340;&#26159;: "</span> + $(<span class="org-constant">this</span>).val());
-    }
-});
-</pre>
-</div>
-
-<p>
 常用事件:
 </p>
 <ul class="org-ul">
@@ -333,13 +313,29 @@ $(<span class="org-string">"input"</span>).on(<span class="org-string">"keypress
 <li>DOM: ready/load/unload/resize/scroll</li>
 </ul>
 
+<p>
+基本示例:
+</p>
 <div class="org-src-container">
-<pre class="src src-js">$.ready(<span class="org-keyword">function</span> () { <span class="org-comment-delimiter">// </span><span class="org-comment">&#30456;&#24403;&#20110; window.onload &#20294;&#25191;&#34892;&#26102;&#26426;&#26356;&#38752;&#21069; dom &#33410;&#28857;&#21152;&#36733;&#23436;&#20043;&#21518;&#31435;&#21051;&#25191;&#34892;&#30340;&#36923;&#36753;</span>
+<pre class="src src-js">$(<span class="org-string">"li"</span>).click(<span class="org-keyword">function</span> (<span class="org-variable-name">e</span>) {
+  alert($(<span class="org-constant">this</span>).text());  <span class="org-comment-delimiter">// </span><span class="org-comment">&#20989;&#25968;&#30340;&#21442;&#25968;&#65292;&#34920;&#31034; event &#20107;&#20214;&#12290;&#20351;&#29992; $(this) &#33719;&#21462;&#24403;&#21069;&#20803;&#32032;(target)</span>
 });
 
-$(<span class="org-keyword">function</span> () {
-
+$(<span class="org-string">"ul"</span>).on(<span class="org-string">"click"</span>, <span class="org-string">".xxx"</span>, <span class="org-keyword">function</span> (<span class="org-variable-name">e</span>) { <span class="org-comment-delimiter">// </span><span class="org-comment">&#20107;&#20214;&#22996;&#25176;&#26426;&#21046;</span>
+    alert($(<span class="org-constant">this</span>).text() + <span class="org-string">"!"</span>);
 });
+
+$(<span class="org-string">"input"</span>).on(<span class="org-string">"keypress"</span>, <span class="org-keyword">function</span> (<span class="org-variable-name">e</span>) { <span class="org-comment-delimiter">// </span><span class="org-comment">&#38190;&#30424;&#20107;&#20214;</span>
+    <span class="org-keyword">if</span> (e.keyCode === 13) {
+        alert(<span class="org-string">"&#24744;&#36755;&#20837;&#30340;&#26159;: "</span> + $(<span class="org-constant">this</span>).val());
+    }
+});
+
+$(<span class="org-string">"ul"</span>).off(); <span class="org-comment-delimiter">// </span><span class="org-comment">&#21024;&#38500;&#20803;&#32032;&#19978;&#25152;&#26377;&#20107;&#20214;</span>
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#30456;&#24403;&#20110; window.onload &#20294;&#25191;&#34892;&#26102;&#26426;&#26356;&#38752;&#21069; dom &#33410;&#28857;&#21152;&#36733;&#23436;&#20043;&#21518;&#31435;&#21051;&#25191;&#34892;&#30340;&#36923;&#36753;</span>
+$.ready(<span class="org-keyword">function</span> () { })
+$(<span class="org-keyword">function</span> () { });
 </pre>
 </div>
 </div>
@@ -527,7 +523,7 @@ API:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-30 Tue 07:39</p>
+<p class="date">Created: 2019-07-30 Tue 07:40</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
