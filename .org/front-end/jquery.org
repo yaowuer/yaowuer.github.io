@@ -158,6 +158,23 @@ API:
 - ~one~ 增加一次事件
 - ~bind/unbind~
 
+基本示例:
+#+BEGIN_SRC js
+  $("li").click(function (e) {
+    alert($(this).text());  // 函数的参数，表示 event 事件。使用 $(this) 获取当前元素(target)
+  });
+
+  $("ul").on("click", ".xxx", function (e) {
+      alert($(this).text() + "!");
+  });
+
+  $("input").on("keypress", function (e) {
+      if (e.keyCode === 13) {
+          alert("您输入的是: " + $(this).val());
+      }
+  });
+#+END_SRC
+
 常用事件:
 - 鼠标: click/dblclick/mouseenter/mouseover/mouseleave/hover
 - 键盘: keydown/keyup/keypress
@@ -171,7 +188,6 @@ API:
   $(function () {
     
   });
-
 #+END_SRC
 
 * 动画效果 (Effects)
