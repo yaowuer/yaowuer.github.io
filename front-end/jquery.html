@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-30 Tue 03:24 -->
+<!-- 2019-07-30 Tue 06:52 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery</title>
@@ -293,6 +293,29 @@ $(<span class="org-keyword">function</span> () {
 <li>delay</li>
 <li>animate</li>
 </ul>
+
+<div class="org-src-container">
+<pre class="src src-js">
+$(<span class="org-string">"ul.banner_bg"</span>)
+    .css(<span class="org-string">"position"</span>, <span class="org-string">"fixed"</span>)
+    .css(<span class="org-string">"left"</span>, <span class="org-string">"0"</span>)
+    .css(<span class="org-string">"top"</span>, <span class="org-string">"0"</span>);
+
+$(<span class="org-string">"ul.banner_bg img"</span>)
+    .css(<span class="org-string">"width"</span>, <span class="org-string">"400px"</span>)
+    .css(<span class="org-string">"height"</span>, <span class="org-string">"400xp"</span>);
+
+$(<span class="org-string">"ul.banner_bg img"</span>)
+    .animate({
+        <span class="org-string">"width"</span>: <span class="org-string">"400px"</span>,
+        <span class="org-string">"height"</span>: <span class="org-string">"400px"</span>
+    }, 2000)
+    .closest(<span class="org-string">"ul"</span>)
+    .animate({
+        <span class="org-string">"left"</span>: <span class="org-string">"800px"</span>
+    }, 2000);
+</pre>
+</div>
 </div>
 </section>
 
@@ -442,7 +465,7 @@ API:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-30 Tue 03:24</p>
+<p class="date">Created: 2019-07-30 Tue 06:52</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

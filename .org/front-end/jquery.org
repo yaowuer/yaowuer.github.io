@@ -160,6 +160,28 @@ API:
 - delay
 - animate
 
+#+BEGIN_SRC js
+
+  $("ul.banner_bg")
+      .css("position", "fixed")
+      .css("left", "0")
+      .css("top", "0");
+
+  $("ul.banner_bg img")
+      .css("width", "400px")
+      .css("height", "400xp");
+
+  $("ul.banner_bg img")
+      .animate({
+          "width": "400px",
+          "height": "400px"
+      }, 2000)
+      .closest("ul")
+      .animate({
+          "left": "800px"
+      }, 2000);
+#+END_SRC
+
 * 异步提交 (Ajax)
 
 - $.ajax
