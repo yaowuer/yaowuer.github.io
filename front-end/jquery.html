@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-30 Tue 06:52 -->
+<!-- 2019-07-30 Tue 07:06 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery</title>
@@ -21,34 +21,35 @@
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#org1c3bb8a">1. 简介</a></li>
-<li><a href="#org5a27757">2. 选择器 (Selector)</a>
+<li><a href="#orgedbd996">2. 使用</a></li>
+<li><a href="#org5a27757">3. 选择器 (Selector)</a>
 <ul>
-<li><a href="#org9593c19">2.1. 基本选择</a></li>
-<li><a href="#org2eaa8ba">2.2. 过滤-伪类</a></li>
-<li><a href="#orgac5512c">2.3. 过滤-方法</a></li>
-<li><a href="#orgeebeecf">2.4. Form 表单相关</a></li>
-<li><a href="#orga016c54">2.5. 按图索骥</a></li>
+<li><a href="#org9593c19">3.1. 基本选择</a></li>
+<li><a href="#org2eaa8ba">3.2. 过滤-伪类</a></li>
+<li><a href="#orgac5512c">3.3. 过滤-方法</a></li>
+<li><a href="#orgeebeecf">3.4. Form 表单相关</a></li>
+<li><a href="#orga016c54">3.5. 按图索骥</a></li>
 </ul>
 </li>
-<li><a href="#org6fb9092">3. DOM 操作</a>
+<li><a href="#org6fb9092">4. DOM 操作</a>
 <ul>
-<li><a href="#org04c5f9e">3.1. text/html/val/attr/prop</a></li>
-<li><a href="#orgef0be7a">3.2. append/prepend/before/after/appendTo/prependTo</a></li>
-<li><a href="#orgc28ec48">3.3. clone/remove/empty/detach</a></li>
-<li><a href="#org09a20b1">3.4. css/addClass/removeClass/toggleClass/hasClass</a></li>
-<li><a href="#org8319938">3.5. width/height/position</a></li>
+<li><a href="#org04c5f9e">4.1. text/html/val/attr/prop</a></li>
+<li><a href="#orgef0be7a">4.2. append/prepend/before/after/appendTo/prependTo</a></li>
+<li><a href="#orgc28ec48">4.3. clone/remove/empty/detach</a></li>
+<li><a href="#org09a20b1">4.4. css/addClass/removeClass/toggleClass/hasClass</a></li>
+<li><a href="#org8319938">4.5. width/height/position</a></li>
 </ul>
 </li>
-<li><a href="#org4bdc088">4. 事件 (Events)</a></li>
-<li><a href="#org2407114">5. 动画效果 (Effects)</a></li>
-<li><a href="#org1c43550">6. 异步提交 (Ajax)</a>
+<li><a href="#org4bdc088">5. 事件 (Events)</a></li>
+<li><a href="#org2407114">6. 动画效果 (Effects)</a></li>
+<li><a href="#org1c43550">7. 异步提交 (Ajax)</a>
 <ul>
-<li><a href="#orgfb5c808">6.1. Form 表单获取数据</a></li>
-<li><a href="#org61656a8">6.2. 表单验证</a></li>
+<li><a href="#orgfb5c808">7.1. Form 表单获取数据</a></li>
+<li><a href="#org61656a8">7.2. 表单验证</a></li>
 </ul>
 </li>
-<li><a href="#orgd922a82">7. 其他函数</a></li>
-<li><a href="#org6cbc9b3">8. 扩展与插件 (Extend/Plugins)</a></li>
+<li><a href="#orgd922a82">8. 其他函数</a></li>
+<li><a href="#org6cbc9b3">9. 扩展与插件 (Extend/Plugins)</a></li>
 </ul>
 </div>
 </nav>
@@ -94,9 +95,43 @@
 </div>
 </section>
 
-<section id="outline-container-org5a27757" class="outline-2">
-<h2 id="org5a27757"><span class="section-number-2">2</span> 选择器 (Selector)</h2>
+<section id="outline-container-orgedbd996" class="outline-2">
+<h2 id="orgedbd996"><span class="section-number-2">2</span> 使用</h2>
 <div class="outline-text-2" id="text-2">
+<p>
+可以选择下载到本地，再引用到项目中:
+</p>
+<ul class="org-ul">
+<li><a href="https://cdn.bootcss.com/jquery/3.4.1/jquery.js">https://cdn.bootcss.com/jquery/3.4.1/jquery.js</a></li>
+<li><a href="https://cdn.bootcss.com/jquery/3.4.1/jquery-min.js">https://cdn.bootcss.com/jquery/3.4.1/jquery-min.js</a></li>
+</ul>
+
+<p>
+其中 min 版本代表进行了压缩的版本，它的体积比较小，适合生产环境。如果有可能会去阅读 jquery 源码，那么应该选择前者。
+</p>
+
+<p>
+也可以直接选择某个 CDN(内容分发网络) 服务商提供的超链接，比如:
+</p>
+<pre class="example">
+&lt;script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.bootcss.com/jquery/3.4.1/jquery-min.js"&gt;&lt;/script&gt;
+</pre>
+
+<p>
+常见的 CDN 服务网站有:
+</p>
+<ul class="org-ul">
+<li><a href="https://www.bootcdn.cn/">https://www.bootcdn.cn/</a></li>
+<li><a href="http://www.staticfile.org/">http://www.staticfile.org/</a></li>
+<li><a href="http://jscdn.upai.com/">http://jscdn.upai.com/</a></li>
+</ul>
+</div>
+</section>
+
+<section id="outline-container-org5a27757" class="outline-2">
+<h2 id="org5a27757"><span class="section-number-2">3</span> 选择器 (Selector)</h2>
+<div class="outline-text-2" id="text-3">
 
 <figure>
 <img src="img/scrot_2019-07-30_03-24-29.png" alt="scrot_2019-07-30_03-24-29.png">
@@ -106,8 +141,8 @@
 
 
 <div id="outline-container-org9593c19" class="outline-3">
-<h3 id="org9593c19"><span class="section-number-3">2.1</span> 基本选择</h3>
-<div class="outline-text-3" id="text-2-1">
+<h3 id="org9593c19"><span class="section-number-3">3.1</span> 基本选择</h3>
+<div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 <pre class="src src-js"><span class="org-comment-delimiter">// </span><span class="org-comment">by Id</span>
 $(<span class="org-string">"#cart"</span>);
@@ -136,8 +171,8 @@ $(<span class="org-string">"div.myClass, ul.people"</span>);
 </div>
 
 <div id="outline-container-org2eaa8ba" class="outline-3">
-<h3 id="org2eaa8ba"><span class="section-number-3">2.2</span> 过滤-伪类</h3>
-<div class="outline-text-3" id="text-2-2">
+<h3 id="org2eaa8ba"><span class="section-number-3">3.2</span> 过滤-伪类</h3>
+<div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 <pre class="src src-js">$(<span class="org-string">"input:first"</span>);
 $(<span class="org-string">"tr:odd"</span>);
@@ -150,8 +185,8 @@ $(<span class="org-string">"div:animated"</span>);
 </div>
 
 <div id="outline-container-orgac5512c" class="outline-3">
-<h3 id="orgac5512c"><span class="section-number-3">2.3</span> 过滤-方法</h3>
-<div class="outline-text-3" id="text-2-3">
+<h3 id="orgac5512c"><span class="section-number-3">3.3</span> 过滤-方法</h3>
+<div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 <pre class="src src-js">$(<span class="org-string">".x"</span>).has(<span class="org-string">"p"</span>);
 $(<span class="org-string">".x"</span>).not(<span class="org-string">".bar"</span>);
@@ -165,8 +200,8 @@ $(<span class="org-string">".x"</span>).eq(5);
 </div>
 
 <div id="outline-container-orgeebeecf" class="outline-3">
-<h3 id="orgeebeecf"><span class="section-number-3">2.4</span> Form 表单相关</h3>
-<div class="outline-text-3" id="text-2-4">
+<h3 id="orgeebeecf"><span class="section-number-3">3.4</span> Form 表单相关</h3>
+<div class="outline-text-3" id="text-3-4">
 <p>
 jQuery 提供了一些快速选取的语法，让你能更轻松对 form 表单进行选取:
 </p>
@@ -198,8 +233,8 @@ $(<span class="org-string">":disabled"</span>);
 </div>
 
 <div id="outline-container-orga016c54" class="outline-3">
-<h3 id="orga016c54"><span class="section-number-3">2.5</span> 按图索骥</h3>
-<div class="outline-text-3" id="text-2-5">
+<h3 id="orga016c54"><span class="section-number-3">3.5</span> 按图索骥</h3>
+<div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
 <li>父辈: parent/parents/parentsUntil/closest</li>
 <li>子辈: children/find</li>
@@ -222,32 +257,32 @@ a.siblings().css(<span class="org-string">"color"</span>, <span class="org-strin
 </section>
 
 <section id="outline-container-org6fb9092" class="outline-2">
-<h2 id="org6fb9092"><span class="section-number-2">3</span> DOM 操作</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="org6fb9092"><span class="section-number-2">4</span> DOM 操作</h2>
+<div class="outline-text-2" id="text-4">
 </div>
 <div id="outline-container-org04c5f9e" class="outline-3">
-<h3 id="org04c5f9e"><span class="section-number-3">3.1</span> text/html/val/attr/prop</h3>
+<h3 id="org04c5f9e"><span class="section-number-3">4.1</span> text/html/val/attr/prop</h3>
 </div>
 
 <div id="outline-container-orgef0be7a" class="outline-3">
-<h3 id="orgef0be7a"><span class="section-number-3">3.2</span> append/prepend/before/after/appendTo/prependTo</h3>
+<h3 id="orgef0be7a"><span class="section-number-3">4.2</span> append/prepend/before/after/appendTo/prependTo</h3>
 </div>
 
 <div id="outline-container-orgc28ec48" class="outline-3">
-<h3 id="orgc28ec48"><span class="section-number-3">3.3</span> clone/remove/empty/detach</h3>
+<h3 id="orgc28ec48"><span class="section-number-3">4.3</span> clone/remove/empty/detach</h3>
 </div>
 
 <div id="outline-container-org09a20b1" class="outline-3">
-<h3 id="org09a20b1"><span class="section-number-3">3.4</span> css/addClass/removeClass/toggleClass/hasClass</h3>
+<h3 id="org09a20b1"><span class="section-number-3">4.4</span> css/addClass/removeClass/toggleClass/hasClass</h3>
 </div>
 <div id="outline-container-org8319938" class="outline-3">
-<h3 id="org8319938"><span class="section-number-3">3.5</span> width/height/position</h3>
+<h3 id="org8319938"><span class="section-number-3">4.5</span> width/height/position</h3>
 </div>
 </section>
 
 <section id="outline-container-org4bdc088" class="outline-2">
-<h2 id="org4bdc088"><span class="section-number-2">4</span> 事件 (Events)</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="org4bdc088"><span class="section-number-2">5</span> 事件 (Events)</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 API:
 </p>
@@ -284,8 +319,8 @@ $(<span class="org-keyword">function</span> () {
 </section>
 
 <section id="outline-container-org2407114" class="outline-2">
-<h2 id="org2407114"><span class="section-number-2">5</span> 动画效果 (Effects)</h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="org2407114"><span class="section-number-2">6</span> 动画效果 (Effects)</h2>
+<div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>hide/show/toggle</li>
 <li>fadeOut/fadeIn/fadeToggle/fadeTo</li>
@@ -320,8 +355,8 @@ $(<span class="org-string">"ul.banner_bg img"</span>)
 </section>
 
 <section id="outline-container-org1c43550" class="outline-2">
-<h2 id="org1c43550"><span class="section-number-2">6</span> 异步提交 (Ajax)</h2>
-<div class="outline-text-2" id="text-6">
+<h2 id="org1c43550"><span class="section-number-2">7</span> 异步提交 (Ajax)</h2>
+<div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>$.ajax</li>
 <li>$.get/$.post</li>
@@ -369,8 +404,8 @@ $.ajax({
 </div>
 
 <div id="outline-container-orgfb5c808" class="outline-3">
-<h3 id="orgfb5c808"><span class="section-number-3">6.1</span> Form 表单获取数据</h3>
-<div class="outline-text-3" id="text-6-1">
+<h3 id="orgfb5c808"><span class="section-number-3">7.1</span> Form 表单获取数据</h3>
+<div class="outline-text-3" id="text-7-1">
 <p>
 serialize/serializeArray/params:
 </p>
@@ -396,8 +431,8 @@ $( <span class="org-string">"#myForm"</span> ).serializeArray();
 </div>
 
 <div id="outline-container-org61656a8" class="outline-3">
-<h3 id="org61656a8"><span class="section-number-3">6.2</span> 表单验证</h3>
-<div class="outline-text-3" id="text-6-2">
+<h3 id="org61656a8"><span class="section-number-3">7.2</span> 表单验证</h3>
+<div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
 <pre class="src src-js">$( <span class="org-string">"#form"</span> ).submit(<span class="org-keyword">function</span>( <span class="org-variable-name">event</span> ) {
     <span class="org-keyword">var</span> <span class="org-variable-name">inputtedPhoneNumber</span> = $( <span class="org-string">"#phone"</span> ).val();
@@ -423,8 +458,8 @@ $( <span class="org-string">"#myForm"</span> ).serializeArray();
 </section>
 
 <section id="outline-container-orgd922a82" class="outline-2">
-<h2 id="orgd922a82"><span class="section-number-2">7</span> 其他函数</h2>
-<div class="outline-text-2" id="text-7">
+<h2 id="orgd922a82"><span class="section-number-2">8</span> 其他函数</h2>
+<div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li><code>data/get/index</code></li>
 <li><code>$.trim/each/map/inArray/extend/isXxx</code></li>
@@ -433,8 +468,8 @@ $( <span class="org-string">"#myForm"</span> ).serializeArray();
 </section>
 
 <section id="outline-container-org6cbc9b3" class="outline-2">
-<h2 id="org6cbc9b3"><span class="section-number-2">8</span> 扩展与插件 (Extend/Plugins)</h2>
-<div class="outline-text-2" id="text-8">
+<h2 id="org6cbc9b3"><span class="section-number-2">9</span> 扩展与插件 (Extend/Plugins)</h2>
+<div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li><a href="https://plugins.jquery.com/">https://plugins.jquery.com/</a></li>
 <li><a href="https://learn.jquery.com/plugins/basic-plugin-creation/">https://learn.jquery.com/plugins/basic-plugin-creation/</a></li>
@@ -465,7 +500,7 @@ API:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-30 Tue 06:52</p>
+<p class="date">Created: 2019-07-30 Tue 07:06</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

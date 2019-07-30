@@ -24,6 +24,24 @@ https://jquery.com/
   $("div").css("color", "red");
 #+END_SRC
 
+* 使用
+
+可以选择下载到本地，再引用到项目中:
+- https://cdn.bootcss.com/jquery/3.4.1/jquery.js
+- https://cdn.bootcss.com/jquery/3.4.1/jquery-min.js
+
+其中 min 版本代表进行了压缩的版本，它的体积比较小，适合生产环境。
+如果有可能会去阅读 jquery 源码，那么应该选择前者。
+
+也可以直接选择某个 CDN(内容分发网络) 服务商提供的超链接，比如:
+: <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+: <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery-min.js"></script>
+
+常见的 CDN 服务网站有:
+- https://www.bootcdn.cn/
+- http://www.staticfile.org/
+- http://jscdn.upai.com/
+
 * 选择器 (Selector)
 
 [[file:img/scrot_2019-07-30_03-24-29.png]]
