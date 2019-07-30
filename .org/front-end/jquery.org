@@ -42,6 +42,10 @@ https://jquery.com/
 - http://www.staticfile.org/
 - http://jscdn.upai.com/
 
+问题:
+- 什么是 CDN?
+- 选择 CDN 有什么优点？有什么缺点？
+
 * 选择器 (Selector)
 
 [[file:img/scrot_2019-07-30_03-24-29.png]]
