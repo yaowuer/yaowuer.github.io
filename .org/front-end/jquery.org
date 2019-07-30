@@ -101,6 +101,17 @@ jQuery 提供了一些快速选取的语法，让你能更轻松对 form 表单�
 - 子辈: children/find
 - 兄弟: next/nextAll/prev/prevAll/siblings
 
+#+BEGIN_SRC js
+  $("#aaa").parentsUtil(".red");
+  $("a").closest("div");
+
+  $("#main").children();
+  $("#main").find(".xxx"); // $("#main .xxx");
+
+  var a = $("a");
+  a.siblings().css("color", "red");
+#+END_SRC
+
 * DOM 操作
 ** text/html/val/attr/prop
 
@@ -114,16 +125,28 @@ jQuery 提供了一些快速选取的语法，让你能更轻松对 form 表单�
 * 事件 (Events)
 
 API:
-- ~$.on('click, function () {})~
-- ~$.click(function () {})~
-- ~$.off~
-- ~one/bind/unbind~
+- ~$("ul").on('click, function () {})~
+- ~$("ul").on('click, "li", function () {})~ 事件委托
+- ~$("ul").click(function () {})~ 简化，语法糖
+- ~$("ul").off~ 如果不带参数，那么就取消所有事件
+- ~one~ 增加一次事件
+- ~bind/unbind~
 
 常用事件:
-- 鼠标: click/dbclick/mouseover/mouseleave/hover
+- 鼠标: click/dblclick/mouseenter/mouseover/mouseleave/hover
 - 键盘: keydown/keyup/keypress
 - 表单: focus/blur/change/select/submit
 - DOM: ready/load/unload/resize/scroll
+
+#+BEGIN_SRC js
+  $.ready(function () { // 相当于 window.onload 但执行时机更靠前 dom 节点加载完之后立刻执行的逻辑
+  });
+
+  $(function () {
+    
+  });
+
+#+END_SRC
 
 * 动画效果 (Effects)
 

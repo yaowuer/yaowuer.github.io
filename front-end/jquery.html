@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-29 Mon 01:57 -->
+<!-- 2019-07-30 Tue 02:53 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery</title>
@@ -198,6 +198,18 @@ $(<span class="org-string">":disabled"</span>);
 <li>子辈: children/find</li>
 <li>兄弟: next/nextAll/prev/prevAll/siblings</li>
 </ul>
+
+<div class="org-src-container">
+<pre class="src src-js">$(<span class="org-string">"#aaa"</span>).parentsUtil(<span class="org-string">".red"</span>);
+$(<span class="org-string">"a"</span>).closest(<span class="org-string">"div"</span>);
+
+$(<span class="org-string">"#main"</span>).children();
+$(<span class="org-string">"#main"</span>).find(<span class="org-string">".xxx"</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">$("#main .xxx");</span>
+
+<span class="org-keyword">var</span> <span class="org-variable-name">a</span> = $(<span class="org-string">"a"</span>);
+a.siblings().css(<span class="org-string">"color"</span>, <span class="org-string">"red"</span>);
+</pre>
+</div>
 </div>
 </div>
 </section>
@@ -233,21 +245,34 @@ $(<span class="org-string">":disabled"</span>);
 API:
 </p>
 <ul class="org-ul">
-<li><code>$.on('click, function () {})</code></li>
-<li><code>$.click(function () {})</code></li>
-<li><code>$.off</code></li>
-<li><code>one/bind/unbind</code></li>
+<li><code>$("ul").on('click, function () {})</code></li>
+<li><code>$("ul").on('click, "li", function () {})</code> 事件委托</li>
+<li><code>$("ul").click(function () {})</code> 简化，语法糖</li>
+<li><code>$("ul").off</code> 如果不带参数，那么就取消所有事件</li>
+<li><code>one</code> 增加一次事件</li>
+<li><code>bind/unbind</code></li>
 </ul>
 
 <p>
 常用事件:
 </p>
 <ul class="org-ul">
-<li>鼠标: click/dbclick/mouseover/mouseleave/hover</li>
+<li>鼠标: click/dblclick/mouseenter/mouseover/mouseleave/hover</li>
 <li>键盘: keydown/keyup/keypress</li>
 <li>表单: focus/blur/change/select/submit</li>
 <li>DOM: ready/load/unload/resize/scroll</li>
 </ul>
+
+<div class="org-src-container">
+<pre class="src src-js">$.ready(<span class="org-keyword">function</span> () { <span class="org-comment-delimiter">// </span><span class="org-comment">&#30456;&#24403;&#20110; window.onload &#20294;&#25191;&#34892;&#26102;&#26426;&#26356;&#38752;&#21069; dom &#33410;&#28857;&#21152;&#36733;&#23436;&#20043;&#21518;&#31435;&#21051;&#25191;&#34892;&#30340;&#36923;&#36753;</span>
+});
+
+$(<span class="org-keyword">function</span> () {
+
+});
+
+</pre>
+</div>
 </div>
 </section>
 
@@ -410,7 +435,7 @@ API:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-29 Mon 01:57</p>
+<p class="date">Created: 2019-07-30 Tue 02:53</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
