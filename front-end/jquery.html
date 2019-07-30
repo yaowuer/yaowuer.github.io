@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-30 Tue 07:40 -->
+<!-- 2019-07-30 Tue 08:23 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery</title>
@@ -34,7 +34,7 @@
 <li><a href="#org6fb9092">4. DOM 操作</a>
 <ul>
 <li><a href="#org04c5f9e">4.1. text/html/val/attr/prop</a></li>
-<li><a href="#orgef0be7a">4.2. append/prepend/before/after/appendTo/prependTo</a></li>
+<li><a href="#orgafdafea">4.2. append/prepend/before/after/appendTo/prependTo/replaceWith</a></li>
 <li><a href="#orgc28ec48">4.3. clone/remove/empty/detach</a></li>
 <li><a href="#org09a20b1">4.4. css/addClass/removeClass/toggleClass/hasClass</a></li>
 <li><a href="#org8319938">4.5. width/height/position</a></li>
@@ -270,10 +270,62 @@ a.siblings().css(<span class="org-string">"color"</span>, <span class="org-strin
 </div>
 <div id="outline-container-org04c5f9e" class="outline-3">
 <h3 id="org04c5f9e"><span class="section-number-3">4.1</span> text/html/val/attr/prop</h3>
+<div class="outline-text-3" id="text-4-1">
+<div class="org-src-container">
+<pre class="src src-js">$(<span class="org-string">"#aaa input"</span>).val($(<span class="org-string">"#aaa input"</span>).val() + <span class="org-string">".yyy"</span>);
+
+<span class="org-keyword">var</span> <span class="org-variable-name">div</span> = $(<span class="org-string">"#aaa"</span>);
+div.html(div.html() + <span class="org-string">"&lt;a href='#'&gt;xxx&lt;/a&gt;"</span>);
+
+$(<span class="org-string">"#aaa"</span>).prop(<span class="org-string">"tagName"</span>);
+$(<span class="org-string">"#aaa"</span>).attr(<span class="org-string">"id"</span>);
+</pre>
+</div>
+</div>
 </div>
 
-<div id="outline-container-orgef0be7a" class="outline-3">
-<h3 id="orgef0be7a"><span class="section-number-3">4.2</span> append/prepend/before/after/appendTo/prependTo</h3>
+<div id="outline-container-orgafdafea" class="outline-3">
+<h3 id="orgafdafea"><span class="section-number-3">4.2</span> append/prepend/before/after/appendTo/prependTo/replaceWith</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+创建新节点:
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span class="org-comment-delimiter">// </span><span class="org-comment">&#21019;&#24314;&#26032;&#33410;&#28857;</span>
+$(<span class="org-string">"&lt;div&gt;3333333&lt;/div&gt;"</span>);
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#21019;&#24314;&#33410;&#28857;&#24182;&#20570;&#24456;&#22810;&#20854;&#20182;&#20107;&#24773;</span>
+$(<span class="org-string">"&lt;div&gt;3333333&lt;/div&gt;"</span>)
+    .click(<span class="org-keyword">function</span> () {
+        alert(<span class="org-keyword">new</span> <span class="org-type">Date</span>())
+    })
+    .css(<span class="org-string">"color"</span>, <span class="org-string">"red"</span>)
+    .css(<span class="org-string">"border"</span>, <span class="org-string">"1px solid green"</span>)
+    .css(<span class="org-string">"width"</span>, <span class="org-string">"100px"</span>)
+    .animate({ <span class="org-string">"width"</span>: <span class="org-string">"200px"</span>}, 2000)
+    .appendTo(<span class="org-string">"body"</span>);
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#21019;&#24314;&#19968;&#20010;&#33410;&#28857;</span>
+<span class="org-keyword">var</span> <span class="org-variable-name">element</span> = $(<span class="org-string">"&lt;div&gt;666666&lt;/div&gt;"</span>)
+    .click(<span class="org-keyword">function</span> () {
+        alert(<span class="org-keyword">new</span> <span class="org-type">Date</span>())
+    })
+    .css(<span class="org-string">"color"</span>, <span class="org-string">"red"</span>)
+    .css(<span class="org-string">"border"</span>, <span class="org-string">"1px solid green"</span>)
+    .css(<span class="org-string">"width"</span>, <span class="org-string">"100px"</span>);
+
+$(<span class="org-string">"input"</span>).after(element);
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#27880;&#24847;&#65292;element &#22312; dom &#26641;&#20013;&#21482;&#23384;&#22312;&#19968;&#20221;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#24819;&#26174;&#31034;&#22810;&#20010;&#65292;&#38656;&#35201;&#29992;&#21040; clone</span>
+$(<span class="org-string">"input"</span>).before(element.clone());
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#22312; #aaa &#20803;&#32032;&#30340;&#26368;&#21518;&#19968;&#20010;&#23376;&#20803;&#32032;&#21518;&#28155;&#21152; element</span>
+$(<span class="org-string">"#aaa"</span>).append(element);
+element.appendTo(<span class="org-string">"#aaa"</span>);
+</pre>
+</div>
+</div>
 </div>
 
 <div id="outline-container-orgc28ec48" class="outline-3">
@@ -523,7 +575,7 @@ API:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-30 Tue 07:40</p>
+<p class="date">Created: 2019-07-30 Tue 08:23</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

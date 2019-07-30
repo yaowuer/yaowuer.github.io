@@ -141,7 +141,53 @@ jQuery 提供了一些快速选取的语法，让你能更轻松对 form 表单�
 * DOM 操作
 ** text/html/val/attr/prop
 
-** append/prepend/before/after/appendTo/prependTo
+#+BEGIN_SRC js
+  $("#aaa input").val($("#aaa input").val() + ".yyy");
+
+  var div = $("#aaa");
+  div.html(div.html() + "<a href='#'>xxx</a>");
+
+  $("#aaa").prop("tagName");
+  $("#aaa").attr("id");
+#+END_SRC
+
+** append/prepend/before/after/appendTo/prependTo/replaceWith
+
+创建新节点:
+#+BEGIN_SRC js
+  // 创建新节点
+  $("<div>3333333</div>");
+
+  // 创建节点并做很多其他事情
+  $("<div>3333333</div>")
+      .click(function () {
+          alert(new Date())
+      })
+      .css("color", "red")
+      .css("border", "1px solid green")
+      .css("width", "100px")
+      .animate({ "width": "200px"}, 2000)
+      .appendTo("body");
+
+  // 创建一个节点
+  var element = $("<div>666666</div>")
+      .click(function () {
+          alert(new Date())
+      })
+      .css("color", "red")
+      .css("border", "1px solid green")
+      .css("width", "100px");
+
+  $("input").after(element);
+
+  // 注意，element 在 dom 树中只存在一份
+  // 如果想显示多个，需要用到 clone
+  $("input").before(element.clone());
+
+  // 在 #aaa 元素的最后一个子元素后添加 element
+  $("#aaa").append(element);
+  element.appendTo("#aaa");
+#+END_SRC
 
 ** clone/remove/empty/detach
 
