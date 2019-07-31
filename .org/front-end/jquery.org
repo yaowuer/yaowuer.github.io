@@ -66,8 +66,10 @@
   $("div");
 
   // by Attribute
-  $("input[id]");       // 所有有 id 属性的 input
-  $("input[name='n']"); // 所有 name 属性的值为 n 的 input
+  $("input[id]");         // 所有有 id 属性的 input
+  $("input[name='n']");   // 所有 name 属性的值为 n 的 input
+  $("input[name!='n']");  // 不等于
+  $("input[name$='n']");  // 以 n 结尾
 
   // 组合
   $("div#cart"); // 所有 id 为 cart 的 div

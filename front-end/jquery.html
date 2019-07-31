@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-31 Wed 02:50 -->
+<!-- 2019-07-31 Wed 02:58 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery</title>
@@ -168,8 +168,10 @@ $(<span class="org-string">".red"</span>);
 $(<span class="org-string">"div"</span>);
 
 <span class="org-comment-delimiter">// </span><span class="org-comment">by Attribute</span>
-$(<span class="org-string">"input[id]"</span>);       <span class="org-comment-delimiter">// </span><span class="org-comment">&#25152;&#26377;&#26377; id &#23646;&#24615;&#30340; input</span>
-$(<span class="org-string">"input[name='n']"</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">&#25152;&#26377; name &#23646;&#24615;&#30340;&#20540;&#20026; n &#30340; input</span>
+$(<span class="org-string">"input[id]"</span>);         <span class="org-comment-delimiter">// </span><span class="org-comment">&#25152;&#26377;&#26377; id &#23646;&#24615;&#30340; input</span>
+$(<span class="org-string">"input[name='n']"</span>);   <span class="org-comment-delimiter">// </span><span class="org-comment">&#25152;&#26377; name &#23646;&#24615;&#30340;&#20540;&#20026; n &#30340; input</span>
+$(<span class="org-string">"input[name!='n']"</span>);  <span class="org-comment-delimiter">// </span><span class="org-comment">&#19981;&#31561;&#20110;</span>
+$(<span class="org-string">"input[name$='n']"</span>);  <span class="org-comment-delimiter">// </span><span class="org-comment">&#20197; n &#32467;&#23614;</span>
 
 <span class="org-comment-delimiter">// </span><span class="org-comment">&#32452;&#21512;</span>
 $(<span class="org-string">"div#cart"</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">&#25152;&#26377; id &#20026; cart &#30340; div</span>
@@ -702,7 +704,7 @@ API:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-31 Wed 02:50</p>
+<p class="date">Created: 2019-07-31 Wed 02:58</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
