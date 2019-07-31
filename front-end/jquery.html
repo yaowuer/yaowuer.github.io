@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-31 Wed 02:58 -->
+<!-- 2019-07-31 Wed 03:50 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery</title>
@@ -51,6 +51,7 @@
 <li><a href="#orgd922a82">8. 其他函数</a></li>
 <li><a href="#org6cbc9b3">9. 扩展与插件 (Extend/Plugins)</a></li>
 <li><a href="#org3fae7eb">10. 示例. 拉勾网</a></li>
+<li><a href="#orgf391795">11. 示例. 任务列表</a></li>
 </ul>
 </div>
 </nav>
@@ -701,10 +702,106 @@ API:
 </div>
 </div>
 </section>
+<section id="outline-container-orgf391795" class="outline-2">
+<h2 id="orgf391795"><span class="section-number-2">11</span> 示例. 任务列表</h2>
+<div class="outline-text-2" id="text-11">
+<div class="org-src-container">
+<pre class="src src-html"><span class="org-string">&lt;!doctype html&gt;</span>
+&lt;<span class="org-function-name">html</span> <span class="org-variable-name">lang</span>=<span class="org-string">"en"</span>&gt;
+  &lt;<span class="org-function-name">head</span>&gt;
+    &lt;<span class="org-function-name">meta</span> <span class="org-variable-name">charset</span>=<span class="org-string">"UTF-8"</span>/&gt;
+    &lt;<span class="org-function-name">title</span>&gt;<span class="org-underline"><span class="org-bold">&#20219;&#21153;&#21015;&#34920;</span></span>&lt;/<span class="org-function-name">title</span>&gt;
+    &lt;<span class="org-function-name">script</span> <span class="org-variable-name">src</span>=<span class="org-string">"https://cdn.bootcss.com/jquery/3.2.1/jquery.js"</span>&gt;&lt;/<span class="org-function-name">script</span>&gt;
+
+    &lt;<span class="org-function-name">style</span>&gt;
+     * { padding: 0; margin: 0; box-sizing: border-box }
+
+     body {
+       background-image: linear-gradient(120deg, green, blue);
+       height: 100vh;
+       font-family: <span class="org-string">"&#23435;&#20307;"</span>;
+     }
+
+     .container {
+       max-width: 500px;
+       margin: 0 auto;
+       padding: 5px;
+     }
+
+     input {
+       border: 0;
+       outline: 0;
+       background: none;
+       border-bottom: 2px solid black;
+       width: 100%;
+       padding: 5px 0;
+     }
+
+     h3 {
+       margin-top: 15px;
+       margin-bottom: 5px;
+     }
+
+     .task {
+       background: rgba(255, 255, 255, 0.6);
+       margin: 5px 0;
+       padding: 5px;
+       border-radius: 5px;
+     }
+
+     .task i {
+       float: right;
+       margin-right: 10px;
+     }
+    &lt;/<span class="org-function-name">style</span>&gt;
+  &lt;/<span class="org-function-name">head</span>&gt;
+  &lt;<span class="org-function-name">body</span>&gt;
+
+    &lt;<span class="org-function-name">div</span> <span class="org-variable-name">class</span>=<span class="org-string">"container"</span>&gt;
+      &lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"text"</span> <span class="org-variable-name">value</span>=<span class="org-string">""</span>/&gt;
+
+      &lt;<span class="org-function-name">div</span> <span class="org-variable-name">class</span>=<span class="org-string">"todo"</span>&gt;
+        &lt;<span class="org-function-name">h3</span>&gt;<span class="org-underline"><span class="org-italic">&#26410;&#23436;&#25104;&#20219;&#21153;</span></span>&lt;/<span class="org-function-name">h3</span>&gt;
+      &lt;/<span class="org-function-name">div</span>&gt;
+
+      &lt;<span class="org-function-name">div</span> <span class="org-variable-name">class</span>=<span class="org-string">"done"</span>&gt;
+        &lt;<span class="org-function-name">h3</span>&gt;<span class="org-underline"><span class="org-italic">&#24050;&#23436;&#25104;&#20219;&#21153;</span></span>&lt;/<span class="org-function-name">h3</span>&gt;
+      &lt;/<span class="org-function-name">div</span>&gt;
+    &lt;/<span class="org-function-name">div</span>&gt;
+
+    &lt;<span class="org-function-name">script</span>&gt;
+
+     $(<span class="org-string">"input"</span>).on('keyup', function (e) {
+       if (e.keyCode === 13 &amp;&amp; $(this).val()) {
+         var $task = $(<span class="org-string">"&lt;div class='task'&gt;"</span> + $(this).val() + <span class="org-string">"&lt;i class='del'&gt;</span><span class="org-string"><span class="org-italic">&#21024;&#38500;</span></span><span class="org-string">&lt;/i&gt;&lt;i class='save'&gt;</span><span class="org-string"><span class="org-italic">&#24402;&#26723;</span></span><span class="org-string">&lt;/i&gt;&lt;/div&gt;"</span>);
+
+
+         $task.find(<span class="org-string">".del"</span>).click(function () {
+           $(this).parent().remove();
+         });
+
+         $task.find(<span class="org-string">".save"</span>).click(function () {
+           $(this).parent().appendTo(<span class="org-string">".done"</span>);
+           $(this).parent().find(<span class="org-string">".save"</span>).remove();
+         });
+
+         $(<span class="org-string">".todo"</span>).append($task);
+         $(this).val(<span class="org-string">""</span>);
+       }
+     });
+
+    &lt;/<span class="org-function-name">script</span>&gt;
+
+  &lt;/<span class="org-function-name">body</span>&gt;
+&lt;/<span class="org-function-name">html</span>&gt;
+</pre>
+</div>
+</div>
+</section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-31 Wed 02:58</p>
+<p class="date">Created: 2019-07-31 Wed 03:50</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
