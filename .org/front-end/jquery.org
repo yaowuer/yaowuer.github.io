@@ -220,9 +220,22 @@ jQuery 提供了一些快速选取的语法，让你能更轻松对 form 表单�
   $(el).toggleClass("red");
 #+END_SRC
 
-** width/height/position/scrollTo
+** width/height/position/scroll
 
-scrollTo 表示滚动到某个位置。
+滚动到顶部、底部:
+#+BEGIN_SRC js
+  $('#scrlBotm').click(function () {
+      $('html, body').animate({
+          scrollTop: $(document).height()
+      }, 1500);
+  });
+
+  $('#scrlTop').click(function () {
+      $('html, body').animate({
+          scrollTop: '0px'
+      }, 1500);
+  });
+#+END_SRC
 
 * 事件 (Events)
 

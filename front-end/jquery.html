@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-31 Wed 08:26 -->
+<!-- 2019-07-31 Wed 08:32 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery</title>
@@ -37,7 +37,7 @@
 <li><a href="#orgafdafea">4.2. append/prepend/before/after/appendTo/prependTo/replaceWith</a></li>
 <li><a href="#orgc28ec48">4.3. clone/remove/empty/detach</a></li>
 <li><a href="#org09a20b1">4.4. css/addClass/removeClass/toggleClass/hasClass</a></li>
-<li><a href="#org57fb8f3">4.5. width/height/position/scrollTo</a></li>
+<li><a href="#org0447271">4.5. width/height/position/scroll</a></li>
 </ul>
 </li>
 <li><a href="#org4bdc088">5. 事件 (Events)</a></li>
@@ -373,12 +373,26 @@ $(el).toggleClass(<span class="org-string">"red"</span>);
 </div>
 </div>
 
-<div id="outline-container-org57fb8f3" class="outline-3">
-<h3 id="org57fb8f3"><span class="section-number-3">4.5</span> width/height/position/scrollTo</h3>
+<div id="outline-container-org0447271" class="outline-3">
+<h3 id="org0447271"><span class="section-number-3">4.5</span> width/height/position/scroll</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
-scrollTo 表示滚动到某个位置。
+滚动到顶部、底部:
 </p>
+<div class="org-src-container">
+<pre class="src src-js">$(<span class="org-string">'#scrlBotm'</span>).click(<span class="org-keyword">function</span> () {
+    $(<span class="org-string">'html, body'</span>).animate({
+        scrollTop: $(document).height()
+    }, 1500);
+});
+
+$(<span class="org-string">'#scrlTop'</span>).click(<span class="org-keyword">function</span> () {
+    $(<span class="org-string">'html, body'</span>).animate({
+        scrollTop: <span class="org-string">'0px'</span>
+    }, 1500);
+});
+</pre>
+</div>
 </div>
 </div>
 </section>
@@ -843,7 +857,7 @@ API:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-31 Wed 08:26</p>
+<p class="date">Created: 2019-07-31 Wed 08:32</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
