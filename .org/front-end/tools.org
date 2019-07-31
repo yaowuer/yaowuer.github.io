@@ -1,0 +1,6 @@
+#+TITLE: 工具
+
+
+* emmet 插件
+
+: table.aaa>tr>th*5^(tr>(td.c[aa])*5)*3
