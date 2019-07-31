@@ -200,8 +200,27 @@ jQuery 提供了一些快速选取的语法，让你能更轻松对 form 表单�
 
 ** clone/remove/empty/detach
 
+- clone，复制
+- remove，移除
+- empty，清空子元素
+- detach，分离
+
 ** css/addClass/removeClass/toggleClass/hasClass
-** width/height/position
+
+#+BEGIN_SRC js
+  $(el).css("color", "red");
+  $(el).css("color", "red").css("background", "white");
+  $(el).css({
+      "color": "red",
+      "background": "white"
+  });
+
+  $(el).toggleClass("red");
+#+END_SRC
+
+** width/height/position/scrollTo
+
+scrollTo 表示滚动到某个位置。
 
 * 事件 (Events)
 

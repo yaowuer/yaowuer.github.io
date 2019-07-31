@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-31 Wed 02:45 -->
+<!-- 2019-07-31 Wed 02:50 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery</title>
@@ -37,7 +37,7 @@
 <li><a href="#orgafdafea">4.2. append/prepend/before/after/appendTo/prependTo/replaceWith</a></li>
 <li><a href="#orgc28ec48">4.3. clone/remove/empty/detach</a></li>
 <li><a href="#org09a20b1">4.4. css/addClass/removeClass/toggleClass/hasClass</a></li>
-<li><a href="#org8319938">4.5. width/height/position</a></li>
+<li><a href="#org57fb8f3">4.5. width/height/position/scrollTo</a></li>
 </ul>
 </li>
 <li><a href="#org4bdc088">5. 事件 (Events)</a></li>
@@ -343,13 +343,40 @@ element.appendTo(<span class="org-string">"#aaa"</span>);
 
 <div id="outline-container-orgc28ec48" class="outline-3">
 <h3 id="orgc28ec48"><span class="section-number-3">4.3</span> clone/remove/empty/detach</h3>
+<div class="outline-text-3" id="text-4-3">
+<ul class="org-ul">
+<li>clone，复制</li>
+<li>remove，移除</li>
+<li>empty，清空子元素</li>
+<li>detach，分离</li>
+</ul>
+</div>
 </div>
 
 <div id="outline-container-org09a20b1" class="outline-3">
 <h3 id="org09a20b1"><span class="section-number-3">4.4</span> css/addClass/removeClass/toggleClass/hasClass</h3>
+<div class="outline-text-3" id="text-4-4">
+<div class="org-src-container">
+<pre class="src src-js">$(el).css(<span class="org-string">"color"</span>, <span class="org-string">"red"</span>);
+$(el).css(<span class="org-string">"color"</span>, <span class="org-string">"red"</span>).css(<span class="org-string">"background"</span>, <span class="org-string">"white"</span>);
+$(el).css({
+    <span class="org-string">"color"</span>: <span class="org-string">"red"</span>,
+    <span class="org-string">"background"</span>: <span class="org-string">"white"</span>
+});
+
+$(el).toggleClass(<span class="org-string">"red"</span>);
+</pre>
 </div>
-<div id="outline-container-org8319938" class="outline-3">
-<h3 id="org8319938"><span class="section-number-3">4.5</span> width/height/position</h3>
+</div>
+</div>
+
+<div id="outline-container-org57fb8f3" class="outline-3">
+<h3 id="org57fb8f3"><span class="section-number-3">4.5</span> width/height/position/scrollTo</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+scrollTo 表示滚动到某个位置。
+</p>
+</div>
 </div>
 </section>
 
@@ -675,7 +702,7 @@ API:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-31 Wed 02:45</p>
+<p class="date">Created: 2019-07-31 Wed 02:50</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
