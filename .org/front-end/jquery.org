@@ -235,13 +235,13 @@ API:
 
 * 动画效果 (Effects)
 
+- animate/delay
 - hide/show/toggle
 - fadeOut/fadeIn/fadeToggle/fadeTo
 - slideUp/slideDown/slideToggle
-- delay
-- animate
 
 #+BEGIN_SRC js
+  // animate
 
   $("ul.banner_bg")
       .css("position", "fixed")
@@ -261,6 +261,13 @@ API:
       .animate({
           "left": "800px"
       }, 2000);
+
+  // 其他快捷方式，比如:
+
+  $("xxx").fadeIn();     // 不带参数
+  $("xxx").fadeIn(2000); // 时间
+  $("xxx").fedeIn(function () { alert(333); }); // 完成之后的动作
+  $("xxx").fedeIn(2000, function () { alert(333); }); // 灵活的参数
 #+END_SRC
 
 * 异步提交 (Ajax)

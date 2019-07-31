@@ -14,7 +14,7 @@ Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）
   xhr.open("GET", "/ajax/video", true);
 
   // 3. 发送请求
-  xhr.send();
+  xhr.send(null);
 
   // 注册回调函数（事件）
   xhr.onload = function (e) {

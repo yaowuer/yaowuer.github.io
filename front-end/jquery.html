@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-30 Tue 08:23 -->
+<!-- 2019-07-31 Wed 00:32 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery</title>
@@ -397,15 +397,15 @@ $(<span class="org-keyword">function</span> () { });
 <h2 id="org2407114"><span class="section-number-2">6</span> 动画效果 (Effects)</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
+<li>animate/delay</li>
 <li>hide/show/toggle</li>
 <li>fadeOut/fadeIn/fadeToggle/fadeTo</li>
 <li>slideUp/slideDown/slideToggle</li>
-<li>delay</li>
-<li>animate</li>
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-js">
+<pre class="src src-js"><span class="org-comment-delimiter">// </span><span class="org-comment">animate</span>
+
 $(<span class="org-string">"ul.banner_bg"</span>)
     .css(<span class="org-string">"position"</span>, <span class="org-string">"fixed"</span>)
     .css(<span class="org-string">"left"</span>, <span class="org-string">"0"</span>)
@@ -424,6 +424,13 @@ $(<span class="org-string">"ul.banner_bg img"</span>)
     .animate({
         <span class="org-string">"left"</span>: <span class="org-string">"800px"</span>
     }, 2000);
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#20854;&#20182;&#24555;&#25463;&#26041;&#24335;&#65292;&#27604;&#22914;:</span>
+
+$(<span class="org-string">"xxx"</span>).fadeIn();     <span class="org-comment-delimiter">// </span><span class="org-comment">&#19981;&#24102;&#21442;&#25968;</span>
+$(<span class="org-string">"xxx"</span>).fadeIn(2000); <span class="org-comment-delimiter">// </span><span class="org-comment">&#26102;&#38388;</span>
+$(<span class="org-string">"xxx"</span>).fedeIn(<span class="org-keyword">function</span> () { alert(333); }); <span class="org-comment-delimiter">// </span><span class="org-comment">&#23436;&#25104;&#20043;&#21518;&#30340;&#21160;&#20316;</span>
+$(<span class="org-string">"xxx"</span>).fedeIn(2000, <span class="org-keyword">function</span> () { alert(333); }); <span class="org-comment-delimiter">// </span><span class="org-comment">&#28789;&#27963;&#30340;&#21442;&#25968;</span>
 </pre>
 </div>
 </div>
@@ -575,7 +582,7 @@ API:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-30 Tue 08:23</p>
+<p class="date">Created: 2019-07-31 Wed 00:32</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
