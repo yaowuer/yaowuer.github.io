@@ -224,6 +224,13 @@ jQuery 提供了一些快速选取的语法，让你能更轻松对 form 表单�
 
 滚动到顶部、底部:
 #+BEGIN_SRC js
+  // 直接滚动
+
+  $("#comments").scrollTop($(this).height());
+
+
+  // 使用动画的方式:
+
   $('#scrlBotm').click(function () {
       $('html, body').animate({
           scrollTop: $(document).height()

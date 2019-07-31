@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-31 Wed 08:32 -->
+<!-- 2019-07-31 Wed 08:35 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery</title>
@@ -380,7 +380,14 @@ $(el).toggleClass(<span class="org-string">"red"</span>);
 滚动到顶部、底部:
 </p>
 <div class="org-src-container">
-<pre class="src src-js">$(<span class="org-string">'#scrlBotm'</span>).click(<span class="org-keyword">function</span> () {
+<pre class="src src-js"><span class="org-comment-delimiter">// </span><span class="org-comment">&#30452;&#25509;&#28378;&#21160;</span>
+
+$(<span class="org-string">"#comments"</span>).scrollTop($(<span class="org-constant">this</span>).height());
+
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#20351;&#29992;&#21160;&#30011;&#30340;&#26041;&#24335;:</span>
+
+$(<span class="org-string">'#scrlBotm'</span>).click(<span class="org-keyword">function</span> () {
     $(<span class="org-string">'html, body'</span>).animate({
         scrollTop: $(document).height()
     }, 1500);
@@ -857,7 +864,7 @@ API:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-31 Wed 08:32</p>
+<p class="date">Created: 2019-07-31 Wed 08:35</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
