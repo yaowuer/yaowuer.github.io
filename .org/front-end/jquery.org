@@ -345,6 +345,32 @@ API:
       });
 #+END_SRC
 
+Example:
+#+BEGIN_SRC js
+  $.ajax({
+      url: '/xxx', // 代表请求的服务器地址
+      method: 'get|post|..', // 使用的请求方法
+      headers: {}, // 设置请求头
+
+      contentType: 'application/x-www-form-urlencoded|...', // 请求的 enctype
+      data: 'String'|Object|Array, // 传输的数据
+      processData: true|false,     // true: 若 data 是字符串不处理，否则调用 $.params(data, tranditional) 将其转换为 UrlSearchParams 格式
+      tranditional: false|true,    // 此参数将会传给上述 $.param 函数，决定是否深度序列
+
+      dataType: 'json?xml?text',   // 默认根据 response 头部的信息自动推测
+      async: true|false,           // 是否使用异步请求的方式
+      xhr: () => { var xhr = $.ajaxSettings.xhr() }, // 创建 xhr 后调用
+      xhrFields: { withCredentials: true },          // 跨域
+      timeout, cache, accepts, contents, crossDomain, converters, jsonp, mimeType
+  }).done((data) => {
+      console.log(data.xxx);
+  }).fail((xhr, status, err) => {
+      console.error(err);
+  }).always((data|xhr, status) => {
+      console.log("终于结束了!");
+  });
+#+END_SRC
+
 ** Form 表单获取数据
 
 serialize/serializeArray/params:

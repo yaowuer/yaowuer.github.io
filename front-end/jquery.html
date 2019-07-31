@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-31 Wed 07:00 -->
+<!-- 2019-07-31 Wed 08:26 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery</title>
@@ -527,6 +527,35 @@ $.ajax({
     });
 </pre>
 </div>
+
+<p>
+Example:
+</p>
+<div class="org-src-container">
+<pre class="src src-js">$.ajax({
+    url: <span class="org-string">'/xxx'</span>, <span class="org-comment-delimiter">// </span><span class="org-comment">&#20195;&#34920;&#35831;&#27714;&#30340;&#26381;&#21153;&#22120;&#22320;&#22336;</span>
+    method: <span class="org-string">'get|post|..'</span>, <span class="org-comment-delimiter">// </span><span class="org-comment">&#20351;&#29992;&#30340;&#35831;&#27714;&#26041;&#27861;</span>
+    headers: {}, <span class="org-comment-delimiter">// </span><span class="org-comment">&#35774;&#32622;&#35831;&#27714;&#22836;</span>
+
+    contentType: <span class="org-string">'application/x-www-form-urlencoded|...'</span>, <span class="org-comment-delimiter">// </span><span class="org-comment">&#35831;&#27714;&#30340; enctype</span>
+    data: <span class="org-string">'String'</span>|Object|Array, <span class="org-comment-delimiter">// </span><span class="org-comment">&#20256;&#36755;&#30340;&#25968;&#25454;</span>
+    processData: <span class="org-constant">true</span>|<span class="org-constant">false</span>,     <span class="org-comment-delimiter">// </span><span class="org-comment">true: &#33509; data &#26159;&#23383;&#31526;&#20018;&#19981;&#22788;&#29702;&#65292;&#21542;&#21017;&#35843;&#29992; $.params(data, tranditional) &#23558;&#20854;&#36716;&#25442;&#20026; UrlSearchParams &#26684;&#24335;</span>
+    tranditional: <span class="org-constant">false</span>|<span class="org-constant">true</span>,    <span class="org-comment-delimiter">// </span><span class="org-comment">&#27492;&#21442;&#25968;&#23558;&#20250;&#20256;&#32473;&#19978;&#36848; $.param &#20989;&#25968;&#65292;&#20915;&#23450;&#26159;&#21542;&#28145;&#24230;&#24207;&#21015;</span>
+
+    dataType: <span class="org-string">'json?xml?text'</span>,   <span class="org-comment-delimiter">// </span><span class="org-comment">&#40664;&#35748;&#26681;&#25454; response &#22836;&#37096;&#30340;&#20449;&#24687;&#33258;&#21160;&#25512;&#27979;</span>
+    <span class="org-keyword">async</span>: <span class="org-constant">true</span>|<span class="org-constant">false</span>,           <span class="org-comment-delimiter">// </span><span class="org-comment">&#26159;&#21542;&#20351;&#29992;&#24322;&#27493;&#35831;&#27714;&#30340;&#26041;&#24335;</span>
+    xhr: () =&gt; { <span class="org-keyword">var</span> <span class="org-variable-name">xhr</span> = $.ajaxSettings.xhr() }, <span class="org-comment-delimiter">// </span><span class="org-comment">&#21019;&#24314; xhr &#21518;&#35843;&#29992;</span>
+    xhrFields: { withCredentials: <span class="org-constant">true</span> },          <span class="org-comment-delimiter">// </span><span class="org-comment">&#36328;&#22495;</span>
+    timeout, cache, accepts, contents, crossDomain, converters, jsonp, mimeType
+}).done((data) =&gt; {
+    console.log(data.xxx);
+}).fail((xhr, status, err) =&gt; {
+    console.error(err);
+}).always((data|xhr, status) =&gt; {
+    console.log(<span class="org-string">"&#32456;&#20110;&#32467;&#26463;&#20102;!"</span>);
+});
+</pre>
+</div>
 </div>
 
 <div id="outline-container-orgfb5c808" class="outline-3">
@@ -814,7 +843,7 @@ API:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-31 Wed 07:00</p>
+<p class="date">Created: 2019-07-31 Wed 08:26</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
