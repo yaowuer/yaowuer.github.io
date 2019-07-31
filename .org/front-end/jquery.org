@@ -1,8 +1,8 @@
 #+TITLE: jQuery
 
 
-
-https://jquery.com/
+- https://jquery.com/
+- [[https://www.w3school.com.cn/jquery/jquery_reference.asp][W3school 上的参考手册]]
 
 * 简介
 
@@ -51,6 +51,8 @@ https://jquery.com/
 [[file:img/scrot_2019-07-30_03-24-29.png]]
 
 
+[[https://www.w3school.com.cn/jquery/jquery_ref_selectors.asp][jQuery 参考手册 - 选择器]]
+
 ** 基本选择
 
 #+BEGIN_SRC js
@@ -81,8 +83,15 @@ https://jquery.com/
 
 #+BEGIN_SRC js
   $("input:first");
-  $("tr:odd");
+  $("input:last");
   $("div:gt(2)");
+
+  $("tr:odd");  // 奇数
+  $("tr:even"); // 偶数
+
+  $(":empty");  // 空节点
+  $(":contains(text)"); // 包含 text 的元素
+
   $("div:visible");
   $("div:animated");
 #+END_SRC
@@ -273,9 +282,9 @@ API:
 
 * 异步提交 (Ajax)
 
-- $.ajax
+- $.ajax/$.ajaxSetup
 - $.get/$.post
-- $.load
+- $.load/$.getScript/$.getJSON
 
 #+BEGIN_SRC js
   // Using the core $.ajax() method
@@ -360,7 +369,7 @@ serialize/serializeArray/params:
 
 * 其他函数
 
-- ~data/get/index~
+- ~get/index/size/toArray~
 - ~$.trim/each/map/inArray/extend/isXxx~
 
 * 扩展与插件 (Extend/Plugins)

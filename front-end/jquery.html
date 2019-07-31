@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-31 Wed 02:22 -->
+<!-- 2019-07-31 Wed 02:44 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery</title>
@@ -54,9 +54,10 @@
 </ul>
 </div>
 </nav>
-<p>
-<a href="https://jquery.com/">https://jquery.com/</a>
-</p>
+<ul class="org-ul">
+<li><a href="https://jquery.com/">https://jquery.com/</a></li>
+<li><a href="https://www.w3school.com.cn/jquery/jquery_reference.asp">W3school 上的参考手册</a></li>
+</ul>
 
 <section id="outline-container-org1c3bb8a" class="outline-2">
 <h2 id="org1c3bb8a"><span class="section-number-2">1</span> 简介</h2>
@@ -146,8 +147,12 @@
 <img src="img/scrot_2019-07-30_03-24-29.png" alt="scrot_2019-07-30_03-24-29.png">
 
 </figure>
-</div>
 
+
+<p>
+<a href="https://www.w3school.com.cn/jquery/jquery_ref_selectors.asp">jQuery 参考手册 - 选择器</a>
+</p>
+</div>
 
 <div id="outline-container-org9593c19" class="outline-3">
 <h3 id="org9593c19"><span class="section-number-3">3.1</span> 基本选择</h3>
@@ -184,8 +189,15 @@ $(<span class="org-string">"div.myClass, ul.people"</span>);
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 <pre class="src src-js">$(<span class="org-string">"input:first"</span>);
-$(<span class="org-string">"tr:odd"</span>);
+$(<span class="org-string">"input:last"</span>);
 $(<span class="org-string">"div:gt(2)"</span>);
+
+$(<span class="org-string">"tr:odd"</span>);  <span class="org-comment-delimiter">// </span><span class="org-comment">&#22855;&#25968;</span>
+$(<span class="org-string">"tr:even"</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">&#20598;&#25968;</span>
+
+$(<span class="org-string">":empty"</span>);  <span class="org-comment-delimiter">// </span><span class="org-comment">&#31354;&#33410;&#28857;</span>
+$(<span class="org-string">":contains(text)"</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">&#21253;&#21547; text &#30340;&#20803;&#32032;</span>
+
 $(<span class="org-string">"div:visible"</span>);
 $(<span class="org-string">"div:animated"</span>);
 </pre>
@@ -442,9 +454,9 @@ $(<span class="org-string">"xxx"</span>).fedeIn(2000, <span class="org-keyword">
 <h2 id="org1c43550"><span class="section-number-2">7</span> 异步提交 (Ajax)</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
-<li>$.ajax</li>
+<li>$.ajax/$.ajaxSetup</li>
 <li>$.get/$.post</li>
-<li>$.load</li>
+<li>$.load/$.getScript/$.getJSON</li>
 </ul>
 
 <div class="org-src-container">
@@ -545,7 +557,7 @@ $( <span class="org-string">"#myForm"</span> ).serializeArray();
 <h2 id="orgd922a82"><span class="section-number-2">8</span> 其他函数</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
-<li><code>data/get/index</code></li>
+<li><code>get/index/size/toArray</code></li>
 <li><code>$.trim/each/map/inArray/extend/isXxx</code></li>
 </ul>
 </div>
@@ -663,7 +675,7 @@ API:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-31 Wed 02:22</p>
+<p class="date">Created: 2019-07-31 Wed 02:44</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
