@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-31 Wed 00:34 -->
+<!-- 2019-07-31 Wed 02:22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery</title>
@@ -50,6 +50,7 @@
 </li>
 <li><a href="#orgd922a82">8. 其他函数</a></li>
 <li><a href="#org6cbc9b3">9. 扩展与插件 (Extend/Plugins)</a></li>
+<li><a href="#org3fae7eb">10. 示例. 拉勾网</a></li>
 </ul>
 </div>
 </nav>
@@ -580,10 +581,89 @@ API:
 </div>
 </div>
 </section>
+<section id="outline-container-org3fae7eb" class="outline-2">
+<h2 id="org3fae7eb"><span class="section-number-2">10</span> 示例. 拉勾网</h2>
+<div class="outline-text-2" id="text-10">
+<div class="org-src-container">
+<pre class="src src-js"><span class="org-keyword">function</span> <span class="org-function-name">showPositionsFloatWindow</span>() {
+    <span class="org-keyword">var</span> <span class="org-variable-name">mydiv</span> = $(<span class="org-string">"&lt;div&gt;&lt;table id='mytable'&gt;&lt;tr&gt;&lt;th&gt;&#32844;&#20301;&lt;/th&gt;&lt;th&gt;&#24037;&#36164;&lt;/th&gt;&lt;th&gt;&#20844;&#21496;&lt;/th&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;"</span>);
+
+    $(<span class="org-string">"body"</span>).prepend(mydiv);
+
+    <span class="org-keyword">for</span> (<span class="org-keyword">var</span> <span class="org-variable-name">i</span> = 0; i &lt; $(<span class="org-string">".default_list"</span>).length; i++) {
+        <span class="org-keyword">var</span> <span class="org-variable-name">xxx</span> = $(<span class="org-string">".default_list:eq("</span> + i + <span class="org-string">")"</span>);
+
+        <span class="org-keyword">var</span> <span class="org-variable-name">a1</span> = $(<span class="org-string">".default_list:eq("</span> + i + <span class="org-string">")"</span>).attr(<span class="org-string">"data-positionname"</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">&#32844;&#20301;</span>
+        <span class="org-keyword">var</span> <span class="org-variable-name">a2</span> = $(<span class="org-string">".default_list:eq("</span> + i + <span class="org-string">")"</span>).attr(<span class="org-string">"data-salary"</span>);  <span class="org-comment-delimiter">// </span><span class="org-comment">&#24037;&#36164;</span>
+        <span class="org-keyword">var</span> <span class="org-variable-name">a3</span> = $(<span class="org-string">".default_list:eq("</span> + i + <span class="org-string">")"</span>).attr(<span class="org-string">"data-company"</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">&#20844;&#21496;</span>
+        <span class="org-keyword">var</span> <span class="org-variable-name">td</span> = <span class="org-string">"&lt;tr&gt;&lt;td&gt;"</span> + a1 + <span class="org-string">"&lt;/td&gt;&lt;td&gt;"</span> + a2 + <span class="org-string">"&lt;/td&gt;&lt;td&gt;"</span> + a3 + <span class="org-string">"&lt;/td&gt;&lt;/tr&gt;"</span>;
+
+        $(<span class="org-string">"#mytable"</span>).append(td);
+    }
+
+    $(<span class="org-string">"#mytable,th,tr,td"</span>).css(<span class="org-string">"border"</span>, <span class="org-string">"1px solid skyblue"</span>);
+    mydiv.css(<span class="org-string">"width"</span>, <span class="org-string">"500px"</span>)
+        .css(<span class="org-string">"height"</span>, <span class="org-string">"800px"</span>)
+        .css(<span class="org-string">"position"</span>, <span class="org-string">"fixed"</span>)
+        .css(<span class="org-string">"background"</span>, <span class="org-string">"#f0f0f0"</span>);
+    mydiv.css(<span class="org-string">"z-index"</span>, <span class="org-string">"999"</span>);
+}
+
+<span class="org-keyword">function</span> <span class="org-function-name">showPositionsFloatWindow2</span>() {
+    <span class="org-comment-delimiter">// </span><span class="org-comment">1. &#21019;&#24314;&#33410;&#28857;&#65292;&#25918;&#21040; body,&#28982;&#21518;&#35753;&#23427;&#28014;&#21160;&#36215;&#26469;</span>
+    <span class="org-keyword">var</span> <span class="org-variable-name">$div</span> =
+        $(<span class="org-string">"&lt;div&gt;&lt;i&gt;x&lt;/i&gt;&lt;ul&gt;&lt;/ul&gt;&lt;/div&gt;"</span>)
+        .css({
+            <span class="org-string">"position"</span>: <span class="org-string">"fixed"</span>,
+            <span class="org-string">"left"</span>: <span class="org-string">"0"</span>,
+            <span class="org-string">"top"</span>: <span class="org-string">"0"</span>,
+            <span class="org-string">"width"</span>: <span class="org-string">"300px"</span>,
+            <span class="org-string">"height"</span>: <span class="org-string">"300px"</span>,
+            <span class="org-string">"padding"</span>: <span class="org-string">"10px"</span>,
+            <span class="org-string">"margin"</span>: <span class="org-string">"10px"</span>,
+            <span class="org-string">"overflow-y"</span>: <span class="org-string">"auto"</span>,
+            <span class="org-string">"background"</span>: <span class="org-string">"#ffffff"</span>
+        })
+        .appendTo(<span class="org-string">"body"</span>);
+
+    <span class="org-comment-delimiter">// </span><span class="org-comment">2. &#20174;&#39029;&#38754;&#20013;&#33719;&#21462;&#30456;&#20851;&#25968;&#25454;&#65292;&#24182;&#19988;&#23558;&#25968;&#25454;&#26174;&#31034;&#21040;&#21018;&#25165;&#30340; &#33410;&#28857;&#19978;</span>
+    $(<span class="org-string">".default_list"</span>).each(<span class="org-keyword">function</span> (<span class="org-variable-name">index</span>, <span class="org-variable-name">item</span>) {
+        $(<span class="org-string">"&lt;li&gt;"</span> + $(item).attr(<span class="org-string">"data-positionname"</span>) + <span class="org-string">" / "</span> + $(item).attr(<span class="org-string">"data-salary"</span>) + <span class="org-string">"&lt;/li&gt;"</span>)
+            .css({
+                <span class="org-string">"border-bottom"</span>: <span class="org-string">"1px solid gray"</span>,
+                <span class="org-string">"padding"</span>: <span class="org-string">"8px 0"</span>
+            })
+            .appendTo($div.find(<span class="org-string">"ul"</span>))
+    });
+
+    <span class="org-comment-delimiter">// </span><span class="org-comment">3. &#28155;&#21152;&#20851;&#38381;&#20107;&#20214;</span>
+    $div.find(<span class="org-string">"i"</span>).click(<span class="org-keyword">function</span> () {
+        $div.fadeOut(5000, <span class="org-keyword">function</span> () {
+            $div.remove();
+        });
+    });
+}
+
+<span class="org-keyword">function</span> <span class="org-function-name">showPositionsFloatWindow3</span>() {
+    <span class="org-comment-delimiter">// </span><span class="org-comment">1. &#21019;&#24314;&#33410;&#28857;&#65292;&#25918;&#21040; body&#65292;&#28982;&#21518;&#35753;&#23427;&#28014;&#21160;&#36215;&#26469;</span>
+    <span class="org-keyword">var</span> <span class="org-variable-name">$div</span> = $(<span class="org-string">"&lt;div&gt;&lt;i&gt;x&lt;/i&gt;&lt;ul&gt;&lt;/ul&gt;&lt;/div&gt;"</span>).appendTo(<span class="org-string">"body"</span>);
+
+    <span class="org-comment-delimiter">// </span><span class="org-comment">2. &#20174;&#39029;&#38754;&#20013;&#33719;&#21462;&#30456;&#20851;&#25968;&#25454;&#65292;&#24182;&#19988;&#23558;&#25968;&#25454;&#26174;&#31034;&#21040;&#21018;&#25165;&#30340; &#33410;&#28857;&#19978;</span>
+    $(<span class="org-string">".default_list"</span>).each(<span class="org-keyword">function</span> (<span class="org-variable-name">index</span>, <span class="org-variable-name">item</span>) {
+        $(<span class="org-string">"&lt;li&gt;"</span> + $(item).attr(<span class="org-string">"data-positionname"</span>) + <span class="org-string">" / "</span> + $(item).attr(<span class="org-string">"data-salary"</span>) + <span class="org-string">"&lt;/li&gt;"</span>).appendTo($div.find(<span class="org-string">"ul"</span>))
+    });
+
+    <span class="org-comment-delimiter">// </span><span class="org-comment">3. &#28155;&#21152;&#20851;&#38381;&#20107;&#20214;</span>
+    $div.find(<span class="org-string">"i"</span>).click(<span class="org-keyword">function</span> () { $div.remove(); });
+}
+</pre>
+</div>
+</div>
+</section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-31 Wed 00:34</p>
+<p class="date">Created: 2019-07-31 Wed 02:22</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
