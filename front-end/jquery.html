@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-31 Wed 06:26 -->
+<!-- 2019-07-31 Wed 06:42 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery</title>
@@ -717,7 +717,7 @@ API:
      * { padding: 0; margin: 0; box-sizing: border-box }
 
      body {
-       background-image: linear-gradient(190deg, #82E0AA, gold, pink);
+       background-image: linear-gradient(120deg, red, orange, yellow, green, blue, purple);
        height: 100vh;
        font-family: <span class="org-string">"&#23435;&#20307;"</span>;
      }
@@ -778,7 +778,11 @@ API:
     &lt;<span class="org-function-name">script</span>&gt;
      $(<span class="org-string">"input"</span>).on('keyup', function (e) {
        if (e.keyCode === 13 &amp;&amp; $(this).val()) {
-         var $task = $(<span class="org-string">"&lt;div class='task'&gt;"</span> + $(this).val() + <span class="org-string">"&lt;i class='del fa fa-trash'&gt;&lt;/i&gt;&lt;i class='save fa fa-tasks'&gt;&lt;/i&gt;&lt;/div&gt;"</span>);
+         var $task =
+           $(<span class="org-string">"&lt;div class='task'&gt;&lt;/div&gt;"</span>)
+           .text($(this).val())
+           .append(<span class="org-string">"&lt;i class='save fa fa-paper-plane'&gt;&lt;/i&gt;"</span>)
+           .append(<span class="org-string">"&lt;i class='del fa fa-trash'&gt;&lt;/i&gt;"</span>);
 
          $task.find(<span class="org-string">".del"</span>).click(function () {
            $el = $(this).parent();
@@ -810,7 +814,7 @@ API:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-31 Wed 06:26</p>
+<p class="date">Created: 2019-07-31 Wed 06:42</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

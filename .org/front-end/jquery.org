@@ -502,7 +502,7 @@ API:
        ,* { padding: 0; margin: 0; box-sizing: border-box }
 
        body {
-         background-image: linear-gradient(190deg, #82E0AA, gold, pink);
+         background-image: linear-gradient(120deg, red, orange, yellow, green, blue, purple);
          height: 100vh;
          font-family: "宋体";
        }
@@ -563,7 +563,11 @@ API:
       <script>
        $("input").on('keyup', function (e) {
          if (e.keyCode === 13 && $(this).val()) {
-           var $task = $("<div class='task'>" + $(this).val() + "<i class='del fa fa-trash'></i><i class='save fa fa-tasks'></i></div>");
+           var $task =
+             $("<div class='task'></div>")
+             .text($(this).val())
+             .append("<i class='save fa fa-paper-plane'></i>")
+             .append("<i class='del fa fa-trash'></i>");
 
            $task.find(".del").click(function () {
              $el = $(this).parent();
