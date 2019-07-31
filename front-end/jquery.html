@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-31 Wed 03:50 -->
+<!-- 2019-07-31 Wed 06:26 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery</title>
@@ -711,13 +711,13 @@ API:
   &lt;<span class="org-function-name">head</span>&gt;
     &lt;<span class="org-function-name">meta</span> <span class="org-variable-name">charset</span>=<span class="org-string">"UTF-8"</span>/&gt;
     &lt;<span class="org-function-name">title</span>&gt;<span class="org-underline"><span class="org-bold">&#20219;&#21153;&#21015;&#34920;</span></span>&lt;/<span class="org-function-name">title</span>&gt;
+    &lt;<span class="org-function-name">link</span> <span class="org-variable-name">href</span>=<span class="org-string">"https://cdn.bootcss.com/font-awesome/5.10.0-12/css/all.min.css"</span> <span class="org-variable-name">rel</span>=<span class="org-string">"stylesheet"</span>&gt;
     &lt;<span class="org-function-name">script</span> <span class="org-variable-name">src</span>=<span class="org-string">"https://cdn.bootcss.com/jquery/3.2.1/jquery.js"</span>&gt;&lt;/<span class="org-function-name">script</span>&gt;
-
     &lt;<span class="org-function-name">style</span>&gt;
      * { padding: 0; margin: 0; box-sizing: border-box }
 
      body {
-       background-image: linear-gradient(120deg, green, blue);
+       background-image: linear-gradient(190deg, #82E0AA, gold, pink);
        height: 100vh;
        font-family: <span class="org-string">"&#23435;&#20307;"</span>;
      }
@@ -734,7 +734,7 @@ API:
        background: none;
        border-bottom: 2px solid black;
        width: 100%;
-       padding: 5px 0;
+       padding: 5px;
      }
 
      h3 {
@@ -752,6 +752,12 @@ API:
      .task i {
        float: right;
        margin-right: 10px;
+       cursor: pointer;
+     }
+
+     .done .task {
+       background: rgba(0, 0, 0, 0.5);
+       color: white;
      }
     &lt;/<span class="org-function-name">style</span>&gt;
   &lt;/<span class="org-function-name">head</span>&gt;
@@ -770,28 +776,31 @@ API:
     &lt;/<span class="org-function-name">div</span>&gt;
 
     &lt;<span class="org-function-name">script</span>&gt;
-
      $(<span class="org-string">"input"</span>).on('keyup', function (e) {
        if (e.keyCode === 13 &amp;&amp; $(this).val()) {
-         var $task = $(<span class="org-string">"&lt;div class='task'&gt;"</span> + $(this).val() + <span class="org-string">"&lt;i class='del'&gt;</span><span class="org-string"><span class="org-italic">&#21024;&#38500;</span></span><span class="org-string">&lt;/i&gt;&lt;i class='save'&gt;</span><span class="org-string"><span class="org-italic">&#24402;&#26723;</span></span><span class="org-string">&lt;/i&gt;&lt;/div&gt;"</span>);
-
+         var $task = $(<span class="org-string">"&lt;div class='task'&gt;"</span> + $(this).val() + <span class="org-string">"&lt;i class='del fa fa-trash'&gt;&lt;/i&gt;&lt;i class='save fa fa-tasks'&gt;&lt;/i&gt;&lt;/div&gt;"</span>);
 
          $task.find(<span class="org-string">".del"</span>).click(function () {
-           $(this).parent().remove();
+           $el = $(this).parent();
+           $el.fadeOut(function () {
+             $el.remove();
+           });
          });
 
          $task.find(<span class="org-string">".save"</span>).click(function () {
-           $(this).parent().appendTo(<span class="org-string">".done"</span>);
-           $(this).parent().find(<span class="org-string">".save"</span>).remove();
+           $el = $(this).parent();
+           $el.fadeOut(function () {
+             $el.appendTo(<span class="org-string">".done"</span>);
+             $el.fadeIn();
+           });
+           $el.find(<span class="org-string">".save"</span>).remove();
          });
 
          $(<span class="org-string">".todo"</span>).append($task);
          $(this).val(<span class="org-string">""</span>);
        }
      });
-
     &lt;/<span class="org-function-name">script</span>&gt;
-
   &lt;/<span class="org-function-name">body</span>&gt;
 &lt;/<span class="org-function-name">html</span>&gt;
 </pre>
@@ -801,7 +810,7 @@ API:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-31 Wed 03:50</p>
+<p class="date">Created: 2019-07-31 Wed 06:26</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
