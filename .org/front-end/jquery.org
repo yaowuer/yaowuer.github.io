@@ -369,7 +369,7 @@ serialize/serializeArray/params:
 
 * 其他函数
 
-- ~get/index/size/toArray~
+- ~$(el).get/index/size/toArray~
 - ~$.trim/each/map/inArray/extend/isXxx~
 
 * 扩展与插件 (Extend/Plugins)
