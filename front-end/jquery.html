@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-08-02 Fri 01:08 -->
+<!-- 2019-08-02 Fri 02:37 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery</title>
@@ -1171,6 +1171,8 @@ API:
     }
 
     function initEvent() {
+        // &#20107;&#20214;&#22996;&#25176;&#26426;&#21046;&#65292;&#33021;&#35753;&#20107;&#24773;&#21464;&#24471;&#26356;&#31616;&#21333;&#65281;
+
         $(<span class="org-string">".container"</span>).on('click', '.del', function () {
             $el = $(this).parent();
             $.ajax({
@@ -1310,6 +1312,7 @@ API:
             background: rgba(0, 0, 0, 0.5);
             color: white;
         }
+
         .tip {
             background-image: linear-gradient(90deg, white, red, red, red, white);
             padding: 3px;
@@ -1338,11 +1341,6 @@ API:
 &lt;/<span class="org-function-name">div</span>&gt;
 
 &lt;<span class="org-function-name">script</span>&gt;
-
-    // &#25105;&#20204;&#30340;&#19968;&#36143;&#21407;&#21017;&#26159;&#65306;&#26834;&#25171;&#40499;&#40495;&#65292;&#33021;&#20998;&#23601;&#20998;&#65281;
-    // &#20998;&#31163;&#20986;&#19981;&#21516;&#20989;&#25968;&#65292;&#30475;&#19978;&#21435;&#22797;&#26434;&#20102;&#65292;&#23454;&#36136;&#19978;&#31616;&#21333;&#20102;&#12290;
-    // &#21018;&#24320;&#22987;&#21487;&#33021;&#19981;&#36866;&#24212;&#65292;&#20294;&#20320;&#35201;&#23398;&#20250;&#20064;&#24815;&#65281;
-
     $(function () {
         init();
         initEvent();
@@ -1350,17 +1348,11 @@ API:
     });
 
     function init() {
-        // &#21462;&#21040;&#25968;&#25454;
         $.ajax({
             method: <span class="org-string">"GET"</span>,
             url: <span class="org-string">"/xxx/ajax/task"</span>,
-            dataType: <span class="org-string">"JSON"</span>  // &#29468;&#19968;&#19979;&#65292;&#22914;&#26524;&#21152;&#19978;&#36825;&#19968;&#21477;&#65292;&#20250;&#26377;&#20160;&#20040;&#25928;&#26524;
+            dataType: <span class="org-string">"JSON"</span>
         }).done(function (res) {
-            // &#25105;&#20204;&#21487;&#20197;&#30452;&#25509;&#20351;&#29992; JSON.parse(xxx) &#25110; JSON.stringify(xxx) &#26469;&#36716;&#25442; JSON &#23545;&#35937;&#21644;&#23383;&#31526;&#20018;
-
-            // &#25105;&#20204;&#20063;&#21487;&#20197;&#35753; jQuery &#30452;&#25509;&#23558;&#19968;&#20010; JSON dx&#20316;&#20026;&#20540;&#36820;&#22238;&#32473;&#25105;&#20204;
-            // &#29468;&#29468;&#65292;&#35813;&#24590;&#20040;&#20570;&#21602;&#65311;
-
             res.forEach(function (task) {
                 if (task.status === <span class="org-string">"1"</span>) {
                     newTask(task.content, task.id, true).appendTo(<span class="org-string">".todo"</span>);
@@ -1382,9 +1374,6 @@ API:
                     $el.remove();
                 });
             }).fail(function () {
-                // WARNING: &#20026;&#20102;&#29992;&#25143;&#20307;&#39564;&#65292;&#20005;&#31105;&#22312;&#39029;&#38754;&#20013;&#20351;&#29992; alert &#36827;&#34892;&#24377;&#20986;&#25552;&#31034;
-                // WARNING: &#20026;&#20102;&#29992;&#25143;&#20307;&#39564;&#65292;&#20005;&#31105;&#22312;&#39029;&#38754;&#20013;&#20351;&#29992; alert &#36827;&#34892;&#24377;&#20986;&#25552;&#31034;
-                // WARNING: &#20026;&#20102;&#29992;&#25143;&#20307;&#39564;&#65292;&#20005;&#31105;&#22312;&#39029;&#38754;&#20013;&#20351;&#29992; alert &#36827;&#34892;&#24377;&#20986;&#25552;&#31034;
                 myalert(<span class="org-string">"&#21024;&#38500;&#22833;&#36133;&#65281;"</span>)
             })
         }).on('click', '.save', function () {
@@ -1400,9 +1389,6 @@ API:
                 });
                 $el.find(<span class="org-string">".save"</span>).remove();
             }).fail(function () {
-                // WARNING: &#20026;&#20102;&#29992;&#25143;&#20307;&#39564;&#65292;&#20005;&#31105;&#22312;&#39029;&#38754;&#20013;&#20351;&#29992; alert &#36827;&#34892;&#24377;&#20986;&#25552;&#31034;
-                // WARNING: &#20026;&#20102;&#29992;&#25143;&#20307;&#39564;&#65292;&#20005;&#31105;&#22312;&#39029;&#38754;&#20013;&#20351;&#29992; alert &#36827;&#34892;&#24377;&#20986;&#25552;&#31034;
-                // WARNING: &#20026;&#20102;&#29992;&#25143;&#20307;&#39564;&#65292;&#20005;&#31105;&#22312;&#39029;&#38754;&#20013;&#20351;&#29992; alert &#36827;&#34892;&#24377;&#20986;&#25552;&#31034;
                 myalert(<span class="org-string">"&#24402;&#26723;&#22833;&#36133;!"</span>)
             })
         });
@@ -1413,17 +1399,12 @@ API:
             if (e.keyCode === 13 &amp;&amp; $(this).val()) {
                 $.ajax({
                     method: <span class="org-string">"PUT"</span>,
-                    url: <span class="org-string">"/xxx/ajax/task?"</span> + $.param({
-                        content: $(this).val()
-                    })  // $.param &#26041;&#27861;&#26159;&#24178;&#20160;&#20040;&#30340;&#65311;&#38656;&#35201;&#20102;&#35299;
+                    url: <span class="org-string">"/xxx/ajax/task?"</span> + $.param({ content: $(this).val() })
                 }).done(function (res) {
                     var $task = newTask($(<span class="org-string">"input"</span>).val(), res, true);
                     $(<span class="org-string">".todo"</span>).append($task);
                     $(<span class="org-string">"input"</span>).val(<span class="org-string">""</span>);
                 }).fail(function () {
-                    // WARNING: &#20026;&#20102;&#29992;&#25143;&#20307;&#39564;&#65292;&#20005;&#31105;&#22312;&#39029;&#38754;&#20013;&#20351;&#29992; alert &#36827;&#34892;&#24377;&#20986;&#25552;&#31034;
-                    // WARNING: &#20026;&#20102;&#29992;&#25143;&#20307;&#39564;&#65292;&#20005;&#31105;&#22312;&#39029;&#38754;&#20013;&#20351;&#29992; alert &#36827;&#34892;&#24377;&#20986;&#25552;&#31034;
-                    // WARNING: &#20026;&#20102;&#29992;&#25143;&#20307;&#39564;&#65292;&#20005;&#31105;&#22312;&#39029;&#38754;&#20013;&#20351;&#29992; alert &#36827;&#34892;&#24377;&#20986;&#25552;&#31034;
                     myalert(<span class="org-string">"&#28155;&#21152;&#22833;&#36133;."</span>)
                 })
             }
@@ -1431,7 +1412,6 @@ API:
     }
 
     function newTask(content, id, isNew) {
-        // &#21019;&#24314;&#26032;&#33410;&#28857;
         var $task = $(<span class="org-string">"&lt;div class='task'&gt;"</span> + content + <span class="org-string">"&lt;/div&gt;"</span>)
             .attr(<span class="org-string">"data-id"</span>, id)
             .append(<span class="org-string">"&lt;i class='del fa fa-trash'&gt;&lt;/i&gt;"</span>);
@@ -1439,6 +1419,7 @@ API:
         if (isNew) {
             $task.append(<span class="org-string">"&lt;i class='save fa fa-paper-plane'&gt;&lt;/i&gt;"</span>);
         }
+
         return $task;
     }
 
@@ -1461,7 +1442,7 @@ API:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-08-02 Fri 01:08</p>
+<p class="date">Created: 2019-08-02 Fri 02:37</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
