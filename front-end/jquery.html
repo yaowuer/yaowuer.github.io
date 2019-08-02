@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-08-02 Fri 02:37 -->
+<!-- 2019-08-02 Fri 02:42 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery</title>
@@ -50,7 +50,13 @@
 </li>
 <li><a href="#orgd922a82">8. 其他函数</a></li>
 <li><a href="#org6cbc9b3">9. 扩展与插件 (Extend/Plugins)</a></li>
-<li><a href="#org3fae7eb">10. 示例. 拉勾网</a></li>
+<li><a href="#org3fae7eb">10. 示例. 拉勾网</a>
+<ul>
+<li><a href="#org75816dd">10.1. Plan A</a></li>
+<li><a href="#orgcca9cb0">10.2. Plan B</a></li>
+<li><a href="#orge9ec9d8">10.3. Overview</a></li>
+</ul>
+</li>
 <li><a href="#orgd5dd68f">11. 示例. 任务管理</a>
 <ul>
 <li><a href="#org6d575e5">11.1. 第〇版、页面与样式</a></li>
@@ -684,6 +690,14 @@ API:
 <section id="outline-container-org3fae7eb" class="outline-2">
 <h2 id="org3fae7eb"><span class="section-number-2">10</span> 示例. 拉勾网</h2>
 <div class="outline-text-2" id="text-10">
+<p>
+将首页的工作浮动显示
+</p>
+</div>
+
+<div id="outline-container-org75816dd" class="outline-3">
+<h3 id="org75816dd"><span class="section-number-3">10.1</span> Plan A</h3>
+<div class="outline-text-3" id="text-10-1">
 <div class="org-src-container">
 <pre class="src src-js"><span class="org-keyword">function</span> <span class="org-function-name">showPositionsFloatWindow</span>() {
     <span class="org-keyword">var</span> <span class="org-variable-name">mydiv</span> = $(<span class="org-string">"&lt;div&gt;&lt;table id='mytable'&gt;&lt;tr&gt;&lt;th&gt;&#32844;&#20301;&lt;/th&gt;&lt;th&gt;&#24037;&#36164;&lt;/th&gt;&lt;th&gt;&#20844;&#21496;&lt;/th&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;"</span>);
@@ -708,8 +722,16 @@ API:
         .css(<span class="org-string">"background"</span>, <span class="org-string">"#f0f0f0"</span>);
     mydiv.css(<span class="org-string">"z-index"</span>, <span class="org-string">"999"</span>);
 }
+</pre>
+</div>
+</div>
+</div>
 
-<span class="org-keyword">function</span> <span class="org-function-name">showPositionsFloatWindow2</span>() {
+<div id="outline-container-orgcca9cb0" class="outline-3">
+<h3 id="orgcca9cb0"><span class="section-number-3">10.2</span> Plan B</h3>
+<div class="outline-text-3" id="text-10-2">
+<div class="org-src-container">
+<pre class="src src-js"><span class="org-keyword">function</span> <span class="org-function-name">showPositionsFloatWindow</span>() {
     <span class="org-comment-delimiter">// </span><span class="org-comment">1. &#21019;&#24314;&#33410;&#28857;&#65292;&#25918;&#21040; body,&#28982;&#21518;&#35753;&#23427;&#28014;&#21160;&#36215;&#26469;</span>
     <span class="org-keyword">var</span> <span class="org-variable-name">$div</span> =
         $(<span class="org-string">"&lt;div&gt;&lt;i&gt;x&lt;/i&gt;&lt;ul&gt;&lt;/ul&gt;&lt;/div&gt;"</span>)
@@ -743,8 +765,16 @@ API:
         });
     });
 }
+</pre>
+</div>
+</div>
+</div>
 
-<span class="org-keyword">function</span> <span class="org-function-name">showPositionsFloatWindow3</span>() {
+<div id="outline-container-orge9ec9d8" class="outline-3">
+<h3 id="orge9ec9d8"><span class="section-number-3">10.3</span> Overview</h3>
+<div class="outline-text-3" id="text-10-3">
+<div class="org-src-container">
+<pre class="src src-js"><span class="org-keyword">function</span> <span class="org-function-name">showPositionsFloatWindow</span>() {
     <span class="org-comment-delimiter">// </span><span class="org-comment">1. &#21019;&#24314;&#33410;&#28857;&#65292;&#25918;&#21040; body&#65292;&#28982;&#21518;&#35753;&#23427;&#28014;&#21160;&#36215;&#26469;</span>
     <span class="org-keyword">var</span> <span class="org-variable-name">$div</span> = $(<span class="org-string">"&lt;div&gt;&lt;i&gt;x&lt;/i&gt;&lt;ul&gt;&lt;/ul&gt;&lt;/div&gt;"</span>).appendTo(<span class="org-string">"body"</span>);
 
@@ -759,7 +789,9 @@ API:
 </pre>
 </div>
 </div>
+</div>
 </section>
+
 <section id="outline-container-orgd5dd68f" class="outline-2">
 <h2 id="orgd5dd68f"><span class="section-number-2">11</span> 示例. 任务管理</h2>
 <div class="outline-text-2" id="text-11">
@@ -1442,7 +1474,7 @@ API:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-08-02 Fri 02:37</p>
+<p class="date">Created: 2019-08-02 Fri 02:42</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>

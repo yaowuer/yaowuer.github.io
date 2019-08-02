@@ -461,6 +461,10 @@ API:
 #+END_SRC
 * 示例. 拉勾网
 
+将首页的工作浮动显示
+
+** Plan A
+
 #+BEGIN_SRC js
   function showPositionsFloatWindow() {
       var mydiv = $("<div><table id='mytable'><tr><th>职位</th><th>工资</th><th>公司</th></tr></table></div>");
@@ -485,8 +489,12 @@ API:
           .css("background", "#f0f0f0");
       mydiv.css("z-index", "999");
   }
+#+END_SRC
 
-  function showPositionsFloatWindow2() {
+** Plan B
+
+#+BEGIN_SRC js
+  function showPositionsFloatWindow() {
       // 1. 创建节点，放到 body,然后让它浮动起来
       var $div =
           $("<div><i>x</i><ul></ul></div>")
@@ -520,8 +528,12 @@ API:
           });
       });
   }
+#+END_SRC
 
-  function showPositionsFloatWindow3() {
+** Overview
+
+#+BEGIN_SRC js
+  function showPositionsFloatWindow() {
       // 1. 创建节点，放到 body，然后让它浮动起来
       var $div = $("<div><i>x</i><ul></ul></div>").appendTo("body");
 
@@ -534,6 +546,7 @@ API:
       $div.find("i").click(function () { $div.remove(); });
   }
 #+END_SRC
+
 * 示例. 任务管理
 ** 第〇版、页面与样式
 
