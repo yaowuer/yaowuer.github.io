@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-07-31 Wed 08:35 -->
+<!-- 2019-08-02 Fri 01:07 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jQuery</title>
@@ -51,7 +51,14 @@
 <li><a href="#orgd922a82">8. 其他函数</a></li>
 <li><a href="#org6cbc9b3">9. 扩展与插件 (Extend/Plugins)</a></li>
 <li><a href="#org3fae7eb">10. 示例. 拉勾网</a></li>
-<li><a href="#orgf391795">11. 示例. 任务列表</a></li>
+<li><a href="#orgd5dd68f">11. 示例. 任务管理</a>
+<ul>
+<li><a href="#org6d575e5">11.1. 第〇版、页面与样式</a></li>
+<li><a href="#org2c920e5">11.2. 第一版、使用 JS 实现动态添加</a></li>
+<li><a href="#org0d304a5">11.3. 第二版、若干优化: 添加动画、图标等</a></li>
+<li><a href="#org5e04e57">11.4. 第三版、使用 AJAX 完成前后端交互</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </nav>
@@ -752,9 +759,196 @@ API:
 </div>
 </div>
 </section>
-<section id="outline-container-orgf391795" class="outline-2">
-<h2 id="orgf391795"><span class="section-number-2">11</span> 示例. 任务列表</h2>
+<section id="outline-container-orgd5dd68f" class="outline-2">
+<h2 id="orgd5dd68f"><span class="section-number-2">11</span> 示例. 任务管理</h2>
 <div class="outline-text-2" id="text-11">
+</div>
+<div id="outline-container-org6d575e5" class="outline-3">
+<h3 id="org6d575e5"><span class="section-number-3">11.1</span> 第〇版、页面与样式</h3>
+<div class="outline-text-3" id="text-11-1">
+<div class="org-src-container">
+<pre class="src src-html"><span class="org-string">&lt;!doctype html&gt;</span>
+&lt;<span class="org-function-name">html</span> <span class="org-variable-name">lang</span>=<span class="org-string">"en"</span>&gt;
+  &lt;<span class="org-function-name">head</span>&gt;
+    &lt;<span class="org-function-name">meta</span> <span class="org-variable-name">charset</span>=<span class="org-string">"UTF-8"</span>/&gt;
+    &lt;<span class="org-function-name">title</span>&gt;<span class="org-underline"><span class="org-bold">&#20219;&#21153;&#21015;&#34920;</span></span>&lt;/<span class="org-function-name">title</span>&gt;
+    &lt;<span class="org-function-name">style</span>&gt;
+     * { padding: 0; margin: 0; box-sizing: border-box }
+
+     body {
+       background-image: linear-gradient(120deg, red, orange, yellow, green, blue, purple);
+       height: 100vh;
+       font-family: <span class="org-string">"&#23435;&#20307;"</span>;
+     }
+
+     .container {
+       max-width: 500px;
+       margin: 0 auto;
+       padding: 5px;
+     }
+
+     input {
+       border: 0;
+       outline: 0;
+       background: none;
+       border-bottom: 2px solid black;
+       width: 100%;
+       padding: 5px;
+     }
+
+     h3 {
+       margin-top: 15px;
+       margin-bottom: 5px;
+     }
+
+     .task {
+       background: rgba(255, 255, 255, 0.6);
+       margin: 5px 0;
+       padding: 5px;
+       border-radius: 5px;
+     }
+
+     .task i {
+       float: right;
+       margin-right: 10px;
+       cursor: pointer;
+     }
+
+     .done .task {
+       background: rgba(0, 0, 0, 0.5);
+       color: white;
+     }
+    &lt;/<span class="org-function-name">style</span>&gt;
+  &lt;/<span class="org-function-name">head</span>&gt;
+  &lt;<span class="org-function-name">body</span>&gt;
+
+    &lt;<span class="org-function-name">div</span> <span class="org-variable-name">class</span>=<span class="org-string">"container"</span>&gt;
+      &lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"text"</span> <span class="org-variable-name">value</span>=<span class="org-string">""</span>/&gt;
+
+      &lt;<span class="org-function-name">div</span> <span class="org-variable-name">class</span>=<span class="org-string">"todo"</span>&gt;
+        &lt;<span class="org-function-name">h3</span>&gt;<span class="org-underline"><span class="org-italic">&#26410;&#23436;&#25104;&#20219;&#21153;</span></span>&lt;/<span class="org-function-name">h3</span>&gt;
+        &lt;<span class="org-function-name">div</span> <span class="org-variable-name">class</span>=<span class="org-string">"task"</span>&gt;aaa &lt;<span class="org-function-name">i</span>&gt;<span class="org-italic">&#21024;&#38500;</span>&lt;/<span class="org-function-name">i</span>&gt;&lt;<span class="org-function-name">i</span>&gt;<span class="org-italic">&#24402;&#26723;</span>&lt;/<span class="org-function-name">i</span>&gt;&lt;/<span class="org-function-name">div</span>&gt;
+        &lt;<span class="org-function-name">div</span> <span class="org-variable-name">class</span>=<span class="org-string">"task"</span>&gt;bbb &lt;<span class="org-function-name">i</span>&gt;<span class="org-italic">&#21024;&#38500;</span>&lt;/<span class="org-function-name">i</span>&gt;&lt;<span class="org-function-name">i</span>&gt;<span class="org-italic">&#24402;&#26723;</span>&lt;/<span class="org-function-name">i</span>&gt;&lt;/<span class="org-function-name">div</span>&gt;
+      &lt;/<span class="org-function-name">div</span>&gt;
+
+      &lt;<span class="org-function-name">div</span> <span class="org-variable-name">class</span>=<span class="org-string">"done"</span>&gt;
+        &lt;<span class="org-function-name">h3</span>&gt;<span class="org-underline"><span class="org-italic">&#24050;&#23436;&#25104;&#20219;&#21153;</span></span>&lt;/<span class="org-function-name">h3</span>&gt;
+        &lt;<span class="org-function-name">div</span> <span class="org-variable-name">class</span>=<span class="org-string">"task"</span>&gt;ccc &lt;<span class="org-function-name">i</span>&gt;<span class="org-italic">&#21024;&#38500;</span>&lt;/<span class="org-function-name">i</span>&gt;&lt;/<span class="org-function-name">div</span>&gt;
+        &lt;<span class="org-function-name">div</span> <span class="org-variable-name">class</span>=<span class="org-string">"task"</span>&gt;ddd &lt;<span class="org-function-name">i</span>&gt;<span class="org-italic">&#21024;&#38500;</span>&lt;/<span class="org-function-name">i</span>&gt;&lt;/<span class="org-function-name">div</span>&gt;
+      &lt;/<span class="org-function-name">div</span>&gt;
+    &lt;/<span class="org-function-name">div</span>&gt;
+  &lt;/<span class="org-function-name">body</span>&gt;
+&lt;/<span class="org-function-name">html</span>&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2c920e5" class="outline-3">
+<h3 id="org2c920e5"><span class="section-number-3">11.2</span> 第一版、使用 JS 实现动态添加</h3>
+<div class="outline-text-3" id="text-11-2">
+<div class="org-src-container">
+<pre class="src src-html"><span class="org-string">&lt;!doctype html&gt;</span>
+&lt;<span class="org-function-name">html</span> <span class="org-variable-name">lang</span>=<span class="org-string">"en"</span>&gt;
+  &lt;<span class="org-function-name">head</span>&gt;
+    &lt;<span class="org-function-name">meta</span> <span class="org-variable-name">charset</span>=<span class="org-string">"UTF-8"</span>/&gt;
+    &lt;<span class="org-function-name">title</span>&gt;<span class="org-underline"><span class="org-bold">&#20219;&#21153;&#21015;&#34920;</span></span>&lt;/<span class="org-function-name">title</span>&gt;
+    &lt;<span class="org-function-name">script</span> <span class="org-variable-name">src</span>=<span class="org-string">"https://cdn.bootcss.com/jquery/3.2.1/jquery.js"</span>&gt;&lt;/<span class="org-function-name">script</span>&gt;
+    &lt;<span class="org-function-name">style</span>&gt;
+     * { padding: 0; margin: 0; box-sizing: border-box }
+
+     body {
+       background-image: linear-gradient(120deg, red, orange, yellow, green, blue, purple);
+       height: 100vh;
+       font-family: <span class="org-string">"&#23435;&#20307;"</span>;
+     }
+
+     .container {
+       max-width: 500px;
+       margin: 0 auto;
+       padding: 5px;
+     }
+
+     input {
+       border: 0;
+       outline: 0;
+       background: none;
+       border-bottom: 2px solid black;
+       width: 100%;
+       padding: 5px;
+     }
+
+     h3 {
+       margin-top: 15px;
+       margin-bottom: 5px;
+     }
+
+     .task {
+       background: rgba(255, 255, 255, 0.6);
+       margin: 5px 0;
+       padding: 5px;
+       border-radius: 5px;
+     }
+
+     .task i {
+       float: right;
+       margin-right: 10px;
+       cursor: pointer;
+     }
+
+     .done .task {
+       background: rgba(0, 0, 0, 0.5);
+       color: white;
+     }
+    &lt;/<span class="org-function-name">style</span>&gt;
+  &lt;/<span class="org-function-name">head</span>&gt;
+  &lt;<span class="org-function-name">body</span>&gt;
+
+    &lt;<span class="org-function-name">div</span> <span class="org-variable-name">class</span>=<span class="org-string">"container"</span>&gt;
+      &lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"text"</span> <span class="org-variable-name">value</span>=<span class="org-string">""</span>/&gt;
+
+      &lt;<span class="org-function-name">div</span> <span class="org-variable-name">class</span>=<span class="org-string">"todo"</span>&gt;
+        &lt;<span class="org-function-name">h3</span>&gt;<span class="org-underline"><span class="org-italic">&#26410;&#23436;&#25104;&#20219;&#21153;</span></span>&lt;/<span class="org-function-name">h3</span>&gt;
+      &lt;/<span class="org-function-name">div</span>&gt;
+
+      &lt;<span class="org-function-name">div</span> <span class="org-variable-name">class</span>=<span class="org-string">"done"</span>&gt;
+        &lt;<span class="org-function-name">h3</span>&gt;<span class="org-underline"><span class="org-italic">&#24050;&#23436;&#25104;&#20219;&#21153;</span></span>&lt;/<span class="org-function-name">h3</span>&gt;
+      &lt;/<span class="org-function-name">div</span>&gt;
+    &lt;/<span class="org-function-name">div</span>&gt;
+
+    &lt;<span class="org-function-name">script</span>&gt;
+     $(<span class="org-string">"input"</span>).on('keyup', function (e) {
+       if (e.keyCode === 13 &amp;&amp; $(this).val()) {
+         var $task =
+           $(<span class="org-string">"&lt;div class='task'&gt;&lt;/div&gt;"</span>)
+           .text($(this).val())
+           .append(<span class="org-string">"&lt;i class='save'&gt;</span><span class="org-string"><span class="org-italic">&#24402;&#26723;</span></span><span class="org-string">&lt;/i&gt;&lt;i class='del'&gt;</span><span class="org-string"><span class="org-italic">&#21024;&#38500;</span></span><span class="org-string">&lt;/i&gt;"</span>)
+
+         $task.find(<span class="org-string">".del"</span>).click(function () {
+           $(this).parent().remove();
+         });
+
+         $task.find(<span class="org-string">".save"</span>).click(function () {
+           $el = $(this).parent();
+           $el.appendTo(<span class="org-string">".done"</span>);
+           $el.find(<span class="org-string">".save"</span>).remove();
+         });
+
+         $(<span class="org-string">".todo"</span>).append($task);
+         $(this).val(<span class="org-string">""</span>);
+       }
+     });
+    &lt;/<span class="org-function-name">script</span>&gt;
+  &lt;/<span class="org-function-name">body</span>&gt;
+&lt;/<span class="org-function-name">html</span>&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0d304a5" class="outline-3">
+<h3 id="org0d304a5"><span class="section-number-3">11.3</span> 第二版、若干优化: 添加动画、图标等</h3>
+<div class="outline-text-3" id="text-11-3">
 <div class="org-src-container">
 <pre class="src src-html"><span class="org-string">&lt;!doctype html&gt;</span>
 &lt;<span class="org-function-name">html</span> <span class="org-variable-name">lang</span>=<span class="org-string">"en"</span>&gt;
@@ -860,11 +1054,203 @@ API:
 </pre>
 </div>
 </div>
+</div>
+
+<div id="outline-container-org5e04e57" class="outline-3">
+<h3 id="org5e04e57"><span class="section-number-3">11.4</span> 第三版、使用 AJAX 完成前后端交互</h3>
+<div class="outline-text-3" id="text-11-4">
+<div class="org-src-container">
+<pre class="src src-html"><span class="org-string">&lt;!doctype html&gt;</span>
+&lt;<span class="org-function-name">html</span> <span class="org-variable-name">lang</span>=<span class="org-string">"en"</span>&gt;
+&lt;<span class="org-function-name">head</span>&gt;
+    &lt;<span class="org-function-name">meta</span> <span class="org-variable-name">charset</span>=<span class="org-string">"UTF-8"</span>/&gt;
+    &lt;<span class="org-function-name">title</span>&gt;<span class="org-underline"><span class="org-bold">&#20219;&#21153;&#21015;&#34920;</span></span>&lt;/<span class="org-function-name">title</span>&gt;
+    &lt;<span class="org-function-name">link</span> <span class="org-variable-name">href</span>=<span class="org-string">"https://cdn.bootcss.com/font-awesome/5.10.0-12/css/all.min.css"</span> <span class="org-variable-name">rel</span>=<span class="org-string">"stylesheet"</span>&gt;
+    &lt;<span class="org-function-name">script</span> <span class="org-variable-name">src</span>=<span class="org-string">"https://cdn.bootcss.com/jquery/3.2.1/jquery.js"</span>&gt;&lt;/<span class="org-function-name">script</span>&gt;
+    &lt;<span class="org-function-name">style</span>&gt;
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            color: darkblue;
+            background-image: linear-gradient(120deg, white, yellow);
+            height: 100vh;
+            font-family: <span class="org-string">"&#23435;&#20307;"</span>;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 5px;
+        }
+
+        input {
+            border: 0;
+            outline: 0;
+            background: none;
+            border-bottom: 2px solid black;
+            width: 100%;
+            padding: 5px;
+        }
+
+        h3 {
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        .task {
+            background: rgba(255, 255, 255, 0.6);
+            margin: 5px 0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .task i {
+            float: right;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .done .task {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+    &lt;/<span class="org-function-name">style</span>&gt;
+&lt;/<span class="org-function-name">head</span>&gt;
+&lt;<span class="org-function-name">body</span>&gt;
+
+&lt;<span class="org-function-name">div</span> <span class="org-variable-name">class</span>=<span class="org-string">"container"</span>&gt;
+    &lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"text"</span> <span class="org-variable-name">value</span>=<span class="org-string">""</span>/&gt;
+
+    &lt;<span class="org-function-name">div</span> <span class="org-variable-name">class</span>=<span class="org-string">"todo"</span>&gt;
+        &lt;<span class="org-function-name">h3</span>&gt;<span class="org-underline"><span class="org-italic">&#26410;&#23436;&#25104;&#20219;&#21153;</span></span>&lt;/<span class="org-function-name">h3</span>&gt;
+    &lt;/<span class="org-function-name">div</span>&gt;
+
+    &lt;<span class="org-function-name">div</span> <span class="org-variable-name">class</span>=<span class="org-string">"done"</span>&gt;
+        &lt;<span class="org-function-name">h3</span>&gt;<span class="org-underline"><span class="org-italic">&#24050;&#23436;&#25104;&#20219;&#21153;</span></span>&lt;/<span class="org-function-name">h3</span>&gt;
+    &lt;/<span class="org-function-name">div</span>&gt;
+&lt;/<span class="org-function-name">div</span>&gt;
+
+&lt;<span class="org-function-name">script</span>&gt;
+
+    // &#25105;&#20204;&#30340;&#19968;&#36143;&#21407;&#21017;&#26159;&#65306;&#26834;&#25171;&#40499;&#40495;&#65292;&#33021;&#20998;&#23601;&#20998;&#65281;
+    // &#20998;&#31163;&#20986;&#19981;&#21516;&#20989;&#25968;&#65292;&#30475;&#19978;&#21435;&#22797;&#26434;&#20102;&#65292;&#23454;&#36136;&#19978;&#31616;&#21333;&#20102;&#12290;
+    // &#21018;&#24320;&#22987;&#21487;&#33021;&#19981;&#36866;&#24212;&#65292;&#20294;&#20320;&#35201;&#23398;&#20250;&#20064;&#24815;&#65281;
+
+    $(function () {
+        init();
+        initEvent();
+        initAddEvent();
+    });
+
+    function init() {
+        // &#21462;&#21040;&#25968;&#25454;
+        $.ajax({
+            method: <span class="org-string">"GET"</span>,
+            url: <span class="org-string">"/xxx/ajax/task"</span>
+            // dataType: <span class="org-string">"JSON"</span>  // &#29468;&#19968;&#19979;&#65292;&#22914;&#26524;&#21152;&#19978;&#36825;&#19968;&#21477;&#65292;&#20250;&#26377;&#20160;&#20040;&#25928;&#26524;
+        }).done(function (res) {
+            // &#25105;&#20204;&#21487;&#20197;&#30452;&#25509;&#20351;&#29992; JSON.parse(xxx) &#25110; JSON.stringify(xxx) &#26469;&#36716;&#25442; JSON &#23545;&#35937;&#21644;&#23383;&#31526;&#20018;
+
+            // &#25105;&#20204;&#20063;&#21487;&#20197;&#35753; jQuery &#30452;&#25509;&#23558;&#19968;&#20010; JSON dx&#20316;&#20026;&#20540;&#36820;&#22238;&#32473;&#25105;&#20204;
+            // &#29468;&#29468;&#65292;&#35813;&#24590;&#20040;&#20570;&#21602;&#65311;
+
+            var jsonObject = JSON.parse(res);
+            jsonObject.forEach(function (task) {
+                if (task.status === <span class="org-string">"1"</span>) {
+                    newTask(task.content, task.id, true).appendTo(<span class="org-string">".todo"</span>);
+                } else {
+                    newTask(task.content, task.id).appendTo(<span class="org-string">".done"</span>);
+                }
+            })
+        });
+    }
+
+    function initEvent() {
+        $(<span class="org-string">".container"</span>).on('click', '.del', function () {
+            $el = $(this).parent();
+            $.ajax({
+                method: <span class="org-string">"DELETE"</span>,
+                url: <span class="org-string">"/xxx/ajax/task?id="</span> + $el.attr(<span class="org-string">"data-id"</span>)
+            }).done(function () {
+                $el.fadeOut(function () {
+                    $el.remove();
+                });
+            }).fail(function () {
+                // WARNING: &#20026;&#20102;&#29992;&#25143;&#20307;&#39564;&#65292;&#20005;&#31105;&#22312;&#39029;&#38754;&#20013;&#20351;&#29992; alert &#36827;&#34892;&#24377;&#20986;&#25552;&#31034;
+                // WARNING: &#20026;&#20102;&#29992;&#25143;&#20307;&#39564;&#65292;&#20005;&#31105;&#22312;&#39029;&#38754;&#20013;&#20351;&#29992; alert &#36827;&#34892;&#24377;&#20986;&#25552;&#31034;
+                // WARNING: &#20026;&#20102;&#29992;&#25143;&#20307;&#39564;&#65292;&#20005;&#31105;&#22312;&#39029;&#38754;&#20013;&#20351;&#29992; alert &#36827;&#34892;&#24377;&#20986;&#25552;&#31034;
+                alert(<span class="org-string">"&#21024;&#38500;&#22833;&#36133;&#65281;"</span>)
+            })
+        }).on('click', '.save', function () {
+            $el = $(this).parent();
+            $.ajax({
+                method: <span class="org-string">"POST"</span>,
+                url: <span class="org-string">"/xxx/ajax/task"</span>,
+                data: {id: $el.attr(<span class="org-string">"data-id"</span>)}
+            }).done(function () {
+                $el.fadeOut(function () {
+                    $el.appendTo(<span class="org-string">".done"</span>);
+                    $el.fadeIn();
+                });
+                $el.find(<span class="org-string">".save"</span>).remove();
+            }).fail(function () {
+                // WARNING: &#20026;&#20102;&#29992;&#25143;&#20307;&#39564;&#65292;&#20005;&#31105;&#22312;&#39029;&#38754;&#20013;&#20351;&#29992; alert &#36827;&#34892;&#24377;&#20986;&#25552;&#31034;
+                // WARNING: &#20026;&#20102;&#29992;&#25143;&#20307;&#39564;&#65292;&#20005;&#31105;&#22312;&#39029;&#38754;&#20013;&#20351;&#29992; alert &#36827;&#34892;&#24377;&#20986;&#25552;&#31034;
+                // WARNING: &#20026;&#20102;&#29992;&#25143;&#20307;&#39564;&#65292;&#20005;&#31105;&#22312;&#39029;&#38754;&#20013;&#20351;&#29992; alert &#36827;&#34892;&#24377;&#20986;&#25552;&#31034;
+                alert(<span class="org-string">"&#24402;&#26723;&#22833;&#36133;!"</span>)
+            })
+        });
+    }
+
+    function initAddEvent() {
+        $(<span class="org-string">"input"</span>).on('keyup', function (e) {
+            if (e.keyCode === 13 &amp;&amp; $(this).val()) {
+                $.ajax({
+                    method: <span class="org-string">"PUT"</span>,
+                    url: <span class="org-string">"/xxx/ajax/task?"</span> + $.param({
+                        content: $(this).val()
+                    })  // $.param &#26041;&#27861;&#26159;&#24178;&#20160;&#20040;&#30340;&#65311;&#38656;&#35201;&#20102;&#35299;
+                }).done(function (res) {
+                    var $task = newTask($(<span class="org-string">"input"</span>).val(), res, true);
+                    $(<span class="org-string">".todo"</span>).append($task);
+                    $(<span class="org-string">"input"</span>).val(<span class="org-string">""</span>);
+                }).fail(function () {
+                    // WARNING: &#20026;&#20102;&#29992;&#25143;&#20307;&#39564;&#65292;&#20005;&#31105;&#22312;&#39029;&#38754;&#20013;&#20351;&#29992; alert &#36827;&#34892;&#24377;&#20986;&#25552;&#31034;
+                    // WARNING: &#20026;&#20102;&#29992;&#25143;&#20307;&#39564;&#65292;&#20005;&#31105;&#22312;&#39029;&#38754;&#20013;&#20351;&#29992; alert &#36827;&#34892;&#24377;&#20986;&#25552;&#31034;
+                    // WARNING: &#20026;&#20102;&#29992;&#25143;&#20307;&#39564;&#65292;&#20005;&#31105;&#22312;&#39029;&#38754;&#20013;&#20351;&#29992; alert &#36827;&#34892;&#24377;&#20986;&#25552;&#31034;
+                    alert(<span class="org-string">"&#28155;&#21152;&#22833;&#36133;."</span>)
+                })
+            }
+        });
+    }
+
+    function newTask(content, id, isNew) {
+        // &#21019;&#24314;&#26032;&#33410;&#28857;
+        var $task = $(<span class="org-string">"&lt;div class='task'&gt;"</span> + content + <span class="org-string">"&lt;/div&gt;"</span>)
+            .attr(<span class="org-string">"data-id"</span>, id)
+            .append(<span class="org-string">"&lt;i class='del fa fa-trash'&gt;&lt;/i&gt;"</span>);
+
+        if (isNew) {
+            $task.append(<span class="org-string">"&lt;i class='save fa fa-paper-plane'&gt;&lt;/i&gt;"</span>);
+        }
+        return $task;
+    }
+&lt;/<span class="org-function-name">script</span>&gt;
+&lt;/<span class="org-function-name">body</span>&gt;
+&lt;/<span class="org-function-name">html</span>&gt;
+</pre>
+</div>
+</div>
+</div>
 </section>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: yaowuer</p>
-<p class="date">Created: 2019-07-31 Wed 08:35</p>
+<p class="date">Created: 2019-08-02 Fri 01:07</p>
 <p class="validation">Go ahead, never stop.</p>
 </div>
 </body>
