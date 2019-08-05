@@ -1,0 +1,7 @@
+#+TITLE: Java Web - CRUD PHONE DEMO
+
+
+* Tips
+
+#+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/scrot.png @ 2019-08-05 04:06:09
+[[file:img/scrot_2019-08-05_04-06-09.png]]
