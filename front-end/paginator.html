@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2019-08-06 Tue 02:35 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分页(Pagination)</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="yaowuer">
+<link rel='stylesheet' href='/asset/common.css' />
+<script src='https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+<script src='/asset/common.js'></script>
+</head>
+<body>
+<div id="content">
+<header>
+<h1 class="title">分页(Pagination)</h1>
+</header><nav id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org7e1b353">1. Paginator 示例</a></li>
+<li><a href="#orgb43f094">2. Paginator 类使用方法</a></li>
+<li><a href="#org05a8f64">3. Paginator 的封装</a></li>
+</ul>
+</div>
+</nav>
+
+
+<section id="outline-container-org7e1b353" class="outline-2">
+<h2 id="org7e1b353"><span class="section-number-2">1</span> Paginator 示例</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+这是我们的自己定义的分页类:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-keyword">package</span> com.nf.howdoyoudo.<span class="org-constant">pagination</span>;
+
+<span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">util</span>.<span class="org-type">ArrayList</span>;
+<span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">util</span>.<span class="org-type">List</span>;
+
+
+<span class="org-doc">/**</span>
+<span class="org-doc"> * &#23553;&#35013;&#20998;&#39029;&#21151;&#33021;</span>
+<span class="org-doc"> *</span>
+<span class="org-doc"> * &#20351;&#29992;&#26041;&#27861;&#65306;</span>
+<span class="org-doc"> * 1. &#33719;&#21462;&#29992;&#25143;&#21442;&#25968;&#65292;&#24182;&#20351;&#29992;&#36825;&#20123;&#21442;&#25968;&#21019;&#24314; </span><span class="org-doc"><span class="org-constant">{@link Paginator}</span></span><span class="org-doc"> &#23545;&#35937;</span>
+<span class="org-doc"> * 2. &#26597;&#35810;&#25968;&#25454;&#24211;&#65292;&#24471;&#21040;&#35760;&#24405;&#24635;&#25968;&#65292;&#20445;&#23384;&#21040; </span><span class="org-doc"><span class="org-constant">{@link Paginator}</span></span><span class="org-doc"> &#23545;&#35937;</span>
+<span class="org-doc"> * 3. &#26597;&#35810;&#25968;&#25454;&#24211;&#65292;&#24471;&#21040;&#20998;&#39029;&#25968;&#25454;&#65292;&#20445;&#23384;&#21040; </span><span class="org-doc"><span class="org-constant">{@link Paginator}</span></span><span class="org-doc"> &#23545;&#35937;&#12290;&#21487;&#20197;&#36890;&#36807; </span><span class="org-doc"><span class="org-constant">{@link Paginator#getOffset()}</span></span><span class="org-doc"> &#24471;&#21040;&#25968;&#25454;&#30340;&#24320;&#22987;&#24207;&#21495;&#12290;</span>
+<span class="org-doc"> * 4. &#20445;&#23384; </span><span class="org-doc"><span class="org-constant">{@link Paginator}</span></span><span class="org-doc"> &#21040; request &#25110; session &#20013;&#65292;&#29992;&#20110;&#39029;&#38754;&#28210;&#26579;&#12290;</span>
+<span class="org-doc"> * 5. &#20351;&#29992;&#20445;&#23384;&#30340; </span><span class="org-doc"><span class="org-constant">{@link Paginator}</span></span><span class="org-doc"> &#23545;&#35937;&#28210;&#26579;&#39029;&#38754;&#65292;&#21487;&#20197;&#20351;&#29992; </span><span class="org-doc"><span class="org-constant">{@link Paginator#outputPageNav(String, String, boolean, boolean)}</span></span><span class="org-doc"> &#30452;&#25509;&#36755;&#20986;&#39029;&#30721;&#23548;&#33322;</span>
+<span class="org-doc"> *</span>
+<span class="org-doc"> * </span><span class="org-doc"><span class="org-constant">&lt;code&gt;</span></span>
+<span class="org-doc"> *</span>
+<span class="org-doc"> *     // in the servlet</span>
+<span class="org-doc"> *     Paginator pager = new Paginator(&#24403;&#21069;&#39029;, &#27599;&#39029;&#26174;&#31034;&#25968;&#30446;, &#23548;&#33322;&#26639;&#39029;&#25968;);</span>
+<span class="org-doc"> *</span>
+<span class="org-doc"> *     pager.setRowCount(dao.count());</span>
+<span class="org-doc"> *     pager.setData(dao.findAll(page.getOffset(), page.getSize());</span>
+<span class="org-doc"> *</span>
+<span class="org-doc"> *     request.addAttribute("pager", pager);</span>
+<span class="org-doc"> *</span>
+<span class="org-doc"> *</span>
+<span class="org-doc"> *     // in the jsp</span>
+<span class="org-doc"> *     </span><span class="org-doc"><span class="org-constant">&lt;style&gt;</span></span>
+<span class="org-doc"> *         #pagination {}</span>
+<span class="org-doc"> *     </span><span class="org-doc"><span class="org-constant">&lt;/style&gt;</span></span>
+<span class="org-doc"> *     </span><span class="org-doc"><span class="org-constant">&lt;table&gt;</span></span>
+<span class="org-doc"> *         </span><span class="org-doc"><span class="org-warning">&lt;</span></span><span class="org-doc">%-- &#25968;&#25454;&#23637;&#31034; --%</span><span class="org-doc"><span class="org-warning">&gt;</span></span>
+<span class="org-doc"> *     </span><span class="org-doc"><span class="org-constant">&lt;/table&gt;</span></span>
+<span class="org-doc"> *     </span><span class="org-doc"><span class="org-constant">&lt;nav&gt;</span></span>
+<span class="org-doc"> *         </span><span class="org-doc"><span class="org-warning">&lt;</span></span><span class="org-doc">%-- &#39029;&#30721;&#23548;&#33322;&#26639; --%</span><span class="org-doc"><span class="org-warning">&gt;</span></span>
+<span class="org-doc"> *         ${page.outputPageNav("/url", "pageno", true, true)}</span>
+<span class="org-doc"> *     </span><span class="org-doc"><span class="org-constant">&lt;/nav&gt;</span></span>
+<span class="org-doc"> *</span>
+<span class="org-doc"> * </span><span class="org-doc"><span class="org-constant">&lt;/code&gt;</span></span>
+<span class="org-doc"> * </span><span class="org-doc"><span class="org-constant">@param</span></span><span class="org-doc"> </span><span class="org-doc"><span class="org-constant">&lt;T&gt;</span></span>
+<span class="org-doc"> */</span>
+<span class="org-keyword">public</span> <span class="org-keyword">class</span> <span class="org-type">Paginator</span>&lt;<span class="org-type">T</span>&gt; {
+
+    <span class="org-comment-delimiter">// </span><span class="org-comment">&#20174;&#29992;&#25143;&#22788;&#33719;&#21462;&#30340;&#21442;&#25968;</span>
+    <span class="org-keyword">private</span> <span class="org-type">int</span> <span class="org-variable-name">current</span> = 1;   <span class="org-comment-delimiter">// </span><span class="org-comment">&#24403;&#21069;&#39029;&#30721;</span>
+    <span class="org-keyword">private</span> <span class="org-type">int</span> <span class="org-variable-name">pageSize</span> = 10; <span class="org-comment-delimiter">// </span><span class="org-comment">&#27599;&#39029;&#25968;&#30446;</span>
+    <span class="org-keyword">private</span> <span class="org-type">int</span> <span class="org-variable-name">linkSize</span> = 5;  <span class="org-comment-delimiter">// </span><span class="org-comment">&#23548;&#33322;&#26639;&#39029;&#30721;&#25968;&#30446;</span>
+
+    <span class="org-comment-delimiter">// </span><span class="org-comment">&#20174;&#25968;&#25454;&#24211;&#26597;&#35810;&#21040;&#30340;&#25968;&#25454;</span>
+    <span class="org-keyword">private</span> <span class="org-type">int</span> <span class="org-variable-name">rowCount</span>;      <span class="org-comment-delimiter">// </span><span class="org-comment">&#34920;&#31034;&#24635;&#20849;&#26377;&#22810;&#23569;&#26465;&#65307;</span>
+    <span class="org-keyword">private</span> <span class="org-type">List</span>&lt;<span class="org-type">T</span>&gt; <span class="org-variable-name">data</span> = <span class="org-keyword">new</span> <span class="org-type">ArrayList</span>&lt;&gt;();  <span class="org-comment-delimiter">// </span><span class="org-comment">&#33719;&#21462;&#21040;&#30340;&#25968;&#25454;</span>
+
+    <span class="org-comment-delimiter">// </span><span class="org-comment">&#26681;&#25454;&#19978;&#38754;&#35745;&#31639;&#20986;&#30340;&#25968;&#25454;</span>
+    <span class="org-keyword">private</span> <span class="org-type">int</span> <span class="org-variable-name">pageCount</span>;     <span class="org-comment-delimiter">// </span><span class="org-comment">&#24635;&#20849;&#26377;&#22810;&#23569;&#39029;</span>
+    <span class="org-keyword">private</span> <span class="org-type">List</span>&lt;<span class="org-type">Integer</span>&gt; <span class="org-variable-name">links</span> = <span class="org-keyword">new</span> <span class="org-type">ArrayList</span>&lt;&gt;();  <span class="org-comment-delimiter">// </span><span class="org-comment">&#23548;&#33322;&#26465;&#35201;&#26174;&#31034;&#30340;&#39029;&#30721;</span>
+
+
+
+    <span class="org-comment-delimiter">/* </span><span class="org-comment">Constructors */</span>
+    <span class="org-keyword">public</span> <span class="org-function-name">Paginator</span>() {
+    }
+
+    <span class="org-keyword">public</span> <span class="org-function-name">Paginator</span>(<span class="org-type">int</span> <span class="org-variable-name">current</span>, <span class="org-type">int</span> <span class="org-variable-name">pageSize</span>, <span class="org-type">int</span> <span class="org-variable-name">linkSize</span>) {
+        <span class="org-keyword">this</span>.current = current;
+        <span class="org-keyword">this</span>.pageSize = pageSize;
+        <span class="org-keyword">this</span>.linkSize = linkSize;
+    }
+
+
+
+    <span class="org-comment-delimiter">/* </span><span class="org-comment">Accessors */</span>
+    <span class="org-keyword">public</span> <span class="org-type">int</span> <span class="org-function-name">getCurrent</span>() {
+        <span class="org-keyword">return</span> current;
+    }
+
+    <span class="org-keyword">public</span> <span class="org-type">void</span> <span class="org-function-name">setCurrent</span>(<span class="org-type">int</span> <span class="org-variable-name">current</span>) {
+        <span class="org-keyword">this</span>.current = current;
+    }
+
+    <span class="org-keyword">public</span> <span class="org-type">int</span> <span class="org-function-name">getPageSize</span>() {
+        <span class="org-keyword">return</span> pageSize;
+    }
+
+    <span class="org-keyword">public</span> <span class="org-type">void</span> <span class="org-function-name">setPageSize</span>(<span class="org-type">int</span> <span class="org-variable-name">pageSize</span>) {
+        <span class="org-keyword">this</span>.pageSize = pageSize;
+    }
+
+    <span class="org-keyword">public</span> <span class="org-type">int</span> <span class="org-function-name">getLinkSize</span>() {
+        <span class="org-keyword">return</span> linkSize;
+    }
+
+    <span class="org-keyword">public</span> <span class="org-type">void</span> <span class="org-function-name">setLinkSize</span>(<span class="org-type">int</span> <span class="org-variable-name">linkSize</span>) {
+        <span class="org-keyword">this</span>.linkSize = linkSize;
+    }
+
+    <span class="org-keyword">public</span> <span class="org-type">int</span> <span class="org-function-name">getRowCount</span>() {
+        <span class="org-keyword">return</span> rowCount;
+    }
+
+    <span class="org-keyword">public</span> <span class="org-type">void</span> <span class="org-function-name">setRowCount</span>(<span class="org-type">int</span> <span class="org-variable-name">rowCount</span>) {
+        <span class="org-keyword">this</span>.rowCount = rowCount;
+        <span class="org-keyword">this</span>.pageCount = (rowCount + pageSize - 1) / pageSize;
+        calcLinks();
+    }
+
+    <span class="org-keyword">public</span> <span class="org-type">List</span>&lt;<span class="org-type">T</span>&gt; <span class="org-function-name">getData</span>() {
+        <span class="org-keyword">return</span> data;
+    }
+
+    <span class="org-keyword">public</span> <span class="org-type">void</span> <span class="org-function-name">setData</span>(<span class="org-type">List</span>&lt;<span class="org-type">T</span>&gt; <span class="org-variable-name">data</span>) {
+        <span class="org-keyword">this</span>.data = data;
+    }
+
+    <span class="org-keyword">public</span> <span class="org-type">int</span> <span class="org-function-name">getOffset</span>() {
+        <span class="org-keyword">return</span> (<span class="org-keyword">this</span>.current - 1) * <span class="org-keyword">this</span>.pageSize + 1;
+    }
+
+    <span class="org-keyword">public</span> <span class="org-type">int</span> <span class="org-function-name">getPageCount</span>() {
+        <span class="org-keyword">return</span> pageCount;
+    }
+
+    <span class="org-keyword">public</span> <span class="org-type">List</span>&lt;<span class="org-type">Integer</span>&gt; <span class="org-function-name">getLinks</span>() {
+        <span class="org-keyword">return</span> links;
+    }
+
+    <span class="org-doc">/**</span>
+<span class="org-doc">     * &#35745;&#31639;/&#21047;&#26032;&#23548;&#33322;&#26639;&#35201;&#26174;&#31034;&#30340;&#39029;&#30721;</span>
+<span class="org-doc">     */</span>
+    <span class="org-keyword">public</span> <span class="org-type">void</span> <span class="org-function-name">calcLinks</span>() {
+        <span class="org-comment-delimiter">// </span><span class="org-comment">&#26681;&#25454;&#19979;&#38754;&#26465;&#20214;&#35745;&#31639;&#65306;</span>
+        <span class="org-comment-delimiter">// </span><span class="org-comment">1. &#24403;&#21069;&#39029; current</span>
+        <span class="org-comment-delimiter">// </span><span class="org-comment">2. &#24635;&#39029;&#25968; pageCount</span>
+        <span class="org-comment-delimiter">// </span><span class="org-comment">3. &#26174;&#31034;&#25968;&#30446; linkSize</span>
+        <span class="org-type">int</span> <span class="org-variable-name">halfLinkSize</span> = <span class="org-keyword">this</span>.linkSize/2;
+        <span class="org-type">int</span> <span class="org-variable-name">startPage</span> = Math.max(<span class="org-keyword">this</span>.current - halfLinkSize, 1);
+        <span class="org-type">int</span> <span class="org-variable-name">endPage</span> = Math.min(<span class="org-keyword">this</span>.current + halfLinkSize, <span class="org-keyword">this</span>.pageCount);
+
+        <span class="org-keyword">if</span>(endPage - startPage &lt; <span class="org-keyword">this</span>.linkSize - 1) {
+            <span class="org-keyword">if</span>(startPage == 1) {
+                endPage = Math.min(startPage + <span class="org-keyword">this</span>.linkSize - 1, <span class="org-keyword">this</span>.pageCount);
+            } <span class="org-keyword">else</span> {
+                startPage = Math.max(endPage - <span class="org-keyword">this</span>.linkSize + 1, 1);
+            }
+        }
+        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = startPage; i &lt;= endPage; i++) {
+            <span class="org-keyword">this</span>.links.add(i);
+        }
+    }
+
+    <span class="org-doc">/**</span>
+<span class="org-doc">     * &#36755;&#20986;&#23548;&#33322;&#26465;&#30340; html</span>
+<span class="org-doc">     *</span>
+<span class="org-doc">     * &#31616;&#21333;&#23553;&#35013;&#65292;&#21487;&#26681;&#25454;&#38656;&#27714;&#33258;&#24049;&#23450;&#21046;</span>
+<span class="org-doc">     *</span>
+<span class="org-doc">     * </span><span class="org-doc"><span class="org-constant">@param</span></span><span class="org-doc"> url &#35831;&#27714;&#36335;&#24452;</span>
+<span class="org-doc">     * </span><span class="org-doc"><span class="org-constant">@param</span></span><span class="org-doc"> pagenoParam &#34920;&#31034;&#35831;&#27714;&#20013;&#39029;&#30721;&#30340;&#23383;&#27573;&#21517;&#31216;</span>
+<span class="org-doc">     * </span><span class="org-doc"><span class="org-constant">@param</span></span><span class="org-doc"> isFirstLast &#26159;&#21542;&#26174;&#31034;&#39318;&#39029;&#26411;&#39029;</span>
+<span class="org-doc">     * </span><span class="org-doc"><span class="org-constant">@param</span></span><span class="org-doc"> isPrevNext  &#26159;&#21542;&#26174;&#31034;&#19978;&#39029;&#19979;&#39029;</span>
+<span class="org-doc">     * </span><span class="org-doc"><span class="org-constant">@return</span></span><span class="org-doc"> &#20998;&#39029;&#30340; html &#35821;&#21477;</span>
+<span class="org-doc">     */</span>
+    <span class="org-keyword">public</span> <span class="org-type">String</span> <span class="org-function-name">outputPageNav</span>(<span class="org-type">String</span> <span class="org-variable-name">url</span>, <span class="org-type">String</span> <span class="org-variable-name">pagenoParam</span>, <span class="org-type">boolean</span> <span class="org-variable-name">isFirstLast</span>, <span class="org-type">boolean</span> <span class="org-variable-name">isPrevNext</span>) {
+
+        <span class="org-type">String</span> <span class="org-variable-name">firstLabel</span> = <span class="org-string">"&#39318;&#39029;"</span>, <span class="org-variable-name">lastLabel</span> = <span class="org-string">"&#26411;&#39029;"</span>, <span class="org-variable-name">prevLabel</span> = <span class="org-string">"?"</span>, <span class="org-variable-name">nextLabel</span> = <span class="org-string">"?"</span>;
+
+        <span class="org-type">String</span> <span class="org-variable-name">normalLink</span> = <span class="org-string">"  &lt;li&gt;&lt;a href='"</span> + url + <span class="org-string">"?"</span> + pagenoParam + <span class="org-string">"=%s'&gt;%s&lt;/a&gt;&lt;/li&gt;\n"</span>;
+        <span class="org-type">String</span> <span class="org-variable-name">currentLink</span> = <span class="org-string">"  &lt;li&gt;&lt;a href='#' class='current'&gt;%s&lt;/a&gt;&lt;/li&gt;\n"</span>;
+        <span class="org-type">String</span> <span class="org-variable-name">readonlyLink</span> = <span class="org-string">"  &lt;li&gt;&lt;a href='#' class='ro'&gt;%s&lt;/a&gt;&lt;/li&gt;\n"</span>;
+
+        <span class="org-type">StringBuilder</span> <span class="org-variable-name">output</span> = <span class="org-keyword">new</span> <span class="org-type">StringBuilder</span>(<span class="org-string">"&lt;ul id='pagination'&gt;\n"</span>);
+
+        <span class="org-comment-delimiter">// </span><span class="org-comment">&#39318;&#39029;</span>
+        <span class="org-keyword">if</span>(isFirstLast) {
+            <span class="org-keyword">if</span>(current == 1) {
+                output.append(String.format(readonlyLink, firstLabel));
+            } <span class="org-keyword">else</span> {
+                output.append(String.format(normalLink, 1, firstLabel));
+            }
+        }
+
+        <span class="org-comment-delimiter">// </span><span class="org-comment">&#19978;&#19968;&#39029;</span>
+        <span class="org-keyword">if</span>(isPrevNext) {
+            <span class="org-keyword">if</span>(current &lt; 2) {
+                output.append(String.format(readonlyLink, prevLabel));
+            } <span class="org-keyword">else</span> {
+                output.append(String.format(normalLink, current - 1, prevLabel));
+            }
+        }
+
+        <span class="org-comment-delimiter">// </span><span class="org-comment">&#31532; x &#39029;</span>
+        <span class="org-keyword">for</span>(<span class="org-type">Integer</span> <span class="org-variable-name">i</span> : links) {
+            <span class="org-keyword">if</span>(current == i) {
+                output.append(String.format(currentLink, i));
+            } <span class="org-keyword">else</span> {
+                output.append(String.format(normalLink, i, i));
+            }
+        }
+
+        <span class="org-comment-delimiter">// </span><span class="org-comment">&#19979;&#19968;&#39029;</span>
+        <span class="org-keyword">if</span>(isPrevNext) {
+            <span class="org-keyword">if</span>(current &gt;= pageCount) {
+                output.append(String.format(readonlyLink, nextLabel));
+            } <span class="org-keyword">else</span> {
+                output.append(String.format(normalLink, current + 1, nextLabel));
+            }
+        }
+
+        <span class="org-comment-delimiter">// </span><span class="org-comment">&#23614;&#39029;</span>
+        <span class="org-keyword">if</span>(isFirstLast) {
+            <span class="org-keyword">if</span>(current == pageCount) {
+                output.append(String.format(readonlyLink, lastLabel));
+            } <span class="org-keyword">else</span> {
+                output.append(String.format(normalLink, pageCount, lastLabel));
+            }
+        }
+
+        <span class="org-keyword">return</span> String.valueOf(output.append(<span class="org-string">"&lt;/ul&gt;"</span>));
+    }
+
+}
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orgb43f094" class="outline-2">
+<h2 id="orgb43f094"><span class="section-number-2">2</span> Paginator 类使用方法</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<b>首先，在服务端，创建分页对象，将所有跟分页相关的参数和数据都封装到分页对象里：</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-comment-delimiter">// </span><span class="org-comment">1. &#20174;&#29992;&#25143;&#35831;&#27714;&#20013;&#33719;&#21462;&#30456;&#24212;&#30340;&#20998;&#39029;&#21442;&#25968;</span>
+<span class="org-comment-delimiter">//    </span><span class="org-comment">&#26368;&#37325;&#35201;&#30340;&#26159; pageNumber(&#31532;&#20960;&#39029;), &#20854;&#27425;&#21487;&#36873;&#30340;&#26159; pageSize(&#27599;&#39029;&#22810;&#23569;&#26465;), linkSize(&#20998;&#39029;&#23548;&#33322;&#26174;&#31034;&#22810;&#23569;&#39029;&#30721;)</span>
+<span class="org-comment-delimiter">//    </span><span class="org-comment">&#22914;&#26524;&#29992;&#25143;&#27809;&#26377;&#20256;&#36882;&#26469;&#36825;&#26679;&#30340;&#21442;&#25968;&#65292;&#21021;&#22987;&#21270;&#20026;&#40664;&#35748;&#20540;</span>
+<span class="org-type">int</span> <span class="org-variable-name">pageNumber</span> = request.getParameter(<span class="org-string">"pageno"</span>) == <span class="org-constant">null</span> ? 1 : Integer.parseInt(request.getParameter(<span class="org-string">"pageno"</span>));
+<span class="org-type">int</span> <span class="org-variable-name">pageSize</span> = 9;
+<span class="org-type">int</span> <span class="org-variable-name">linkSize</span> = 7;
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">2. &#20351;&#29992;&#19978;&#38754;&#33719;&#21462;&#30340;&#21442;&#25968;&#65292;&#21019;&#24314;&#25105;&#20204;&#30340;&#20998;&#39029;&#23545;&#35937;</span>
+<span class="org-type">Paginator</span>&lt;<span class="org-type">Person</span>&gt; <span class="org-variable-name">paginator</span> = <span class="org-keyword">new</span> <span class="org-type">Paginator</span>&lt;&gt;(pageNumber, pageSize, linkSize);
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">3. &#20174;&#25968;&#25454;&#24211;&#37324;&#65292;&#26597;&#35810;&#35760;&#24405;&#24635;&#25968;&#12290;&#28982;&#21518;&#23558;&#32467;&#26524;&#20445;&#23384;&#21040;&#20998;&#39029;&#23545;&#35937;&#20013;</span>
+<span class="org-type">int</span> <span class="org-variable-name">personCount</span> = personDAO.getPersonCount();
+paginator.setRowCount(personCount);
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">4. &#20174;&#25968;&#25454;&#24211;&#37324;&#65292;&#26597;&#35810;&#20998;&#39029;&#25968;&#25454;&#12290;&#28982;&#21518;&#23558;&#32467;&#26524;&#20445;&#23384;&#21040;&#20998;&#39029;&#23545;&#35937;&#20013;</span>
+<span class="org-type">int</span> <span class="org-variable-name">offset</span> = paginator.getOffset();   <span class="org-comment-delimiter">// </span><span class="org-comment">&#35745;&#31639;&#25968;&#25454;&#30340;&#24207;&#21495;</span>
+<span class="org-type">List</span>&lt;<span class="org-type">Person</span>&gt; <span class="org-variable-name">persons</span> = personDAO.findPersonsByPage(offset, pageSize);
+paginator.setData(persons);
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">5. &#23558;&#20998;&#39029;&#23545;&#35937;&#20445;&#23384;&#36215;&#26469;&#65292;&#29992;&#20110;&#39029;&#30721;&#28210;&#26579;</span>
+req.setAttribute(<span class="org-string">"paginator"</span>, paginator);
+req.getRequestDispatcher(<span class="org-string">"pages/pagination.jsp"</span>).forward(req, resp);
+
+</pre>
+</div>
+
+
+<p>
+在方法 <code>PersonDAO#findPersonsByPage()</code> 里，我们将进行分页查询。这里给提供了一个示例方法，可以将普通的查询语句包装为分页查询语句。
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span class="org-comment-delimiter">// </span><span class="org-comment">&#23558;&#26222;&#36890;&#30340;&#26597;&#35810;&#35821;&#21477;&#65292;&#36716;&#25442;&#20026;&#19968;&#20010;&#20998;&#39029;&#26597;&#35810;&#35821;&#21477;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">MSSQL &#20013;&#30340;&#19968;&#20010;&#31616;&#21333;&#31034;&#20363;, [&#29992;&#27861;&#31034;&#20363;]:</span>
+<span class="org-comment-delimiter">//    </span><span class="org-comment">String pagedSQL = pageLimitSQL("select id, name, weixin from person where id &gt; ?", "id", 200, 10);</span>
+<span class="org-comment-delimiter">//    </span><span class="org-comment">ps = conn.prepareStatement(pageLimitSQL);</span>
+<span class="org-comment-delimiter">//    </span><span class="org-comment">ps.setInteger(1, 33);</span>
+<span class="org-comment-delimiter">//    </span><span class="org-comment">...</span>
+<span class="org-keyword">public</span> <span class="org-keyword">static</span> <span class="org-type">String</span> <span class="org-function-name">pageLimitSQL</span>(<span class="org-type">String</span> <span class="org-variable-name">sql</span>, <span class="org-type">String</span> <span class="org-variable-name">orderBy</span>, <span class="org-type">int</span> <span class="org-variable-name">offset</span>, <span class="org-type">int</span> <span class="org-variable-name">size</span>) {
+    <span class="org-type">String</span> <span class="org-variable-name">sql_temp</span> = <span class="org-string">"select * from ( select *, ROW_NUMBER() over (order by %s) _rn from ( %s ) as __o ) as __p where _rn &gt;= %d and _rn &lt; %d"</span>;
+    <span class="org-keyword">return</span> String.format(sql_temp, orderBy, sql, offset, offset + size);
+}
+
+</pre>
+</div>
+
+
+<p>
+<b>其次，在 JSP 页码中，大致分为三部分：</b>
+</p>
+<ol class="org-ol">
+<li>头部导航(header: <code>总共 m 页，当前 n 页</code>)</li>
+<li>分页数据列表(table)</li>
+<li>分页导航(nav: <code>Pre |1 | 2 | 3 | 4 | 5 | Next</code>)</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span class="org-function-name">body</span>&gt;
+
+  &lt;<span class="org-function-name">div</span> <span class="org-variable-name">id</span>=<span class="org-string">"main"</span>&gt;
+
+    <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">&#31532;&#19968;&#37096;&#20998;&#65292;&#22836;&#37096;&#23548;&#33322; </span><span class="org-comment-delimiter">--&gt;</span>
+    &lt;<span class="org-function-name">header</span>&gt;&#24403;&#21069; ${pager.current} &#39029;&#65292;&#24635;&#20849; ${pager.pageCount} &#39029; &lt;/<span class="org-function-name">header</span>&gt;
+
+    <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">&#31532;&#20108;&#37096;&#20998;&#65292;&#25968;&#25454;&#23637;&#31034; </span><span class="org-comment-delimiter">--&gt;</span>
+    &lt;<span class="org-function-name">table</span>&gt;
+      &lt;<span class="org-function-name">tr</span>&gt;
+        &lt;<span class="org-function-name">th</span>&gt;ID&lt;/<span class="org-function-name">th</span>&gt; &lt;<span class="org-function-name">th</span>&gt;&#21517;&#23383;&lt;/<span class="org-function-name">th</span>&gt; &lt;<span class="org-function-name">th</span>&gt;&#24494;&#20449;&lt;/<span class="org-function-name">th</span>&gt;
+      &lt;/<span class="org-function-name">tr</span>&gt;
+      &lt;<span class="org-sgml-namespace">c</span>:<span class="org-function-name">forEach</span> <span class="org-variable-name">items</span>=<span class="org-string">"${pager.data}"</span> <span class="org-variable-name">var</span>=<span class="org-string">"i"</span>&gt;
+        &lt;<span class="org-function-name">tr</span>&gt;
+          &lt;<span class="org-function-name">td</span>&gt;${i.id}&lt;/<span class="org-function-name">td</span>&gt; &lt;<span class="org-function-name">td</span>&gt;${i.name}&lt;/<span class="org-function-name">td</span>&gt; &lt;<span class="org-function-name">td</span>&gt;${i.weixin}&lt;/<span class="org-function-name">td</span>&gt;
+        &lt;/<span class="org-function-name">tr</span>&gt;
+      &lt;/<span class="org-sgml-namespace">c</span>:<span class="org-function-name">forEach</span>&gt;
+    &lt;/<span class="org-function-name">table</span>&gt;
+
+    <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">&#31532;&#19977;&#37096;&#20998;&#65292;&#39029;&#30721;&#23548;&#33322; </span><span class="org-comment-delimiter">--&gt;</span>
+    &lt;<span class="org-function-name">nav</span> <span class="org-variable-name">style</span>=<span class="org-string">"text-align: center"</span>&gt;
+      ${pager.outputPageNav(<span class="org-string">"/url"</span>, <span class="org-string">"pageno"</span>, true, true);
+    &lt;/<span class="org-function-name">nav</span>&gt;
+
+&lt;/<span class="org-function-name">body</span>&gt;
+
+</pre>
+</div>
+
+<p>
+因为<b>页码导航栏</b>的 html 基本是一致的，并且里面的计算逻辑有些无聊，所以最好单独封装在分页对象里。导航栏的样式需要通过外部 css 控制。这里，我们封装到了 <code>Paginator#outputPageNav()</code> 方法里，在 jsp 页码里直接使用 el 表达式调用就行了:
+</p>
+<pre class="example">
+${pager.outputPageNav("/url", "pageno", true, true)
+</pre>
+<ul class="org-ul">
+<li>第一个参数代表分页的链接</li>
+<li>第二个参数代表用户链接中代表分页的字段的名字</li>
+<li>第三个参数代表是否要生成“首页/末页”</li>
+<li>第四个参数代表是否要生成“上页/下页”。</li>
+</ul>
+</div>
+</section>
+
+<section id="outline-container-org05a8f64" class="outline-2">
+<h2 id="org05a8f64"><span class="section-number-2">3</span> Paginator 的封装</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+如果数据量大的时候，数据全部取出来并显示在页面上基本是不现实的。
+</p>
+<ol class="org-ol">
+<li>数据库忙死</li>
+<li>数据传输慢死</li>
+<li>用户的浏览器卡死</li>
+<li>用户翻页累死</li>
+<li>等等等</li>
+</ol>
+
+<p>
+所以需要一部分一部分显示，这就需要<b>分页</b>功能。分页是 web 开发需要掌握的基本技能。
+</p>
+
+<p>
+如果要分页，作为服务器，需要掌握用户的下面几个需求，这是基本需求：
+</p>
+<ol class="org-ol">
+<li>要看第几页</li>
+<li>每页显示多少条</li>
+<li>分页导航栏怎么显示，显示多少页码</li>
+</ol>
+
+<p>
+所有这些参数需要用户通过请求的方式告知服务器。
+</p>
+<pre class="example">
+/myrequest?pageNumber=x&amp;pageSize=y&amp;linkSize=z
+</pre>
+
+<p>
+当然，不可能强制要求用户将这些参数全都传递给服务器。如果没有传递的话，服务器需要自己给这些参数初始值。比如， <code>pageNumber</code> 的初始值为 1。
+</p>
+
+<p>
+然后，我们需要使用这些参数查询数据库：
+</p>
+<ol class="org-ol">
+<li>数据的总条数 rowCount: <code>select count(*) from table</code></li>
+<li>分页的数据 dataList: <code>select top 20 * from table</code></li>
+</ol>
+
+<p>
+而且，我们需要获得分页导航栏要显示的页码等，这需要一定的计算过程。
+</p>
+
+<p>
+等等。
+</p>
+
+<p>
+按照 OO 思想，上面的一切，最好封装起来：既方便使用，又清晰明了。而且封装好了以后直接拿来用，很爽。
+</p>
+
+<p>
+比如，我们封装到一个类里，名字叫 <code>Paginator</code>:
+</p>
+<ol class="org-ol">
+<li>我们需要将所有跟分页相关的参数放进去</li>
+<li>我们需要将查询到的记录总数放进去</li>
+<li>我们需要将数据库查询所用的页码计算放进去</li>
+<li>我们需要将分页查询得到的数据放进去</li>
+<li>我们需要将计算总页数，计算导航栏页码等也放进去</li>
+</ol>
+
+<p>
+总之，跟分页相关的一切，我们都可以封装到里面。
+</p>
+
+<p>
+如果封装好了，剩下就是使用了。
+</p>
+</div>
+</section>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: yaowuer</p>
+<p class="date">Created: 2019-08-06 Tue 02:35</p>
+<p class="validation">Go ahead, never stop.</p>
+</div>
+</body>
+</html>
