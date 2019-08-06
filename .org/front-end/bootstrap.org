@@ -1,0 +1,49 @@
+#+TITLE: Bootstrap
+
+
+
+* 引入
+
+
+* 网格系统
+
+#+BEGIN_SRC html
+  <div class="container">
+    <div class="row" style="height: 400px;">
+      <div class="col-md-4 col-xm-12">11ddddddd1</div>
+      <div class="col-md-8 col-xm-12">33ddddddd3</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">111</div>
+      <div class="col-sm-4">222</div>
+      <div class="col-sm-4">333</div>
+    </div>
+    <div class="row" style="height: 400px;">
+      <div class="col-sm-2">111</div>
+      <div class="col-sm-8">222</div>
+      <div class="col-sm-2">333</div>
+    </div>
+    <div class="row" style="height: 400px;">
+      <div class="col-sm-2">111</div>
+      <div class="col-sm-2">111</div>
+      <div class="col-sm-4">111</div>
+      <div class="col-sm-2">111</div>
+      <div class="col-sm-2">333</div>
+    </div>
+  </div>
+#+END_SRC
+
+* 响应式布局
+
+#+BEGIN_SRC html
+  <div class="container">
+    <div class="row" style="height: 400px;">
+      <div class="col-md-4 col-sm-12">11ddddddd1</div>
+      <div class="col-md-8 col-sm-12">33ddddddd3</div>
+    </div>
+  </div>
+#+END_SRC
+
+* 各种组件
+
+
